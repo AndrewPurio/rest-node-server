@@ -770,7 +770,7 @@
         "type": "pi-gpiod out",
         "z": "650a8f6f7f65f9de",
         "name": "NL Enable",
-        "host": "localhost",
+        "host": "172.17.0.1",
         "port": 8888,
         "pin": "22",
         "set": false,
