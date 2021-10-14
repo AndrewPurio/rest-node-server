@@ -14,6 +14,13 @@
         "info": ""
     },
     {
+        "id": "2359a6ac742d23a6",
+        "type": "tab",
+        "label": "Light Controls",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2beab0d8.f64dc",
         "type": "subflow",
         "name": "Light Quick Fade-On",
@@ -510,32 +517,6 @@
         ]
     },
     {
-        "id": "722e1582949d1d61",
-        "type": "exec",
-        "z": "f6f2187d.f17ca8",
-        "command": "sytemctl enable pigpiod && pigpiod",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 340,
-        "y": 300,
-        "wires": [
-            [
-                "83adb2ec6388da4d"
-            ],
-            [
-                "845c014a978a1525"
-            ],
-            [
-                "0632b1f5bada6beb"
-            ]
-        ]
-    },
-    {
         "id": "1d0b9396e85ef663",
         "type": "inject",
         "z": "f6f2187d.f17ca8",
@@ -560,57 +541,9 @@
         "y": 300,
         "wires": [
             [
-                "722e1582949d1d61"
+                "d8a7fc645fc100d2"
             ]
         ]
-    },
-    {
-        "id": "83adb2ec6388da4d",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "845c014a978a1525",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "0632b1f5bada6beb",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 340,
-        "wires": []
     },
     {
         "id": "ba1a941db48c4067",
@@ -3240,6 +3173,193 @@
         "wires": [
             [
                 "f192509777947ba2"
+            ]
+        ]
+    },
+    {
+        "id": "d8a7fc645fc100d2",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "docker -v",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "7bc021eaa58c9552"
+            ],
+            [
+                "f26cb3e137c6ae99"
+            ],
+            [
+                "f3f9c8ab47debc93"
+            ]
+        ]
+    },
+    {
+        "id": "f9f05f9c9c9f1fee",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "f3f9c8ab47debc93",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f26cb3e137c6ae99",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7bc021eaa58c9552",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "msg.payload = msg.payload.split('\\n')\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "f9f05f9c9c9f1fee"
+            ]
+        ]
+    },
+    {
+        "id": "30f134d917490382",
+        "type": "pi-gpiod out",
+        "z": "2359a6ac742d23a6",
+        "name": "Night Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "23",
+        "set": "",
+        "level": "0",
+        "out": "out",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "800",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "6f0e26b36b98ad97",
+        "type": "inject",
+        "z": "2359a6ac742d23a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "30f134d917490382"
+            ]
+        ]
+    },
+    {
+        "id": "fdf74b4b5db4a9bd",
+        "type": "pi-gpiod out",
+        "z": "2359a6ac742d23a6",
+        "name": "Wake Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "24",
+        "set": "",
+        "level": "0",
+        "out": "out",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "800",
+        "x": 430,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f09cf27a153a112e",
+        "type": "inject",
+        "z": "2359a6ac742d23a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "fdf74b4b5db4a9bd"
             ]
         ]
     }
