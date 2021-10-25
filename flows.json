@@ -3089,7 +3089,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 110,
+        "x": 130,
         "y": 40,
         "wires": [
             [
@@ -3102,13 +3102,13 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Initialize Constants",
-        "func": "const light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst night_light_state = light_states.OFF\nconst wake_light_state = light_states.OFF\n\nflow.set('light_states', light_states)\n\nflow.set('night_light_state', night_light_state)\nflow.set('wake_light_state', wake_light_state)",
+        "func": "const lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst night_light_state = light_states.OFF\nconst wake_light_state = light_states.OFF\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, {\n    max_brightness: 100,\n    state: light_states.OFF,\n    light: lights.NIGHT_LIGHT\n})\n\nflow.set(lights.WAKE_LIGHT, {\n    max_brightness: 100,\n    state: light_states.OFF,\n    light: lights.WAKE_LIGHT\n})\n\nflow.set('night_light_state', night_light_state)\nflow.set('wake_light_state', wake_light_state)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 470,
         "y": 40,
         "wires": []
     },
@@ -3126,8 +3126,8 @@
         "sermin": "1000",
         "sermax": "2000",
         "freq": "2000",
-        "x": 850,
-        "y": 340,
+        "x": 870,
+        "y": 480,
         "wires": []
     },
     {
@@ -3146,8 +3146,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 240,
+        "x": 570,
+        "y": 380,
         "wires": [
             [
                 "406cc2bc2f372440",
@@ -3166,8 +3166,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 240,
+        "x": 380,
+        "y": 380,
         "wires": [
             [
                 "f0e97be702be0e23"
@@ -3185,8 +3185,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 240,
+        "x": 180,
+        "y": 380,
         "wires": [
             [
                 "406cc2bc2f372440"
@@ -3212,8 +3212,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 300,
+        "x": 870,
+        "y": 440,
         "wires": [
             [
                 "9e0d6091e444fd79",
@@ -3229,8 +3229,8 @@
         "links": [
             "b2e7a0407aea6a2a"
         ],
-        "x": 35,
-        "y": 240,
+        "x": 55,
+        "y": 380,
         "wires": [
             [
                 "91b733e0b0b35e42"
@@ -3248,8 +3248,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 320,
+        "x": 180,
+        "y": 460,
         "wires": [
             [
                 "111b8044a4a2c809"
@@ -3267,8 +3267,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 320,
+        "x": 380,
+        "y": 460,
         "wires": [
             [
                 "4de216b02ff64d27"
@@ -3283,8 +3283,8 @@
         "links": [
             "960cc71d221701e5"
         ],
-        "x": 35,
-        "y": 320,
+        "x": 55,
+        "y": 460,
         "wires": [
             [
                 "a1917919418e600f"
@@ -3300,11 +3300,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 850,
-        "y": 260,
+        "x": 870,
+        "y": 400,
         "wires": []
     },
     {
@@ -3318,8 +3319,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 400,
+        "x": 360,
+        "y": 540,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3337,8 +3338,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 180,
+        "x": 370,
+        "y": 320,
         "wires": [
             [
                 "c9ce0d6ad1cb5c50"
@@ -3361,8 +3362,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 400,
+        "x": 570,
+        "y": 540,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3385,8 +3386,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 320,
+        "x": 570,
+        "y": 460,
         "wires": [
             [
                 "111b8044a4a2c809",
@@ -3410,8 +3411,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 180,
+        "x": 570,
+        "y": 320,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3514,8 +3515,8 @@
         "links": [
             "81c8ed3d1f966e48"
         ],
-        "x": 35,
-        "y": 180,
+        "x": 55,
+        "y": 320,
         "wires": [
             [
                 "7ca518af31291cf3"
@@ -3530,8 +3531,8 @@
         "links": [
             "25cd6159ea46fd09"
         ],
-        "x": 35,
-        "y": 400,
+        "x": 55,
+        "y": 540,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3544,8 +3545,8 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light Controls",
         "info": "",
-        "x": 110,
-        "y": 120,
+        "x": 130,
+        "y": 260,
         "wires": []
     },
     {
@@ -3562,8 +3563,8 @@
         "sermin": "1000",
         "sermax": "2000",
         "freq": "2000",
-        "x": 850,
-        "y": 700,
+        "x": 870,
+        "y": 840,
         "wires": []
     },
     {
@@ -3582,8 +3583,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 600,
+        "x": 570,
+        "y": 740,
         "wires": [
             [
                 "319337eab88adebf",
@@ -3602,8 +3603,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 600,
+        "x": 380,
+        "y": 740,
         "wires": [
             [
                 "cacafecf86b8fba0"
@@ -3621,8 +3622,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 600,
+        "x": 180,
+        "y": 740,
         "wires": [
             [
                 "319337eab88adebf"
@@ -3648,8 +3649,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 660,
+        "x": 870,
+        "y": 800,
         "wires": [
             [
                 "8243cb9e5ec10752",
@@ -3665,8 +3666,8 @@
         "links": [
             "dfabc3b2d34acdf8"
         ],
-        "x": 35,
-        "y": 600,
+        "x": 55,
+        "y": 740,
         "wires": [
             [
                 "85e232c32b892bca"
@@ -3684,8 +3685,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 680,
+        "x": 180,
+        "y": 820,
         "wires": [
             [
                 "63d221011df05e5f"
@@ -3703,8 +3704,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 680,
+        "x": 380,
+        "y": 820,
         "wires": [
             [
                 "2965fe41e12a2e3a"
@@ -3719,8 +3720,8 @@
         "links": [
             "e7a602ec0b3bf95e"
         ],
-        "x": 35,
-        "y": 680,
+        "x": 55,
+        "y": 820,
         "wires": [
             [
                 "e364e825de7c167d"
@@ -3739,8 +3740,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 850,
-        "y": 620,
+        "x": 870,
+        "y": 760,
         "wires": []
     },
     {
@@ -3754,8 +3755,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 760,
+        "x": 360,
+        "y": 900,
         "wires": [
             [
                 "0ee91d3d7d364d17"
@@ -3773,8 +3774,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 540,
+        "x": 370,
+        "y": 680,
         "wires": [
             [
                 "540f68274b47daf0"
@@ -3797,8 +3798,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 760,
+        "x": 570,
+        "y": 900,
         "wires": [
             [
                 "ae492d526f0deacf"
@@ -3821,8 +3822,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 680,
+        "x": 570,
+        "y": 820,
         "wires": [
             [
                 "63d221011df05e5f",
@@ -3846,8 +3847,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 550,
-        "y": 540,
+        "x": 570,
+        "y": 680,
         "wires": [
             [
                 "ae492d526f0deacf"
@@ -3862,8 +3863,8 @@
         "links": [
             "ae2fef38b6a7d6e9"
         ],
-        "x": 35,
-        "y": 540,
+        "x": 55,
+        "y": 680,
         "wires": [
             [
                 "18cbfda8fdc66f4d"
@@ -3878,8 +3879,8 @@
         "links": [
             "4390ac2b0b4bdb4f"
         ],
-        "x": 35,
-        "y": 760,
+        "x": 55,
+        "y": 900,
         "wires": [
             [
                 "eaa31a6ee54bcc7d"
@@ -3892,8 +3893,8 @@
         "z": "e1a40699ea85764e",
         "name": "Wake Light Controls",
         "info": "",
-        "x": 110,
-        "y": 480,
+        "x": 130,
+        "y": 620,
         "wires": []
     },
     {
@@ -3907,8 +3908,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 140,
-        "y": 860,
+        "x": 160,
+        "y": 1000,
         "wires": [
             [
                 "ae2fef38b6a7d6e9"
@@ -3926,8 +3927,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
-        "y": 900,
+        "x": 170,
+        "y": 1040,
         "wires": [
             [
                 "dfabc3b2d34acdf8"
@@ -3945,8 +3946,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 150,
-        "y": 940,
+        "x": 170,
+        "y": 1080,
         "wires": [
             [
                 "e7a602ec0b3bf95e"
@@ -3964,8 +3965,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 130,
-        "y": 980,
+        "x": 150,
+        "y": 1120,
         "wires": [
             [
                 "4390ac2b0b4bdb4f"
@@ -3980,8 +3981,8 @@
         "links": [
             "ce05c629e9a63664"
         ],
-        "x": 375,
-        "y": 860,
+        "x": 395,
+        "y": 1000,
         "wires": []
     },
     {
@@ -3992,8 +3993,8 @@
         "links": [
             "34c409484676e670"
         ],
-        "x": 375,
-        "y": 900,
+        "x": 395,
+        "y": 1040,
         "wires": []
     },
     {
@@ -4004,8 +4005,8 @@
         "links": [
             "c1f1cb89bba4f0a5"
         ],
-        "x": 375,
-        "y": 940,
+        "x": 395,
+        "y": 1080,
         "wires": []
     },
     {
@@ -4016,8 +4017,8 @@
         "links": [
             "5a3d3bd96cecad9c"
         ],
-        "x": 375,
-        "y": 980,
+        "x": 395,
+        "y": 1120,
         "wires": []
     },
     {
@@ -4031,8 +4032,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 630,
-        "y": 860,
+        "x": 650,
+        "y": 1000,
         "wires": [
             [
                 "81c8ed3d1f966e48"
@@ -4050,8 +4051,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 650,
-        "y": 900,
+        "x": 670,
+        "y": 1040,
         "wires": [
             [
                 "b2e7a0407aea6a2a"
@@ -4069,8 +4070,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 650,
-        "y": 940,
+        "x": 670,
+        "y": 1080,
         "wires": [
             [
                 "960cc71d221701e5"
@@ -4088,8 +4089,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 630,
-        "y": 980,
+        "x": 650,
+        "y": 1120,
         "wires": [
             [
                 "25cd6159ea46fd09"
@@ -4104,8 +4105,8 @@
         "links": [
             "35e4ae63f18d6679"
         ],
-        "x": 875,
-        "y": 860,
+        "x": 895,
+        "y": 1000,
         "wires": []
     },
     {
@@ -4116,8 +4117,8 @@
         "links": [
             "e70d1942fa62036c"
         ],
-        "x": 875,
-        "y": 900,
+        "x": 895,
+        "y": 1040,
         "wires": []
     },
     {
@@ -4128,8 +4129,8 @@
         "links": [
             "99d636e4c54833d3"
         ],
-        "x": 875,
-        "y": 940,
+        "x": 895,
+        "y": 1080,
         "wires": []
     },
     {
@@ -4140,26 +4141,27 @@
         "links": [
             "f6a3886c0d4dd377"
         ],
-        "x": 875,
-        "y": 980,
+        "x": 895,
+        "y": 1120,
         "wires": []
     },
     {
         "id": "9c789c026ddd5adf",
         "type": "pi-gpiod in",
         "z": "4fcd3dd2df70f0c8",
-        "name": "",
+        "name": "System Reset",
         "host": "172.17.0.1",
         "port": 8888,
         "pin": "24",
         "intype": "PUD_DOWN",
         "debounce": "25",
         "read": false,
-        "x": 210,
-        "y": 120,
+        "x": 110,
+        "y": 60,
         "wires": [
             [
-                "1590337acdb5b8fc"
+                "766cf8448e1566aa",
+                "1620cc6ba52e96c1"
             ]
         ]
     },
@@ -4176,8 +4178,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 470,
-        "y": 120,
+        "x": 770,
+        "y": 60,
         "wires": []
     },
     {
@@ -4201,7 +4203,7 @@
             "80eb67c307aed82d"
         ],
         "x": 55,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "1e74388b5934da98"
@@ -4239,7 +4241,7 @@
         "repair": false,
         "outputs": 4,
         "x": 210,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "e3eda576d486f91d"
@@ -4285,7 +4287,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 220,
+        "y": 260,
         "wires": []
     },
     {
@@ -4301,7 +4303,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 260,
+        "y": 300,
         "wires": []
     },
     {
@@ -4317,7 +4319,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 300,
+        "y": 340,
         "wires": []
     },
     {
@@ -4333,7 +4335,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 340,
+        "y": 380,
         "wires": []
     },
     {
@@ -4348,7 +4350,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 220,
+        "y": 260,
         "wires": [
             [
                 "415057ac6ad5cab1"
@@ -4367,7 +4369,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 260,
+        "y": 300,
         "wires": [
             [
                 "605654e2f63916c5"
@@ -4386,7 +4388,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 300,
+        "y": 340,
         "wires": [
             [
                 "43f0b87cf04ea4de"
@@ -4405,7 +4407,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 340,
+        "y": 380,
         "wires": [
             [
                 "a9377bed695f3949"
@@ -4488,5 +4490,159 @@
         "x": 340,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "766cf8448e1566aa",
+        "type": "trigger",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "op1": "false",
+        "op2": "true",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "5",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 420,
+        "y": 60,
+        "wires": [
+            [
+                "1590337acdb5b8fc"
+            ]
+        ]
+    },
+    {
+        "id": "1620cc6ba52e96c1",
+        "type": "debug",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "99890cfd06ef832a",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [],
+        "x": 55,
+        "y": 120,
+        "wires": [
+            [
+                "379e9aab2c3b613a"
+            ]
+        ]
+    },
+    {
+        "id": "190afcbbbaa241d9",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Light Configurations (Global)",
+        "func": "const lights = {\n    night_light: {\n        brightness_level: 100,\n        state: 'OFF',\n        min_threshold: 20\n    },\n    \n    wake_light: {\n        brightness_level: 100,\n        state: 'OFF',\n        min_threshold: 20\n    }\n}",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6022aef9ff5d1e91",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a0d0ba5fe385674b",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = flow.get('lights') \n\nmsg.payload = {\n    light: WAKE_LIGHT,\n    max_brightness: 70\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "379e9aab2c3b613a"
+            ]
+        ]
+    },
+    {
+        "id": "0189daa5f53e7eaf",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "a0d0ba5fe385674b"
+            ]
+        ]
+    },
+    {
+        "id": "379e9aab2c3b613a",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Light State Handler",
+        "func": "const { light } = msg.payload\nconst light_state = flow.get(light)\n\nflow.set(light, {\n    ...light_state, ...msg.payload\n})\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 120,
+        "wires": [
+            [
+                "6022aef9ff5d1e91"
+            ]
+        ]
     }
 ]
