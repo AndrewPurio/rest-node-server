@@ -28,6 +28,13 @@
         "info": ""
     },
     {
+        "id": "39c947163c4b72c5",
+        "type": "tab",
+        "label": "Hardware Interface",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "1ef6a397c037ff41",
         "type": "tab",
         "label": "restnode",
@@ -3089,11 +3096,11 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 40,
+        "x": 110,
+        "y": 280,
         "wires": [
             [
-                "10a9f715affe67fc"
+                "6c3ef41b9b35c8fd"
             ]
         ]
     },
@@ -3102,14 +3109,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Initialize Constants",
-        "func": "const lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst night_light_state = light_states.OFF\nconst wake_light_state = light_states.OFF\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, {\n    max_brightness: 100,\n    state: light_states.OFF,\n    light: lights.NIGHT_LIGHT\n})\n\nflow.set(lights.WAKE_LIGHT, {\n    max_brightness: 100,\n    state: light_states.OFF,\n    light: lights.WAKE_LIGHT\n})\n\nflow.set('night_light_state', night_light_state)\nflow.set('wake_light_state', wake_light_state)",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst night_light_state = light_states.OFF\nconst wake_light_state = light_states.OFF\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, NIGHT_LIGHT)\nflow.set(lights.WAKE_LIGHT, WAKE_LIGHT)\n\n// flow.set('night_light_state', night_light_state)\n// flow.set('wake_light_state', wake_light_state)\nflow.set('night_light_current_brightness', 0)\nflow.set('wake_light_current_brightness', 0)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 40,
+        "x": 870,
+        "y": 280,
         "wires": []
     },
     {
@@ -3126,8 +3133,8 @@
         "sermin": "1000",
         "sermax": "2000",
         "freq": "2000",
-        "x": 870,
-        "y": 480,
+        "x": 850,
+        "y": 880,
         "wires": []
     },
     {
@@ -3146,8 +3153,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 570,
-        "y": 380,
+        "x": 550,
+        "y": 780,
         "wires": [
             [
                 "406cc2bc2f372440",
@@ -3160,14 +3167,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Fade Counter",
-        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst night_light_state = flow.get('night_light_state')\n\nif(msg.counter >= 100) {\n    flow.set('night_light_state', ON)\n    \n    return null\n}\n\nif(night_light_state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
+        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { state, light, max_brightness } = NIGHT_LIGHT\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...NIGHT_LIGHT, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\nflow.set('night_light_current_brightness', msg.counter)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 380,
+        "x": 360,
+        "y": 780,
         "wires": [
             [
                 "f0e97be702be0e23"
@@ -3179,14 +3186,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade On",
-        "func": "const { FADE_ON } = flow.get('light_states')\n\nflow.set('night_light_state', FADE_ON)\nmsg.counter = 0\n\nreturn msg",
+        "func": "const { FADE_ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: FADE_ON\n})\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 380,
+        "x": 160,
+        "y": 780,
         "wires": [
             [
                 "406cc2bc2f372440"
@@ -3212,8 +3219,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 870,
-        "y": 440,
+        "x": 850,
+        "y": 840,
         "wires": [
             [
                 "9e0d6091e444fd79",
@@ -3227,10 +3234,13 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light (Fade On)",
         "links": [
-            "b2e7a0407aea6a2a"
+            "b2e7a0407aea6a2a",
+            "48503f83daebe740",
+            "bd5fce3febdf15d7",
+            "0eb1bec83ebe053c"
         ],
-        "x": 55,
-        "y": 380,
+        "x": 35,
+        "y": 780,
         "wires": [
             [
                 "91b733e0b0b35e42"
@@ -3242,14 +3252,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade Off",
-        "func": "const { FADE_OFF } = flow.get('light_states')\n\nflow.set('night_light_state', FADE_OFF)\nmsg.counter = 100\n\nreturn msg",
+        "func": "const { FADE_OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: FADE_OFF\n})\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 460,
+        "x": 160,
+        "y": 860,
         "wires": [
             [
                 "111b8044a4a2c809"
@@ -3261,14 +3271,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Fade Counter",
-        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst night_light_state = flow.get('night_light_state')\n\nif(msg.counter <= 0) {\n    flow.set('night_light_state', OFF)\n    \n    return null\n}\n\nif(night_light_state !== FADE_OFF)\n    return null\n\nmsg.counter--\n\nreturn msg",
+        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { state, light, max_brightness } = NIGHT_LIGHT\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...NIGHT_LIGHT, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('night_light_current_brightness', msg.counter)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 460,
+        "x": 360,
+        "y": 860,
         "wires": [
             [
                 "4de216b02ff64d27"
@@ -3281,10 +3291,13 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light (Fade Off)",
         "links": [
-            "960cc71d221701e5"
+            "960cc71d221701e5",
+            "6e09738fba4f3349",
+            "d9103be68bd22c99",
+            "60a1514379cf765d"
         ],
-        "x": 55,
-        "y": 460,
+        "x": 35,
+        "y": 860,
         "wires": [
             [
                 "a1917919418e600f"
@@ -3304,8 +3317,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 870,
-        "y": 400,
+        "x": 850,
+        "y": 800,
         "wires": []
     },
     {
@@ -3313,14 +3326,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\n\nflow.set('night_light_state', OFF)\nmsg.counter = 0\n\nreturn msg",
+        "func": "const { OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: OFF\n})\n\nmsg.counter = 0\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 540,
+        "x": 340,
+        "y": 940,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3332,14 +3345,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\n\nflow.set('night_light_state', ON)\nmsg.counter = 100\n\nreturn msg",
+        "func": "const { ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: ON\n})\n\nmsg.counter = max_brightness\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 320,
+        "x": 350,
+        "y": 720,
         "wires": [
             [
                 "c9ce0d6ad1cb5c50"
@@ -3362,8 +3375,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 570,
-        "y": 540,
+        "x": 550,
+        "y": 940,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3386,8 +3399,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 570,
-        "y": 460,
+        "x": 550,
+        "y": 860,
         "wires": [
             [
                 "111b8044a4a2c809",
@@ -3411,8 +3424,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 570,
-        "y": 320,
+        "x": 550,
+        "y": 720,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3488,8 +3501,8 @@
         "name": "",
         "server": "18c6c46d15594407",
         "client": "",
-        "x": 110,
-        "y": 60,
+        "x": 210,
+        "y": 140,
         "wires": [
             [
                 "db7057806dca5e74"
@@ -3503,8 +3516,8 @@
         "name": "",
         "server": "18c6c46d15594407",
         "client": "",
-        "x": 560,
-        "y": 60,
+        "x": 660,
+        "y": 140,
         "wires": []
     },
     {
@@ -3513,10 +3526,13 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light (On)",
         "links": [
-            "81c8ed3d1f966e48"
+            "81c8ed3d1f966e48",
+            "5bde7861c88f93ce",
+            "9161018b3a1cc506",
+            "627d595124cde24e"
         ],
-        "x": 55,
-        "y": 320,
+        "x": 35,
+        "y": 720,
         "wires": [
             [
                 "7ca518af31291cf3"
@@ -3529,10 +3545,13 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light (Off)",
         "links": [
-            "25cd6159ea46fd09"
+            "25cd6159ea46fd09",
+            "7f04188022e29c07",
+            "6277dbf5345db5cb",
+            "404746cedc16dfcd"
         ],
-        "x": 55,
-        "y": 540,
+        "x": 35,
+        "y": 940,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3545,604 +3564,8 @@
         "z": "e1a40699ea85764e",
         "name": "Night Light Controls",
         "info": "",
-        "x": 130,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "cd5025cb87f2fd93",
-        "type": "pi-gpiod out",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "22",
-        "set": false,
-        "level": "0",
-        "out": "pwm",
-        "sermin": "1000",
-        "sermax": "2000",
-        "freq": "2000",
-        "x": 870,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "cacafecf86b8fba0",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 570,
-        "y": 740,
-        "wires": [
-            [
-                "319337eab88adebf",
-                "ae492d526f0deacf"
-            ]
-        ]
-    },
-    {
-        "id": "319337eab88adebf",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Fade Counter",
-        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst wake_light_state = flow.get('wake_light_state')\n\nif(msg.counter >= 100) {\n    flow.set('wake_light_state', ON)\n    \n    return null\n}\n\nif(wake_light_state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 740,
-        "wires": [
-            [
-                "cacafecf86b8fba0"
-            ]
-        ]
-    },
-    {
-        "id": "85e232c32b892bca",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Fade On",
-        "func": "const { FADE_ON } = flow.get('light_states')\n\nflow.set('wake_light_state', FADE_ON)\nmsg.counter = 0\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 180,
-        "y": 740,
-        "wires": [
-            [
-                "319337eab88adebf"
-            ]
-        ]
-    },
-    {
-        "id": "ae492d526f0deacf",
-        "type": "change",
-        "z": "e1a40699ea85764e",
-        "name": "Payload to Counter",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "counter",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 870,
-        "y": 800,
-        "wires": [
-            [
-                "8243cb9e5ec10752",
-                "cd5025cb87f2fd93"
-            ]
-        ]
-    },
-    {
-        "id": "34c409484676e670",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (Fade On)",
-        "links": [
-            "dfabc3b2d34acdf8"
-        ],
-        "x": 55,
-        "y": 740,
-        "wires": [
-            [
-                "85e232c32b892bca"
-            ]
-        ]
-    },
-    {
-        "id": "e364e825de7c167d",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Fade Off",
-        "func": "const { FADE_OFF } = flow.get('light_states')\n\nflow.set('wake_light_state', FADE_OFF)\nmsg.counter = 100\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 180,
-        "y": 820,
-        "wires": [
-            [
-                "63d221011df05e5f"
-            ]
-        ]
-    },
-    {
-        "id": "63d221011df05e5f",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Fade Counter",
-        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst wake_light_state = flow.get('wake_light_state')\n\nif(msg.counter <= 0) {\n    flow.set('wake_light_state', OFF)\n    \n    return null\n}\n\nif(wake_light_state !== FADE_OFF)\n    return null\n\nmsg.counter--\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 820,
-        "wires": [
-            [
-                "2965fe41e12a2e3a"
-            ]
-        ]
-    },
-    {
-        "id": "c1f1cb89bba4f0a5",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (Fade Off)",
-        "links": [
-            "e7a602ec0b3bf95e"
-        ],
-        "x": 55,
-        "y": 820,
-        "wires": [
-            [
-                "e364e825de7c167d"
-            ]
-        ]
-    },
-    {
-        "id": "8243cb9e5ec10752",
-        "type": "debug",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 760,
-        "wires": []
-    },
-    {
-        "id": "eaa31a6ee54bcc7d",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\n\nflow.set('wake_light_state', OFF)\nmsg.counter = 0\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 900,
-        "wires": [
-            [
-                "0ee91d3d7d364d17"
-            ]
-        ]
-    },
-    {
-        "id": "18cbfda8fdc66f4d",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\n\nflow.set('wake_light_state', ON)\nmsg.counter = 100\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 680,
-        "wires": [
-            [
-                "540f68274b47daf0"
-            ]
-        ]
-    },
-    {
-        "id": "0ee91d3d7d364d17",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 570,
-        "y": 900,
-        "wires": [
-            [
-                "ae492d526f0deacf"
-            ]
-        ]
-    },
-    {
-        "id": "2965fe41e12a2e3a",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 570,
-        "y": 820,
-        "wires": [
-            [
-                "63d221011df05e5f",
-                "ae492d526f0deacf"
-            ]
-        ]
-    },
-    {
-        "id": "540f68274b47daf0",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 570,
-        "y": 680,
-        "wires": [
-            [
-                "ae492d526f0deacf"
-            ]
-        ]
-    },
-    {
-        "id": "ce05c629e9a63664",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (On)",
-        "links": [
-            "ae2fef38b6a7d6e9"
-        ],
-        "x": 55,
-        "y": 680,
-        "wires": [
-            [
-                "18cbfda8fdc66f4d"
-            ]
-        ]
-    },
-    {
-        "id": "5a3d3bd96cecad9c",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (Off)",
-        "links": [
-            "4390ac2b0b4bdb4f"
-        ],
-        "x": 55,
-        "y": 900,
-        "wires": [
-            [
-                "eaa31a6ee54bcc7d"
-            ]
-        ]
-    },
-    {
-        "id": "a72794d36f8241f8",
-        "type": "comment",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Controls",
-        "info": "",
-        "x": 130,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "ec46da74613d3c1a",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 160,
-        "y": 1000,
-        "wires": [
-            [
-                "ae2fef38b6a7d6e9"
-            ]
-        ]
-    },
-    {
-        "id": "82a65f82fb6fd2cb",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Fade On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 170,
-        "y": 1040,
-        "wires": [
-            [
-                "dfabc3b2d34acdf8"
-            ]
-        ]
-    },
-    {
-        "id": "6129a7161b3e4e55",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Fade Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 170,
-        "y": 1080,
-        "wires": [
-            [
-                "e7a602ec0b3bf95e"
-            ]
-        ]
-    },
-    {
-        "id": "e5bdf64e4184de5e",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 150,
-        "y": 1120,
-        "wires": [
-            [
-                "4390ac2b0b4bdb4f"
-            ]
-        ]
-    },
-    {
-        "id": "ae2fef38b6a7d6e9",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "ce05c629e9a63664"
-        ],
-        "x": 395,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "dfabc3b2d34acdf8",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "34c409484676e670"
-        ],
-        "x": 395,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "e7a602ec0b3bf95e",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "c1f1cb89bba4f0a5"
-        ],
-        "x": 395,
-        "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "4390ac2b0b4bdb4f",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "5a3d3bd96cecad9c"
-        ],
-        "x": 395,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "17883d101bf8ebaf",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 650,
-        "y": 1000,
-        "wires": [
-            [
-                "81c8ed3d1f966e48"
-            ]
-        ]
-    },
-    {
-        "id": "fb20b22a75974421",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Fade On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 670,
-        "y": 1040,
-        "wires": [
-            [
-                "b2e7a0407aea6a2a"
-            ]
-        ]
-    },
-    {
-        "id": "8a0fb21a026fdb4d",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Fade Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 670,
-        "y": 1080,
-        "wires": [
-            [
-                "960cc71d221701e5"
-            ]
-        ]
-    },
-    {
-        "id": "a34a9d4bf7a9cd14",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 650,
-        "y": 1120,
-        "wires": [
-            [
-                "25cd6159ea46fd09"
-            ]
-        ]
-    },
-    {
-        "id": "81c8ed3d1f966e48",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "35e4ae63f18d6679"
-        ],
-        "x": 895,
-        "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "b2e7a0407aea6a2a",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "e70d1942fa62036c"
-        ],
-        "x": 895,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "960cc71d221701e5",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "99d636e4c54833d3"
-        ],
-        "x": 895,
-        "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "25cd6159ea46fd09",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "f6a3886c0d4dd377"
-        ],
-        "x": 895,
-        "y": 1120,
+        "x": 110,
+        "y": 660,
         "wires": []
     },
     {
@@ -4190,8 +3613,8 @@
         "links": [
             "647a013a3e33688b"
         ],
-        "x": 495,
-        "y": 120,
+        "x": 595,
+        "y": 200,
         "wires": []
     },
     {
@@ -4265,8 +3688,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 310,
-        "y": 60,
+        "x": 410,
+        "y": 140,
         "wires": [
             [
                 "62e6a71c4cb08a51",
@@ -4537,30 +3960,15 @@
         "id": "99890cfd06ef832a",
         "type": "link in",
         "z": "e1a40699ea85764e",
-        "name": "",
+        "name": "From API (Lights)",
         "links": [],
-        "x": 55,
-        "y": 120,
+        "x": 35,
+        "y": 520,
         "wires": [
             [
                 "379e9aab2c3b613a"
             ]
         ]
-    },
-    {
-        "id": "190afcbbbaa241d9",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Light Configurations (Global)",
-        "func": "const lights = {\n    night_light: {\n        brightness_level: 100,\n        state: 'OFF',\n        min_threshold: 20\n    },\n    \n    wake_light: {\n        brightness_level: 100,\n        state: 'OFF',\n        min_threshold: 20\n    }\n}",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "6022aef9ff5d1e91",
@@ -4574,8 +3982,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 120,
+        "x": 610,
+        "y": 520,
         "wires": []
     },
     {
@@ -4589,8 +3997,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 180,
+        "x": 380,
+        "y": 580,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -4599,6 +4007,511 @@
     },
     {
         "id": "0189daa5f53e7eaf",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Test API Call for Light Controls",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 580,
+        "wires": [
+            [
+                "a0d0ba5fe385674b"
+            ]
+        ]
+    },
+    {
+        "id": "379e9aab2c3b613a",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Light State Handler",
+        "func": "const { light } = msg.payload\nconst light_state = flow.get(light) || {}\n\nflow.set(light, {\n    ...light_state, ...msg.payload\n})\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 520,
+        "wires": [
+            [
+                "6022aef9ff5d1e91"
+            ]
+        ]
+    },
+    {
+        "id": "723b2b9bac1a7185",
+        "type": "file in",
+        "z": "e1a40699ea85764e",
+        "name": "Retrieve Lights Config",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "c66d3893f2da6fef"
+            ]
+        ]
+    },
+    {
+        "id": "3d590f59ba52ee01",
+        "type": "catch",
+        "z": "e1a40699ea85764e",
+        "name": "If Lights Config Does Not Exist",
+        "scope": [
+            "723b2b9bac1a7185"
+        ],
+        "uncaught": false,
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "e2447a0bb398c179"
+            ]
+        ]
+    },
+    {
+        "id": "b532aa6c3ea97ef1",
+        "type": "file",
+        "z": "e1a40699ea85764e",
+        "name": "Create Lights Config File",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "c66d3893f2da6fef"
+            ]
+        ]
+    },
+    {
+        "id": "76c66935f94f3d2f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 40,
+        "wires": [
+            [
+                "b6b9c922ac0177ab"
+            ]
+        ]
+    },
+    {
+        "id": "b6b9c922ac0177ab",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Global Config",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst defaults_config = {\n    lights: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "6c3ef41b9b35c8fd",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "FileName",
+        "func": "const { lights } = global.get('defaults_config')\n\nmsg.filename = lights\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "723b2b9bac1a7185"
+            ]
+        ]
+    },
+    {
+        "id": "c66d3893f2da6fef",
+        "type": "json",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "10a9f715affe67fc"
+            ]
+        ]
+    },
+    {
+        "id": "e2447a0bb398c179",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Default Lights Config",
+        "func": "const { default_light_config } = global.get('defaults_config')\n\nmsg.payload = default_light_config\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 340,
+        "wires": [
+            [
+                "b532aa6c3ea97ef1"
+            ]
+        ]
+    },
+    {
+        "id": "187d77bbac4e11b7",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "From API",
+        "info": "",
+        "x": 80,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "31f728f22bd028c9",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Default Config (Lights)",
+        "info": "",
+        "x": 120,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "eb47212d3f5e67e3",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light On (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "61f81f46ce3b5a78"
+            ]
+        ]
+    },
+    {
+        "id": "6540f6f1c36f6920",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light Fade On (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "5bafbfec8916f0ba"
+            ]
+        ]
+    },
+    {
+        "id": "eb1928db99d31f74",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light Fade Off (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "03c1809fedcd92b1"
+            ]
+        ]
+    },
+    {
+        "id": "d2e885e2aa81f24b",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light Off (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "867eba5884d338c5"
+            ]
+        ]
+    },
+    {
+        "id": "61f81f46ce3b5a78",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "ce05c629e9a63664",
+            "67801cebe5dcc6c3"
+        ],
+        "x": 375,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5bafbfec8916f0ba",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "34c409484676e670",
+            "1c6e4cb06ec4242a"
+        ],
+        "x": 375,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "03c1809fedcd92b1",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "c1f1cb89bba4f0a5",
+            "706856ecf2888e23"
+        ],
+        "x": 375,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "867eba5884d338c5",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "5a3d3bd96cecad9c",
+            "d3cca85a24e36670"
+        ],
+        "x": 375,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3ec793e5515d5105",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light On (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 630,
+        "y": 60,
+        "wires": [
+            [
+                "627d595124cde24e"
+            ]
+        ]
+    },
+    {
+        "id": "f910e0bfac4eac24",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light Fade On (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "0eb1bec83ebe053c"
+            ]
+        ]
+    },
+    {
+        "id": "db65c4b2469e2eb4",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light Fade Off (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "60a1514379cf765d"
+            ]
+        ]
+    },
+    {
+        "id": "6ac8467610db31e5",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light Off (Test)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [
+                "404746cedc16dfcd"
+            ]
+        ]
+    },
+    {
+        "id": "627d595124cde24e",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "35e4ae63f18d6679"
+        ],
+        "x": 875,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "0eb1bec83ebe053c",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "e70d1942fa62036c"
+        ],
+        "x": 875,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "60a1514379cf765d",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "99d636e4c54833d3"
+        ],
+        "x": 875,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "404746cedc16dfcd",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "f6a3886c0d4dd377"
+        ],
+        "x": 875,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "59d2f5a0fe0738df",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Testing (Lights)",
+        "info": "",
+        "x": 100,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "628f1ede24fe8779",
+        "type": "trigger",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 520,
+        "y": 1520,
+        "wires": [
+            [
+                "0d47c729aedd341c"
+            ]
+        ]
+    },
+    {
+        "id": "89a5244ab48b41b7",
         "type": "inject",
         "z": "e1a40699ea85764e",
         "name": "",
@@ -4618,31 +4531,416 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 180,
+        "x": 100,
+        "y": 1520,
         "wires": [
             [
-                "a0d0ba5fe385674b"
+                "628f1ede24fe8779",
+                "6ba7acfd5afc440a"
             ]
         ]
     },
     {
-        "id": "379e9aab2c3b613a",
+        "id": "0d47c729aedd341c",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "6ba7acfd5afc440a",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "54f5fc3d7401f62e",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Testing Section",
+        "info": "",
+        "x": 100,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "9bea127ea51c9dc0",
+        "type": "pi-gpiod out",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "22",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "2000",
+        "x": 850,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "94954dcfbe5f3c9f",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1140,
+        "wires": [
+            [
+                "f9a7604d87fde3d3",
+                "2022f663de8c1de9"
+            ]
+        ]
+    },
+    {
+        "id": "f9a7604d87fde3d3",
         "type": "function",
         "z": "e1a40699ea85764e",
-        "name": "Light State Handler",
-        "func": "const { light } = msg.payload\nconst light_state = flow.get(light)\n\nflow.set(light, {\n    ...light_state, ...msg.payload\n})\n\nreturn msg;",
+        "name": "Fade Counter",
+        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { state, light, max_brightness } = WAKE_LIGHT\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...WAKE_LIGHT, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\nflow.set('wake_light_current_brightness', msg.counter)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 120,
+        "x": 360,
+        "y": 1140,
         "wires": [
             [
-                "6022aef9ff5d1e91"
+                "94954dcfbe5f3c9f"
             ]
         ]
+    },
+    {
+        "id": "358584c86f2908d1",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Fade On",
+        "func": "const { FADE_ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: FADE_ON\n})\n\nmsg.counter = flow.get('wake_light_current_brightness')\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1140,
+        "wires": [
+            [
+                "f9a7604d87fde3d3"
+            ]
+        ]
+    },
+    {
+        "id": "2022f663de8c1de9",
+        "type": "change",
+        "z": "e1a40699ea85764e",
+        "name": "Payload to Counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "counter",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 1200,
+        "wires": [
+            [
+                "0ddc7a8a9d805023",
+                "9bea127ea51c9dc0"
+            ]
+        ]
+    },
+    {
+        "id": "1c6e4cb06ec4242a",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Fade On)",
+        "links": [
+            "b2e7a0407aea6a2a",
+            "48503f83daebe740",
+            "bd5fce3febdf15d7",
+            "5bafbfec8916f0ba"
+        ],
+        "x": 35,
+        "y": 1140,
+        "wires": [
+            [
+                "358584c86f2908d1"
+            ]
+        ]
+    },
+    {
+        "id": "045a05a988eb74c1",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Fade Off",
+        "func": "const { FADE_OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: FADE_OFF\n})\n\nmsg.counter = flow.get('wake_light_current_brightness')\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1220,
+        "wires": [
+            [
+                "56d5e84bd156a92a"
+            ]
+        ]
+    },
+    {
+        "id": "56d5e84bd156a92a",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Fade Counter",
+        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { state, light, max_brightness } = WAKE_LIGHT\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...WAKE_LIGHT, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('wake_light_current_brightness', msg.counter)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1220,
+        "wires": [
+            [
+                "d44bba9ad527d696"
+            ]
+        ]
+    },
+    {
+        "id": "706856ecf2888e23",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Fade Off)",
+        "links": [
+            "960cc71d221701e5",
+            "6e09738fba4f3349",
+            "d9103be68bd22c99",
+            "03c1809fedcd92b1"
+        ],
+        "x": 35,
+        "y": 1220,
+        "wires": [
+            [
+                "045a05a988eb74c1"
+            ]
+        ]
+    },
+    {
+        "id": "0ddc7a8a9d805023",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "5a2b5f343921884b",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Off",
+        "func": "const { OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: OFF\n})\n\nmsg.counter = 0\nflow.set('wake_light_current_brightness', 0)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1300,
+        "wires": [
+            [
+                "60e47a90e20b5193"
+            ]
+        ]
+    },
+    {
+        "id": "f089cbdf9d57d653",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle On",
+        "func": "const { ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: ON\n})\n\nmsg.counter = max_brightness\nflow.set('wake_light_current_brightness', max_brightness)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1080,
+        "wires": [
+            [
+                "40315c57c58e15de"
+            ]
+        ]
+    },
+    {
+        "id": "60e47a90e20b5193",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1300,
+        "wires": [
+            [
+                "2022f663de8c1de9"
+            ]
+        ]
+    },
+    {
+        "id": "d44bba9ad527d696",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1220,
+        "wires": [
+            [
+                "56d5e84bd156a92a",
+                "2022f663de8c1de9"
+            ]
+        ]
+    },
+    {
+        "id": "40315c57c58e15de",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1080,
+        "wires": [
+            [
+                "2022f663de8c1de9"
+            ]
+        ]
+    },
+    {
+        "id": "67801cebe5dcc6c3",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (On)",
+        "links": [
+            "81c8ed3d1f966e48",
+            "5bde7861c88f93ce",
+            "9161018b3a1cc506",
+            "61f81f46ce3b5a78"
+        ],
+        "x": 35,
+        "y": 1080,
+        "wires": [
+            [
+                "f089cbdf9d57d653"
+            ]
+        ]
+    },
+    {
+        "id": "d3cca85a24e36670",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Off)",
+        "links": [
+            "25cd6159ea46fd09",
+            "7f04188022e29c07",
+            "6277dbf5345db5cb",
+            "867eba5884d338c5"
+        ],
+        "x": 35,
+        "y": 1300,
+        "wires": [
+            [
+                "5a2b5f343921884b"
+            ]
+        ]
+    },
+    {
+        "id": "eea4862a45819507",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light Controls",
+        "info": "",
+        "x": 110,
+        "y": 1020,
+        "wires": []
     }
 ]
