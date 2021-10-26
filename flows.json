@@ -4921,7 +4921,7 @@
         "id": "d1a2273bd87e637e",
         "type": "exec",
         "z": "56ae43efe9a5b4d3",
-        "command": "alsamixer 50",
+        "command": "amixer -M set Headphone 40%",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
@@ -4929,7 +4929,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 310,
+        "x": 370,
         "y": 480,
         "wires": [
             [
@@ -5026,7 +5026,7 @@
         "z": "56ae43efe9a5b4d3",
         "name": "",
         "directory": "12edcc3cda19d1f6",
-        "file": "open_your_eyes.mp3",
+        "file": "helicopter_sound.mp3",
         "allow_multiple": false,
         "x": 340,
         "y": 340,
