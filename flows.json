@@ -294,7 +294,7 @@
     {
         "id": "12edcc3cda19d1f6",
         "type": "soundfile-directory",
-        "directory": "./assets"
+        "directory": "./assets/isochronic_sound"
     },
     {
         "id": "3bcabf98.3b81",
@@ -3142,7 +3142,7 @@
         "sermax": "2000",
         "freq": "2000",
         "x": 850,
-        "y": 880,
+        "y": 860,
         "wires": []
     },
     {
@@ -3162,7 +3162,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 780,
+        "y": 760,
         "wires": [
             [
                 "406cc2bc2f372440",
@@ -3182,7 +3182,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 780,
+        "y": 760,
         "wires": [
             [
                 "f0e97be702be0e23"
@@ -3201,7 +3201,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 780,
+        "y": 760,
         "wires": [
             [
                 "406cc2bc2f372440"
@@ -3228,7 +3228,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 840,
+        "y": 820,
         "wires": [
             [
                 "9e0d6091e444fd79",
@@ -3248,7 +3248,7 @@
             "0eb1bec83ebe053c"
         ],
         "x": 35,
-        "y": 780,
+        "y": 760,
         "wires": [
             [
                 "91b733e0b0b35e42"
@@ -3267,7 +3267,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "111b8044a4a2c809"
@@ -3286,7 +3286,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "4de216b02ff64d27"
@@ -3305,7 +3305,7 @@
             "60a1514379cf765d"
         ],
         "x": 35,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "a1917919418e600f"
@@ -3326,7 +3326,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 800,
+        "y": 780,
         "wires": []
     },
     {
@@ -3341,7 +3341,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 940,
+        "y": 920,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3360,7 +3360,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 720,
+        "y": 700,
         "wires": [
             [
                 "c9ce0d6ad1cb5c50"
@@ -3384,7 +3384,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 940,
+        "y": 920,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3408,7 +3408,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "111b8044a4a2c809",
@@ -3433,7 +3433,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 720,
+        "y": 700,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3509,7 +3509,7 @@
         "name": "",
         "server": "18c6c46d15594407",
         "client": "",
-        "x": 210,
+        "x": 110,
         "y": 140,
         "wires": [
             [
@@ -3524,7 +3524,7 @@
         "name": "",
         "server": "18c6c46d15594407",
         "client": "",
-        "x": 660,
+        "x": 560,
         "y": 140,
         "wires": []
     },
@@ -3540,7 +3540,7 @@
             "627d595124cde24e"
         ],
         "x": 35,
-        "y": 720,
+        "y": 700,
         "wires": [
             [
                 "7ca518af31291cf3"
@@ -3559,7 +3559,7 @@
             "404746cedc16dfcd"
         ],
         "x": 35,
-        "y": 940,
+        "y": 920,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3573,7 +3573,7 @@
         "name": "Night Light Controls",
         "info": "",
         "x": 110,
-        "y": 660,
+        "y": 640,
         "wires": []
     },
     {
@@ -3621,7 +3621,7 @@
         "links": [
             "647a013a3e33688b"
         ],
-        "x": 595,
+        "x": 495,
         "y": 200,
         "wires": []
     },
@@ -3671,7 +3671,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 210,
+        "x": 190,
         "y": 320,
         "wires": [
             [
@@ -3696,7 +3696,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 410,
+        "x": 310,
         "y": 140,
         "wires": [
             [
@@ -3866,7 +3866,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 130,
-        "y": 60,
+        "y": 80,
         "wires": [
             [
                 "cbe31ffaf8de222e"
@@ -3878,14 +3878,14 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Constants",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\n\nflow.set('audio_player_pid', null)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 60,
+        "y": 80,
         "wires": []
     },
     {
@@ -3937,7 +3937,7 @@
         "name": "From API (Lights)",
         "links": [],
         "x": 35,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -3957,7 +3957,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 610,
-        "y": 520,
+        "y": 500,
         "wires": []
     },
     {
@@ -3972,7 +3972,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -4000,7 +4000,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 160,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "a0d0ba5fe385674b"
@@ -4019,7 +4019,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 520,
+        "y": 500,
         "wires": [
             [
                 "6022aef9ff5d1e91"
@@ -4100,7 +4100,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 220,
+        "x": 120,
         "y": 40,
         "wires": [
             [
@@ -4113,13 +4113,13 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Global Config",
-        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst defaults_config = {\n    lights: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    lights: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 340,
         "y": 40,
         "wires": []
     },
@@ -4184,7 +4184,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 460,
+        "y": 440,
         "wires": []
     },
     {
@@ -4571,7 +4571,7 @@
         "sermax": "2000",
         "freq": "2000",
         "x": 850,
-        "y": 1240,
+        "y": 1220,
         "wires": []
     },
     {
@@ -4591,7 +4591,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "f9a7604d87fde3d3",
@@ -4611,7 +4611,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "94954dcfbe5f3c9f"
@@ -4630,7 +4630,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "f9a7604d87fde3d3"
@@ -4657,7 +4657,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 1200,
+        "y": 1180,
         "wires": [
             [
                 "0ddc7a8a9d805023",
@@ -4677,7 +4677,7 @@
             "5bafbfec8916f0ba"
         ],
         "x": 35,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "358584c86f2908d1"
@@ -4696,7 +4696,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "56d5e84bd156a92a"
@@ -4715,7 +4715,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "d44bba9ad527d696"
@@ -4734,7 +4734,7 @@
             "03c1809fedcd92b1"
         ],
         "x": 35,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "045a05a988eb74c1"
@@ -4755,7 +4755,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1160,
+        "y": 1140,
         "wires": []
     },
     {
@@ -4770,7 +4770,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1300,
+        "y": 1280,
         "wires": [
             [
                 "60e47a90e20b5193"
@@ -4789,7 +4789,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1080,
+        "y": 1060,
         "wires": [
             [
                 "40315c57c58e15de"
@@ -4813,7 +4813,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1300,
+        "y": 1280,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4837,7 +4837,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "56d5e84bd156a92a",
@@ -4862,7 +4862,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1080,
+        "y": 1060,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4881,7 +4881,7 @@
             "61f81f46ce3b5a78"
         ],
         "x": 35,
-        "y": 1080,
+        "y": 1060,
         "wires": [
             [
                 "f089cbdf9d57d653"
@@ -4900,7 +4900,7 @@
             "867eba5884d338c5"
         ],
         "x": 35,
-        "y": 1300,
+        "y": 1280,
         "wires": [
             [
                 "5a2b5f343921884b"
@@ -4914,171 +4914,7 @@
         "name": "Wake Light Controls",
         "info": "",
         "x": 110,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "d1a2273bd87e637e",
-        "type": "exec",
-        "z": "56ae43efe9a5b4d3",
-        "command": "amixer -M set Headphone 40%",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 370,
-        "y": 480,
-        "wires": [
-            [
-                "99b27db969858a1b"
-            ],
-            [
-                "3ac977447ae51cee"
-            ],
-            [
-                "b95c667d78b8f6d0"
-            ]
-        ]
-    },
-    {
-        "id": "99b27db969858a1b",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "3ac977447ae51cee",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "b95c667d78b8f6d0",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "deb86c17e01ab76e",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 480,
-        "wires": [
-            [
-                "d1a2273bd87e637e"
-            ]
-        ]
-    },
-    {
-        "id": "97a1d3544b1964fe",
-        "type": "play-soundfile",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "directory": "12edcc3cda19d1f6",
-        "file": "helicopter_sound.mp3",
-        "allow_multiple": false,
-        "x": 340,
-        "y": 340,
-        "wires": [
-            [
-                "b3e57dcd0bd0e213"
-            ]
-        ]
-    },
-    {
-        "id": "13edd4809fc63adf",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 340,
-        "wires": [
-            [
-                "97a1d3544b1964fe"
-            ]
-        ]
-    },
-    {
-        "id": "b3e57dcd0bd0e213",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 340,
+        "y": 1000,
         "wires": []
     },
     {
@@ -5176,7 +5012,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 60,
+        "y": 80,
         "wires": [
             [
                 "a6c9850fdc2f3179"
@@ -5195,7 +5031,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 460,
-        "y": 60,
+        "y": 80,
         "wires": [
             [
                 "95c3b798b0bdc8e2"
@@ -5211,7 +5047,7 @@
         "action": "obj",
         "pretty": false,
         "x": 650,
-        "y": 60,
+        "y": 80,
         "wires": [
             [
                 "b5468e96fe8f2a22"
@@ -5228,7 +5064,7 @@
         ],
         "uncaught": false,
         "x": 160,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "313656ae5e072080"
@@ -5247,7 +5083,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "684485ae3297fb89"
@@ -5265,10 +5101,778 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 710,
-        "y": 120,
+        "y": 140,
         "wires": [
             [
                 "b5468e96fe8f2a22"
+            ]
+        ]
+    },
+    {
+        "id": "bdda5f13ef7b859d",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Available Assets Dir",
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "96e40cd73607b259"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "602c94c223cbfeb2",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "b66df60352b322a4"
+            ]
+        ]
+    },
+    {
+        "id": "b66df60352b322a4",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Assets Folder",
+        "func": "const { assets_dir } = global.get('defaults_config')\nconst list_all_dirs = ['cd', assets_dir, '&&', 'ls']\n\nmsg.payload = list_all_dirs.join(' ')\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "bdda5f13ef7b859d"
+            ]
+        ]
+    },
+    {
+        "id": "96e40cd73607b259",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "List All Available Dirs ",
+        "func": "const { assets_dir } = global.get('defaults_config')\nconst dirs_list = msg.payload.split('\\n').filter( dir => dir )\nconst dirs = {}\n\ndirs_list.forEach((dir) => {\n    dirs[dir] = `${ assets_dir }/${dir}`\n})\n\nmsg.payload = dirs\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 300,
+        "wires": [
+            [
+                "a1129c5118d5ddf3"
+            ]
+        ]
+    },
+    {
+        "id": "a1129c5118d5ddf3",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "a82335699ae83965"
+        ],
+        "x": 935,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a82335699ae83965",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "a1129c5118d5ddf3"
+        ],
+        "x": 55,
+        "y": 360,
+        "wires": [
+            [
+                "8f95c813886203df"
+            ]
+        ]
+    },
+    {
+        "id": "98c3fccf36890e09",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Audio Files",
+        "x": 440,
+        "y": 420,
+        "wires": [
+            [
+                "61788fd3ef25a635"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8f95c813886203df",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Initialize Get for Audio Files",
+        "func": "const dirs_list = msg.payload\n\nmsg.dirs = dirs_list \nmsg.counter = 0\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "3e3046e22d35507b"
+            ]
+        ]
+    },
+    {
+        "id": "3e3046e22d35507b",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Audio Files Command",
+        "func": "const dirs_list = msg.dirs\nconst keys = Object.keys(dirs_list)\n\nif(!keys[msg.counter])\n    return null\n\nconst path = dirs_list[ keys[msg.counter] ]\nconst command = `cd ${path} && ls`\n\nmsg.payload = command\n\nmsg.counter++\nmsg.keys_length = keys.length\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "98c3fccf36890e09"
+            ]
+        ]
+    },
+    {
+        "id": "61788fd3ef25a635",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Continue or End Loop",
+        "property": "counter",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "keys_length",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "3e3046e22d35507b",
+                "83a9855aacd469f3"
+            ]
+        ]
+    },
+    {
+        "id": "63eab9a095401ba2",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Store Audio Assets",
+        "func": "const { dirs, counter } = msg\nconst previous_assets = flow.get('audio_assets') || {}\nconst keys = Object.keys(dirs)\nconst audio_assets = msg.payload\n\nflow.set('audio_assets', {\n    ...previous_assets, [ keys[counter - 1] ]: audio_assets\n})",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "877d10eea80694f7",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "List All Available Audio",
+        "func": "const { assets_dir } = global.get('defaults_config')\nconst { counter, dirs } = msg\nconst keys = Object.keys(dirs)\nconst audio_list = msg.payload.split('\\n').filter( audio => audio )\nconst audio_files = {}\n\naudio_list.forEach((audio) => {\n    audio_files[audio] = `${ assets_dir }/${ keys[counter - 1] }/${ audio }`\n})\n\nmsg.payload = audio_files\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "63eab9a095401ba2"
+            ]
+        ]
+    },
+    {
+        "id": "83a9855aacd469f3",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "9bed374137c02de5"
+        ],
+        "x": 935,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9bed374137c02de5",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "83a9855aacd469f3"
+        ],
+        "x": 55,
+        "y": 500,
+        "wires": [
+            [
+                "877d10eea80694f7"
+            ]
+        ]
+    },
+    {
+        "id": "52eb4e7a40d8147b",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "From API (Lights)",
+        "links": [],
+        "x": 55,
+        "y": 640,
+        "wires": [
+            [
+                "86d20a5355d39ce3"
+            ]
+        ]
+    },
+    {
+        "id": "628ccc0d308e0ba7",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "e4e870aaeb268b70",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \n\nmsg.payload = {\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 700,
+        "wires": [
+            [
+                "86d20a5355d39ce3"
+            ]
+        ]
+    },
+    {
+        "id": "cb42cd628274b770",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Test API Call for Audio Controls",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "e4e870aaeb268b70"
+            ]
+        ]
+    },
+    {
+        "id": "86d20a5355d39ce3",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio State Handler",
+        "func": "const { audio } = msg.payload\nconst audio_state = flow.get(audio) || {}\nconst new_audio_state = {\n    ...audio_state, ...msg.payload\n}\n\nflow.set(audio, new_audio_state)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 640,
+        "wires": [
+            [
+                "628ccc0d308e0ba7"
+            ]
+        ]
+    },
+    {
+        "id": "a64a0f9be8ac2820",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "From API",
+        "info": "",
+        "x": 100,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "5bcd5493bad182cc",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Initialize Audio Controls",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d10e582aeb62e9f0",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "List Available Audio Files",
+        "info": "",
+        "x": 150,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "10dd06b0f0c2109d",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/access",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "09416b7fdcfe5bf4"
+            ]
+        ]
+    },
+    {
+        "id": "09416b7fdcfe5bf4",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "971348fb24d58f71",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio Player",
+        "info": "",
+        "x": 110,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f38fc38f91a7e11e",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Low Volume",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "33",
+        "payloadType": "num",
+        "x": 130,
+        "y": 1120,
+        "wires": [
+            [
+                "8d54343c273a8128"
+            ]
+        ]
+    },
+    {
+        "id": "2f079abe9922aeb5",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Medium Volume",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "66",
+        "payloadType": "num",
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "8d54343c273a8128"
+            ]
+        ]
+    },
+    {
+        "id": "63dac865c0643170",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "High Volume",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "100",
+        "payloadType": "num",
+        "x": 130,
+        "y": 1200,
+        "wires": [
+            [
+                "8d54343c273a8128"
+            ]
+        ]
+    },
+    {
+        "id": "8d54343c273a8128",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Audio Volume Command",
+        "func": "const audio_device = msg.audio_device || 'Headphone'\n\nmsg.payload = `amixer -M set ${ audio_device } ${ msg.payload }%`\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1160,
+        "wires": [
+            [
+                "397d62e439616946"
+            ]
+        ]
+    },
+    {
+        "id": "397d62e439616946",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 630,
+        "y": 1160,
+        "wires": [
+            [
+                "2a3d3eab887372ba"
+            ],
+            [
+                "f63075954e16c4d2"
+            ],
+            [
+                "e280a70827b1553e"
+            ]
+        ]
+    },
+    {
+        "id": "2a3d3eab887372ba",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "f63075954e16c4d2",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "e280a70827b1553e",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "9a498067d2130e99",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Volume Adjustments",
+        "info": "",
+        "x": 130,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "fee4d27f30e27e22",
+        "type": "PlaySound",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "playerOptions": "{}",
+        "audioURI": "/data/projects/REST_NODE/assets/guided_meditation/college_and_electric_youth_-_a_real_hero.mp3",
+        "options": "{}",
+        "x": 470,
+        "y": 900,
+        "wires": [
+            [
+                "89cb292368cd9ff2"
+            ]
+        ]
+    },
+    {
+        "id": "89cb292368cd9ff2",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "980cb9e2fe602f0c",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "play",
+        "payloadType": "str",
+        "x": 110,
+        "y": 840,
+        "wires": [
+            [
+                "fee4d27f30e27e22"
+            ]
+        ]
+    },
+    {
+        "id": "fb61d6284a61d48f",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "fee4d27f30e27e22"
+            ]
+        ]
+    },
+    {
+        "id": "3ae50a03e196304c",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "resume",
+        "payloadType": "str",
+        "x": 110,
+        "y": 920,
+        "wires": [
+            [
+                "fee4d27f30e27e22"
+            ]
+        ]
+    },
+    {
+        "id": "9606362871ecd2f7",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "pause",
+        "payloadType": "str",
+        "x": 110,
+        "y": 960,
+        "wires": [
+            [
+                "fee4d27f30e27e22"
             ]
         ]
     }
