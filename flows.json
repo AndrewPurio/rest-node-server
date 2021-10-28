@@ -42,6 +42,13 @@
         "info": ""
     },
     {
+        "id": "024a5d7a17bad4d1",
+        "type": "tab",
+        "label": "Local Storage",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "1ef6a397c037ff41",
         "type": "tab",
         "label": "restnode",
@@ -3119,7 +3126,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Initialize Constants",
-        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst night_light_state = light_states.OFF\nconst wake_light_state = light_states.OFF\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, NIGHT_LIGHT)\nflow.set(lights.WAKE_LIGHT, WAKE_LIGHT)\n\nflow.set('night_light_current_brightness', 0)\nflow.set('wake_light_current_brightness', 0)",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, NIGHT_LIGHT)\nflow.set(lights.WAKE_LIGHT, WAKE_LIGHT)\n\nflow.set('night_light_current_brightness', 0)\nflow.set('wake_light_current_brightness', 0)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -3146,7 +3153,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 760,
+        "y": 700,
         "wires": [
             [
                 "406cc2bc2f372440",
@@ -3166,7 +3173,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 760,
+        "y": 700,
         "wires": [
             [
                 "f0e97be702be0e23"
@@ -3185,7 +3192,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 760,
+        "y": 700,
         "wires": [
             [
                 "406cc2bc2f372440"
@@ -3212,7 +3219,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 820,
+        "y": 760,
         "wires": [
             [
                 "9e0d6091e444fd79",
@@ -3232,7 +3239,7 @@
             "0eb1bec83ebe053c"
         ],
         "x": 35,
-        "y": 760,
+        "y": 700,
         "wires": [
             [
                 "91b733e0b0b35e42"
@@ -3251,7 +3258,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 840,
+        "y": 780,
         "wires": [
             [
                 "111b8044a4a2c809"
@@ -3270,7 +3277,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 840,
+        "y": 780,
         "wires": [
             [
                 "4de216b02ff64d27"
@@ -3289,7 +3296,7 @@
             "60a1514379cf765d"
         ],
         "x": 35,
-        "y": 840,
+        "y": 780,
         "wires": [
             [
                 "a1917919418e600f"
@@ -3310,7 +3317,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 780,
+        "y": 720,
         "wires": []
     },
     {
@@ -3325,7 +3332,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 920,
+        "y": 860,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3344,7 +3351,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 700,
+        "y": 640,
         "wires": [
             [
                 "c9ce0d6ad1cb5c50"
@@ -3368,7 +3375,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 920,
+        "y": 860,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3392,7 +3399,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 840,
+        "y": 780,
         "wires": [
             [
                 "111b8044a4a2c809",
@@ -3417,7 +3424,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 700,
+        "y": 640,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3524,7 +3531,7 @@
             "627d595124cde24e"
         ],
         "x": 35,
-        "y": 700,
+        "y": 640,
         "wires": [
             [
                 "7ca518af31291cf3"
@@ -3543,7 +3550,7 @@
             "404746cedc16dfcd"
         ],
         "x": 35,
-        "y": 920,
+        "y": 860,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3557,28 +3564,8 @@
         "name": "Night Light Controls",
         "info": "",
         "x": 110,
-        "y": 640,
+        "y": 580,
         "wires": []
-    },
-    {
-        "id": "9c789c026ddd5adf",
-        "type": "pi-gpiod in",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "System Reset",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "24",
-        "intype": "PUD_DOWN",
-        "debounce": "25",
-        "read": false,
-        "x": 110,
-        "y": 60,
-        "wires": [
-            [
-                "766cf8448e1566aa",
-                "1620cc6ba52e96c1"
-            ]
-        ]
     },
     {
         "id": "1590337acdb5b8fc",
@@ -3593,7 +3580,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
+        "x": 590,
         "y": 60,
         "wires": []
     },
@@ -3889,7 +3876,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 420,
+        "x": 400,
         "y": 60,
         "wires": [
             [
@@ -3910,7 +3897,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
+        "x": 410,
         "y": 120,
         "wires": []
     },
@@ -3921,7 +3908,7 @@
         "name": "From API (Lights)",
         "links": [],
         "x": 35,
-        "y": 500,
+        "y": 440,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -3941,7 +3928,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 610,
-        "y": 500,
+        "y": 440,
         "wires": []
     },
     {
@@ -3956,7 +3943,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 560,
+        "y": 500,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -3984,7 +3971,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 160,
-        "y": 560,
+        "y": 500,
         "wires": [
             [
                 "a0d0ba5fe385674b"
@@ -4003,7 +3990,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 500,
+        "y": 440,
         "wires": [
             [
                 "6022aef9ff5d1e91"
@@ -4097,13 +4084,13 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Global Config",
-        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    lights: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 320,
         "y": 40,
         "wires": []
     },
@@ -4112,7 +4099,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "FileName",
-        "func": "const { lights } = global.get('defaults_config')\n\nmsg.filename = lights\n\nreturn msg;",
+        "func": "const { light } = global.get('defaults_config')\n\nmsg.filename = light\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4168,7 +4155,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 440,
+        "y": 400,
         "wires": []
     },
     {
@@ -4461,7 +4448,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 520,
-        "y": 1520,
+        "y": 1400,
         "wires": [
             [
                 "0d47c729aedd341c"
@@ -4490,7 +4477,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1520,
+        "y": 1400,
         "wires": [
             [
                 "628f1ede24fe8779",
@@ -4511,7 +4498,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 740,
-        "y": 1520,
+        "y": 1400,
         "wires": []
     },
     {
@@ -4527,7 +4514,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 1460,
+        "y": 1340,
         "wires": []
     },
     {
@@ -4537,7 +4524,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 1420,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4557,7 +4544,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1120,
+        "y": 1060,
         "wires": [
             [
                 "f9a7604d87fde3d3",
@@ -4577,7 +4564,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1120,
+        "y": 1060,
         "wires": [
             [
                 "94954dcfbe5f3c9f"
@@ -4596,7 +4583,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1120,
+        "y": 1060,
         "wires": [
             [
                 "f9a7604d87fde3d3"
@@ -4623,7 +4610,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 1180,
+        "y": 1120,
         "wires": [
             [
                 "0ddc7a8a9d805023",
@@ -4643,7 +4630,7 @@
             "5bafbfec8916f0ba"
         ],
         "x": 35,
-        "y": 1120,
+        "y": 1060,
         "wires": [
             [
                 "358584c86f2908d1"
@@ -4662,7 +4649,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1200,
+        "y": 1140,
         "wires": [
             [
                 "56d5e84bd156a92a"
@@ -4681,7 +4668,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1200,
+        "y": 1140,
         "wires": [
             [
                 "d44bba9ad527d696"
@@ -4700,7 +4687,7 @@
             "03c1809fedcd92b1"
         ],
         "x": 35,
-        "y": 1200,
+        "y": 1140,
         "wires": [
             [
                 "045a05a988eb74c1"
@@ -4721,7 +4708,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1140,
+        "y": 1080,
         "wires": []
     },
     {
@@ -4736,7 +4723,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "60e47a90e20b5193"
@@ -4755,7 +4742,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1060,
+        "y": 1000,
         "wires": [
             [
                 "40315c57c58e15de"
@@ -4779,7 +4766,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4803,7 +4790,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1200,
+        "y": 1140,
         "wires": [
             [
                 "56d5e84bd156a92a",
@@ -4828,7 +4815,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1060,
+        "y": 1000,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4847,7 +4834,7 @@
             "61f81f46ce3b5a78"
         ],
         "x": 35,
-        "y": 1060,
+        "y": 1000,
         "wires": [
             [
                 "f089cbdf9d57d653"
@@ -4866,7 +4853,7 @@
             "867eba5884d338c5"
         ],
         "x": 35,
-        "y": 1280,
+        "y": 1220,
         "wires": [
             [
                 "5a2b5f343921884b"
@@ -4880,7 +4867,7 @@
         "name": "Wake Light Controls",
         "info": "",
         "x": 110,
-        "y": 1000,
+        "y": 940,
         "wires": []
     },
     {
@@ -4895,7 +4882,7 @@
         "payloadType": "msg",
         "count": "1",
         "x": 540,
-        "y": 1620,
+        "y": 1500,
         "wires": [
             [
                 "f212dc56aacf6421"
@@ -4924,7 +4911,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1620,
+        "y": 1500,
         "wires": [
             [
                 "383f42983ad210bb"
@@ -4944,7 +4931,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 1620,
+        "y": 1500,
         "wires": []
     },
     {
@@ -4959,7 +4946,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 1620,
+        "y": 1500,
         "wires": [
             [
                 "1ff8364eb592139e"
@@ -5365,7 +5352,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
+        "x": 600,
         "y": 780,
         "wires": [
             [
@@ -5443,7 +5430,7 @@
         "finalize": "",
         "libs": [],
         "x": 680,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "397d62e439616946"
@@ -5464,7 +5451,7 @@
         "oldrc": false,
         "name": "",
         "x": 870,
-        "y": 880,
+        "y": 920,
         "wires": [
             [],
             [],
@@ -5478,7 +5465,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 840,
+        "y": 880,
         "wires": []
     },
     {
@@ -5571,7 +5558,7 @@
                 "vt": "num"
             },
             {
-                "p": "payload.audion",
+                "p": "payload.audio",
                 "v": "audio.WAKE_SOUND",
                 "vt": "flow"
             },
@@ -5616,7 +5603,7 @@
             "8e6a6d9d5f9d1403"
         ],
         "x": 35,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "9cf6240b0ce29898"
@@ -5823,7 +5810,7 @@
             "108c9cd67defe8d0"
         ],
         "x": 795,
-        "y": 860,
+        "y": 800,
         "wires": []
     },
     {
@@ -5833,7 +5820,7 @@
         "name": "To Night Light",
         "info": "",
         "x": 850,
-        "y": 900,
+        "y": 840,
         "wires": []
     },
     {
@@ -5845,7 +5832,7 @@
             "3ae8dc738dda02fa"
         ],
         "x": 795,
-        "y": 1220,
+        "y": 1160,
         "wires": []
     },
     {
@@ -5855,7 +5842,7 @@
         "name": "To Wake Light",
         "info": "",
         "x": 850,
-        "y": 1260,
+        "y": 1200,
         "wires": []
     },
     {
@@ -5870,7 +5857,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "8d54343c273a8128"
@@ -5889,7 +5876,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 920,
+        "y": 960,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -5912,10 +5899,11 @@
         "repair": false,
         "outputs": 2,
         "x": 230,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
-                "7d8f844d95a0a057"
+                "7d8f844d95a0a057",
+                "5ecb2d5c879290ab"
             ],
             [
                 "5a43c4603dd6f0d2"
@@ -5933,7 +5921,7 @@
             "1b563d9b71af7068"
         ],
         "x": 895,
-        "y": 1000,
+        "y": 1040,
         "wires": []
     },
     {
@@ -5948,7 +5936,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "8e6a6d9d5f9d1403"
@@ -5964,7 +5952,7 @@
             "819ffe8c2a50daa4"
         ],
         "x": 35,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
                 "9b92296e96be783c"
@@ -5990,7 +5978,7 @@
         "repair": false,
         "outputs": 2,
         "x": 490,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
                 "409ebbdb930d87e2"
@@ -6007,7 +5995,7 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1120,
+        "y": 1160,
         "wires": []
     },
     {
@@ -6019,7 +6007,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 790,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -6041,7 +6029,7 @@
             "8e6a6d9d5f9d1403"
         ],
         "x": 35,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -6060,7 +6048,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1120,
+        "y": 1160,
         "wires": [
             [
                 "570924dcc793d5f2"
@@ -6081,7 +6069,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 490,
-        "y": 1360,
+        "y": 1400,
         "wires": []
     },
     {
@@ -6102,7 +6090,7 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 1320,
+        "y": 1360,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -6122,7 +6110,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1320,
+        "y": 1360,
         "wires": []
     },
     {
@@ -6158,7 +6146,7 @@
         "repair": false,
         "outputs": 4,
         "x": 290,
-        "y": 1180,
+        "y": 1220,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -6186,7 +6174,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1160,
+        "y": 1200,
         "wires": [
             [
                 "570924dcc793d5f2"
@@ -6202,7 +6190,7 @@
             "87a8be781c772fe9"
         ],
         "x": 915,
-        "y": 1180,
+        "y": 1220,
         "wires": []
     },
     {
@@ -6214,7 +6202,7 @@
             "c3907ce3b315e7d0"
         ],
         "x": 35,
-        "y": 1320,
+        "y": 1360,
         "wires": [
             [
                 "d3c721f30dc405fe"
@@ -6233,7 +6221,7 @@
         "finalize": "",
         "libs": [],
         "x": 510,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             [
                 "570924dcc793d5f2"
@@ -6252,7 +6240,7 @@
         "finalize": "",
         "libs": [],
         "x": 500,
-        "y": 1240,
+        "y": 1280,
         "wires": [
             [
                 "570924dcc793d5f2"
@@ -6271,7 +6259,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 1040,
+        "y": 1080,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -6537,5 +6525,362 @@
         "x": 855,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "20d962370170bda9",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "1",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 390,
+        "y": 80,
+        "wires": [
+            [
+                "87b79de5e547a639"
+            ]
+        ]
+    },
+    {
+        "id": "5fa2284a12b19fc9",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Prepare Data for Storage",
+        "info": "",
+        "x": 130,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "5ecb2d5c879290ab",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "91e830cf715025c9"
+        ],
+        "x": 395,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "7513ebcf07afb416",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "91e830cf715025c9",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "5ecb2d5c879290ab"
+        ],
+        "x": 35,
+        "y": 1520,
+        "wires": [
+            [
+                "6b5fe6e5651bbcdc"
+            ]
+        ]
+    },
+    {
+        "id": "6b5fe6e5651bbcdc",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Current Audio Config",
+        "func": "const { audio } = msg.payload\nconst audio_config = flow.get(audio)\n\nmsg.payload = audio_config\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1520,
+        "wires": [
+            [
+                "7513ebcf07afb416"
+            ]
+        ]
+    },
+    {
+        "id": "d4a9d574e8776756",
+        "type": "file",
+        "z": "024a5d7a17bad4d1",
+        "name": "Update Lights Config File",
+        "filename": "./defaults/lights.config.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "f48818170f588c63"
+            ]
+        ]
+    },
+    {
+        "id": "015cb074f7b97d87",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "1",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "d4a9d574e8776756"
+            ]
+        ]
+    },
+    {
+        "id": "87b79de5e547a639",
+        "type": "file",
+        "z": "024a5d7a17bad4d1",
+        "name": "Update Audio Config File",
+        "filename": "./defaults/audio.config.json",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "77f44d61c0532a56"
+            ]
+        ]
+    },
+    {
+        "id": "b5f088c7b5c4f088",
+        "type": "inject",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload.light",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77f44d61c0532a56",
+        "type": "debug",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f48818170f588c63",
+        "type": "debug",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "93dab7f92348e5e7",
+        "type": "inject",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload.audio",
+                "v": "true",
+                "vt": "bool"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e22c19358ff80035",
+        "type": "switch",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "audio",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "light",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "20d962370170bda9"
+            ],
+            [
+                "015cb074f7b97d87"
+            ]
+        ]
+    },
+    {
+        "id": "39d1d42028adc83d",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Lights (Hardware)",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "94188c21eddb1250",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Audio (Hardware)",
+        "info": "",
+        "x": 120,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "55de0a99484f7e4c",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Input Buttons (Hardware)",
+        "info": "",
+        "x": 150,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2895fb3018f77f98",
+        "type": "pi-gpiod in",
+        "z": "39c947163c4b72c5",
+        "name": "System Reset",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "24",
+        "intype": "PUD_DOWN",
+        "debounce": "25",
+        "read": false,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "5397f0d28c60d06a"
+            ]
+        ]
+    },
+    {
+        "id": "5397f0d28c60d06a",
+        "type": "link out",
+        "z": "39c947163c4b72c5",
+        "name": "System Reset (Hardware)",
+        "links": [
+            "5ec14e1ee0ad2eee"
+        ],
+        "x": 375,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5ec14e1ee0ad2eee",
+        "type": "link in",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "System Reset",
+        "links": [
+            "5397f0d28c60d06a"
+        ],
+        "x": 195,
+        "y": 60,
+        "wires": [
+            [
+                "766cf8448e1566aa",
+                "1620cc6ba52e96c1"
+            ]
+        ]
     }
 ]
