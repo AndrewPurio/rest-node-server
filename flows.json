@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "427808241d304283",
+        "type": "tab",
+        "label": "Scheduler",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "e1a40699ea85764e",
         "type": "tab",
         "label": "Light Controls",
@@ -290,11 +297,6 @@
         "type": "websocket-listener",
         "path": "/restnode",
         "wholemsg": "false"
-    },
-    {
-        "id": "12edcc3cda19d1f6",
-        "type": "soundfile-directory",
-        "directory": "./assets/isochronic_sound"
     },
     {
         "id": "3bcabf98.3b81",
@@ -3128,24 +3130,6 @@
         "wires": []
     },
     {
-        "id": "bb47ce3118915504",
-        "type": "pi-gpiod out",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "18",
-        "set": false,
-        "level": "0",
-        "out": "pwm",
-        "sermin": "1000",
-        "sermax": "2000",
-        "freq": "2000",
-        "x": 850,
-        "y": 860,
-        "wires": []
-    },
-    {
         "id": "f0e97be702be0e23",
         "type": "delay",
         "z": "e1a40699ea85764e",
@@ -3232,7 +3216,7 @@
         "wires": [
             [
                 "9e0d6091e444fd79",
-                "bb47ce3118915504"
+                "69f5739f6c172707"
             ]
         ]
     },
@@ -3865,8 +3849,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 80,
+        "x": 110,
+        "y": 340,
         "wires": [
             [
                 "cbe31ffaf8de222e"
@@ -3878,14 +3862,14 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Constants",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\n\nflow.set('audio_player_pid', null)",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED',\n    RESUMED: 'RESUMED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\n\nflow.set('current_audio_playing', null)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
-        "y": 80,
+        "x": 830,
+        "y": 340,
         "wires": []
     },
     {
@@ -4557,24 +4541,6 @@
         "wires": []
     },
     {
-        "id": "9bea127ea51c9dc0",
-        "type": "pi-gpiod out",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "22",
-        "set": false,
-        "level": "0",
-        "out": "pwm",
-        "sermin": "1000",
-        "sermax": "2000",
-        "freq": "2000",
-        "x": 850,
-        "y": 1220,
-        "wires": []
-    },
-    {
         "id": "94954dcfbe5f3c9f",
         "type": "delay",
         "z": "e1a40699ea85764e",
@@ -4661,7 +4627,7 @@
         "wires": [
             [
                 "0ddc7a8a9d805023",
-                "9bea127ea51c9dc0"
+                "2b54092e3ec821aa"
             ]
         ]
     },
@@ -5011,8 +4977,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 80,
+        "x": 260,
+        "y": 340,
         "wires": [
             [
                 "a6c9850fdc2f3179"
@@ -5030,8 +4996,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 460,
-        "y": 80,
+        "x": 440,
+        "y": 340,
         "wires": [
             [
                 "95c3b798b0bdc8e2"
@@ -5046,8 +5012,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 650,
-        "y": 80,
+        "x": 630,
+        "y": 340,
         "wires": [
             [
                 "b5468e96fe8f2a22"
@@ -5063,8 +5029,8 @@
             "a6c9850fdc2f3179"
         ],
         "uncaught": false,
-        "x": 160,
-        "y": 140,
+        "x": 140,
+        "y": 400,
         "wires": [
             [
                 "313656ae5e072080"
@@ -5082,8 +5048,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 140,
+        "x": 440,
+        "y": 400,
         "wires": [
             [
                 "684485ae3297fb89"
@@ -5100,8 +5066,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 710,
-        "y": 140,
+        "x": 690,
+        "y": 400,
         "wires": [
             [
                 "b5468e96fe8f2a22"
@@ -5120,8 +5086,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Get Available Assets Dir",
-        "x": 370,
-        "y": 300,
+        "x": 510,
+        "y": 540,
         "wires": [
             [
                 "96e40cd73607b259"
@@ -5134,7 +5100,7 @@
         "id": "602c94c223cbfeb2",
         "type": "inject",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
+        "name": "On Startup",
         "props": [
             {
                 "p": "payload"
@@ -5146,13 +5112,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 260,
+        "x": 110,
+        "y": 540,
         "wires": [
             [
                 "b66df60352b322a4"
@@ -5170,8 +5135,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 300,
+        "x": 280,
+        "y": 540,
         "wires": [
             [
                 "bdda5f13ef7b859d"
@@ -5189,8 +5154,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 300,
+        "x": 780,
+        "y": 540,
         "wires": [
             [
                 "a1129c5118d5ddf3"
@@ -5206,7 +5171,7 @@
             "a82335699ae83965"
         ],
         "x": 935,
-        "y": 300,
+        "y": 540,
         "wires": []
     },
     {
@@ -5217,8 +5182,8 @@
         "links": [
             "a1129c5118d5ddf3"
         ],
-        "x": 55,
-        "y": 360,
+        "x": 35,
+        "y": 620,
         "wires": [
             [
                 "8f95c813886203df"
@@ -5237,8 +5202,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Get Audio Files",
-        "x": 440,
-        "y": 420,
+        "x": 580,
+        "y": 620,
         "wires": [
             [
                 "61788fd3ef25a635"
@@ -5251,15 +5216,15 @@
         "id": "8f95c813886203df",
         "type": "function",
         "z": "56ae43efe9a5b4d3",
-        "name": "Initialize Get for Audio Files",
+        "name": "Initialize Get",
         "func": "const dirs_list = msg.payload\n\nmsg.dirs = dirs_list \nmsg.counter = 0\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 360,
+        "x": 150,
+        "y": 620,
         "wires": [
             [
                 "3e3046e22d35507b"
@@ -5277,8 +5242,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 210,
-        "y": 420,
+        "x": 370,
+        "y": 620,
         "wires": [
             [
                 "98c3fccf36890e09"
@@ -5302,8 +5267,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 640,
-        "y": 420,
+        "x": 780,
+        "y": 620,
         "wires": [
             [
                 "3e3046e22d35507b",
@@ -5323,7 +5288,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 500,
+        "y": 680,
         "wires": []
     },
     {
@@ -5337,8 +5302,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 500,
+        "x": 600,
+        "y": 680,
         "wires": [
             [
                 "63eab9a095401ba2"
@@ -5354,7 +5319,7 @@
             "9bed374137c02de5"
         ],
         "x": 935,
-        "y": 420,
+        "y": 620,
         "wires": []
     },
     {
@@ -5365,8 +5330,8 @@
         "links": [
             "83a9855aacd469f3"
         ],
-        "x": 55,
-        "y": 500,
+        "x": 35,
+        "y": 680,
         "wires": [
             [
                 "877d10eea80694f7"
@@ -5378,76 +5343,14 @@
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
         "name": "From API (Lights)",
-        "links": [],
-        "x": 55,
-        "y": 640,
-        "wires": [
-            [
-                "86d20a5355d39ce3"
-            ]
-        ]
-    },
-    {
-        "id": "628ccc0d308e0ba7",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 640,
-        "wires": []
-    },
-    {
-        "id": "e4e870aaeb268b70",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \n\nmsg.payload = {\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 700,
-        "wires": [
-            [
-                "86d20a5355d39ce3"
-            ]
-        ]
-    },
-    {
-        "id": "cb42cd628274b770",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Test API Call for Audio Controls",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
+        "links": [
+            "af7443700a2c537c"
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 190,
-        "y": 700,
+        "x": 35,
+        "y": 780,
         "wires": [
             [
-                "e4e870aaeb268b70"
+                "86d20a5355d39ce3"
             ]
         ]
     },
@@ -5462,11 +5365,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 640,
+        "x": 620,
+        "y": 780,
         "wires": [
             [
-                "628ccc0d308e0ba7"
+                "8aa8457966c1294f"
             ]
         ]
     },
@@ -5476,8 +5379,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "From API",
         "info": "",
-        "x": 100,
-        "y": 600,
+        "x": 80,
+        "y": 740,
         "wires": []
     },
     {
@@ -5486,8 +5389,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Audio Controls",
         "info": "",
-        "x": 140,
-        "y": 40,
+        "x": 120,
+        "y": 300,
         "wires": []
     },
     {
@@ -5496,8 +5399,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "List Available Audio Files",
         "info": "",
-        "x": 150,
-        "y": 220,
+        "x": 130,
+        "y": 480,
         "wires": []
     },
     {
@@ -5529,103 +5432,6 @@
         "wires": []
     },
     {
-        "id": "971348fb24d58f71",
-        "type": "comment",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Audio Player",
-        "info": "",
-        "x": 110,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "f38fc38f91a7e11e",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Low Volume",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "33",
-        "payloadType": "num",
-        "x": 130,
-        "y": 1120,
-        "wires": [
-            [
-                "8d54343c273a8128"
-            ]
-        ]
-    },
-    {
-        "id": "2f079abe9922aeb5",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Medium Volume",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "66",
-        "payloadType": "num",
-        "x": 140,
-        "y": 1160,
-        "wires": [
-            [
-                "8d54343c273a8128"
-            ]
-        ]
-    },
-    {
-        "id": "63dac865c0643170",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "High Volume",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "100",
-        "payloadType": "num",
-        "x": 130,
-        "y": 1200,
-        "wires": [
-            [
-                "8d54343c273a8128"
-            ]
-        ]
-    },
-    {
         "id": "8d54343c273a8128",
         "type": "function",
         "z": "56ae43efe9a5b4d3",
@@ -5636,13 +5442,14 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 1160,
+        "x": 680,
+        "y": 880,
         "wires": [
             [
                 "397d62e439616946"
             ]
-        ]
+        ],
+        "icon": "font-awesome/fa-volume-up"
     },
     {
         "id": "397d62e439616946",
@@ -5656,67 +5463,13 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 630,
-        "y": 1160,
+        "x": 870,
+        "y": 880,
         "wires": [
-            [
-                "2a3d3eab887372ba"
-            ],
-            [
-                "f63075954e16c4d2"
-            ],
-            [
-                "e280a70827b1553e"
-            ]
+            [],
+            [],
+            []
         ]
-    },
-    {
-        "id": "2a3d3eab887372ba",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "f63075954e16c4d2",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "e280a70827b1553e",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 1200,
-        "wires": []
     },
     {
         "id": "9a498067d2130e99",
@@ -5724,30 +5477,263 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Volume Adjustments",
         "info": "",
-        "x": 130,
-        "y": 1060,
+        "x": 110,
+        "y": 840,
         "wires": []
     },
     {
-        "id": "fee4d27f30e27e22",
-        "type": "PlaySound",
+        "id": "dcd89f3eddf44c04",
+        "type": "comment",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "playerOptions": "{}",
-        "audioURI": "/data/projects/REST_NODE/assets/guided_meditation/college_and_electric_youth_-_a_real_hero.mp3",
-        "options": "{}",
-        "x": 470,
-        "y": 900,
+        "name": "Testing Section",
+        "info": "",
+        "x": 100,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "ee743279d14d6d2f",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Low Volume",
+        "props": [
+            {
+                "p": "payload.volume",
+                "v": "33",
+                "vt": "num"
+            },
+            {
+                "p": "payload.audio",
+                "v": "audio.WAKE_SOUND",
+                "vt": "flow"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 60,
         "wires": [
             [
-                "89cb292368cd9ff2"
+                "4095d36df0bf7800"
             ]
         ]
     },
     {
-        "id": "89cb292368cd9ff2",
+        "id": "b944c218dd1d80cf",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Medium Volume",
+        "props": [
+            {
+                "p": "payload.volume",
+                "v": "66",
+                "vt": "num"
+            },
+            {
+                "p": "payload.audio",
+                "v": "audio.WAKE_SOUND",
+                "vt": "flow"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "4095d36df0bf7800"
+            ]
+        ]
+    },
+    {
+        "id": "cd8b0f2964068165",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "High Volume",
+        "props": [
+            {
+                "p": "payload.volume",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "p": "payload.audion",
+                "v": "audio.WAKE_SOUND",
+                "vt": "flow"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "4095d36df0bf7800"
+            ]
+        ]
+    },
+    {
+        "id": "4095d36df0bf7800",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "dcc3e4b965949c44"
+        ],
+        "x": 295,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "dcc3e4b965949c44",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "4095d36df0bf7800",
+            "0ff74578e0a81cab",
+            "8e6a6d9d5f9d1403"
+        ],
+        "x": 35,
+        "y": 900,
+        "wires": [
+            [
+                "9cf6240b0ce29898"
+            ]
+        ]
+    },
+    {
+        "id": "8aa8457966c1294f",
         "type": "debug",
         "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "71db215611f0fa13",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2243166c5fd9ab63",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "",
+        "passthroughunhandled": false,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "15:31",
+        "ontopic": "",
+        "onpayload": "on",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "15:35",
+        "offtopic": "",
+        "offpayload": "off",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "e7d28d97fd5b377e"
+            ]
+        ]
+    },
+    {
+        "id": "cae51704553161f7",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "2243166c5fd9ab63"
+            ]
+        ]
+    },
+    {
+        "id": "e7d28d97fd5b377e",
+        "type": "debug",
+        "z": "427808241d304283",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -5756,99 +5742,560 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 670,
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7b84691ef016a6ab",
+        "type": "pi-gpiod out",
+        "z": "39c947163c4b72c5",
+        "name": "Night Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "18",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "2000",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d479c906edc53339",
+        "type": "pi-gpiod out",
+        "z": "39c947163c4b72c5",
+        "name": "Wake Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "22",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "2000",
+        "x": 830,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "108c9cd67defe8d0",
+        "type": "link in",
+        "z": "39c947163c4b72c5",
+        "name": "Night Light (GPIO)",
+        "links": [
+            "69f5739f6c172707"
+        ],
+        "x": 55,
+        "y": 100,
+        "wires": [
+            [
+                "7b84691ef016a6ab"
+            ]
+        ]
+    },
+    {
+        "id": "3ae8dc738dda02fa",
+        "type": "link in",
+        "z": "39c947163c4b72c5",
+        "name": "Wake Light (GPIO)",
+        "links": [
+            "2b54092e3ec821aa"
+        ],
+        "x": 575,
+        "y": 100,
+        "wires": [
+            [
+                "d479c906edc53339"
+            ]
+        ]
+    },
+    {
+        "id": "69f5739f6c172707",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Control)",
+        "links": [
+            "108c9cd67defe8d0"
+        ],
+        "x": 795,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "0c073804e2d3024f",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "To Night Light",
+        "info": "",
+        "x": 850,
         "y": 900,
         "wires": []
     },
     {
-        "id": "980cb9e2fe602f0c",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
+        "id": "2b54092e3ec821aa",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light (Control)",
+        "links": [
+            "3ae8dc738dda02fa"
         ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "play",
-        "payloadType": "str",
-        "x": 110,
-        "y": 840,
-        "wires": [
-            [
-                "fee4d27f30e27e22"
-            ]
-        ]
+        "x": 795,
+        "y": 1220,
+        "wires": []
     },
     {
-        "id": "fb61d6284a61d48f",
-        "type": "inject",
+        "id": "97a7ea1e7f79555a",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "To Wake Light",
+        "info": "",
+        "x": 850,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "7d8f844d95a0a057",
+        "type": "function",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "stop",
-        "payloadType": "str",
-        "x": 110,
+        "name": "Extract Volume",
+        "func": "const { volume, audio } = msg.payload\n\nif(!audio)\n    throw Error('Audio parameter is required')\n\nconst audio_state = flow.get(audio)\n\nmsg.payload = volume\n\nflow.set(audio, {\n    ...audio_state, volume\n})\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
         "y": 880,
         "wires": [
             [
-                "fee4d27f30e27e22"
+                "8d54343c273a8128"
             ]
         ]
     },
     {
-        "id": "3ae50a03e196304c",
-        "type": "inject",
+        "id": "5a43c4603dd6f0d2",
+        "type": "function",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "resume",
-        "payloadType": "str",
-        "x": 110,
+        "name": "If Audio Parameter is Missing",
+        "func": "\nthrow new Error('Audio parameter is required')",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
         "y": 920,
+        "wires": [],
+        "icon": "node-red/alert.svg"
+    },
+    {
+        "id": "9cf6240b0ce29898",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Check If Audio is Present",
+        "property": "payload.audio",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 900,
         "wires": [
             [
-                "fee4d27f30e27e22"
+                "7d8f844d95a0a057"
+            ],
+            [
+                "5a43c4603dd6f0d2"
             ]
         ]
     },
     {
-        "id": "9606362871ecd2f7",
+        "id": "8e6a6d9d5f9d1403",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "030505879c8ced2b",
+            "dcc3e4b965949c44",
+            "1b563d9b71af7068"
+        ],
+        "x": 895,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "409ebbdb930d87e2",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Audio Input",
+        "func": "const { audio } = msg.payload\nconst audio_config = flow.get(audio)\n\nmsg.payload = audio_config\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1000,
+        "wires": [
+            [
+                "8e6a6d9d5f9d1403"
+            ]
+        ]
+    },
+    {
+        "id": "d067cf25769cc9a2",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "819ffe8c2a50daa4"
+        ],
+        "x": 35,
+        "y": 1020,
+        "wires": [
+            [
+                "9b92296e96be783c"
+            ]
+        ]
+    },
+    {
+        "id": "9b92296e96be783c",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Check If Audio is Present",
+        "property": "payload.audio",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 1020,
+        "wires": [
+            [
+                "409ebbdb930d87e2"
+            ],
+            [
+                "646e9603eb55da9e"
+            ]
+        ]
+    },
+    {
+        "id": "f9727f7f7488862d",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio Player",
+        "info": "",
+        "x": 90,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "570924dcc793d5f2",
+        "type": "PlaySound",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio Player",
+        "playerOptions": "{}",
+        "audioURI": "",
+        "options": "{}",
+        "x": 790,
+        "y": 1180,
+        "wires": [
+            [
+                "c3907ce3b315e7d0"
+            ]
+        ]
+    },
+    {
+        "id": "1b563d9b71af7068",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "66cbd01c27b85f84",
+            "51b7c7c047fd2605",
+            "0ff74578e0a81cab",
+            "97d940100fd6c4e4",
+            "f8ba3ca312b725df",
+            "3c33859bf78ed215",
+            "8e6a6d9d5f9d1403"
+        ],
+        "x": 35,
+        "y": 1180,
+        "wires": [
+            [
+                "b47fadcb378c2227"
+            ]
+        ]
+    },
+    {
+        "id": "7fbe952ddacdef3c",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Play Audio",
+        "func": "const { audio_file } = msg.payload\n\nif(audio_file) {\n    msg.payload = 'start'\n    msg.audioURI = audio_file\n    \n    flow.set('current_audio_playing', audio_file)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1120,
+        "wires": [
+            [
+                "570924dcc793d5f2"
+            ]
+        ]
+    },
+    {
+        "id": "24365bd64551e5cd",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "d3c721f30dc405fe",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio End",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "end",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 1320,
+        "wires": [
+            [
+                "24365bd64551e5cd",
+                "835f3cbfbff328bf"
+            ]
+        ]
+    },
+    {
+        "id": "835f3cbfbff328bf",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Reset Audio",
+        "func": "flow.set('current_audio_playing', null)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "b47fadcb378c2227",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Toggle Audio State",
+        "property": "payload.state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "audio_player_states.PLAYING",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "audio_player_states.PAUSED",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "audio_player_states.STOPPED",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "audio_player_states.RESUMED",
+                "vt": "flow"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 290,
+        "y": 1180,
+        "wires": [
+            [
+                "7fbe952ddacdef3c"
+            ],
+            [
+                "64d5954e3b593755"
+            ],
+            [
+                "b3be279cfd75a974"
+            ],
+            [
+                "86c26390856a8017"
+            ]
+        ]
+    },
+    {
+        "id": "64d5954e3b593755",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Pause Audio",
+        "func": "msg.payload = 'pause'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1160,
+        "wires": [
+            [
+                "570924dcc793d5f2"
+            ]
+        ]
+    },
+    {
+        "id": "c3907ce3b315e7d0",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "87a8be781c772fe9"
+        ],
+        "x": 915,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "87a8be781c772fe9",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "c3907ce3b315e7d0"
+        ],
+        "x": 35,
+        "y": 1320,
+        "wires": [
+            [
+                "d3c721f30dc405fe"
+            ]
+        ]
+    },
+    {
+        "id": "b3be279cfd75a974",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Stop Audio",
+        "func": "msg.payload = 'stop'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1200,
+        "wires": [
+            [
+                "570924dcc793d5f2"
+            ]
+        ]
+    },
+    {
+        "id": "86c26390856a8017",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Resume Audio",
+        "func": "msg.payload = 'resume'\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1240,
+        "wires": [
+            [
+                "570924dcc793d5f2"
+            ]
+        ]
+    },
+    {
+        "id": "646e9603eb55da9e",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "If Audio Parameter is Missing",
+        "func": "\nthrow new Error('Audio parameter is required')",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1040,
+        "wires": [],
+        "icon": "node-red/alert.svg"
+    },
+    {
+        "id": "140b30a66cedb943",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Play Sound",
+        "func": "const { PLAYING } = flow.get('audio_player_states')\nconst { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio')\nconst audio_state = flow.get(WAKE_SOUND)\n\nflow.set(WAKE_SOUND, {\n    ...audio_state, state: PLAYING\n})\n\nmsg.payload = {\n    audio: WAKE_SOUND\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 60,
+        "wires": [
+            [
+                "819ffe8c2a50daa4"
+            ]
+        ]
+    },
+    {
+        "id": "4c81fcc60674a9e1",
         "type": "inject",
         "z": "56ae43efe9a5b4d3",
         "name": "",
@@ -5866,14 +6313,229 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "pause",
-        "payloadType": "str",
-        "x": 110,
-        "y": 960,
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 60,
         "wires": [
             [
-                "fee4d27f30e27e22"
+                "140b30a66cedb943"
             ]
         ]
+    },
+    {
+        "id": "dd19c29ede9b837b",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Pause Sound",
+        "func": "const { PAUSED } = flow.get('audio_player_states')\nconst { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio')\nconst audio_state = flow.get(WAKE_SOUND)\n\nflow.set(WAKE_SOUND, {\n    ...audio_state, state: PAUSED\n})\n\nmsg.payload = {\n    audio: WAKE_SOUND\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 100,
+        "wires": [
+            [
+                "819ffe8c2a50daa4"
+            ]
+        ]
+    },
+    {
+        "id": "0b573ff8da384adc",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 100,
+        "wires": [
+            [
+                "dd19c29ede9b837b"
+            ]
+        ]
+    },
+    {
+        "id": "d553a5c758663ee2",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Resume Sound",
+        "func": "const { RESUMED } = flow.get('audio_player_states')\nconst { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio')\nconst audio_state = flow.get(WAKE_SOUND)\n\nflow.set(WAKE_SOUND, {\n    ...audio_state, state: RESUMED\n})\n\nmsg.payload = {\n    audio: WAKE_SOUND\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 140,
+        "wires": [
+            [
+                "819ffe8c2a50daa4"
+            ]
+        ]
+    },
+    {
+        "id": "fcd53103b2ee45d3",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "d553a5c758663ee2"
+            ]
+        ]
+    },
+    {
+        "id": "e70fab1ad935c865",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Stopped Sound",
+        "func": "const { STOPPED } = flow.get('audio_player_states')\nconst { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio')\nconst audio_state = flow.get(WAKE_SOUND)\n\nflow.set(WAKE_SOUND, {\n    ...audio_state, state: STOPPED\n})\n\nmsg.payload = {\n    audio: WAKE_SOUND\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "819ffe8c2a50daa4"
+            ]
+        ]
+    },
+    {
+        "id": "2067773c52cf5c67",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 180,
+        "wires": [
+            [
+                "e70fab1ad935c865"
+            ]
+        ]
+    },
+    {
+        "id": "819ffe8c2a50daa4",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "d067cf25769cc9a2"
+        ],
+        "x": 855,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5a853defe09c191e",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Wake Sound (Test)",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \nconst audio_assets = flow.get('audio_assets')\n\nconst dir = 'guided_meditation'\nconst file = 'college_and_electric_youth_-_a_real_hero.mp3'\n\nmsg.payload = {\n    audio_file: audio_assets[dir][file],\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 240,
+        "wires": [
+            [
+                "af7443700a2c537c"
+            ]
+        ]
+    },
+    {
+        "id": "f72aac987ed90a0f",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Test API Call for Audio Controls",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "5a853defe09c191e"
+            ]
+        ]
+    },
+    {
+        "id": "af7443700a2c537c",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "52eb4e7a40d8147b"
+        ],
+        "x": 855,
+        "y": 240,
+        "wires": []
     }
 ]
