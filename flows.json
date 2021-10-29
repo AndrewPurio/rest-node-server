@@ -2624,6 +2624,7 @@
         "label": "System Time",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
+        "className": "",
         "x": 530,
         "y": 2060,
         "wires": []
@@ -2659,6 +2660,7 @@
         "append": "",
         "useSpawn": "false",
         "timer": "",
+        "winHide": false,
         "oldrc": false,
         "name": "Set Date/Time",
         "x": 1000,
@@ -2694,6 +2696,7 @@
         "mode": "time",
         "delay": "0",
         "topic": "",
+        "sendOnBlur": true,
         "topicType": "str",
         "x": 650,
         "y": 2100,
@@ -2762,6 +2765,7 @@
         "inout": "out",
         "septopics": true,
         "property": "payload",
+        "topi": "topic",
         "x": 510,
         "y": 2100,
         "wires": [
@@ -3927,8 +3931,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 610,
-        "y": 440,
+        "x": 690,
+        "y": 480,
         "wires": []
     },
     {
@@ -3993,7 +3997,8 @@
         "y": 440,
         "wires": [
             [
-                "6022aef9ff5d1e91"
+                "6022aef9ff5d1e91",
+                "076a5ab5e051a561"
             ]
         ]
     },
@@ -4448,7 +4453,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 520,
-        "y": 1400,
+        "y": 1640,
         "wires": [
             [
                 "0d47c729aedd341c"
@@ -4477,7 +4482,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1400,
+        "y": 1640,
         "wires": [
             [
                 "628f1ede24fe8779",
@@ -4498,7 +4503,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 740,
-        "y": 1400,
+        "y": 1640,
         "wires": []
     },
     {
@@ -4514,7 +4519,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 1340,
+        "y": 1580,
         "wires": []
     },
     {
@@ -4524,7 +4529,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 1300,
+        "y": 1540,
         "wires": []
     },
     {
@@ -4882,7 +4887,7 @@
         "payloadType": "msg",
         "count": "1",
         "x": 540,
-        "y": 1500,
+        "y": 1740,
         "wires": [
             [
                 "f212dc56aacf6421"
@@ -4911,7 +4916,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1500,
+        "y": 1740,
         "wires": [
             [
                 "383f42983ad210bb"
@@ -4931,7 +4936,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 1500,
+        "y": 1740,
         "wires": []
     },
     {
@@ -4946,7 +4951,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 1500,
+        "y": 1740,
         "wires": [
             [
                 "1ff8364eb592139e"
@@ -5651,31 +5656,32 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 60,
+        "y": 480,
         "wires": [
-            []
+            [
+                "6d468d5d4928ad3f"
+            ]
         ]
     },
     {
         "id": "2243166c5fd9ab63",
         "type": "schedex",
         "z": "427808241d304283",
-        "name": "",
-        "passthroughunhandled": false,
+        "name": "Event Scheduler",
+        "passthroughunhandled": true,
         "suspended": false,
         "lat": "",
         "lon": "",
-        "ontime": "15:31",
+        "ontime": "",
         "ontopic": "",
-        "onpayload": "on",
+        "onpayload": "",
         "onoffset": 0,
         "onrandomoffset": 0,
-        "offtime": "15:35",
+        "offtime": "",
         "offtopic": "",
-        "offpayload": "off",
+        "offpayload": "",
         "offoffset": 0,
         "offrandomoffset": 0,
         "mon": true,
@@ -5685,8 +5691,8 @@
         "fri": true,
         "sat": true,
         "sun": true,
-        "x": 390,
-        "y": 220,
+        "x": 560,
+        "y": 280,
         "wires": [
             [
                 "e7d28d97fd5b377e"
@@ -5715,10 +5721,10 @@
         "payload": "",
         "payloadType": "date",
         "x": 160,
-        "y": 220,
+        "y": 280,
         "wires": [
             [
-                "2243166c5fd9ab63"
+                "0b90fed486d255ed"
             ]
         ]
     },
@@ -5731,11 +5737,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
-        "y": 220,
+        "x": 730,
+        "y": 280,
         "wires": []
     },
     {
@@ -7161,6 +7168,317 @@
         "statusType": "auto",
         "x": 850,
         "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "6d468d5d4928ad3f",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "",
+        "func": "const date = new Date(8)\n\nmsg.payload = date.toString()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 480,
+        "wires": [
+            [
+                "50094e752bb2861d"
+            ]
+        ]
+    },
+    {
+        "id": "180795f0312fe096",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Prepare Data for Storage",
+        "info": "",
+        "x": 130,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "b959eed8d98a5acb",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Get Current Light Config",
+        "func": "const { NIGHT_LIGHT: night_light, WAKE_LIGHT: wake_light } = flow.get('lights')\nconst NIGHT_LIGHT = flow.get(night_light)\nconst WAKE_LIGHT = flowget(wake_light)\n\nmsg.payload = {\n    NIGHT_LIGHT, WAKE_LIGHT\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1360,
+        "wires": [
+            [
+                "1539bc275456eee8"
+            ]
+        ]
+    },
+    {
+        "id": "1539bc275456eee8",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Compile Light Config",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nmsg.payload = {\n    light: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1360,
+        "wires": [
+            [
+                "a2bd95418d6120d8",
+                "7e2ac3fcc945b0ad"
+            ]
+        ]
+    },
+    {
+        "id": "99a65e88efcd3084",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "076a5ab5e051a561"
+        ],
+        "x": 35,
+        "y": 1360,
+        "wires": [
+            [
+                "b959eed8d98a5acb",
+                "4c769989bc49be28"
+            ]
+        ]
+    },
+    {
+        "id": "a2bd95418d6120d8",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [],
+        "x": 915,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "076a5ab5e051a561",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "99a65e88efcd3084"
+        ],
+        "x": 635,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7e2ac3fcc945b0ad",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "4c769989bc49be28",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 270,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "0b90fed486d255ed",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "",
+        "func": "const conf = {\n    ontime: '5:39',\n    offtime: '5:40',\n    onpayload: 'The event has started',\n    offpayload: 'The event has ended',\n    mon: true, \n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nmsg.payload = conf\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "2243166c5fd9ab63"
+            ]
+        ]
+    },
+    {
+        "id": "b5a11432e948142c",
+        "type": "status",
+        "z": "427808241d304283",
+        "name": "",
+        "scope": [
+            "2243166c5fd9ab63"
+        ],
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "61041972ec0dd137"
+            ]
+        ]
+    },
+    {
+        "id": "61041972ec0dd137",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "01a594030bcac2f1",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "f07048600ff0a491"
+            ]
+        ]
+    },
+    {
+        "id": "f07048600ff0a491",
+        "type": "exec",
+        "z": "427808241d304283",
+        "command": "date",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "892c83a1898158f3"
+            ],
+            [
+                "1b5fd4efb6dd4593"
+            ],
+            [
+                "fca86f48f2bb802f"
+            ]
+        ]
+    },
+    {
+        "id": "892c83a1898158f3",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "1b5fd4efb6dd4593",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fca86f48f2bb802f",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "50094e752bb2861d",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 480,
         "wires": []
     }
 ]
