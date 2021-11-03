@@ -9,7 +9,7 @@
     {
         "id": "427808241d304283",
         "type": "tab",
-        "label": "Scheduler",
+        "label": "Event Scheduler",
         "disabled": false,
         "info": ""
     },
@@ -28,6 +28,13 @@
         "info": ""
     },
     {
+        "id": "4fcd3dd2df70f0c8",
+        "type": "tab",
+        "label": "System Controls",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "024a5d7a17bad4d1",
         "type": "tab",
         "label": "Local Storage",
@@ -38,13 +45,6 @@
         "id": "39c947163c4b72c5",
         "type": "tab",
         "label": "Hardware Interface",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "4fcd3dd2df70f0c8",
-        "type": "tab",
-        "label": "System Controls",
         "disabled": false,
         "info": ""
     },
@@ -3189,7 +3189,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade On",
-        "func": "const { FADE_ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: FADE_ON\n})\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
+        "func": "const { FADE_ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: FADE_ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3255,7 +3255,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade Off",
-        "func": "const { FADE_OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: FADE_OFF\n})\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
+        "func": "const { FADE_OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: FADE_OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3329,14 +3329,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: OFF\n})\n\nmsg.counter = 0\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
+        "func": "const { OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 860,
+        "x": 140,
+        "y": 840,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3348,13 +3348,13 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\n\nflow.set(light, {\n    ...NIGHT_LIGHT, state: ON\n})\n\nmsg.counter = max_brightness\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
+        "func": "const { ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.payload = light_config\n\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
+        "x": 150,
         "y": 640,
         "wires": [
             [
@@ -3379,7 +3379,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3519,7 +3519,7 @@
         "name": "",
         "server": "18c6c46d15594407",
         "client": "",
-        "x": 560,
+        "x": 840,
         "y": 140,
         "wires": []
     },
@@ -3554,7 +3554,7 @@
             "404746cedc16dfcd"
         ],
         "x": 35,
-        "y": 860,
+        "y": 840,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3584,8 +3584,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 60,
+        "x": 570,
+        "y": 300,
         "wires": []
     },
     {
@@ -3821,49 +3821,6 @@
         ]
     },
     {
-        "id": "c93afaa03282fed6",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "On Startup",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 340,
-        "wires": [
-            [
-                "cbe31ffaf8de222e"
-            ]
-        ]
-    },
-    {
-        "id": "b5468e96fe8f2a22",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Initialize Constants",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED',\n    RESUMED: 'RESUMED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\n\nflow.set('current_audio_playing', null)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 850,
-        "y": 340,
-        "wires": []
-    },
-    {
         "id": "766cf8448e1566aa",
         "type": "trigger",
         "z": "4fcd3dd2df70f0c8",
@@ -3880,8 +3837,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 400,
-        "y": 60,
+        "x": 380,
+        "y": 300,
         "wires": [
             [
                 "1590337acdb5b8fc"
@@ -3901,8 +3858,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 410,
-        "y": 120,
+        "x": 390,
+        "y": 360,
         "wires": []
     },
     {
@@ -4089,13 +4046,13 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Global Config",
-        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED'\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/lights.config.json',\n    audio: './defaults/audio.config.json',\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF'\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'NIGHT_SOUND'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'WAKE_SOUND'\n}\n\nconst RELAXATION_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'RELAXATION_SOUND'\n}\n\nconst days_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst bedtime = {\n    type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset\n    time: '21:00', // Base time of the on and off offsets\n    light: {\n        onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set\n        offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set\n        offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set\n        onpayload: {\n            ...NIGHT_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...NIGHT_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst waketime = {\n    type: 'waketime',\n    time: '5:00',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...WAKE_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst sunrise = {\n    type: 'sunrise',\n    time: 'sunrise',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst sunset = {\n    type: 'sunset',\n    time: 'sunset',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/light.config.json',\n    audio: './defaults/audio.config.json',\n    event: './defaults/event.config.json',\n    system: './defaults/system.config.json',\n    \n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    \n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND\n    },\n    \n    default_event_config: {\n        bedtime,\n        waketime,\n        sunrise,\n        sunset,\n        days_selected\n    },\n    \n    default_system_config: {\n        system_volume: 100,\n        audio_device: 'Headphone'\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 400,
         "y": 40,
         "wires": []
     },
@@ -4453,7 +4410,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 520,
-        "y": 1640,
+        "y": 1620,
         "wires": [
             [
                 "0d47c729aedd341c"
@@ -4482,7 +4439,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1640,
+        "y": 1620,
         "wires": [
             [
                 "628f1ede24fe8779",
@@ -4503,7 +4460,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 740,
-        "y": 1640,
+        "y": 1620,
         "wires": []
     },
     {
@@ -4519,7 +4476,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 1580,
+        "y": 1560,
         "wires": []
     },
     {
@@ -4529,7 +4486,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 1540,
+        "y": 1520,
         "wires": []
     },
     {
@@ -4549,7 +4506,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "f9a7604d87fde3d3",
@@ -4569,7 +4526,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "94954dcfbe5f3c9f"
@@ -4588,7 +4545,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "f9a7604d87fde3d3"
@@ -4615,7 +4572,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 1120,
+        "y": 1100,
         "wires": [
             [
                 "0ddc7a8a9d805023",
@@ -4635,7 +4592,7 @@
             "5bafbfec8916f0ba"
         ],
         "x": 35,
-        "y": 1060,
+        "y": 1040,
         "wires": [
             [
                 "358584c86f2908d1"
@@ -4654,7 +4611,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "56d5e84bd156a92a"
@@ -4673,7 +4630,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "d44bba9ad527d696"
@@ -4692,7 +4649,7 @@
             "03c1809fedcd92b1"
         ],
         "x": 35,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "045a05a988eb74c1"
@@ -4713,7 +4670,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1080,
+        "y": 1060,
         "wires": []
     },
     {
@@ -4728,7 +4685,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "60e47a90e20b5193"
@@ -4747,7 +4704,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 1000,
+        "y": 980,
         "wires": [
             [
                 "40315c57c58e15de"
@@ -4771,7 +4728,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4795,7 +4752,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1140,
+        "y": 1120,
         "wires": [
             [
                 "56d5e84bd156a92a",
@@ -4820,7 +4777,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 1000,
+        "y": 980,
         "wires": [
             [
                 "2022f663de8c1de9"
@@ -4839,7 +4796,7 @@
             "61f81f46ce3b5a78"
         ],
         "x": 35,
-        "y": 1000,
+        "y": 980,
         "wires": [
             [
                 "f089cbdf9d57d653"
@@ -4858,7 +4815,7 @@
             "867eba5884d338c5"
         ],
         "x": 35,
-        "y": 1220,
+        "y": 1200,
         "wires": [
             [
                 "5a2b5f343921884b"
@@ -4872,7 +4829,7 @@
         "name": "Wake Light Controls",
         "info": "",
         "x": 110,
-        "y": 940,
+        "y": 920,
         "wires": []
     },
     {
@@ -4887,7 +4844,7 @@
         "payloadType": "msg",
         "count": "1",
         "x": 540,
-        "y": 1740,
+        "y": 1720,
         "wires": [
             [
                 "f212dc56aacf6421"
@@ -4916,7 +4873,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1740,
+        "y": 1720,
         "wires": [
             [
                 "383f42983ad210bb"
@@ -4936,7 +4893,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 1740,
+        "y": 1720,
         "wires": []
     },
     {
@@ -4951,12 +4908,1029 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 1740,
+        "y": 1720,
         "wires": [
             [
                 "1ff8364eb592139e"
             ]
         ]
+    },
+    {
+        "id": "10dd06b0f0c2109d",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/access",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "09416b7fdcfe5bf4"
+            ]
+        ]
+    },
+    {
+        "id": "09416b7fdcfe5bf4",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "7b84691ef016a6ab",
+        "type": "pi-gpiod out",
+        "z": "39c947163c4b72c5",
+        "name": "Night Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "18",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "2000",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d479c906edc53339",
+        "type": "pi-gpiod out",
+        "z": "39c947163c4b72c5",
+        "name": "Wake Light",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "22",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "sermin": "1000",
+        "sermax": "2000",
+        "freq": "2000",
+        "x": 830,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "108c9cd67defe8d0",
+        "type": "link in",
+        "z": "39c947163c4b72c5",
+        "name": "Night Light (GPIO)",
+        "links": [
+            "69f5739f6c172707"
+        ],
+        "x": 55,
+        "y": 100,
+        "wires": [
+            [
+                "7b84691ef016a6ab"
+            ]
+        ]
+    },
+    {
+        "id": "3ae8dc738dda02fa",
+        "type": "link in",
+        "z": "39c947163c4b72c5",
+        "name": "Wake Light (GPIO)",
+        "links": [
+            "2b54092e3ec821aa"
+        ],
+        "x": 575,
+        "y": 100,
+        "wires": [
+            [
+                "d479c906edc53339"
+            ]
+        ]
+    },
+    {
+        "id": "69f5739f6c172707",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Control)",
+        "links": [
+            "108c9cd67defe8d0"
+        ],
+        "x": 795,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "0c073804e2d3024f",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "To Night Light",
+        "info": "",
+        "x": 850,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "2b54092e3ec821aa",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "Wake Light (Control)",
+        "links": [
+            "3ae8dc738dda02fa"
+        ],
+        "x": 795,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "97a7ea1e7f79555a",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "To Wake Light",
+        "info": "",
+        "x": 850,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "20d962370170bda9",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "d4a9d574e8776756"
+            ]
+        ]
+    },
+    {
+        "id": "d4a9d574e8776756",
+        "type": "file",
+        "z": "024a5d7a17bad4d1",
+        "name": "Update Light Config File",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 810,
+        "y": 160,
+        "wires": [
+            [
+                "f48818170f588c63"
+            ]
+        ]
+    },
+    {
+        "id": "015cb074f7b97d87",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 140,
+        "wires": [
+            [
+                "d4a9d574e8776756"
+            ]
+        ]
+    },
+    {
+        "id": "f48818170f588c63",
+        "type": "debug",
+        "z": "024a5d7a17bad4d1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e22c19358ff80035",
+        "type": "switch",
+        "z": "024a5d7a17bad4d1",
+        "name": "Select Config File",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "audio",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "light",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "event",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "system",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "5e7adbb9acd218dd"
+            ],
+            [
+                "ca7b3f2c024562b1"
+            ],
+            [
+                "f430cccf82ec05a3"
+            ],
+            [
+                "6a7c4e44cfb9a01d"
+            ]
+        ]
+    },
+    {
+        "id": "39d1d42028adc83d",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Lights (Hardware)",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "94188c21eddb1250",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Audio (Hardware)",
+        "info": "",
+        "x": 120,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "55de0a99484f7e4c",
+        "type": "comment",
+        "z": "39c947163c4b72c5",
+        "name": "Input Buttons (Hardware)",
+        "info": "",
+        "x": 150,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "2895fb3018f77f98",
+        "type": "pi-gpiod in",
+        "z": "39c947163c4b72c5",
+        "name": "System Reset",
+        "host": "172.17.0.1",
+        "port": 8888,
+        "pin": "24",
+        "intype": "PUD_DOWN",
+        "debounce": "25",
+        "read": false,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "5397f0d28c60d06a"
+            ]
+        ]
+    },
+    {
+        "id": "5397f0d28c60d06a",
+        "type": "link out",
+        "z": "39c947163c4b72c5",
+        "name": "System Reset (Hardware)",
+        "links": [
+            "5ec14e1ee0ad2eee"
+        ],
+        "x": 375,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5ec14e1ee0ad2eee",
+        "type": "link in",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "System Reset",
+        "links": [
+            "5397f0d28c60d06a"
+        ],
+        "x": 175,
+        "y": 300,
+        "wires": [
+            [
+                "766cf8448e1566aa",
+                "1620cc6ba52e96c1"
+            ]
+        ]
+    },
+    {
+        "id": "ec7beb856b75bc82",
+        "type": "link in",
+        "z": "024a5d7a17bad4d1",
+        "name": "Update Lights / Audio Config",
+        "links": [
+            "064db609db367336"
+        ],
+        "x": 195,
+        "y": 100,
+        "wires": [
+            [
+                "e22c19358ff80035"
+            ]
+        ]
+    },
+    {
+        "id": "a74e7bbe2c2e8154",
+        "type": "comment",
+        "z": "024a5d7a17bad4d1",
+        "name": "Update Config File",
+        "info": "",
+        "x": 110,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5e7adbb9acd218dd",
+        "type": "function",
+        "z": "024a5d7a17bad4d1",
+        "name": "Extract Audio Config",
+        "func": "const { audio: audio_config } = global.get('defaults_config')\nconst { audio } = msg.payload\n\nmsg.payload = audio\nmsg.filename = audio_config\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "20d962370170bda9"
+            ]
+        ]
+    },
+    {
+        "id": "ca7b3f2c024562b1",
+        "type": "function",
+        "z": "024a5d7a17bad4d1",
+        "name": "Extract Light Config",
+        "func": "const { light: light_config } = global.get('defaults_config')\nconst { light } = msg.payload\n\nmsg.payload = light\nmsg.filename = light_config\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "015cb074f7b97d87"
+            ]
+        ]
+    },
+    {
+        "id": "180795f0312fe096",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "Prepare Data for Storage",
+        "info": "",
+        "x": 130,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "b959eed8d98a5acb",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Get Current Light Config",
+        "func": "const { NIGHT_LIGHT: night_light, WAKE_LIGHT: wake_light } = flow.get('lights')\nconst NIGHT_LIGHT = flow.get(night_light)\nconst WAKE_LIGHT = flowget(wake_light)\n\nmsg.payload = {\n    NIGHT_LIGHT, WAKE_LIGHT\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1340,
+        "wires": [
+            [
+                "1539bc275456eee8"
+            ]
+        ]
+    },
+    {
+        "id": "1539bc275456eee8",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Compile Light Config",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nmsg.payload = {\n    light: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1340,
+        "wires": [
+            [
+                "a2bd95418d6120d8",
+                "7e2ac3fcc945b0ad"
+            ]
+        ]
+    },
+    {
+        "id": "99a65e88efcd3084",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "076a5ab5e051a561",
+            "1b82a8d02f7d982c",
+            "e7fb127bc0694c12"
+        ],
+        "x": 35,
+        "y": 1340,
+        "wires": [
+            [
+                "b959eed8d98a5acb"
+            ]
+        ]
+    },
+    {
+        "id": "a2bd95418d6120d8",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [],
+        "x": 915,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "076a5ab5e051a561",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "99a65e88efcd3084"
+        ],
+        "x": 635,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7e2ac3fcc945b0ad",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "789448144297f388",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/locale",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 720,
+        "wires": [
+            [
+                "4d1228e5e46e26e8"
+            ]
+        ]
+    },
+    {
+        "id": "4d1228e5e46e26e8",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "3663a760b9cc022e",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1640,
+        "wires": [
+            [
+                "cd660cc58e12663c"
+            ]
+        ]
+    },
+    {
+        "id": "cd660cc58e12663c",
+        "type": "exec",
+        "z": "427808241d304283",
+        "command": "date",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 310,
+        "y": 1640,
+        "wires": [
+            [
+                "ea43c528df705993"
+            ],
+            [
+                "dd6fb2a1a86b2977"
+            ],
+            [
+                "b3cc693c8e39187b"
+            ]
+        ]
+    },
+    {
+        "id": "ea43c528df705993",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "dd6fb2a1a86b2977",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "b3cc693c8e39187b",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "d29f913641706a93",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "On Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "db18fd732dfa43d7"
+            ]
+        ]
+    },
+    {
+        "id": "ed362dbd9b36c014",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Initialize Constants",
+        "func": "const events = msg.payload\nconst date = new Date()\nconst timezone_offset = date.getTimezoneOffset()\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED',\n    RESUMED: 'RESUMED'\n}\n\nflow.set('events', events)\nflow.set('timezone_offset', timezone_offset)\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "db18fd732dfa43d7",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "FileName",
+        "func": "const { event } = global.get('defaults_config')\n\nmsg.filename = event\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "6f801ba2e4fac0ba"
+            ]
+        ]
+    },
+    {
+        "id": "6f801ba2e4fac0ba",
+        "type": "file in",
+        "z": "427808241d304283",
+        "name": "Retrieve Event Config",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [
+                "aa81ecef31a7e3c5"
+            ]
+        ]
+    },
+    {
+        "id": "aa81ecef31a7e3c5",
+        "type": "json",
+        "z": "427808241d304283",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "ed362dbd9b36c014"
+            ]
+        ]
+    },
+    {
+        "id": "a38d84f617594c64",
+        "type": "catch",
+        "z": "427808241d304283",
+        "name": "If Event Config Does Not Exist",
+        "scope": [
+            "6f801ba2e4fac0ba"
+        ],
+        "uncaught": false,
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "7d8a557427f39da0"
+            ]
+        ]
+    },
+    {
+        "id": "7d8a557427f39da0",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Default Event Config",
+        "func": "const { default_event_config } = global.get('defaults_config')\n\nmsg.payload = default_event_config\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "d31ff6390836f524"
+            ]
+        ]
+    },
+    {
+        "id": "d31ff6390836f524",
+        "type": "file",
+        "z": "427808241d304283",
+        "name": "Create Event Config File",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "ed362dbd9b36c014"
+            ]
+        ]
+    },
+    {
+        "id": "4f1d443dfd155458",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Initialize Event Scheduler",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "0efb101deac18438",
+        "type": "inject",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "On Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "9a692eb9368947d8"
+            ]
+        ]
+    },
+    {
+        "id": "cf8d672130ac567c",
+        "type": "function",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Initialize Constants",
+        "func": "const system_config = msg.payload\n\nflow.set('system_config', system_config)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9a692eb9368947d8",
+        "type": "function",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "FileName",
+        "func": "const { system } = global.get('defaults_config')\n\nmsg.filename = system\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "76c31bda66027c24"
+            ]
+        ]
+    },
+    {
+        "id": "76c31bda66027c24",
+        "type": "file in",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Retrieve System Config",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 450,
+        "y": 80,
+        "wires": [
+            [
+                "0d9ef61f4a7f9dd9"
+            ]
+        ]
+    },
+    {
+        "id": "0d9ef61f4a7f9dd9",
+        "type": "json",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 630,
+        "y": 80,
+        "wires": [
+            [
+                "cf8d672130ac567c"
+            ]
+        ]
+    },
+    {
+        "id": "839d39a22b2664c3",
+        "type": "catch",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "If System Config Does Not Exist",
+        "scope": [
+            "76c31bda66027c24"
+        ],
+        "uncaught": false,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "6627babede3ed239"
+            ]
+        ]
+    },
+    {
+        "id": "6627babede3ed239",
+        "type": "function",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Default System Config",
+        "func": "const { default_system_config } = global.get('defaults_config')\n\nmsg.payload = default_system_config\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "f6a6960f282e0aab"
+            ]
+        ]
+    },
+    {
+        "id": "f6a6960f282e0aab",
+        "type": "file",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Create System Config File",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "cf8d672130ac567c"
+            ]
+        ]
+    },
+    {
+        "id": "39c4db23c13ac5d4",
+        "type": "comment",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Initialize System Controls",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c93afaa03282fed6",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "On Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "cbe31ffaf8de222e"
+            ]
+        ]
+    },
+    {
+        "id": "b5468e96fe8f2a22",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Initialize Constants",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED',\n    RESUMED: 'RESUMED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\n\nflow.set('current_audio_playing', null)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 340,
+        "wires": []
     },
     {
         "id": "cbe31ffaf8de222e",
@@ -5396,34 +6370,6 @@
         "wires": []
     },
     {
-        "id": "10dd06b0f0c2109d",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/access",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 480,
-        "wires": [
-            [
-                "09416b7fdcfe5bf4"
-            ]
-        ]
-    },
-    {
-        "id": "09416b7fdcfe5bf4",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 730,
-        "y": 480,
-        "wires": []
-    },
-    {
         "id": "8d54343c273a8128",
         "type": "function",
         "z": "56ae43efe9a5b4d3",
@@ -5435,7 +6381,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             [
                 "397d62e439616946"
@@ -5456,7 +6402,7 @@
         "oldrc": false,
         "name": "Execute Volume Command",
         "x": 640,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             [
                 "efdf05c1fd0eb8b2"
@@ -5476,7 +6422,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 1000,
+        "y": 1120,
         "wires": []
     },
     {
@@ -5613,7 +6559,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             [
                 "7d8f844d95a0a057"
@@ -5638,226 +6584,6 @@
         "wires": []
     },
     {
-        "id": "71db215611f0fa13",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 480,
-        "wires": [
-            [
-                "6d468d5d4928ad3f"
-            ]
-        ]
-    },
-    {
-        "id": "2243166c5fd9ab63",
-        "type": "schedex",
-        "z": "427808241d304283",
-        "name": "Event Scheduler",
-        "passthroughunhandled": true,
-        "suspended": false,
-        "lat": "",
-        "lon": "",
-        "ontime": "",
-        "ontopic": "",
-        "onpayload": "",
-        "onoffset": 0,
-        "onrandomoffset": 0,
-        "offtime": "",
-        "offtopic": "",
-        "offpayload": "",
-        "offoffset": 0,
-        "offrandomoffset": 0,
-        "mon": true,
-        "tue": true,
-        "wed": true,
-        "thu": true,
-        "fri": true,
-        "sat": true,
-        "sun": true,
-        "x": 560,
-        "y": 280,
-        "wires": [
-            [
-                "e7d28d97fd5b377e"
-            ]
-        ]
-    },
-    {
-        "id": "cae51704553161f7",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 160,
-        "y": 280,
-        "wires": [
-            [
-                "0b90fed486d255ed"
-            ]
-        ]
-    },
-    {
-        "id": "e7d28d97fd5b377e",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 730,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "7b84691ef016a6ab",
-        "type": "pi-gpiod out",
-        "z": "39c947163c4b72c5",
-        "name": "Night Light",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "18",
-        "set": false,
-        "level": "0",
-        "out": "pwm",
-        "sermin": "1000",
-        "sermax": "2000",
-        "freq": "2000",
-        "x": 330,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "d479c906edc53339",
-        "type": "pi-gpiod out",
-        "z": "39c947163c4b72c5",
-        "name": "Wake Light",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "22",
-        "set": false,
-        "level": "0",
-        "out": "pwm",
-        "sermin": "1000",
-        "sermax": "2000",
-        "freq": "2000",
-        "x": 830,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "108c9cd67defe8d0",
-        "type": "link in",
-        "z": "39c947163c4b72c5",
-        "name": "Night Light (GPIO)",
-        "links": [
-            "69f5739f6c172707"
-        ],
-        "x": 55,
-        "y": 100,
-        "wires": [
-            [
-                "7b84691ef016a6ab"
-            ]
-        ]
-    },
-    {
-        "id": "3ae8dc738dda02fa",
-        "type": "link in",
-        "z": "39c947163c4b72c5",
-        "name": "Wake Light (GPIO)",
-        "links": [
-            "2b54092e3ec821aa"
-        ],
-        "x": 575,
-        "y": 100,
-        "wires": [
-            [
-                "d479c906edc53339"
-            ]
-        ]
-    },
-    {
-        "id": "69f5739f6c172707",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light (Control)",
-        "links": [
-            "108c9cd67defe8d0"
-        ],
-        "x": 795,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "0c073804e2d3024f",
-        "type": "comment",
-        "z": "e1a40699ea85764e",
-        "name": "To Night Light",
-        "info": "",
-        "x": 850,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "2b54092e3ec821aa",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (Control)",
-        "links": [
-            "3ae8dc738dda02fa"
-        ],
-        "x": 795,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "97a7ea1e7f79555a",
-        "type": "comment",
-        "z": "e1a40699ea85764e",
-        "name": "To Wake Light",
-        "info": "",
-        "x": 850,
-        "y": 1200,
-        "wires": []
-    },
-    {
         "id": "7d8f844d95a0a057",
         "type": "function",
         "z": "56ae43efe9a5b4d3",
@@ -5869,7 +6595,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1040,
+        "y": 1160,
         "wires": [
             [
                 "8d54343c273a8128",
@@ -5884,7 +6610,7 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1180,
+        "y": 1300,
         "wires": []
     },
     {
@@ -5903,7 +6629,7 @@
             "819ffe8c2a50daa4"
         ],
         "x": 35,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "ab91ca2c5c750e95"
@@ -5922,7 +6648,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1180,
+        "y": 1300,
         "wires": [
             [
                 "5a44044c38f6a2b7"
@@ -5943,7 +6669,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1500,
+        "y": 1620,
         "wires": []
     },
     {
@@ -5964,7 +6690,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -5984,7 +6710,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1460,
+        "y": 1580,
         "wires": []
     },
     {
@@ -6020,7 +6746,7 @@
         "repair": false,
         "outputs": 4,
         "x": 350,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -6048,7 +6774,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1300,
+        "y": 1420,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -6064,7 +6790,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1300,
+        "y": 1420,
         "wires": []
     },
     {
@@ -6077,7 +6803,7 @@
             "3c25c445887cca7c"
         ],
         "x": 35,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "837e2a02b8b3cb89"
@@ -6096,7 +6822,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1340,
+        "y": 1460,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -6115,7 +6841,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1380,
+        "y": 1500,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -6387,38 +7113,13 @@
         "wires": []
     },
     {
-        "id": "20d962370170bda9",
-        "type": "trigger",
-        "z": "024a5d7a17bad4d1",
-        "name": "",
-        "op1": "",
-        "op2": "",
-        "op1type": "nul",
-        "op2type": "payl",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 600,
-        "y": 100,
-        "wires": [
-            [
-                "87b79de5e547a639"
-            ]
-        ]
-    },
-    {
         "id": "5fa2284a12b19fc9",
         "type": "comment",
         "z": "56ae43efe9a5b4d3",
         "name": "Prepare Data for Storage",
         "info": "",
         "x": 130,
-        "y": 1580,
+        "y": 1700,
         "wires": []
     },
     {
@@ -6433,7 +7134,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 1620,
+        "y": 1740,
         "wires": [
             [
                 "6b5fe6e5651bbcdc"
@@ -6452,214 +7153,10 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 1620,
+        "y": 1740,
         "wires": [
             [
                 "377cc3968f89cf3d"
-            ]
-        ]
-    },
-    {
-        "id": "d4a9d574e8776756",
-        "type": "file",
-        "z": "024a5d7a17bad4d1",
-        "name": "Update Lights Config File",
-        "filename": "./defaults/lights.config.json",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "false",
-        "encoding": "none",
-        "x": 790,
-        "y": 180,
-        "wires": [
-            [
-                "f48818170f588c63"
-            ]
-        ]
-    },
-    {
-        "id": "015cb074f7b97d87",
-        "type": "trigger",
-        "z": "024a5d7a17bad4d1",
-        "name": "",
-        "op1": "",
-        "op2": "",
-        "op1type": "nul",
-        "op2type": "payl",
-        "duration": "5",
-        "extend": true,
-        "overrideDelay": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 600,
-        "y": 180,
-        "wires": [
-            [
-                "d4a9d574e8776756"
-            ]
-        ]
-    },
-    {
-        "id": "87b79de5e547a639",
-        "type": "file",
-        "z": "024a5d7a17bad4d1",
-        "name": "Update Audio Config File",
-        "filename": "./defaults/audio.config.json",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 790,
-        "y": 100,
-        "wires": [
-            [
-                "77f44d61c0532a56"
-            ]
-        ]
-    },
-    {
-        "id": "77f44d61c0532a56",
-        "type": "debug",
-        "z": "024a5d7a17bad4d1",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "f48818170f588c63",
-        "type": "debug",
-        "z": "024a5d7a17bad4d1",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "e22c19358ff80035",
-        "type": "switch",
-        "z": "024a5d7a17bad4d1",
-        "name": "Update Lights / Audio Config",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "hask",
-                "v": "audio",
-                "vt": "str"
-            },
-            {
-                "t": "hask",
-                "v": "light",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 160,
-        "y": 140,
-        "wires": [
-            [
-                "5e7adbb9acd218dd"
-            ],
-            [
-                "ca7b3f2c024562b1"
-            ]
-        ]
-    },
-    {
-        "id": "39d1d42028adc83d",
-        "type": "comment",
-        "z": "39c947163c4b72c5",
-        "name": "Lights (Hardware)",
-        "info": "",
-        "x": 130,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "94188c21eddb1250",
-        "type": "comment",
-        "z": "39c947163c4b72c5",
-        "name": "Audio (Hardware)",
-        "info": "",
-        "x": 120,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "55de0a99484f7e4c",
-        "type": "comment",
-        "z": "39c947163c4b72c5",
-        "name": "Input Buttons (Hardware)",
-        "info": "",
-        "x": 150,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "2895fb3018f77f98",
-        "type": "pi-gpiod in",
-        "z": "39c947163c4b72c5",
-        "name": "System Reset",
-        "host": "172.17.0.1",
-        "port": 8888,
-        "pin": "24",
-        "intype": "PUD_DOWN",
-        "debounce": "25",
-        "read": false,
-        "x": 110,
-        "y": 400,
-        "wires": [
-            [
-                "5397f0d28c60d06a"
-            ]
-        ]
-    },
-    {
-        "id": "5397f0d28c60d06a",
-        "type": "link out",
-        "z": "39c947163c4b72c5",
-        "name": "System Reset (Hardware)",
-        "links": [
-            "5ec14e1ee0ad2eee"
-        ],
-        "x": 375,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "5ec14e1ee0ad2eee",
-        "type": "link in",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "System Reset",
-        "links": [
-            "5397f0d28c60d06a"
-        ],
-        "x": 195,
-        "y": 60,
-        "wires": [
-            [
-                "766cf8448e1566aa",
-                "1620cc6ba52e96c1"
             ]
         ]
     },
@@ -6730,33 +7227,7 @@
             "ec7beb856b75bc82"
         ],
         "x": 795,
-        "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "ec7beb856b75bc82",
-        "type": "link in",
-        "z": "024a5d7a17bad4d1",
-        "name": "Update Lights / Audio Config",
-        "links": [
-            "064db609db367336"
-        ],
-        "x": 175,
-        "y": 100,
-        "wires": [
-            [
-                "e22c19358ff80035"
-            ]
-        ]
-    },
-    {
-        "id": "a74e7bbe2c2e8154",
-        "type": "comment",
-        "z": "024a5d7a17bad4d1",
-        "name": "Update Config File",
-        "info": "",
-        "x": 130,
-        "y": 60,
+        "y": 1740,
         "wires": []
     },
     {
@@ -6772,7 +7243,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 1680,
+        "y": 1800,
         "wires": []
     },
     {
@@ -6787,49 +7258,11 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1620,
+        "y": 1740,
         "wires": [
             [
                 "064db609db367336",
                 "21799f2975f9cd0d"
-            ]
-        ]
-    },
-    {
-        "id": "5e7adbb9acd218dd",
-        "type": "function",
-        "z": "024a5d7a17bad4d1",
-        "name": "Extract Audio Config",
-        "func": "const { audio } = msg.payload\n\nmsg.payload = audio\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 100,
-        "wires": [
-            [
-                "20d962370170bda9"
-            ]
-        ]
-    },
-    {
-        "id": "ca7b3f2c024562b1",
-        "type": "function",
-        "z": "024a5d7a17bad4d1",
-        "name": "Extract Light Config",
-        "func": "const { light } = msg.payload\n\nmsg.payload = light\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 410,
-        "y": 180,
-        "wires": [
-            [
-                "015cb074f7b97d87"
             ]
         ]
     },
@@ -6845,7 +7278,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -7000,7 +7433,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 410,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "d3c721f30dc405fe"
@@ -7026,7 +7459,7 @@
         "repair": false,
         "outputs": 2,
         "x": 730,
-        "y": 1180,
+        "y": 1300,
         "wires": [
             [
                 "3c25c445887cca7c"
@@ -7048,11 +7481,11 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
-                "290fdd10d19a84aa",
-                "c3907ce3b315e7d0"
+                "c3907ce3b315e7d0",
+                "290fdd10d19a84aa"
             ]
         ]
     },
@@ -7068,7 +7501,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -7084,7 +7517,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1160,
+        "y": 1280,
         "wires": []
     },
     {
@@ -7099,7 +7532,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "f9696091e419c12c"
@@ -7119,7 +7552,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 330,
-        "y": 1000,
+        "y": 1120,
         "wires": []
     },
     {
@@ -7135,7 +7568,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1000,
+        "y": 1120,
         "wires": []
     },
     {
@@ -7151,7 +7584,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1040,
+        "y": 1160,
         "wires": []
     },
     {
@@ -7167,120 +7600,57 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1080,
+        "y": 1200,
         "wires": []
     },
     {
-        "id": "6d468d5d4928ad3f",
-        "type": "function",
-        "z": "427808241d304283",
+        "id": "c8535874aa1ff738",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
         "name": "",
-        "func": "const date = new Date(8)\n\nmsg.payload = date.toString()\n\nreturn msg;",
+        "links": [],
+        "x": 35,
+        "y": 980,
+        "wires": [
+            [
+                "4fbca4893f9888f9"
+            ]
+        ]
+    },
+    {
+        "id": "4fbca4893f9888f9",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Available Audio Files",
+        "func": "const audio_assets = flow.get('audio_assets')\n\nfor(let key in audio_assets) {\n    audio_assets[key] = Object.keys( audio_assets[key] )\n}\n\n\nmsg.payload = audio_assets\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 480,
+        "y": 980,
         "wires": [
             [
-                "50094e752bb2861d"
+                "5b84f8efca57f859",
+                "f5cad2c23ed73012"
             ]
         ]
     },
     {
-        "id": "180795f0312fe096",
-        "type": "comment",
-        "z": "e1a40699ea85764e",
-        "name": "Prepare Data for Storage",
-        "info": "",
-        "x": 130,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "b959eed8d98a5acb",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Get Current Light Config",
-        "func": "const { NIGHT_LIGHT: night_light, WAKE_LIGHT: wake_light } = flow.get('lights')\nconst NIGHT_LIGHT = flow.get(night_light)\nconst WAKE_LIGHT = flowget(wake_light)\n\nmsg.payload = {\n    NIGHT_LIGHT, WAKE_LIGHT\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 1360,
-        "wires": [
-            [
-                "1539bc275456eee8"
-            ]
-        ]
-    },
-    {
-        "id": "1539bc275456eee8",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Compile Light Config",
-        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nmsg.payload = {\n    light: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    }\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 1360,
-        "wires": [
-            [
-                "a2bd95418d6120d8",
-                "7e2ac3fcc945b0ad"
-            ]
-        ]
-    },
-    {
-        "id": "99a65e88efcd3084",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "076a5ab5e051a561"
-        ],
-        "x": 35,
-        "y": 1360,
-        "wires": [
-            [
-                "b959eed8d98a5acb",
-                "4c769989bc49be28"
-            ]
-        ]
-    },
-    {
-        "id": "a2bd95418d6120d8",
+        "id": "5b84f8efca57f859",
         "type": "link out",
-        "z": "e1a40699ea85764e",
+        "z": "56ae43efe9a5b4d3",
         "name": "",
         "links": [],
         "x": 915,
-        "y": 1360,
+        "y": 980,
         "wires": []
     },
     {
-        "id": "076a5ab5e051a561",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "99a65e88efcd3084"
-        ],
-        "x": 635,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "7e2ac3fcc945b0ad",
+        "id": "f5cad2c23ed73012",
         "type": "debug",
-        "z": "e1a40699ea85764e",
+        "z": "56ae43efe9a5b4d3",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -7290,79 +7660,148 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1420,
+        "y": 1020,
         "wires": []
     },
     {
-        "id": "4c769989bc49be28",
-        "type": "debug",
-        "z": "e1a40699ea85764e",
+        "id": "5492fb483b8b2eb8",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 270,
-        "y": 1400,
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 1040,
+        "wires": [
+            [
+                "4fbca4893f9888f9"
+            ]
+        ]
+    },
+    {
+        "id": "7a8082dc4e53ede4",
+        "type": "comment",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Reset",
+        "info": "",
+        "x": 210,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "0b90fed486d255ed",
+        "id": "f430cccf82ec05a3",
         "type": "function",
-        "z": "427808241d304283",
-        "name": "",
-        "func": "const conf = {\n    ontime: '5:39',\n    offtime: '5:40',\n    onpayload: 'The event has started',\n    offpayload: 'The event has ended',\n    mon: true, \n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nmsg.payload = conf\n\nreturn msg;",
+        "z": "024a5d7a17bad4d1",
+        "name": "Extract Event Config",
+        "func": "const { event: event_config } = global.get('defaults_config')\nconst { event } = msg.payload\n\nmsg.payload = event\nmsg.filename = event_config\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 280,
+        "y": 180,
         "wires": [
             [
-                "2243166c5fd9ab63"
+                "e3b233261f0697e2"
             ]
         ]
     },
     {
-        "id": "b5a11432e948142c",
-        "type": "status",
-        "z": "427808241d304283",
+        "id": "e3b233261f0697e2",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
         "name": "",
-        "scope": [
-            "2243166c5fd9ab63"
-        ],
-        "x": 160,
-        "y": 360,
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 180,
         "wires": [
             [
-                "61041972ec0dd137"
+                "d4a9d574e8776756"
             ]
         ]
     },
     {
-        "id": "61041972ec0dd137",
-        "type": "debug",
-        "z": "427808241d304283",
+        "id": "6a7c4e44cfb9a01d",
+        "type": "function",
+        "z": "024a5d7a17bad4d1",
+        "name": "Extract System Config",
+        "func": "const { system: system_config } = global.get('defaults_config')\nconst { system } = msg.payload\n\nmsg.payload = system\nmsg.filename = system_config\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "41f01c7bb18553ca"
+            ]
+        ]
+    },
+    {
+        "id": "41f01c7bb18553ca",
+        "type": "trigger",
+        "z": "024a5d7a17bad4d1",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 380,
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "5",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "d4a9d574e8776756"
+            ]
+        ]
+    },
+    {
+        "id": "5be91df37a5ca220",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Testing Section",
+        "info": "",
+        "x": 100,
+        "y": 1540,
         "wires": []
     },
     {
-        "id": "01a594030bcac2f1",
+        "id": "a240ce146f5a7cec",
         "type": "inject",
         "z": "427808241d304283",
         "name": "",
@@ -7382,42 +7821,69 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 80,
+        "x": 100,
+        "y": 1740,
         "wires": [
             [
-                "f07048600ff0a491"
+                "1df171d5d7671863"
             ]
         ]
     },
     {
-        "id": "f07048600ff0a491",
-        "type": "exec",
+        "id": "1df171d5d7671863",
+        "type": "function",
         "z": "427808241d304283",
-        "command": "date",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
+        "name": "Schedex Input Template",
+        "func": "const { NIGHT_LIGHT } = flow.get('lights')\nconst { FADE_ON, FADE_OFF } = flow.get('light_states')\n\nconst { sunset } = flow.get('events')\nconst { time } = sunset\n\nconst ontime = 'sunsetStart'\nconst offtime = time\n\nconst onpayload = {\n    light: NIGHT_LIGHT,\n    state: FADE_ON\n}\n\nconst offpayload = {\n    light: NIGHT_LIGHT,\n    state: FADE_OFF\n}\n\nconst onoffset = 0\nconst offoffset = 0\n\nconst day_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst latitude = 12.8797207\nconst longitude = 121.7740173\n\nconst schedex_input = {\n    ontime, \n    offtime, \n    onpayload, \n    offpayload,\n    onoffset,\n    offoffset,\n    day_selected,\n    latitude,\n    longitude\n}\n\nmsg.payload = schedex_input\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 370,
-        "y": 80,
+        "y": 1740,
         "wires": [
             [
-                "892c83a1898158f3"
-            ],
-            [
-                "1b5fd4efb6dd4593"
-            ],
-            [
-                "fca86f48f2bb802f"
+                "117250d66187fc3d"
             ]
         ]
     },
     {
-        "id": "892c83a1898158f3",
+        "id": "117250d66187fc3d",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 570,
+        "y": 1740,
+        "wires": [
+            [
+                "53afddc4b9ae2286"
+            ]
+        ]
+    },
+    {
+        "id": "53afddc4b9ae2286",
         "type": "debug",
         "z": "427808241d304283",
         "name": "",
@@ -7428,12 +7894,167 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 40,
+        "x": 770,
+        "y": 1740,
         "wires": []
     },
     {
-        "id": "1b5fd4efb6dd4593",
+        "id": "259fcaaf2b86aa30",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 135,
+        "y": 300,
+        "wires": [
+            [
+                "d07a1b83f9c64ac9"
+            ]
+        ]
+    },
+    {
+        "id": "c471b87c92ffd98e",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Process Bedtime Event",
+        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "5ac43b6bb0c97b1f"
+            ],
+            [
+                "7b93ad097c44a871"
+            ]
+        ]
+    },
+    {
+        "id": "d07a1b83f9c64ac9",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Event Selector",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "bedtime",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "waketime",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sunrise",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sunset",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "c471b87c92ffd98e"
+            ],
+            [
+                "4299733cfc962944"
+            ],
+            [
+                "f47f1bd8da8b2a17"
+            ],
+            [
+                "2fcb5ce120904711"
+            ]
+        ]
+    },
+    {
+        "id": "ce1ae75d01b821fa",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Night Light Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 680,
+        "wires": [
+            [
+                "f7a6f1ecf602f09f",
+                "6d92577b0a9c447d"
+            ]
+        ]
+    },
+    {
+        "id": "f520c999092bcc9d",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Night Sound Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 760,
+        "wires": [
+            [
+                "0bc3dc3bd0f4d5bb",
+                "c34ed1fab46fbda8"
+            ]
+        ]
+    },
+    {
+        "id": "f7a6f1ecf602f09f",
         "type": "debug",
         "z": "427808241d304283",
         "name": "",
@@ -7444,12 +8065,12 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 80,
+        "x": 670,
+        "y": 640,
         "wires": []
     },
     {
-        "id": "fca86f48f2bb802f",
+        "id": "0bc3dc3bd0f4d5bb",
         "type": "debug",
         "z": "427808241d304283",
         "name": "",
@@ -7460,25 +8081,1081 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 120,
+        "x": 670,
+        "y": 720,
         "wires": []
     },
     {
-        "id": "50094e752bb2861d",
-        "type": "debug",
+        "id": "6d92577b0a9c447d",
+        "type": "link out",
         "z": "427808241d304283",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
+        "links": [],
+        "x": 675,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c34ed1fab46fbda8",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "4299733cfc962944",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Process Waketime Event",
+        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [
+                "349e569a87321cae",
+                "e6051fd47e03a3ac"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f47f1bd8da8b2a17",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Process Sunrise Event",
+        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst type = msg.payload\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "68cb7f19d709eeda"
+            ],
+            [
+                "b914b988c5f86161"
+            ]
+        ]
+    },
+    {
+        "id": "2fcb5ce120904711",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Process Sunset Event",
+        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 460,
+        "wires": [
+            [
+                "13f3d625ca8b5451"
+            ],
+            [
+                "f5e24ac39eacf5b5"
+            ]
+        ]
+    },
+    {
+        "id": "5ac43b6bb0c97b1f",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "fc9a17a39836810e"
+        ],
+        "x": 855,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7b93ad097c44a871",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "13a9c539dbf6804d"
+        ],
+        "x": 855,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "349e569a87321cae",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "f469bf6260d912ed"
+        ],
+        "x": 855,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e6051fd47e03a3ac",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "f100181ab0425189"
+        ],
+        "x": 855,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "68cb7f19d709eeda",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "495043e9e266776a"
+        ],
+        "x": 855,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b914b988c5f86161",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "783accad78d48adb"
+        ],
+        "x": 855,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "13f3d625ca8b5451",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "88cc8f4bee1804d7"
+        ],
+        "x": 855,
         "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f5e24ac39eacf5b5",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "9d06b45d4b526d19"
+        ],
+        "x": 855,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "fc9a17a39836810e",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "5ac43b6bb0c97b1f"
+        ],
+        "x": 35,
+        "y": 680,
+        "wires": [
+            [
+                "4e5b6a6d74a43c95"
+            ]
+        ]
+    },
+    {
+        "id": "13a9c539dbf6804d",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "7b93ad097c44a871"
+        ],
+        "x": 35,
+        "y": 760,
+        "wires": [
+            [
+                "b2bd9aa7291da2c0"
+            ]
+        ]
+    },
+    {
+        "id": "7f582c227a98a920",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "bedtime",
+        "payloadType": "str",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "d07a1b83f9c64ac9"
+            ]
+        ]
+    },
+    {
+        "id": "83b49dae1e0ba439",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "waketime",
+        "payloadType": "str",
+        "x": 100,
+        "y": 380,
+        "wires": [
+            [
+                "d07a1b83f9c64ac9"
+            ]
+        ]
+    },
+    {
+        "id": "6b9b1b49ce8e6ac8",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sunrise",
+        "payloadType": "str",
+        "x": 90,
+        "y": 420,
+        "wires": [
+            [
+                "d07a1b83f9c64ac9"
+            ]
+        ]
+    },
+    {
+        "id": "8d73fc65b9a2ffe7",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sunset",
+        "payloadType": "str",
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "d07a1b83f9c64ac9"
+            ]
+        ]
+    },
+    {
+        "id": "2663df0f99463eb3",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Wake Light Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 900,
+        "wires": [
+            [
+                "7eabb8b5079c6791",
+                "fe19b0d6879b5403"
+            ]
+        ]
+    },
+    {
+        "id": "a0305c97741e49da",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Wake Sound Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 980,
+        "wires": [
+            [
+                "2ea692060d68e9e2",
+                "fe30fcaa2bea0d31"
+            ]
+        ]
+    },
+    {
+        "id": "7eabb8b5079c6791",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "2ea692060d68e9e2",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "fe19b0d6879b5403",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "fe30fcaa2bea0d31",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "f469bf6260d912ed",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "349e569a87321cae"
+        ],
+        "x": 35,
+        "y": 900,
+        "wires": [
+            [
+                "07bb8b4e4f5bcd11"
+            ]
+        ]
+    },
+    {
+        "id": "f100181ab0425189",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "e6051fd47e03a3ac"
+        ],
+        "x": 35,
+        "y": 980,
+        "wires": [
+            [
+                "73870de815788819"
+            ]
+        ]
+    },
+    {
+        "id": "a57d1afa4409fe65",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Sunrise Light Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 1120,
+        "wires": [
+            [
+                "e6f9baa780e3f1f1",
+                "144b0ce6de73da81"
+            ]
+        ]
+    },
+    {
+        "id": "91e434e46084f453",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Sunrise Sound Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 380,
+        "y": 1200,
+        "wires": [
+            [
+                "21d44777591b63e4",
+                "fd3d2a96f7af15a2"
+            ]
+        ]
+    },
+    {
+        "id": "e6f9baa780e3f1f1",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "21d44777591b63e4",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "144b0ce6de73da81",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "fd3d2a96f7af15a2",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "495043e9e266776a",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "68cb7f19d709eeda"
+        ],
+        "x": 35,
+        "y": 1120,
+        "wires": [
+            [
+                "e05e972893b302e7"
+            ]
+        ]
+    },
+    {
+        "id": "783accad78d48adb",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "b914b988c5f86161"
+        ],
+        "x": 35,
+        "y": 1200,
+        "wires": [
+            [
+                "81edaddf3e9d531b"
+            ]
+        ]
+    },
+    {
+        "id": "97423e057c4b1573",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Sunset Light Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 370,
+        "y": 1340,
+        "wires": [
+            [
+                "5c5f8454517d22ae",
+                "07e37e563f84c4ef"
+            ]
+        ]
+    },
+    {
+        "id": "ec600430246adfbc",
+        "type": "schedex",
+        "z": "427808241d304283",
+        "name": "Sunset Sound Event",
+        "passthroughunhandled": true,
+        "suspended": false,
+        "lat": "",
+        "lon": "",
+        "ontime": "",
+        "ontopic": "",
+        "onpayload": "",
+        "onoffset": 0,
+        "onrandomoffset": 0,
+        "offtime": "",
+        "offtopic": "",
+        "offpayload": "",
+        "offoffset": 0,
+        "offrandomoffset": 0,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "sun": true,
+        "x": 380,
+        "y": 1420,
+        "wires": [
+            [
+                "7a268c4b05adbf68",
+                "2bfd2be2228a7d7f"
+            ]
+        ]
+    },
+    {
+        "id": "5c5f8454517d22ae",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "7a268c4b05adbf68",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "07e37e563f84c4ef",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "2bfd2be2228a7d7f",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "88cc8f4bee1804d7",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "13f3d625ca8b5451"
+        ],
+        "x": 35,
+        "y": 1340,
+        "wires": [
+            [
+                "c3a64d8207260a6e"
+            ]
+        ]
+    },
+    {
+        "id": "9d06b45d4b526d19",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "f5e24ac39eacf5b5"
+        ],
+        "x": 35,
+        "y": 1420,
+        "wires": [
+            [
+                "5e3cc9fc7ada368a"
+            ]
+        ]
+    },
+    {
+        "id": "106e93b658270025",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 1840,
+        "wires": [
+            [
+                "70fc9bec53d3ad66"
+            ]
+        ]
+    },
+    {
+        "id": "70fc9bec53d3ad66",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Timezone Offset",
+        "func": "const date = new Date()\n\nmsg.payload = date.getTimezoneOffset()\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1840,
+        "wires": [
+            [
+                "3a0e0a204596172f"
+            ]
+        ]
+    },
+    {
+        "id": "3a0e0a204596172f",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "4e5b6a6d74a43c95",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "ce1ae75d01b821fa"
+            ]
+        ]
+    },
+    {
+        "id": "b2bd9aa7291da2c0",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 760,
+        "wires": [
+            [
+                "f520c999092bcc9d"
+            ]
+        ]
+    },
+    {
+        "id": "07bb8b4e4f5bcd11",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 900,
+        "wires": [
+            [
+                "2663df0f99463eb3"
+            ]
+        ]
+    },
+    {
+        "id": "73870de815788819",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 980,
+        "wires": [
+            [
+                "a0305c97741e49da"
+            ]
+        ]
+    },
+    {
+        "id": "e05e972893b302e7",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1120,
+        "wires": [
+            [
+                "a57d1afa4409fe65"
+            ]
+        ]
+    },
+    {
+        "id": "81edaddf3e9d531b",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1200,
+        "wires": [
+            [
+                "91e434e46084f453"
+            ]
+        ]
+    },
+    {
+        "id": "c3a64d8207260a6e",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1340,
+        "wires": [
+            [
+                "97423e057c4b1573"
+            ]
+        ]
+    },
+    {
+        "id": "5e3cc9fc7ada368a",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1420,
+        "wires": [
+            [
+                "ec600430246adfbc"
+            ]
+        ]
+    },
+    {
+        "id": "3ced736f1171ab7a",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Bedtime Events",
+        "info": "",
+        "x": 100,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9b7ef405323b93d4",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Waketime Events",
+        "info": "",
+        "x": 100,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "5c04f3608e849a3b",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Sunrise Events",
+        "info": "",
+        "x": 100,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "6d1b3f02e40ddb4d",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Sunset Events",
+        "info": "",
+        "x": 90,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "8523b9a0de75b41c",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "Event Processor",
+        "info": "",
+        "x": 100,
+        "y": 240,
         "wires": []
     }
 ]
