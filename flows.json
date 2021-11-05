@@ -3098,49 +3098,6 @@
         ]
     },
     {
-        "id": "625d0a7174b8014e",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "On Startup",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 280,
-        "wires": [
-            [
-                "6c3ef41b9b35c8fd"
-            ]
-        ]
-    },
-    {
-        "id": "10a9f715affe67fc",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Initialize Constants",
-        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON'\n}\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, NIGHT_LIGHT)\nflow.set(lights.WAKE_LIGHT, WAKE_LIGHT)\n\nflow.set('night_light_current_brightness', 0)\nflow.set('wake_light_current_brightness', 0)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "f0e97be702be0e23",
         "type": "delay",
         "z": "e1a40699ea85764e",
@@ -3157,7 +3114,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "406cc2bc2f372440",
@@ -3170,14 +3127,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Fade Counter",
-        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { state, light, max_brightness } = NIGHT_LIGHT\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...NIGHT_LIGHT, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\nflow.set('night_light_current_brightness', msg.counter)\n\nreturn msg",
+        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { state, light, max_brightness } = night_light\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...night_light, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "f0e97be702be0e23"
@@ -3189,14 +3146,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade On",
-        "func": "const { FADE_ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: FADE_ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
+        "func": "const { FADE_ON } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness } = night_light\nconst counter = flow.get('night_light_current_brightness')\n\nconst light_config = {\n    ...night_light, state: FADE_ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = counter\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "406cc2bc2f372440"
@@ -3215,6 +3172,13 @@
                 "pt": "msg",
                 "to": "counter",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "night_light_current_brightness",
+                "pt": "flow",
+                "to": "counter",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -3222,8 +3186,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 850,
-        "y": 900,
+        "x": 930,
+        "y": 1120,
         "wires": [
             [
                 "9e0d6091e444fd79",
@@ -3244,7 +3208,7 @@
             "8f4f3375b91bce77"
         ],
         "x": 35,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "91b733e0b0b35e42"
@@ -3256,14 +3220,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Fade Off",
-        "func": "const { FADE_OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: FADE_OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = flow.get('night_light_current_brightness')\n\nreturn msg",
+        "func": "const { FADE_OFF } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness } = night_light\nconst counter = flow.get('night_light_current_brightness')\n\nconst light_config = {\n    ...night_light, state: FADE_OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = counter\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 920,
+        "y": 1280,
         "wires": [
             [
                 "111b8044a4a2c809"
@@ -3275,14 +3239,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Fade Counter",
-        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { state, light, max_brightness } = NIGHT_LIGHT\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...NIGHT_LIGHT, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('night_light_current_brightness', msg.counter)\n\nreturn msg",
+        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { state, light, max_brightness } = night_light\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...night_light, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('night_light_current_brightness', msg.counter)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 920,
+        "y": 1280,
         "wires": [
             [
                 "4de216b02ff64d27"
@@ -3302,7 +3266,7 @@
             "ea31ccf57e478c46"
         ],
         "x": 35,
-        "y": 920,
+        "y": 1280,
         "wires": [
             [
                 "a1917919418e600f"
@@ -3322,8 +3286,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 850,
-        "y": 860,
+        "x": 930,
+        "y": 1080,
         "wires": []
     },
     {
@@ -3331,14 +3295,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
+        "func": "const { OFF } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness } = night_light\nconst light_config = {\n    ...night_light, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 980,
+        "y": 1220,
         "wires": [
             [
                 "aa04e4d2977d7fff"
@@ -3350,14 +3314,14 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\nconst NIGHT_LIGHT = flow.get('NIGHT_LIGHT')\nconst { light, max_brightness } = NIGHT_LIGHT\nconst light_config = {\n    ...NIGHT_LIGHT, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.payload = light_config\n\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
+        "func": "const { ON } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness } = night_light\nconst light_config = {\n    ...night_light, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.payload = light_config\n\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 780,
+        "y": 1020,
         "wires": [
             [
                 "c9ce0d6ad1cb5c50"
@@ -3381,7 +3345,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 980,
+        "y": 1220,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3405,7 +3369,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 920,
+        "y": 1280,
         "wires": [
             [
                 "111b8044a4a2c809",
@@ -3430,7 +3394,7 @@
         "drop": false,
         "allowrate": false,
         "x": 550,
-        "y": 780,
+        "y": 1020,
         "wires": [
             [
                 "f0c75390fa0772e0"
@@ -3507,7 +3471,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 110,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "db7057806dca5e74"
@@ -3522,7 +3486,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 840,
-        "y": 140,
+        "y": 200,
         "wires": []
     },
     {
@@ -3538,7 +3502,7 @@
             "6e61cac404cd1fd5"
         ],
         "x": 35,
-        "y": 780,
+        "y": 1020,
         "wires": [
             [
                 "7ca518af31291cf3"
@@ -3558,7 +3522,7 @@
             "88f4bd92c145a669"
         ],
         "x": 35,
-        "y": 980,
+        "y": 1220,
         "wires": [
             [
                 "83e2f5a55a74d18b"
@@ -3572,7 +3536,7 @@
         "name": "Night Light Controls",
         "info": "",
         "x": 110,
-        "y": 720,
+        "y": 900,
         "wires": []
     },
     {
@@ -3601,7 +3565,7 @@
             "647a013a3e33688b"
         ],
         "x": 495,
-        "y": 200,
+        "y": 260,
         "wires": []
     },
     {
@@ -3613,7 +3577,7 @@
             "80eb67c307aed82d"
         ],
         "x": 55,
-        "y": 320,
+        "y": 380,
         "wires": [
             [
                 "1e74388b5934da98"
@@ -3651,7 +3615,7 @@
         "repair": false,
         "outputs": 4,
         "x": 190,
-        "y": 320,
+        "y": 380,
         "wires": [
             [
                 "e3eda576d486f91d"
@@ -3676,7 +3640,7 @@
         "action": "",
         "pretty": false,
         "x": 310,
-        "y": 140,
+        "y": 200,
         "wires": [
             [
                 "62e6a71c4cb08a51",
@@ -3697,7 +3661,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 260,
+        "y": 320,
         "wires": []
     },
     {
@@ -3713,7 +3677,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 300,
+        "y": 360,
         "wires": []
     },
     {
@@ -3729,7 +3693,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 340,
+        "y": 400,
         "wires": []
     },
     {
@@ -3745,7 +3709,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 380,
+        "y": 440,
         "wires": []
     },
     {
@@ -3760,7 +3724,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 260,
+        "y": 320,
         "wires": [
             [
                 "415057ac6ad5cab1"
@@ -3779,7 +3743,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 300,
+        "y": 360,
         "wires": [
             [
                 "605654e2f63916c5"
@@ -3798,7 +3762,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "43f0b87cf04ea4de"
@@ -3817,7 +3781,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "a9377bed695f3949"
@@ -3873,7 +3837,7 @@
         "name": "From API (Lights)",
         "links": [],
         "x": 35,
-        "y": 440,
+        "y": 520,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -3893,7 +3857,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 400,
+        "y": 480,
         "wires": []
     },
     {
@@ -3908,7 +3872,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 500,
+        "y": 580,
         "wires": [
             [
                 "379e9aab2c3b613a"
@@ -3936,7 +3900,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 160,
-        "y": 500,
+        "y": 580,
         "wires": [
             [
                 "a0d0ba5fe385674b"
@@ -3955,7 +3919,7 @@
         "finalize": "",
         "libs": [],
         "x": 410,
-        "y": 440,
+        "y": 520,
         "wires": [
             [
                 "6022aef9ff5d1e91",
@@ -3975,7 +3939,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 460,
-        "y": 280,
+        "y": 360,
         "wires": [
             [
                 "c66d3893f2da6fef"
@@ -3992,7 +3956,7 @@
         ],
         "uncaught": false,
         "x": 140,
-        "y": 340,
+        "y": 420,
         "wires": [
             [
                 "e2447a0bb398c179"
@@ -4010,7 +3974,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 730,
-        "y": 340,
+        "y": 420,
         "wires": [
             [
                 "c66d3893f2da6fef"
@@ -4041,7 +4005,8 @@
         "y": 40,
         "wires": [
             [
-                "b6b9c922ac0177ab"
+                "b6b9c922ac0177ab",
+                "4c149006d1618a77"
             ]
         ]
     },
@@ -4056,7 +4021,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 320,
         "y": 40,
         "wires": []
     },
@@ -4072,7 +4037,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 280,
+        "y": 360,
         "wires": [
             [
                 "723b2b9bac1a7185"
@@ -4088,10 +4053,10 @@
         "action": "obj",
         "pretty": false,
         "x": 670,
-        "y": 280,
+        "y": 360,
         "wires": [
             [
-                "10a9f715affe67fc"
+                "d39db940d012a468"
             ]
         ]
     },
@@ -4107,7 +4072,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 340,
+        "y": 420,
         "wires": [
             [
                 "b532aa6c3ea97ef1"
@@ -4121,7 +4086,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 400,
+        "y": 480,
         "wires": []
     },
     {
@@ -4131,223 +4096,7 @@
         "name": "Default Config (Lights)",
         "info": "",
         "x": 120,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "eb47212d3f5e67e3",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 140,
-        "y": 60,
-        "wires": [
-            [
-                "61f81f46ce3b5a78"
-            ]
-        ]
-    },
-    {
-        "id": "6540f6f1c36f6920",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Fade On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 150,
-        "y": 100,
-        "wires": [
-            [
-                "5bafbfec8916f0ba"
-            ]
-        ]
-    },
-    {
-        "id": "eb1928db99d31f74",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Fade Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 150,
-        "y": 140,
-        "wires": [
-            [
-                "03c1809fedcd92b1"
-            ]
-        ]
-    },
-    {
-        "id": "d2e885e2aa81f24b",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 130,
-        "y": 180,
-        "wires": [
-            [
-                "867eba5884d338c5"
-            ]
-        ]
-    },
-    {
-        "id": "61f81f46ce3b5a78",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "ce05c629e9a63664",
-            "67801cebe5dcc6c3"
-        ],
-        "x": 375,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "5bafbfec8916f0ba",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "34c409484676e670",
-            "1c6e4cb06ec4242a"
-        ],
-        "x": 375,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "03c1809fedcd92b1",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "c1f1cb89bba4f0a5",
-            "706856ecf2888e23"
-        ],
-        "x": 375,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "867eba5884d338c5",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "5a3d3bd96cecad9c",
-            "d3cca85a24e36670"
-        ],
-        "x": 375,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "3ec793e5515d5105",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 630,
-        "y": 60,
-        "wires": [
-            [
-                "627d595124cde24e"
-            ]
-        ]
-    },
-    {
-        "id": "f910e0bfac4eac24",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Fade On (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 650,
-        "y": 100,
-        "wires": [
-            [
-                "0eb1bec83ebe053c"
-            ]
-        ]
-    },
-    {
-        "id": "db65c4b2469e2eb4",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Fade Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 650,
-        "y": 140,
-        "wires": [
-            [
-                "60a1514379cf765d"
-            ]
-        ]
-    },
-    {
-        "id": "6ac8467610db31e5",
-        "type": "inject",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light Off (Test)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 630,
-        "y": 180,
-        "wires": [
-            [
-                "404746cedc16dfcd"
-            ]
-        ]
-    },
-    {
-        "id": "627d595124cde24e",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "links": [
-            "35e4ae63f18d6679"
-        ],
-        "x": 875,
-        "y": 60,
+        "y": 320,
         "wires": []
     },
     {
@@ -4414,7 +4163,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 520,
-        "y": 1760,
+        "y": 2240,
         "wires": [
             [
                 "0d47c729aedd341c"
@@ -4443,7 +4192,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1760,
+        "y": 2240,
         "wires": [
             [
                 "628f1ede24fe8779",
@@ -4464,7 +4213,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 740,
-        "y": 1760,
+        "y": 2240,
         "wires": []
     },
     {
@@ -4480,7 +4229,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 1700,
+        "y": 2180,
         "wires": []
     },
     {
@@ -4490,345 +4239,8 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 1660,
+        "y": 2140,
         "wires": []
-    },
-    {
-        "id": "94954dcfbe5f3c9f",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 550,
-        "y": 1180,
-        "wires": [
-            [
-                "f9a7604d87fde3d3",
-                "2022f663de8c1de9"
-            ]
-        ]
-    },
-    {
-        "id": "f9a7604d87fde3d3",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Fade Counter",
-        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { state, light, max_brightness } = WAKE_LIGHT\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...WAKE_LIGHT, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\nflow.set('wake_light_current_brightness', msg.counter)\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1180,
-        "wires": [
-            [
-                "94954dcfbe5f3c9f"
-            ]
-        ]
-    },
-    {
-        "id": "358584c86f2908d1",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Fade On",
-        "func": "const { FADE_ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: FADE_ON\n})\n\nmsg.counter = flow.get('wake_light_current_brightness')\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 1180,
-        "wires": [
-            [
-                "f9a7604d87fde3d3"
-            ]
-        ]
-    },
-    {
-        "id": "2022f663de8c1de9",
-        "type": "change",
-        "z": "e1a40699ea85764e",
-        "name": "Payload to Counter",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "counter",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 850,
-        "y": 1240,
-        "wires": [
-            [
-                "0ddc7a8a9d805023",
-                "2b54092e3ec821aa"
-            ]
-        ]
-    },
-    {
-        "id": "1c6e4cb06ec4242a",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light (Fade On)",
-        "links": [
-            "b2e7a0407aea6a2a",
-            "48503f83daebe740",
-            "bd5fce3febdf15d7",
-            "5bafbfec8916f0ba",
-            "a537ecd6a1fbca50"
-        ],
-        "x": 35,
-        "y": 1180,
-        "wires": [
-            [
-                "358584c86f2908d1"
-            ]
-        ]
-    },
-    {
-        "id": "045a05a988eb74c1",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Fade Off",
-        "func": "const { FADE_OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: FADE_OFF\n})\n\nmsg.counter = flow.get('wake_light_current_brightness')\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 1260,
-        "wires": [
-            [
-                "56d5e84bd156a92a"
-            ]
-        ]
-    },
-    {
-        "id": "56d5e84bd156a92a",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Fade Counter",
-        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { state, light, max_brightness } = WAKE_LIGHT\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...WAKE_LIGHT, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('wake_light_current_brightness', msg.counter)\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1260,
-        "wires": [
-            [
-                "d44bba9ad527d696"
-            ]
-        ]
-    },
-    {
-        "id": "706856ecf2888e23",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light (Fade Off)",
-        "links": [
-            "960cc71d221701e5",
-            "6e09738fba4f3349",
-            "d9103be68bd22c99",
-            "03c1809fedcd92b1",
-            "17a595eed9d0742d"
-        ],
-        "x": 35,
-        "y": 1260,
-        "wires": [
-            [
-                "045a05a988eb74c1"
-            ]
-        ]
-    },
-    {
-        "id": "0ddc7a8a9d805023",
-        "type": "debug",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "5a2b5f343921884b",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: OFF\n})\n\nmsg.counter = 0\nflow.set('wake_light_current_brightness', 0)\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 1340,
-        "wires": [
-            [
-                "60e47a90e20b5193"
-            ]
-        ]
-    },
-    {
-        "id": "f089cbdf9d57d653",
-        "type": "function",
-        "z": "e1a40699ea85764e",
-        "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\nconst WAKE_LIGHT = flow.get('WAKE_LIGHT')\nconst { light, max_brightness } = WAKE_LIGHT\n\nflow.set(light, {\n    ...WAKE_LIGHT, state: ON\n})\n\nmsg.counter = max_brightness\nflow.set('wake_light_current_brightness', max_brightness)\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 150,
-        "y": 1120,
-        "wires": [
-            [
-                "40315c57c58e15de"
-            ]
-        ]
-    },
-    {
-        "id": "60e47a90e20b5193",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 550,
-        "y": 1340,
-        "wires": [
-            [
-                "2022f663de8c1de9"
-            ]
-        ]
-    },
-    {
-        "id": "d44bba9ad527d696",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 550,
-        "y": 1260,
-        "wires": [
-            [
-                "56d5e84bd156a92a",
-                "2022f663de8c1de9"
-            ]
-        ]
-    },
-    {
-        "id": "40315c57c58e15de",
-        "type": "delay",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "100",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 550,
-        "y": 1120,
-        "wires": [
-            [
-                "2022f663de8c1de9"
-            ]
-        ]
-    },
-    {
-        "id": "67801cebe5dcc6c3",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light (On)",
-        "links": [
-            "81c8ed3d1f966e48",
-            "5bde7861c88f93ce",
-            "9161018b3a1cc506",
-            "61f81f46ce3b5a78",
-            "7f332a4dc2da9171"
-        ],
-        "x": 35,
-        "y": 1120,
-        "wires": [
-            [
-                "f089cbdf9d57d653"
-            ]
-        ]
-    },
-    {
-        "id": "d3cca85a24e36670",
-        "type": "link in",
-        "z": "e1a40699ea85764e",
-        "name": "Night Light (Off)",
-        "links": [
-            "25cd6159ea46fd09",
-            "7f04188022e29c07",
-            "6277dbf5345db5cb",
-            "867eba5884d338c5",
-            "9d1dbf5d28d51703"
-        ],
-        "x": 35,
-        "y": 1340,
-        "wires": [
-            [
-                "5a2b5f343921884b"
-            ]
-        ]
     },
     {
         "id": "eea4862a45819507",
@@ -4837,7 +4249,7 @@
         "name": "Wake Light Controls",
         "info": "",
         "x": 110,
-        "y": 1060,
+        "y": 1360,
         "wires": []
     },
     {
@@ -4852,7 +4264,7 @@
         "payloadType": "msg",
         "count": "1",
         "x": 540,
-        "y": 1860,
+        "y": 2340,
         "wires": [
             [
                 "f212dc56aacf6421"
@@ -4881,7 +4293,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1860,
+        "y": 2340,
         "wires": [
             [
                 "383f42983ad210bb"
@@ -4901,7 +4313,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 730,
-        "y": 1860,
+        "y": 2340,
         "wires": []
     },
     {
@@ -4916,40 +4328,12 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 1860,
+        "y": 2340,
         "wires": [
             [
                 "1ff8364eb592139e"
             ]
         ]
-    },
-    {
-        "id": "10dd06b0f0c2109d",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/access",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 500,
-        "wires": [
-            [
-                "09416b7fdcfe5bf4"
-            ]
-        ]
-    },
-    {
-        "id": "09416b7fdcfe5bf4",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 730,
-        "y": 500,
-        "wires": []
     },
     {
         "id": "7b84691ef016a6ab",
@@ -4976,7 +4360,7 @@
         "name": "Wake Light",
         "host": "172.17.0.1",
         "port": 8888,
-        "pin": "22",
+        "pin": "23",
         "set": false,
         "level": "0",
         "out": "pwm",
@@ -5009,7 +4393,7 @@
         "z": "39c947163c4b72c5",
         "name": "Wake Light (GPIO)",
         "links": [
-            "2b54092e3ec821aa"
+            "ba1dff0b015dd369"
         ],
         "x": 575,
         "y": 100,
@@ -5027,8 +4411,8 @@
         "links": [
             "108c9cd67defe8d0"
         ],
-        "x": 795,
-        "y": 940,
+        "x": 875,
+        "y": 1160,
         "wires": []
     },
     {
@@ -5037,30 +4421,8 @@
         "z": "e1a40699ea85764e",
         "name": "To Night Light",
         "info": "",
-        "x": 850,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "2b54092e3ec821aa",
-        "type": "link out",
-        "z": "e1a40699ea85764e",
-        "name": "Wake Light (Control)",
-        "links": [
-            "3ae8dc738dda02fa"
-        ],
-        "x": 795,
-        "y": 1280,
-        "wires": []
-    },
-    {
-        "id": "97a7ea1e7f79555a",
-        "type": "comment",
-        "z": "e1a40699ea85764e",
-        "name": "To Wake Light",
-        "info": "",
-        "x": 850,
-        "y": 1320,
+        "x": 930,
+        "y": 1220,
         "wires": []
     },
     {
@@ -5345,7 +4707,7 @@
         "name": "Prepare Data for Storage",
         "info": "",
         "x": 130,
-        "y": 1420,
+        "y": 1960,
         "wires": []
     },
     {
@@ -5360,7 +4722,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 1480,
+        "y": 2020,
         "wires": [
             [
                 "1539bc275456eee8"
@@ -5379,7 +4741,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1480,
+        "y": 2020,
         "wires": [
             [
                 "a2bd95418d6120d8",
@@ -5398,7 +4760,7 @@
             "e7fb127bc0694c12"
         ],
         "x": 35,
-        "y": 1480,
+        "y": 2020,
         "wires": [
             [
                 "b959eed8d98a5acb"
@@ -5412,7 +4774,7 @@
         "name": "",
         "links": [],
         "x": 915,
-        "y": 1480,
+        "y": 2020,
         "wires": []
     },
     {
@@ -5425,7 +4787,7 @@
             "c36c3b8450aaf67a"
         ],
         "x": 635,
-        "y": 440,
+        "y": 520,
         "wires": []
     },
     {
@@ -5441,35 +4803,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1520,
-        "wires": []
-    },
-    {
-        "id": "789448144297f388",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/locale",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 560,
-        "wires": [
-            [
-                "4d1228e5e46e26e8"
-            ]
-        ]
-    },
-    {
-        "id": "4d1228e5e46e26e8",
-        "type": "http response",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 730,
-        "y": 560,
+        "y": 2060,
         "wires": []
     },
     {
@@ -5494,7 +4828,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1640,
+        "y": 2260,
         "wires": [
             [
                 "cd660cc58e12663c"
@@ -5514,7 +4848,7 @@
         "oldrc": false,
         "name": "",
         "x": 310,
-        "y": 1640,
+        "y": 2260,
         "wires": [
             [
                 "ea43c528df705993"
@@ -5540,7 +4874,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 1600,
+        "y": 2220,
         "wires": []
     },
     {
@@ -5556,7 +4890,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 1640,
+        "y": 2260,
         "wires": []
     },
     {
@@ -5573,7 +4907,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 1680,
+        "y": 2300,
         "wires": []
     },
     {
@@ -7806,7 +7140,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 1540,
+        "y": 2160,
         "wires": []
     },
     {
@@ -7831,7 +7165,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1740,
+        "y": 2360,
         "wires": [
             [
                 "1df171d5d7671863"
@@ -7850,7 +7184,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 1740,
+        "y": 2360,
         "wires": [
             [
                 "117250d66187fc3d"
@@ -7884,7 +7218,7 @@
         "sat": true,
         "sun": true,
         "x": 570,
-        "y": 1740,
+        "y": 2360,
         "wires": [
             [
                 "53afddc4b9ae2286"
@@ -7904,7 +7238,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 1740,
+        "y": 2360,
         "wires": []
     },
     {
@@ -7912,9 +7246,11 @@
         "type": "link in",
         "z": "427808241d304283",
         "name": "",
-        "links": [],
+        "links": [
+            "2247154c64c64885"
+        ],
         "x": 135,
-        "y": 300,
+        "y": 1040,
         "wires": [
             [
                 "d07a1b83f9c64ac9"
@@ -7926,14 +7262,14 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Bedtime Event",
-        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 300,
+        "y": 960,
         "wires": [
             [
                 "5ac43b6bb0c97b1f"
@@ -7948,7 +7284,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Event Selector",
-        "property": "payload",
+        "property": "payload.type",
         "propertyType": "msg",
         "rules": [
             {
@@ -7976,7 +7312,7 @@
         "repair": false,
         "outputs": 4,
         "x": 320,
-        "y": 380,
+        "y": 1040,
         "wires": [
             [
                 "c471b87c92ffd98e"
@@ -8019,7 +7355,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 680,
+        "y": 1300,
         "wires": [
             [
                 "f7a6f1ecf602f09f",
@@ -8054,7 +7390,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 760,
+        "y": 1380,
         "wires": [
             [
                 "0bc3dc3bd0f4d5bb",
@@ -8075,7 +7411,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 640,
+        "y": 1260,
         "wires": []
     },
     {
@@ -8091,7 +7427,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 720,
+        "y": 1340,
         "wires": []
     },
     {
@@ -8101,7 +7437,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 680,
+        "y": 1300,
         "wires": []
     },
     {
@@ -8111,7 +7447,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 760,
+        "y": 1380,
         "wires": []
     },
     {
@@ -8119,14 +7455,14 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Waketime Event",
-        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 360,
+        "y": 1020,
         "wires": [
             [
                 "349e569a87321cae",
@@ -8140,14 +7476,14 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Sunrise Event",
-        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst type = msg.payload\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 400,
+        "y": 1060,
         "wires": [
             [
                 "68cb7f19d709eeda"
@@ -8162,14 +7498,14 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Sunset Event",
-        "func": "const events = flow.get('events')\nconst type = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 460,
+        "y": 1120,
         "wires": [
             [
                 "13f3d625ca8b5451"
@@ -8188,7 +7524,7 @@
             "fc9a17a39836810e"
         ],
         "x": 855,
-        "y": 240,
+        "y": 900,
         "wires": []
     },
     {
@@ -8200,7 +7536,7 @@
             "13a9c539dbf6804d"
         ],
         "x": 855,
-        "y": 280,
+        "y": 940,
         "wires": []
     },
     {
@@ -8212,7 +7548,7 @@
             "f469bf6260d912ed"
         ],
         "x": 855,
-        "y": 320,
+        "y": 980,
         "wires": []
     },
     {
@@ -8224,7 +7560,7 @@
             "f100181ab0425189"
         ],
         "x": 855,
-        "y": 360,
+        "y": 1020,
         "wires": []
     },
     {
@@ -8236,7 +7572,7 @@
             "495043e9e266776a"
         ],
         "x": 855,
-        "y": 400,
+        "y": 1060,
         "wires": []
     },
     {
@@ -8248,7 +7584,7 @@
             "783accad78d48adb"
         ],
         "x": 855,
-        "y": 440,
+        "y": 1100,
         "wires": []
     },
     {
@@ -8260,7 +7596,7 @@
             "88cc8f4bee1804d7"
         ],
         "x": 855,
-        "y": 480,
+        "y": 1140,
         "wires": []
     },
     {
@@ -8272,7 +7608,7 @@
             "9d06b45d4b526d19"
         ],
         "x": 855,
-        "y": 520,
+        "y": 1180,
         "wires": []
     },
     {
@@ -8284,7 +7620,7 @@
             "5ac43b6bb0c97b1f"
         ],
         "x": 35,
-        "y": 680,
+        "y": 1300,
         "wires": [
             [
                 "4e5b6a6d74a43c95"
@@ -8300,110 +7636,10 @@
             "7b93ad097c44a871"
         ],
         "x": 35,
-        "y": 760,
+        "y": 1380,
         "wires": [
             [
                 "b2bd9aa7291da2c0"
-            ]
-        ]
-    },
-    {
-        "id": "7f582c227a98a920",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "bedtime",
-        "payloadType": "str",
-        "x": 100,
-        "y": 340,
-        "wires": [
-            [
-                "d07a1b83f9c64ac9"
-            ]
-        ]
-    },
-    {
-        "id": "83b49dae1e0ba439",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "waketime",
-        "payloadType": "str",
-        "x": 100,
-        "y": 380,
-        "wires": [
-            [
-                "d07a1b83f9c64ac9"
-            ]
-        ]
-    },
-    {
-        "id": "6b9b1b49ce8e6ac8",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "sunrise",
-        "payloadType": "str",
-        "x": 90,
-        "y": 420,
-        "wires": [
-            [
-                "d07a1b83f9c64ac9"
-            ]
-        ]
-    },
-    {
-        "id": "8d73fc65b9a2ffe7",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "sunset",
-        "payloadType": "str",
-        "x": 90,
-        "y": 460,
-        "wires": [
-            [
-                "d07a1b83f9c64ac9"
             ]
         ]
     },
@@ -8434,7 +7670,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 900,
+        "y": 1520,
         "wires": [
             [
                 "7eabb8b5079c6791",
@@ -8469,7 +7705,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 980,
+        "y": 1600,
         "wires": [
             [
                 "2ea692060d68e9e2",
@@ -8490,7 +7726,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 860,
+        "y": 1480,
         "wires": []
     },
     {
@@ -8506,7 +7742,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 940,
+        "y": 1560,
         "wires": []
     },
     {
@@ -8516,7 +7752,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 900,
+        "y": 1520,
         "wires": []
     },
     {
@@ -8526,7 +7762,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 980,
+        "y": 1600,
         "wires": []
     },
     {
@@ -8538,7 +7774,7 @@
             "349e569a87321cae"
         ],
         "x": 35,
-        "y": 900,
+        "y": 1520,
         "wires": [
             [
                 "07bb8b4e4f5bcd11"
@@ -8554,7 +7790,7 @@
             "e6051fd47e03a3ac"
         ],
         "x": 35,
-        "y": 980,
+        "y": 1600,
         "wires": [
             [
                 "73870de815788819"
@@ -8588,7 +7824,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 1120,
+        "y": 1740,
         "wires": [
             [
                 "e6f9baa780e3f1f1",
@@ -8623,7 +7859,7 @@
         "sat": true,
         "sun": true,
         "x": 380,
-        "y": 1200,
+        "y": 1820,
         "wires": [
             [
                 "21d44777591b63e4",
@@ -8644,7 +7880,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1080,
+        "y": 1700,
         "wires": []
     },
     {
@@ -8660,7 +7896,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1160,
+        "y": 1780,
         "wires": []
     },
     {
@@ -8670,7 +7906,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 1120,
+        "y": 1740,
         "wires": []
     },
     {
@@ -8680,7 +7916,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 1200,
+        "y": 1820,
         "wires": []
     },
     {
@@ -8692,7 +7928,7 @@
             "68cb7f19d709eeda"
         ],
         "x": 35,
-        "y": 1120,
+        "y": 1740,
         "wires": [
             [
                 "e05e972893b302e7"
@@ -8708,7 +7944,7 @@
             "b914b988c5f86161"
         ],
         "x": 35,
-        "y": 1200,
+        "y": 1820,
         "wires": [
             [
                 "81edaddf3e9d531b"
@@ -8742,7 +7978,7 @@
         "sat": true,
         "sun": true,
         "x": 370,
-        "y": 1340,
+        "y": 1960,
         "wires": [
             [
                 "5c5f8454517d22ae",
@@ -8777,7 +8013,7 @@
         "sat": true,
         "sun": true,
         "x": 380,
-        "y": 1420,
+        "y": 2040,
         "wires": [
             [
                 "7a268c4b05adbf68",
@@ -8798,7 +8034,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1300,
+        "y": 1920,
         "wires": []
     },
     {
@@ -8814,7 +8050,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 670,
-        "y": 1380,
+        "y": 2000,
         "wires": []
     },
     {
@@ -8824,7 +8060,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 1340,
+        "y": 1960,
         "wires": []
     },
     {
@@ -8834,7 +8070,7 @@
         "name": "",
         "links": [],
         "x": 675,
-        "y": 1420,
+        "y": 2040,
         "wires": []
     },
     {
@@ -8846,7 +8082,7 @@
             "13f3d625ca8b5451"
         ],
         "x": 35,
-        "y": 1340,
+        "y": 1960,
         "wires": [
             [
                 "c3a64d8207260a6e"
@@ -8862,7 +8098,7 @@
             "f5e24ac39eacf5b5"
         ],
         "x": 35,
-        "y": 1420,
+        "y": 2040,
         "wires": [
             [
                 "5e3cc9fc7ada368a"
@@ -8891,7 +8127,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 1840,
+        "y": 2460,
         "wires": [
             [
                 "70fc9bec53d3ad66"
@@ -8910,7 +8146,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1840,
+        "y": 2460,
         "wires": [
             [
                 "3a0e0a204596172f"
@@ -8930,7 +8166,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 1840,
+        "y": 2460,
         "wires": []
     },
     {
@@ -8938,7 +8174,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.light",
         "propertyType": "msg",
         "rules": [
             {
@@ -8949,7 +8185,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 680,
+        "y": 1300,
         "wires": [
             [
                 "ce1ae75d01b821fa"
@@ -8961,7 +8197,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.audio_file",
         "propertyType": "msg",
         "rules": [
             {
@@ -8972,7 +8208,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 760,
+        "y": 1380,
         "wires": [
             [
                 "f520c999092bcc9d"
@@ -8984,7 +8220,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.light",
         "propertyType": "msg",
         "rules": [
             {
@@ -8995,7 +8231,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 900,
+        "y": 1520,
         "wires": [
             [
                 "2663df0f99463eb3"
@@ -9007,7 +8243,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.audio_file",
         "propertyType": "msg",
         "rules": [
             {
@@ -9018,7 +8254,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 980,
+        "y": 1600,
         "wires": [
             [
                 "a0305c97741e49da"
@@ -9030,7 +8266,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.light",
         "propertyType": "msg",
         "rules": [
             {
@@ -9041,7 +8277,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 1120,
+        "y": 1740,
         "wires": [
             [
                 "a57d1afa4409fe65"
@@ -9053,7 +8289,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.audio_file",
         "propertyType": "msg",
         "rules": [
             {
@@ -9064,7 +8300,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 1200,
+        "y": 1820,
         "wires": [
             [
                 "91e434e46084f453"
@@ -9076,7 +8312,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.light",
         "propertyType": "msg",
         "rules": [
             {
@@ -9087,7 +8323,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 1340,
+        "y": 1960,
         "wires": [
             [
                 "97423e057c4b1573"
@@ -9099,7 +8335,7 @@
         "type": "switch",
         "z": "427808241d304283",
         "name": "Null Payload Filter",
-        "property": "payload",
+        "property": "payload.onpayload.audio_file",
         "propertyType": "msg",
         "rules": [
             {
@@ -9110,7 +8346,7 @@
         "repair": false,
         "outputs": 1,
         "x": 170,
-        "y": 1420,
+        "y": 2040,
         "wires": [
             [
                 "ec600430246adfbc"
@@ -9124,7 +8360,7 @@
         "name": "Bedtime Events",
         "info": "",
         "x": 100,
-        "y": 620,
+        "y": 1240,
         "wires": []
     },
     {
@@ -9134,7 +8370,7 @@
         "name": "Waketime Events",
         "info": "",
         "x": 100,
-        "y": 840,
+        "y": 1460,
         "wires": []
     },
     {
@@ -9144,7 +8380,7 @@
         "name": "Sunrise Events",
         "info": "",
         "x": 100,
-        "y": 1060,
+        "y": 1680,
         "wires": []
     },
     {
@@ -9154,7 +8390,7 @@
         "name": "Sunset Events",
         "info": "",
         "x": 90,
-        "y": 1280,
+        "y": 1900,
         "wires": []
     },
     {
@@ -9164,7 +8400,7 @@
         "name": "Event Processor",
         "info": "",
         "x": 100,
-        "y": 240,
+        "y": 900,
         "wires": []
     },
     {
@@ -9177,12 +8413,12 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "WAKE_LIGHT.light",
+                "v": "NIGHT_LIGHT.light",
                 "vt": "flow"
             },
             {
                 "t": "eq",
-                "v": "NIGHT_LIGHT.light",
+                "v": "WAKE_LIGHT.light",
                 "vt": "flow"
             }
         ],
@@ -9190,7 +8426,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 600,
+        "y": 720,
         "wires": [
             [
                 "8647433edc9277b7"
@@ -9206,10 +8442,12 @@
         "z": "e1a40699ea85764e",
         "name": "",
         "links": [
-            "076a5ab5e051a561"
+            "076a5ab5e051a561",
+            "fe0fda044e9bd38a",
+            "4f7655a54e04938c"
         ],
         "x": 35,
-        "y": 600,
+        "y": 720,
         "wires": [
             [
                 "0c4d8870999efbbf"
@@ -9226,22 +8464,22 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "light_states.ON",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
                 "v": "light_states.FADE_ON",
                 "vt": "flow"
             },
             {
                 "t": "eq",
-                "v": "light_states.FADE_OFF",
+                "v": "light_states.ON",
                 "vt": "flow"
             },
             {
                 "t": "eq",
                 "v": "light_states.OFF",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "light_states.FADE_OFF",
                 "vt": "flow"
             }
         ],
@@ -9249,19 +8487,19 @@
         "repair": false,
         "outputs": 4,
         "x": 590,
-        "y": 560,
+        "y": 680,
         "wires": [
-            [
-                "6e61cac404cd1fd5"
-            ],
             [
                 "8f4f3375b91bce77"
             ],
             [
-                "ea31ccf57e478c46"
+                "6e61cac404cd1fd5"
             ],
             [
                 "88f4bd92c145a669"
+            ],
+            [
+                "ea31ccf57e478c46"
             ]
         ]
     },
@@ -9275,22 +8513,22 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "light_states.ON",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
                 "v": "light_states.FADE_ON",
                 "vt": "flow"
             },
             {
                 "t": "eq",
-                "v": "light_states.FADE_OFF",
+                "v": "light_states.ON",
                 "vt": "flow"
             },
             {
                 "t": "eq",
                 "v": "light_states.OFF",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "light_states.FADE_OFF",
                 "vt": "flow"
             }
         ],
@@ -9298,19 +8536,19 @@
         "repair": false,
         "outputs": 4,
         "x": 590,
-        "y": 640,
+        "y": 760,
         "wires": [
-            [
-                "7f332a4dc2da9171"
-            ],
             [
                 "a537ecd6a1fbca50"
             ],
             [
-                "17a595eed9d0742d"
+                "7f332a4dc2da9171"
             ],
             [
                 "9d1dbf5d28d51703"
+            ],
+            [
+                "17a595eed9d0742d"
             ]
         ]
     },
@@ -9323,7 +8561,7 @@
             "35e4ae63f18d6679"
         ],
         "x": 815,
-        "y": 460,
+        "y": 620,
         "wires": []
     },
     {
@@ -9335,7 +8573,7 @@
             "e70d1942fa62036c"
         ],
         "x": 815,
-        "y": 500,
+        "y": 580,
         "wires": []
     },
     {
@@ -9347,7 +8585,7 @@
             "99d636e4c54833d3"
         ],
         "x": 815,
-        "y": 540,
+        "y": 700,
         "wires": []
     },
     {
@@ -9359,7 +8597,7 @@
             "f6a3886c0d4dd377"
         ],
         "x": 815,
-        "y": 580,
+        "y": 660,
         "wires": []
     },
     {
@@ -9368,10 +8606,11 @@
         "z": "e1a40699ea85764e",
         "name": "",
         "links": [
-            "67801cebe5dcc6c3"
+            "67801cebe5dcc6c3",
+            "bbc14b24f4ab375e"
         ],
         "x": 815,
-        "y": 620,
+        "y": 780,
         "wires": []
     },
     {
@@ -9380,10 +8619,11 @@
         "z": "e1a40699ea85764e",
         "name": "",
         "links": [
-            "1c6e4cb06ec4242a"
+            "1c6e4cb06ec4242a",
+            "5b50227a9e312302"
         ],
         "x": 815,
-        "y": 660,
+        "y": 740,
         "wires": []
     },
     {
@@ -9392,10 +8632,11 @@
         "z": "e1a40699ea85764e",
         "name": "",
         "links": [
-            "706856ecf2888e23"
+            "706856ecf2888e23",
+            "0014672d01606e55"
         ],
         "x": 815,
-        "y": 700,
+        "y": 860,
         "wires": []
     },
     {
@@ -9404,10 +8645,1807 @@
         "z": "e1a40699ea85764e",
         "name": "",
         "links": [
-            "d3cca85a24e36670"
+            "d3cca85a24e36670",
+            "f830b6987eeb3c91"
         ],
         "x": 815,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "d6f259f76a970ae1",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Adjust Max Brightness",
+        "func": "const { ADJUST_BRIGHTNESS } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\nconst night_light = flow.get(NIGHT_LIGHT)\n\nconst new_night_light_state = {\n    ...night_light, \n    state: ADJUST_BRIGHTNESS,\n    previous_state: night_light.state\n}\n\nmsg.counter = night_light.max_brightness\n\nif(night_light.state !== ADJUST_BRIGHTNESS) \n    flow.set(NIGHT_LIGHT, new_night_light_state)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 1120,
+        "wires": [
+            [
+                "f0c75390fa0772e0",
+                "6f970beb3b20be63"
+            ]
+        ]
+    },
+    {
+        "id": "013f132b89390dae",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (On)",
+        "links": [
+            "81c8ed3d1f966e48",
+            "5bde7861c88f93ce",
+            "9161018b3a1cc506",
+            "fad2e5d76f69c42c"
+        ],
+        "x": 35,
+        "y": 1120,
+        "wires": [
+            [
+                "d6f259f76a970ae1"
+            ]
+        ]
+    },
+    {
+        "id": "400b7b11d39d6e90",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Revert to Previous",
+        "func": "const { NIGHT_LIGHT } = flow.get('lights')\nconst night_light = flow.get(NIGHT_LIGHT)\n\nnight_light.state = night_light.previous_state\ndelete night_light['previous_state']\n\nflow.set(NIGHT_LIGHT, night_light)\n\nmsg.payload = {\n    ...night_light\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1080,
+        "wires": [
+            [
+                "fe0fda044e9bd38a"
+            ]
+        ]
+    },
+    {
+        "id": "6f970beb3b20be63",
+        "type": "trigger",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "op1": "",
+        "op2": "previous_state",
+        "op1type": "nul",
+        "op2type": "flow",
+        "duration": "3",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 360,
+        "y": 1080,
+        "wires": [
+            [
+                "400b7b11d39d6e90"
+            ]
+        ]
+    },
+    {
+        "id": "ea0ae540ddba98b8",
+        "type": "ui_slider",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "label": "Night Light Brightness",
+        "tooltip": "",
+        "group": "9933a45d.b3b0e",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "10",
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 640,
+        "y": 260,
+        "wires": [
+            [
+                "38f9fed8f00fc587"
+            ]
+        ]
+    },
+    {
+        "id": "fad2e5d76f69c42c",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "013f132b89390dae"
+        ],
+        "x": 915,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "38f9fed8f00fc587",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "func": "const brightness_level = msg.payload\nconst { NIGHT_LIGHT } = flow.get('lights')\nconst night_light = flow.get(NIGHT_LIGHT)\n\nnight_light.max_brightness = brightness_level\n\nflow.set(NIGHT_LIGHT, night_light)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 260,
+        "wires": [
+            [
+                "fad2e5d76f69c42c"
+            ]
+        ]
+    },
+    {
+        "id": "fe0fda044e9bd38a",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "c36c3b8450aaf67a"
+        ],
+        "x": 675,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "627d595124cde24e",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "35e4ae63f18d6679"
+        ],
+        "x": 875,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "792af44094a0b0c2",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "9933a45d.b3b0e",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Night Light On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 620,
+        "y": 60,
+        "wires": [
+            [
+                "627d595124cde24e"
+            ]
+        ]
+    },
+    {
+        "id": "e67bb6fff1bf84c8",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "9933a45d.b3b0e",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Night Light Fade On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 100,
+        "wires": [
+            [
+                "0eb1bec83ebe053c"
+            ]
+        ]
+    },
+    {
+        "id": "82a3398cb2e8036a",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "9933a45d.b3b0e",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Night Light Fade Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 140,
+        "wires": [
+            [
+                "60a1514379cf765d"
+            ]
+        ]
+    },
+    {
+        "id": "aa80c32f22b4ccd7",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "9933a45d.b3b0e",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Night Light Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 620,
+        "y": 180,
+        "wires": [
+            [
+                "404746cedc16dfcd"
+            ]
+        ]
+    },
+    {
+        "id": "79c4f1b3026cbdcb",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/event",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 780,
+        "wires": [
+            [
+                "332df25bbfca8896"
+            ]
+        ]
+    },
+    {
+        "id": "b443ac417c7a70f1",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Bedtime)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "4c149006d1618a77",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "API Config",
+        "func": "const events = {\n    bedtime: 'bedtime',\n    waketime: 'waketime',\n    sunrise: 'sunrise',\n    sunset: 'sunset'\n}\n\nflow.set('events', events)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "583ea8bb450c7347",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1420,
+        "wires": [
+            [
+                "b0613226d302c452",
+                "ede233c7a745c8a5"
+            ]
+        ]
+    },
+    {
+        "id": "b0613226d302c452",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Fade Counter",
+        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { state, light, max_brightness } = wake_light\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...wake_light, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1420,
+        "wires": [
+            [
+                "583ea8bb450c7347"
+            ]
+        ]
+    },
+    {
+        "id": "0678df904206e8dd",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Fade On",
+        "func": "const { FADE_ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness } = wake_light\nconst counter = flow.get('night_light_current_brightness')\n\nconst light_config = {\n    ...wake_light, state: FADE_ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = counter\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1420,
+        "wires": [
+            [
+                "b0613226d302c452"
+            ]
+        ]
+    },
+    {
+        "id": "ede233c7a745c8a5",
+        "type": "change",
+        "z": "e1a40699ea85764e",
+        "name": "Payload to Counter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "counter",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "wake_light_current_brightness",
+                "pt": "flow",
+                "to": "counter",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 1580,
+        "wires": [
+            [
+                "eec3f8d849266873",
+                "ba1dff0b015dd369"
+            ]
+        ]
+    },
+    {
+        "id": "5b50227a9e312302",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Fade On)",
+        "links": [
+            "b2e7a0407aea6a2a",
+            "48503f83daebe740",
+            "bd5fce3febdf15d7",
+            "a537ecd6a1fbca50",
+            "47ff69e28e3253c7"
+        ],
+        "x": 35,
+        "y": 1420,
+        "wires": [
+            [
+                "0678df904206e8dd"
+            ]
+        ]
+    },
+    {
+        "id": "bc01ae598792fec7",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Fade Off",
+        "func": "const { FADE_OFF } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness } = wake_light\nconst light_config = {\n    ...wake_light, state: FADE_OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = flow.get('wake_light_current_brightness')\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1740,
+        "wires": [
+            [
+                "b7a3a968c21c1c87"
+            ]
+        ]
+    },
+    {
+        "id": "b7a3a968c21c1c87",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Fade Counter",
+        "func": "const { FADE_OFF, OFF } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { state, light, max_brightness } = wake_light\n\nif(msg.counter <= 0) {\n    flow.set(light, {\n        ...wake_light, state: OFF\n    })\n    \n    return null\n}\n\nif(state !== FADE_OFF)\n    return null\n\nmsg.counter--\nflow.set('wake_light_current_brightness', msg.counter)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1740,
+        "wires": [
+            [
+                "bceff95bf4c455d9"
+            ]
+        ]
+    },
+    {
+        "id": "0014672d01606e55",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Fade Off)",
+        "links": [
+            "960cc71d221701e5",
+            "6e09738fba4f3349",
+            "d9103be68bd22c99",
+            "17a595eed9d0742d",
+            "8be0100032eb33f1"
+        ],
+        "x": 35,
+        "y": 1740,
+        "wires": [
+            [
+                "bc01ae598792fec7"
+            ]
+        ]
+    },
+    {
+        "id": "eec3f8d849266873",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "ff56fb4543730841",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle On",
+        "func": "const { ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness } = wake_light\nconst light_config = {\n    ...wake_light, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.payload = light_config\n\nflow.set('wake_light_current_brightness', max_brightness)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 150,
+        "y": 1480,
+        "wires": [
+            [
+                "d0cde0e138d4caed"
+            ]
+        ]
+    },
+    {
+        "id": "b252f7eb5d0776c4",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1680,
+        "wires": [
+            [
+                "ede233c7a745c8a5"
+            ]
+        ]
+    },
+    {
+        "id": "bceff95bf4c455d9",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1740,
+        "wires": [
+            [
+                "b7a3a968c21c1c87",
+                "ede233c7a745c8a5"
+            ]
+        ]
+    },
+    {
+        "id": "d0cde0e138d4caed",
+        "type": "delay",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1480,
+        "wires": [
+            [
+                "ede233c7a745c8a5"
+            ]
+        ]
+    },
+    {
+        "id": "bbc14b24f4ab375e",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (On)",
+        "links": [
+            "81c8ed3d1f966e48",
+            "5bde7861c88f93ce",
+            "9161018b3a1cc506",
+            "7f332a4dc2da9171",
+            "5cf54b7658242ff1"
+        ],
+        "x": 35,
+        "y": 1480,
+        "wires": [
+            [
+                "ff56fb4543730841"
+            ]
+        ]
+    },
+    {
+        "id": "f830b6987eeb3c91",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Off)",
+        "links": [
+            "25cd6159ea46fd09",
+            "7f04188022e29c07",
+            "6277dbf5345db5cb",
+            "9d1dbf5d28d51703",
+            "0753ed9b53d7e4f5"
+        ],
+        "x": 35,
+        "y": 1680,
+        "wires": [
+            [
+                "1903cfd8d5af3d7c"
+            ]
+        ]
+    },
+    {
+        "id": "ba1dff0b015dd369",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (Control)",
+        "links": [
+            "3ae8dc738dda02fa"
+        ],
+        "x": 875,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "8c1cd366aa62ef23",
+        "type": "comment",
+        "z": "e1a40699ea85764e",
+        "name": "To Wake Light",
+        "info": "",
+        "x": 930,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "bf2457e754a185f6",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Adjust Max Brightness",
+        "func": "const { ADJUST_BRIGHTNESS } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\n\nconst new_wake_light_state = {\n    ...wake_light, \n    state: ADJUST_BRIGHTNESS,\n    previous_state: wake_light.state\n}\n\nmsg.counter = wake_light.max_brightness\n\nif(wake_light.state !== ADJUST_BRIGHTNESS) \n    flow.set(WAKE_LIGHT, new_wake_light_state)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 1580,
+        "wires": [
+            [
+                "ede233c7a745c8a5",
+                "ecc883a0274381d8"
+            ]
+        ]
+    },
+    {
+        "id": "83aaf991dc94095c",
+        "type": "link in",
+        "z": "e1a40699ea85764e",
+        "name": "Night Light (On)",
+        "links": [
+            "81c8ed3d1f966e48",
+            "5bde7861c88f93ce",
+            "9161018b3a1cc506",
+            "fd4b212aed8bb7d3"
+        ],
+        "x": 35,
+        "y": 1580,
+        "wires": [
+            [
+                "bf2457e754a185f6"
+            ]
+        ]
+    },
+    {
+        "id": "2ec5aa6e81203463",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Revert to Previous",
+        "func": "const { WAKE_LIGHT } = flow.get('lights')\nconst wake_light = flow.get(WAKE_LIGHT)\n\nwake_light.state = wake_light.previous_state\ndelete wake_light['previous_state']\n\nflow.set(WAKE_LIGHT, wake_light)\n\nmsg.payload = {\n    ...wake_light\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1540,
+        "wires": [
+            [
+                "4f7655a54e04938c"
+            ]
+        ]
+    },
+    {
+        "id": "ecc883a0274381d8",
+        "type": "trigger",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "op1": "",
+        "op2": "previous_state",
+        "op1type": "nul",
+        "op2type": "flow",
+        "duration": "3",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 360,
+        "y": 1540,
+        "wires": [
+            [
+                "2ec5aa6e81203463"
+            ]
+        ]
+    },
+    {
+        "id": "4f7655a54e04938c",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "c36c3b8450aaf67a"
+        ],
+        "x": 675,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "1903cfd8d5af3d7c",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Toggle Off",
+        "func": "const { OFF } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness } = wake_light\nconst light_config = {\n    ...wake_light, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nflow.set('wake_light_current_brightness', 0)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 1680,
+        "wires": [
+            [
+                "b252f7eb5d0776c4"
+            ]
+        ]
+    },
+    {
+        "id": "d39db940d012a468",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "Initialize Constants",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = msg.payload\n\nconst lights = {\n    NIGHT_LIGHT: 'NIGHT_LIGHT',\n    WAKE_LIGHT: 'WAKE_LIGHT'\n}\n\nconst light_states = {\n    OFF: 'OFF',\n    FADE_ON: 'FADE_ON',\n    FADE_OFF: 'FADE_OFF',\n    ON: 'ON',\n    ADJUST_BRIGHTNESS: 'ADJUST_BRIGHTNESS'\n}\n\nflow.set('lights', lights)\nflow.set('light_states', light_states)\n\nflow.set(lights.NIGHT_LIGHT, NIGHT_LIGHT)\nflow.set(lights.WAKE_LIGHT, WAKE_LIGHT)\n\nflow.set('night_light_current_brightness', 0)\nflow.set('wake_light_current_brightness', 0)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "57e909829a54afa3",
+        "type": "inject",
+        "z": "e1a40699ea85764e",
+        "name": "On Startup",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "6c3ef41b9b35c8fd"
+            ]
+        ]
+    },
+    {
+        "id": "47ff69e28e3253c7",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "5b50227a9e312302"
+        ],
+        "x": 355,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8be0100032eb33f1",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "0014672d01606e55"
+        ],
+        "x": 355,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0753ed9b53d7e4f5",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "f830b6987eeb3c91"
+        ],
+        "x": 355,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "0e5c1f3d27343ed1",
+        "type": "ui_slider",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "label": "Wake Light Brightness",
+        "tooltip": "",
+        "group": "91c4859.9f3e5f8",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "10",
+        "max": "100",
+        "step": 1,
+        "className": "",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "bf9bd97b5457ba76"
+            ]
+        ]
+    },
+    {
+        "id": "fd4b212aed8bb7d3",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "83aaf991dc94095c"
+        ],
+        "x": 395,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bf9bd97b5457ba76",
+        "type": "function",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "func": "const brightness_level = msg.payload\nconst { WAKE_LIGHT } = flow.get('lights')\nconst wake_light = flow.get(WAKE_LIGHT)\n\nwake_light.max_brightness = brightness_level\n\nflow.set(WAKE_LIGHT, wake_light)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "fd4b212aed8bb7d3"
+            ]
+        ]
+    },
+    {
+        "id": "5cf54b7658242ff1",
+        "type": "link out",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "links": [
+            "bbc14b24f4ab375e"
+        ],
+        "x": 355,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6ee61aeae2fc75d0",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "91c4859.9f3e5f8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Wake Light On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "5cf54b7658242ff1"
+            ]
+        ]
+    },
+    {
+        "id": "6c624c80fad1e718",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "91c4859.9f3e5f8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Wake Light Fade On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "47ff69e28e3253c7"
+            ]
+        ]
+    },
+    {
+        "id": "753721aff0f529b0",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "91c4859.9f3e5f8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Wake Light Fade Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "8be0100032eb33f1"
+            ]
+        ]
+    },
+    {
+        "id": "a2caf23355772d66",
+        "type": "ui_button",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "group": "91c4859.9f3e5f8",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Wake Light Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "0753ed9b53d7e4f5"
+            ]
+        ]
+    },
+    {
+        "id": "332df25bbfca8896",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Selector",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "events.bedtime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.waketime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunrise",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunset",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 5,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "b443ac417c7a70f1"
+            ],
+            [
+                "cee32bbd8ec92569"
+            ],
+            [
+                "b54e559135e567a0"
+            ],
+            [
+                "67b663c836889056"
+            ],
+            [
+                "cf57cdebde601ad2"
+            ]
+        ]
+    },
+    {
+        "id": "14b017febce3fd48",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "1bd0312798db6fb0",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "HTTP Response",
+        "links": [
+            "69dda5ef5e2c5df0",
+            "a37c62cfcb685775"
+        ],
+        "x": 635,
+        "y": 580,
+        "wires": [
+            [
+                "14b017febce3fd48"
+            ]
+        ]
+    },
+    {
+        "id": "cf57cdebde601ad2",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Not Available",
+        "func": "const error = new Error('No such event. Please update the type property of the event')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "d629cceacc4dc2f0",
+        "type": "catch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "scope": [
+            "cf57cdebde601ad2"
+        ],
+        "uncaught": false,
+        "x": 90,
+        "y": 580,
+        "wires": [
+            [
+                "a80e8adf40042251",
+                "0dd6df953acaddba"
+            ]
+        ]
+    },
+    {
+        "id": "a37c62cfcb685775",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 435,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a80e8adf40042251",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "0dd6df953acaddba",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Error Handler",
+        "func": "msg.payload = msg.error\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [
+                "a37c62cfcb685775"
+            ]
+        ]
+    },
+    {
+        "id": "aa793674e9df93dc",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "HTTP Requests",
+        "info": "",
+        "x": 120,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "cee32bbd8ec92569",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Waketime)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
         "y": 740,
+        "wires": []
+    },
+    {
+        "id": "b54e559135e567a0",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Sunrise)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "67b663c836889056",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Sunset)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "fccde3b1c6d74d57",
+        "type": "comment",
+        "z": "427808241d304283",
+        "name": "From API",
+        "info": "",
+        "x": 80,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "923891f5d3e27f13",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "Event Scheduler API Handler",
+        "links": [
+            "67b663c836889056",
+            "b443ac417c7a70f1",
+            "b54e559135e567a0",
+            "cee32bbd8ec92569"
+        ],
+        "x": 175,
+        "y": 240,
+        "wires": [
+            [
+                "266fa5850523710a"
+            ]
+        ]
+    },
+    {
+        "id": "f283a18f727f7d39",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Websocket Connection",
+        "info": "",
+        "x": 140,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "69dda5ef5e2c5df0",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "Event Scheduler API Response",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 835,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8f182a8917caaff6",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Update Event Data",
+        "func": "const input_event = msg.payload\nconst events = flow.get('events')\nconst prev_event_values = events[ input_event.type ]\n\nevents[ input_event.type ] = {\n    ...prev_event_values, ...input_event\n}\n\nmsg.payload = events[ input_event.type ]\n\nflow.set('events', events)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "69dda5ef5e2c5df0",
+                "2247154c64c64885"
+            ]
+        ]
+    },
+    {
+        "id": "266fa5850523710a",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Device Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "sound",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "light",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "40cc1ee4203c67b1"
+            ],
+            [
+                "24fc08548f841a57"
+            ],
+            [
+                "8f182a8917caaff6"
+            ]
+        ]
+    },
+    {
+        "id": "24fc08548f841a57",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Object Filter (Light)",
+        "func": "const { type } = msg.payload\nconst events = flow.get('events')\nconst prev_light_state = events[type].light\n\nconst input_event = msg.payload.light\nconst falsy = !input_event\nconst is_not_an_object = typeof input_event !== 'object'\nconst is_array = Array.isArray(input_event)\nconst is_a_function = typeof input_event === 'function'\n\nconst error_message = 'light property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n    \nconst light_state = {\n    ...prev_light_state, ...input_event\n}\n\nmsg.payload = {\n    ...events[type],\n    ...msg.payload,\n    light: light_state\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "9408d853948da010"
+            ]
+        ]
+    },
+    {
+        "id": "35d0e3b966410d3e",
+        "type": "catch",
+        "z": "427808241d304283",
+        "name": "Catch Bad Request",
+        "scope": [
+            "24fc08548f841a57",
+            "7c464e60a7b77c6d",
+            "bd047f2cf479b3c2",
+            "4fb25b3066115638",
+            "8b5b691f8fe11007",
+            "40cc1ee4203c67b1"
+        ],
+        "uncaught": false,
+        "x": 250,
+        "y": 540,
+        "wires": [
+            [
+                "5fc1de1f0371f99f"
+            ]
+        ]
+    },
+    {
+        "id": "5fc1de1f0371f99f",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Bad Request Handler",
+        "func": "msg.payload = msg.error\nmsg.statusCode = 400\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 540,
+        "wires": [
+            [
+                "69dda5ef5e2c5df0"
+            ]
+        ]
+    },
+    {
+        "id": "4b3a54eafc04740c",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "4eff4186dc07b337"
+        ],
+        "x": 835,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "4eff4186dc07b337",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "4b3a54eafc04740c",
+            "4d27fc0b004cba69",
+            "4b40149d09f49823",
+            "f6a636151c32c1e8",
+            "85cf2265447a95b4",
+            "ad950fbd2fb39211"
+        ],
+        "x": 175,
+        "y": 480,
+        "wires": [
+            [
+                "8f182a8917caaff6",
+                "ebfee4ba87a9252b"
+            ]
+        ]
+    },
+    {
+        "id": "40cc1ee4203c67b1",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Object Filter (Sound)",
+        "func": "const { type } = msg.payload\nconst events = flow.get('events')\nconst prev_sound_state = events[type].sound\n\nconst input_event = msg.payload.sound\nconst falsy = !input_event\nconst is_not_an_object = typeof input_event !== 'object'\nconst is_array = Array.isArray(input_event)\nconst is_a_function = typeof input_event === 'function'\n\nconst error_message = 'sound property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n    \nconst sound_state = {\n    ...prev_sound_state, ...input_event\n}\n\nmsg.payload = {\n    ...events[type],\n    ...msg.payload,\n    sound: sound_state\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "565f95d10e299df3"
+            ]
+        ]
+    },
+    {
+        "id": "565f95d10e299df3",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Sound Payload Check",
+        "property": "payload.sound",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "onpayload",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "offpayload",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 600,
+        "y": 240,
+        "wires": [
+            [
+                "35b902818884c988"
+            ],
+            [
+                "be115d4263a2a415"
+            ],
+            [
+                "4b3a54eafc04740c"
+            ]
+        ]
+    },
+    {
+        "id": "9408d853948da010",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Light Payload Check",
+        "property": "payload.sound",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "onpayload",
+                "vt": "str"
+            },
+            {
+                "t": "hask",
+                "v": "offpayload",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "0b4f7021b35a3798"
+            ],
+            [
+                "0e99f2228c6314a1"
+            ],
+            [
+                "4d27fc0b004cba69"
+            ]
+        ]
+    },
+    {
+        "id": "4d27fc0b004cba69",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "4eff4186dc07b337"
+        ],
+        "x": 835,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0e99f2228c6314a1",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "258da716120f9d91"
+        ],
+        "x": 835,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "0b4f7021b35a3798",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "bf64bbf5d4bb8e58"
+        ],
+        "x": 835,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "be115d4263a2a415",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "017d53701a7db32c",
+            "258da716120f9d91"
+        ],
+        "x": 835,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "35b902818884c988",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "35062676617241b8"
+        ],
+        "x": 835,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8b5b691f8fe11007",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Sound Object Filter (On Payload)",
+        "func": "const { onpayload } = msg.payload.sound\nconst falsy = !onpayload\nconst is_not_an_object = typeof onpayload !== 'object'\nconst is_array = Array.isArray(onpayload)\nconst is_a_function = typeof onpayload === 'function'\n\nconst error_message = 'onpayload property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 680,
+        "wires": [
+            [
+                "4b40149d09f49823"
+            ]
+        ]
+    },
+    {
+        "id": "4fb25b3066115638",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Sound Object Filter (Off Payload)",
+        "func": "const { offpayload } = msg.payload.sound\nconst falsy = !offpayload\nconst is_not_an_object = typeof offpayload !== 'object'\nconst is_array = Array.isArray(offpayload)\nconst is_a_function = typeof offpayload === 'function'\n\nconst error_message = 'offpayload property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 740,
+        "wires": [
+            [
+                "4b40149d09f49823"
+            ]
+        ]
+    },
+    {
+        "id": "35062676617241b8",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "35b902818884c988"
+        ],
+        "x": 295,
+        "y": 680,
+        "wires": [
+            [
+                "8b5b691f8fe11007"
+            ]
+        ]
+    },
+    {
+        "id": "017d53701a7db32c",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "be115d4263a2a415"
+        ],
+        "x": 295,
+        "y": 740,
+        "wires": [
+            [
+                "4fb25b3066115638"
+            ]
+        ]
+    },
+    {
+        "id": "4b40149d09f49823",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "4eff4186dc07b337"
+        ],
+        "x": 775,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "7c464e60a7b77c6d",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Light Object Filter (On Payload)",
+        "func": "const { onpayload } = msg.payload.light\nconst falsy = !onpayload\nconst is_not_an_object = typeof onpayload !== 'object'\nconst is_array = Array.isArray(onpayload)\nconst is_a_function = typeof onpayload === 'function'\n\nconst error_message = 'sound property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "4b40149d09f49823"
+            ]
+        ]
+    },
+    {
+        "id": "bd047f2cf479b3c2",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Light Object Filter (Off Payload)",
+        "func": "const { offpayload } = msg.payload.light\nconst falsy = !offpayload\nconst is_not_an_object = typeof offpayload !== 'object'\nconst is_array = Array.isArray(offpayload)\nconst is_a_function = typeof offpayload === 'function'\n\nconst error_message = 'offpayload property must be an object'\n\nif (falsy || is_not_an_object || is_array || is_a_function) \n    throw new Error(error_message)\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 800,
+        "wires": [
+            [
+                "4b40149d09f49823"
+            ]
+        ]
+    },
+    {
+        "id": "bf64bbf5d4bb8e58",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "0b4f7021b35a3798"
+        ],
+        "x": 295,
+        "y": 620,
+        "wires": [
+            [
+                "7c464e60a7b77c6d"
+            ]
+        ]
+    },
+    {
+        "id": "258da716120f9d91",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "be115d4263a2a415",
+            "0e99f2228c6314a1"
+        ],
+        "x": 295,
+        "y": 800,
+        "wires": [
+            [
+                "bd047f2cf479b3c2"
+            ]
+        ]
+    },
+    {
+        "id": "2247154c64c64885",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "259fcaaf2b86aa30"
+        ],
+        "x": 835,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ebfee4ba87a9252b",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 440,
         "wires": []
     }
 ]
