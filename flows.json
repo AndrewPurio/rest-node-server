@@ -4002,7 +4002,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Global Config",
-        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'NIGHT_SOUND'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'WAKE_SOUND'\n}\n\nconst RELAXATION_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'RELAXATION_SOUND'\n}\n\nconst days_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst bedtime = {\n    type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset\n    time: '21:00', // Base time of the on and off offsets\n    light: {\n        onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set\n        offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set\n        offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set\n        onpayload: {\n            ...NIGHT_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...NIGHT_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst waketime = {\n    type: 'waketime',\n    time: '5:00',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...WAKE_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst sunrise = {\n    type: 'sunrise',\n    time: 'sunrise',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst sunset = {\n    type: 'sunset',\n    time: 'sunset',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/light.config.json',\n    audio: './defaults/audio.config.json',\n    event: './defaults/event.config.json',\n    system: './defaults/system.config.json',\n    \n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    \n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND\n    },\n    \n    default_event_config: {\n        bedtime,\n        waketime,\n        sunrise,\n        sunset,\n        days_selected\n    },\n    \n    default_system_config: {\n        system_volume: 100,\n        audio_device: 'Headphone'\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'NIGHT_SOUND'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'WAKE_SOUND'\n}\n\nconst RELAXATION_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'RELAXATION_SOUND'\n}\n\nconst days_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst bedtime = {\n    type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset\n    time: '21:00', // Base time of the on and off offsets\n    light: {\n        onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set\n        offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set\n        offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set\n        onpayload: {\n            ...NIGHT_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...NIGHT_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst waketime = {\n    type: 'waketime',\n    time: '5:00',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_SOUND,\n            state: 'PLAYING' \n        },\n        offpayload: {\n            ...WAKE_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst sunrise = {\n    type: 'sunrise',\n    time: 'sunrise',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst sunset = {\n    type: 'sunset',\n    time: 'sunset',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/light.config.json',\n    audio: './defaults/audio.config.json',\n    event: './defaults/event.config.json',\n    system: './defaults/system.config.json',\n    \n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n    \n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND\n    },\n    \n    default_event_config: {\n        bedtime,\n        waketime,\n        sunrise,\n        sunset,\n        days_selected\n    },\n    \n    default_system_config: {\n        system_volume: 100,\n        audio_device: 'Master'\n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -5705,7 +5705,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Set Audio Volume Command",
-        "func": "const audio_device = msg.audio_device || 'Headphone'\n\nmsg.payload = `amixer -M set ${ audio_device } ${ msg.payload }%`\n\nreturn msg",
+        "func": "const audio_device = msg.audio_device || 'Headphone'\n\nmsg.payload = `amixer ${ msg.payload }%`\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6457,10 +6457,9 @@
         "id": "91e830cf715025c9",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
+        "d": true,
         "name": "",
         "links": [
-            "5ecb2d5c879290ab",
-            "c35c2c2ca227e677",
             "2b4a0860d67ccf97",
             "49568c675f1055e9"
         ],
@@ -6612,7 +6611,8 @@
         "y": 1480,
         "wires": [
             [
-                "b47fadcb378c2227"
+                "b47fadcb378c2227",
+                "fcbd9d3b04a974f0"
             ]
         ]
     },
@@ -6760,7 +6760,7 @@
         "type": "PlaySound",
         "z": "56ae43efe9a5b4d3",
         "name": "Audio Player",
-        "playerOptions": "{}",
+        "playerOptions": "{ \"player\": \"mpg123\" }",
         "audioURI": "",
         "options": "{}",
         "x": 410,
@@ -6866,7 +6866,8 @@
         "y": 1700,
         "wires": [
             [
-                "f9696091e419c12c"
+                "f9696091e419c12c",
+                "82f6e9dc654233d9"
             ]
         ]
     },
@@ -6879,10 +6880,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 330,
+        "x": 310,
         "y": 1240,
         "wires": []
     },
@@ -10614,6 +10616,569 @@
         ],
         "x": 635,
         "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "82f6e9dc654233d9",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "70affec03ec99145",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2080,
+        "wires": [
+            [
+                "780fba57bb7e0466"
+            ]
+        ]
+    },
+    {
+        "id": "0ab39470820ca0b0",
+        "type": "PlaySound",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio Player",
+        "playerOptions": "{ \"player\": \"mpg123\" }",
+        "audioURI": "",
+        "options": "{}",
+        "x": 550,
+        "y": 2080,
+        "wires": [
+            [
+                "c097f92b7f8f79f4"
+            ]
+        ]
+    },
+    {
+        "id": "780fba57bb7e0466",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "func": "msg.audioURI = \"/data/projects/REST_NODE/assets/background_noise/white_noise_clip_for_30_seconds.mp3\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 2080,
+        "wires": [
+            [
+                "0ab39470820ca0b0",
+                "f2e7f6400ed97df0"
+            ]
+        ]
+    },
+    {
+        "id": "c097f92b7f8f79f4",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "f2e7f6400ed97df0",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "bccf0babdd77e129",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "mpg123  /data/projects/REST_NODE/assets/background_noise/white_noise_clip_for_30_seconds.mp3",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Player",
+        "x": 130,
+        "y": 2380,
+        "wires": [
+            [
+                "a102f4aecab1ae36"
+            ],
+            [
+                "af5afb01f1a8acae"
+            ],
+            [
+                "617516a649fbb37b"
+            ]
+        ]
+    },
+    {
+        "id": "13c49485dae2c0dd",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 2320,
+        "wires": [
+            [
+                "bccf0babdd77e129"
+            ]
+        ]
+    },
+    {
+        "id": "a102f4aecab1ae36",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "af5afb01f1a8acae",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "617516a649fbb37b",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "c8ab10b69e687653",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "whoami",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 140,
+        "y": 2540,
+        "wires": [
+            [
+                "7cbea73d2a4f55ba"
+            ],
+            [
+                "4d389fa235d1cb81"
+            ],
+            [
+                "b91525a1dd2f14e8"
+            ]
+        ]
+    },
+    {
+        "id": "deb4cdbf14a97d47",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 2480,
+        "wires": [
+            [
+                "c8ab10b69e687653"
+            ]
+        ]
+    },
+    {
+        "id": "7cbea73d2a4f55ba",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2500,
+        "wires": []
+    },
+    {
+        "id": "4d389fa235d1cb81",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2540,
+        "wires": []
+    },
+    {
+        "id": "b91525a1dd2f14e8",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2580,
+        "wires": []
+    },
+    {
+        "id": "031153330fe5e3a9",
+        "type": "exec",
+        "z": "56ae43efe9a5b4d3",
+        "command": "su root",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 130,
+        "y": 2680,
+        "wires": [
+            [
+                "d3863559b9d7258b"
+            ],
+            [
+                "ede4bccb336b8040"
+            ],
+            [
+                "b5e7e29414bc3e4d"
+            ]
+        ]
+    },
+    {
+        "id": "4d02d084f025c831",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 2620,
+        "wires": [
+            [
+                "031153330fe5e3a9"
+            ]
+        ]
+    },
+    {
+        "id": "d3863559b9d7258b",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "ede4bccb336b8040",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2680,
+        "wires": []
+    },
+    {
+        "id": "b5e7e29414bc3e4d",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "07bc966e4f7376f6",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2260,
+        "wires": [
+            [
+                "780fba57bb7e0466"
+            ]
+        ]
+    },
+    {
+        "id": "fa1763d2ed34f793",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "resume",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2200,
+        "wires": [
+            [
+                "780fba57bb7e0466"
+            ]
+        ]
+    },
+    {
+        "id": "634962cff6c33721",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 130,
+        "y": 2140,
+        "wires": [
+            [
+                "780fba57bb7e0466"
+            ]
+        ]
+    },
+    {
+        "id": "193bc3f48c8035dc",
+        "type": "catch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "scope": [
+            "f9696091e419c12c"
+        ],
+        "uncaught": false,
+        "x": 510,
+        "y": 2180,
+        "wires": [
+            [
+                "71a66028b88594ba"
+            ]
+        ]
+    },
+    {
+        "id": "71a66028b88594ba",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "fcbd9d3b04a974f0",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 1420,
         "wires": []
     }
 ]
