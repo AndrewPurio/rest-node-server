@@ -4806,7 +4806,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2720,
+        "y": 2660,
         "wires": [
             [
                 "cd660cc58e12663c"
@@ -4826,7 +4826,7 @@
         "oldrc": false,
         "name": "",
         "x": 310,
-        "y": 2720,
+        "y": 2660,
         "wires": [
             [
                 "ea43c528df705993"
@@ -4852,7 +4852,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 2680,
+        "y": 2620,
         "wires": []
     },
     {
@@ -4868,7 +4868,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 2720,
+        "y": 2660,
         "wires": []
     },
     {
@@ -4885,7 +4885,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 2760,
+        "y": 2700,
         "wires": []
     },
     {
@@ -7126,7 +7126,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 2620,
+        "y": 2560,
         "wires": []
     },
     {
@@ -7151,7 +7151,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2820,
+        "y": 2760,
         "wires": [
             [
                 "1df171d5d7671863"
@@ -7170,7 +7170,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 2820,
+        "y": 2760,
         "wires": [
             [
                 "117250d66187fc3d"
@@ -7204,7 +7204,7 @@
         "sat": true,
         "sun": true,
         "x": 570,
-        "y": 2820,
+        "y": 2760,
         "wires": [
             [
                 "53afddc4b9ae2286"
@@ -7224,7 +7224,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2820,
+        "y": 2760,
         "wires": []
     },
     {
@@ -7466,7 +7466,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Sunrise Event",
-        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -7488,7 +7488,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Sunset Event",
-        "func": "const events = flow.get('events')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = flow.get('events')\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    sound.onoffset += timezone_offset\n    sound.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -8123,7 +8123,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2920,
+        "y": 2860,
         "wires": [
             [
                 "70fc9bec53d3ad66"
@@ -8142,7 +8142,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 2920,
+        "y": 2860,
         "wires": [
             [
                 "3a0e0a204596172f"
@@ -8162,7 +8162,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 600,
-        "y": 2920,
+        "y": 2860,
         "wires": []
     },
     {
@@ -9752,7 +9752,9 @@
             "a3e05fe8f858f97a",
             "5d24fd8093ed5590",
             "189ae71dc788c445",
-            "6a68828c35240fc7"
+            "6a68828c35240fc7",
+            "4e6927d1d4c11009",
+            "289d6a9a7fd46d3a"
         ],
         "x": 635,
         "y": 580,
@@ -10554,7 +10556,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 400,
         "y": 1100,
         "wires": [
             [
@@ -10645,7 +10647,7 @@
         "links": [
             "ae7bfc1a4f9a8204"
         ],
-        "x": 75,
+        "x": 135,
         "y": 920,
         "wires": [
             [
@@ -10664,7 +10666,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
+        "x": 460,
         "y": 920,
         "wires": [
             [
@@ -10680,7 +10682,7 @@
         "links": [
             "1bd0312798db6fb0"
         ],
-        "x": 815,
+        "x": 875,
         "y": 920,
         "wires": []
     },
@@ -10707,7 +10709,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "links": [
-            "6b496501c7bdc4a5"
+            "6b496501c7bdc4a5",
+            "6f3c21450db0a2d2"
         ],
         "x": 915,
         "y": 1380,
@@ -10891,8 +10894,7 @@
         "y": 1560,
         "wires": [
             [
-                "32458938ca244455",
-                "2eca04926844627b"
+                "32458938ca244455"
             ]
         ]
     },
@@ -11268,7 +11270,8 @@
         "name": "Delete Config",
         "links": [
             "8ef80688d076fcc6",
-            "05207369abff9272"
+            "05207369abff9272",
+            "2530b44353ebf7fe"
         ],
         "x": 195,
         "y": 360,
@@ -11501,7 +11504,7 @@
             "2247154c64c64885"
         ],
         "x": 35,
-        "y": 2380,
+        "y": 2320,
         "wires": [
             [
                 "09c7fcb78b736f51"
@@ -11520,7 +11523,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 2380,
+        "y": 2320,
         "wires": [
             [
                 "7d301bb311946bb8",
@@ -11537,7 +11540,7 @@
             "ec7beb856b75bc82"
         ],
         "x": 795,
-        "y": 2380,
+        "y": 2320,
         "wires": []
     },
     {
@@ -11553,7 +11556,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2440,
+        "y": 2380,
         "wires": []
     },
     {
@@ -11578,7 +11581,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2440,
+        "y": 2380,
         "wires": [
             [
                 "09c7fcb78b736f51"
@@ -11592,7 +11595,7 @@
         "name": "Storage",
         "info": "",
         "x": 70,
-        "y": 2320,
+        "y": 2260,
         "wires": []
     },
     {
@@ -11698,22 +11701,6 @@
         ]
     },
     {
-        "id": "2eca04926844627b",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 650,
-        "y": 1560,
-        "wires": []
-    },
-    {
         "id": "8f816e49884c7da3",
         "type": "http in",
         "z": "f6f2187d.f17ca8",
@@ -11741,7 +11728,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 400,
         "y": 1140,
         "wires": [
             [
@@ -11789,7 +11776,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
+        "x": 400,
         "y": 1180,
         "wires": [
             [
@@ -11827,6 +11814,289 @@
         "info": "",
         "x": 120,
         "y": 740,
+        "wires": []
+    },
+    {
+        "id": "e6faefde1a85b6a3",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/event/:type",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1840,
+        "wires": [
+            [
+                "beeae97391c08041"
+            ]
+        ]
+    },
+    {
+        "id": "beeae97391c08041",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Filter",
+        "property": "req.params",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 1840,
+        "wires": [
+            [
+                "bb81fcec96723838"
+            ],
+            [
+                "59039d994bfbfb88"
+            ]
+        ]
+    },
+    {
+        "id": "bb81fcec96723838",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Extract Request",
+        "func": "const { type } = msg.req.params\n\nmsg.payload = type\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1780,
+        "wires": [
+            [
+                "93650fa449eec81d"
+            ]
+        ]
+    },
+    {
+        "id": "59039d994bfbfb88",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Missing",
+        "func": "const error = new Error('Type of Event is Required')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "93650fa449eec81d",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Available",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "events.bedtime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.waketime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunrise",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunset",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 680,
+        "y": 1840,
+        "wires": [
+            [
+                "63e068dd27d72c8f"
+            ],
+            [
+                "63e068dd27d72c8f"
+            ],
+            [
+                "63e068dd27d72c8f"
+            ],
+            [
+                "63e068dd27d72c8f"
+            ],
+            [
+                "0b982fb63adcdd9b"
+            ]
+        ]
+    },
+    {
+        "id": "0b982fb63adcdd9b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Not Available",
+        "func": "const error = new Error('Event Type Not Available')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "63e068dd27d72c8f",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "d562529942175c6a"
+        ],
+        "x": 915,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "32e440d05a769ebf",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [],
+        "x": 35,
+        "y": 2440,
+        "wires": [
+            [
+                "2e91f4f9ee29b0e9"
+            ]
+        ]
+    },
+    {
+        "id": "2e91f4f9ee29b0e9",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Delete Event Config",
+        "func": "msg.payload = {\n    event: true\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 2440,
+        "wires": [
+            [
+                "2530b44353ebf7fe"
+            ]
+        ]
+    },
+    {
+        "id": "2530b44353ebf7fe",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "b390266dc39ac695"
+        ],
+        "x": 795,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "e524c1db97193426",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2500,
+        "wires": [
+            [
+                "2e91f4f9ee29b0e9"
+            ]
+        ]
+    },
+    {
+        "id": "d562529942175c6a",
+        "type": "link in",
+        "z": "427808241d304283",
+        "name": "Get Event Info",
+        "links": [
+            "63e068dd27d72c8f"
+        ],
+        "x": 175,
+        "y": 980,
+        "wires": [
+            [
+                "d48724b18a384359"
+            ]
+        ]
+    },
+    {
+        "id": "d48724b18a384359",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "Get Event Info",
+        "func": "const event = flow.get('events')\nconst type = msg.payload\n\nmsg.payload = event[type]\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 980,
+        "wires": [
+            [
+                "289d6a9a7fd46d3a"
+            ]
+        ]
+    },
+    {
+        "id": "289d6a9a7fd46d3a",
+        "type": "link out",
+        "z": "427808241d304283",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 915,
+        "y": 980,
         "wires": []
     }
 ]
