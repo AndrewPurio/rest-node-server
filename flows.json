@@ -117,8 +117,9 @@
     {
         "id": "b7f24f4584cfd7ab",
         "type": "subflow",
-        "name": "Subflow 1",
+        "name": "Fade",
         "info": "",
+        "category": "",
         "in": [
             {
                 "x": 60,
@@ -141,7 +142,10 @@
                     }
                 ]
             }
-        ]
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
     },
     {
         "id": "3f2c5e5d.9118c2",
@@ -151,16 +155,6 @@
         "order": 2,
         "disabled": false,
         "hidden": false
-    },
-    {
-        "id": "9129e728.6627d8",
-        "type": "ui_group",
-        "name": "System Control",
-        "tab": "3f2c5e5d.9118c2",
-        "order": 1,
-        "disp": true,
-        "width": 6,
-        "collapse": false
     },
     {
         "id": "9933a45d.b3b0e",
@@ -178,26 +172,6 @@
         "name": "WakeUp Light",
         "tab": "3f2c5e5d.9118c2",
         "order": 4,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "426403b1.4aa8dc",
-        "type": "ui_group",
-        "name": "Manual Control",
-        "tab": "3f2c5e5d.9118c2",
-        "order": 5,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "a81e9f61.3e719",
-        "type": "ui_group",
-        "name": "Audio Selection",
-        "tab": "3f2c5e5d.9118c2",
-        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": true
@@ -9653,6 +9627,224 @@
         ],
         "x": 915,
         "y": 980,
+        "wires": []
+    },
+    {
+        "id": "3a870779efba41a0",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Read WiFi Config",
+        "filename": "/etc/wpa_supplicant/wpa_supplicant.conf",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "2b141e78f8cc668b"
+            ]
+        ]
+    },
+    {
+        "id": "b388e0b8c55de8a5",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "3a870779efba41a0"
+            ]
+        ]
+    },
+    {
+        "id": "2b141e78f8cc668b",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "752d68319363df07",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Initialize Constants",
+        "func": "const wifi_config_file = \"/etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst network_connection = {\n    wifi_config_file\n}\n\nflow.set(\"network\", network_connection)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e126ed05c5f095ce",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Wifi Config Template",
+        "func": "const ctrl_interface_dir = \"/var/run/wpa_supplicant\"\nconst group = \"netdev\"\nconst update_config = \"1\"\nconst country = \"PH\"\n\nconst network = {\n    ssid: \"Smart Home\",\n    psk: \"systemsecured\",\n    key: \"WPA-PSK\"\n}\n\nconst template = `\nctrl_interface=DIR=${ctrl_interface_dir} GROUP=${group}\nupdate_config=${update_config}\ncountry=${country}\n`\n\nmsg.payload = template\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5e0979241c59890",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "WPA Passphrase Encoding",
+        "func": "const ssid = \"'Smart Home'\"\nconst password = \"'systemsecured'\"\n\nconst encode_password = `wpa_passphrase ${ssid} ${password}`\n\nmsg.payload = encode_password\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 320,
+        "wires": [
+            [
+                "e12d6523288b8380"
+            ]
+        ]
+    },
+    {
+        "id": "71099214f40b36e2",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "b5e0979241c59890"
+            ]
+        ]
+    },
+    {
+        "id": "e12d6523288b8380",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 650,
+        "y": 320,
+        "wires": [
+            [
+                "c40829175a0f40ee"
+            ],
+            [
+                "07a5d0a407bd9fef"
+            ],
+            [
+                "a9a2b76f209f9c36"
+            ]
+        ]
+    },
+    {
+        "id": "c40829175a0f40ee",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "07a5d0a407bd9fef",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a9a2b76f209f9c36",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 360,
         "wires": []
     }
 ]
