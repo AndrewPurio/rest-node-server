@@ -56,7 +56,7 @@ const request_body = {
             state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON
         },
         
-        // onpayload is fired when the time (with the offoffset considered) is reached
+        // offpayload is fired when the time (with the offoffset considered) is reached
         offpayload: {
             light: 'NIGHT_LIGHT', // type of light to trigger
             max_brightness: 100, // total counter/brightness to increment to starting from 0 (in this case light will start from 0 and count up to 100 during ```FADE_ON```)
