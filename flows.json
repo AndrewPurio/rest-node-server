@@ -59,7 +59,7 @@
         "id": "9a5a919d288e7004",
         "type": "tab",
         "label": "Firebase",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -2600,7 +2600,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 110,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "cbe31ffaf8de222e"
@@ -2619,7 +2619,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 340,
+        "y": 360,
         "wires": []
     },
     {
@@ -2634,7 +2634,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "a6c9850fdc2f3179"
@@ -2653,7 +2653,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 440,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "95c3b798b0bdc8e2"
@@ -2669,7 +2669,7 @@
         "action": "obj",
         "pretty": false,
         "x": 630,
-        "y": 340,
+        "y": 360,
         "wires": [
             [
                 "b5468e96fe8f2a22"
@@ -2686,7 +2686,7 @@
         ],
         "uncaught": false,
         "x": 140,
-        "y": 400,
+        "y": 420,
         "wires": [
             [
                 "313656ae5e072080"
@@ -2705,7 +2705,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 400,
+        "y": 420,
         "wires": [
             [
                 "684485ae3297fb89"
@@ -2723,7 +2723,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 690,
-        "y": 400,
+        "y": 420,
         "wires": [
             [
                 "b5468e96fe8f2a22"
@@ -2743,7 +2743,7 @@
         "oldrc": false,
         "name": "Get Available Assets Dir",
         "x": 510,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "96e40cd73607b259"
@@ -2773,7 +2773,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 110,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "b66df60352b322a4"
@@ -2792,7 +2792,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "bdda5f13ef7b859d"
@@ -2811,7 +2811,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "a1129c5118d5ddf3"
@@ -2839,7 +2839,7 @@
             "a1129c5118d5ddf3"
         ],
         "x": 35,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "8f95c813886203df"
@@ -2859,7 +2859,7 @@
         "oldrc": false,
         "name": "Get Audio Files",
         "x": 580,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "61788fd3ef25a635"
@@ -2880,7 +2880,7 @@
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "3e3046e22d35507b"
@@ -2899,7 +2899,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "98c3fccf36890e09"
@@ -2924,7 +2924,7 @@
         "repair": false,
         "outputs": 1,
         "x": 780,
-        "y": 660,
+        "y": 620,
         "wires": [
             [
                 "3e3046e22d35507b",
@@ -2944,7 +2944,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 720,
+        "y": 680,
         "wires": []
     },
     {
@@ -2959,7 +2959,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 720,
+        "y": 680,
         "wires": [
             [
                 "63eab9a095401ba2"
@@ -2987,7 +2987,7 @@
             "83a9855aacd469f3"
         ],
         "x": 35,
-        "y": 720,
+        "y": 680,
         "wires": [
             [
                 "877d10eea80694f7"
@@ -3003,7 +3003,7 @@
             "af7443700a2c537c"
         ],
         "x": 35,
-        "y": 840,
+        "y": 800,
         "wires": [
             [
                 "9af2857d9a1be37c"
@@ -3022,7 +3022,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 820,
+        "y": 780,
         "wires": [
             [
                 "8aa8457966c1294f"
@@ -3036,7 +3036,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 780,
+        "y": 740,
         "wires": []
     },
     {
@@ -3056,7 +3056,7 @@
         "name": "List Available Audio Files",
         "info": "",
         "x": 130,
-        "y": 540,
+        "y": 500,
         "wires": []
     },
     {
@@ -3270,7 +3270,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 820,
+        "y": 780,
         "wires": []
     },
     {
@@ -3868,7 +3868,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 840,
+        "y": 800,
         "wires": [
             [
                 "86d20a5355d39ce3",
@@ -3891,7 +3891,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 860,
+        "y": 820,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -3904,7 +3904,7 @@
             "91e830cf715025c9"
         ],
         "x": 535,
-        "y": 780,
+        "y": 740,
         "wires": []
     },
     {
@@ -3995,7 +3995,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 940,
+        "y": 900,
         "wires": [
             [
                 "ec82c39f81a74236"
@@ -4015,7 +4015,7 @@
             "4095d36df0bf7800"
         ],
         "x": 35,
-        "y": 960,
+        "y": 920,
         "wires": [
             [
                 "192c539d401cbfe5"
@@ -4034,7 +4034,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 920,
+        "y": 880,
         "wires": [
             [
                 "49568c675f1055e9"
@@ -4053,7 +4053,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 960,
+        "y": 920,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -4067,7 +4067,7 @@
             "91e830cf715025c9"
         ],
         "x": 915,
-        "y": 920,
+        "y": 880,
         "wires": []
     },
     {
@@ -4089,7 +4089,7 @@
         "repair": false,
         "outputs": 2,
         "x": 160,
-        "y": 960,
+        "y": 920,
         "wires": [
             [
                 "f3226fefd804061d"
@@ -4111,7 +4111,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 980,
+        "y": 940,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -4305,7 +4305,7 @@
             "b1c4643e4ab543a5"
         ],
         "x": 135,
-        "y": 1040,
+        "y": 1000,
         "wires": [
             [
                 "4fbca4893f9888f9"
@@ -4324,7 +4324,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1040,
+        "y": 1000,
         "wires": [
             [
                 "5b84f8efca57f859",
@@ -4341,7 +4341,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1040,
+        "y": 1000,
         "wires": []
     },
     {
@@ -4357,7 +4357,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1080,
+        "y": 1040,
         "wires": []
     },
     {
@@ -4382,7 +4382,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1100,
+        "y": 1060,
         "wires": [
             [
                 "4fbca4893f9888f9"
@@ -8373,7 +8373,7 @@
         "payload": "WAKE_SOUND",
         "payloadType": "str",
         "x": 120,
-        "y": 1220,
+        "y": 1180,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -8389,7 +8389,7 @@
             "56dd34c5643d6bad"
         ],
         "x": 135,
-        "y": 1160,
+        "y": 1120,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -8408,7 +8408,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1160,
+        "y": 1120,
         "wires": [
             [
                 "5d24fd8093ed5590",
@@ -8425,7 +8425,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1160,
+        "y": 1120,
         "wires": []
     },
     {
@@ -8993,7 +8993,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 1220,
+        "y": 1180,
         "wires": []
     },
     {
@@ -9957,7 +9957,9 @@
         "type": "link in",
         "z": "4fcd3dd2df70f0c8",
         "name": "Get Audio Device",
-        "links": [],
+        "links": [
+            "9bd942c9ca7183b9"
+        ],
         "x": 195,
         "y": 500,
         "wires": [
@@ -9989,10 +9991,106 @@
         "id": "144fd0dfecaeedea",
         "type": "link out",
         "z": "4fcd3dd2df70f0c8",
-        "name": "",
-        "links": [],
+        "name": "Get Audio Device",
+        "links": [
+            "a6c0468332682feb"
+        ],
         "x": 675,
         "y": 500,
+        "wires": []
+    },
+    {
+        "id": "711140e44ae240cd",
+        "type": "inject",
+        "z": "9a5a919d288e7004",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "04826ac012479149"
+            ]
+        ]
+    },
+    {
+        "id": "04826ac012479149",
+        "type": "function",
+        "z": "9a5a919d288e7004",
+        "name": "Firebase Admin Init",
+        "func": "const { initializeApp } = firebaseAdminApp",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "firebaseAdminApp",
+                "module": "firebase-admin/app"
+            }
+        ],
+        "x": 390,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "67ae49826a130a9f",
+        "type": "inject",
+        "z": "9a5a919d288e7004",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "TEST",
+        "payloadType": "env",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "2817c3e05be8bc53"
+            ]
+        ]
+    },
+    {
+        "id": "2817c3e05be8bc53",
+        "type": "debug",
+        "z": "9a5a919d288e7004",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 160,
         "wires": []
     }
 ]

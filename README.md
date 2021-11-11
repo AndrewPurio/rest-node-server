@@ -45,13 +45,19 @@ const request_body = {
     light: {
         onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set
         offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set
+        // onpayload is fired when the time (with the onoffset considered) is reached
         onpayload: {
-            ...NIGHT_LIGHT,
+            light: 'NIGHT_LIGHT', // type of light to trigger
+            max_brightness: 100, // total counter/brightness to increment to starting from 0
+            tick: 1000, // in ms - determines how long the light brightness should increment from 0(off) to 100(on) during ```FADE_ON``` state [100(on) to 0(off) in ```FADE_OFF```], in this case ```1000ms```
             state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON
         },
+        // onpayload is fired when the time (with the offoffset considered) is reached
         offpayload: {
-            ...NIGHT_LIGHT,
-            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF
+            light: 'NIGHT_LIGHT', // type of light to trigger
+            max_brightness: 100, // total counter/brightness to increment to starting from 0 (in this case light will start from 0 and count up to 100 during ```FADE_ON```)
+            tick: 1000, // in ms - determines how long the light brightness should increment from 0(off) to 100(on) during ```FADE_OFF``` state [100(on) to 0(off) in ```FADE_OFF```], in this case ```1000ms```
+            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON
         },
         days_selected
     },
