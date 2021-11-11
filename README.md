@@ -42,9 +42,12 @@ This is the REST Node server repository which contains the flows
 const request_body = {
     type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset
     time: '21:00', // Base time of the on and off offsets
+    
     light: {
         onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set
+        
         offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set
+        
         // onpayload is fired when the time (with the onoffset considered) is reached
         onpayload: {
             light: 'NIGHT_LIGHT', // type of light to trigger
@@ -52,6 +55,7 @@ const request_body = {
             tick: 1000, // in ms - determines how long the light brightness should increment from 0(off) to 100(on) during ```FADE_ON``` state [100(on) to 0(off) in ```FADE_OFF```], in this case ```1000ms```
             state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON
         },
+        
         // onpayload is fired when the time (with the offoffset considered) is reached
         offpayload: {
             light: 'NIGHT_LIGHT', // type of light to trigger
@@ -59,11 +63,23 @@ const request_body = {
             tick: 1000, // in ms - determines how long the light brightness should increment from 0(off) to 100(on) during ```FADE_OFF``` state [100(on) to 0(off) in ```FADE_OFF```], in this case ```1000ms```
             state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON
         },
-        days_selected
+        
+        days_selected: {
+            mon: true,
+            tue: true,
+            wed: true,
+            thu: true,
+            fri: true,
+            sat: true,
+            sun: true
+        }
     },
+    
     sound: {
         onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set
+        
         offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set
+        
         onpayload: {
             audio_file: null, // url for the audio file - firebase admin storage implementation still in progress
             volume: 50, // initial volume to start during fading
@@ -71,6 +87,7 @@ const request_body = {
             state: 'PLAYING', // onpayload state can either be: 'PLAYING', 'RESUMED'
             sound: 'NIGHT_SOUND' // Either of the three: "NIGHT_SOUND", "WAKE_SOUND", "RELAXATION_SOUND"
         },
+        
         offpayload: {
             audio_file: null, // url for the audio file - firebase admin storage implementation still in progress
             volume: 50, // initial volume to start during fading
@@ -78,7 +95,16 @@ const request_body = {
             state: 'STOPPED', // offpayload state can either be: 'STOPPED', 'PAUSED',
             sound: 'NIGHT_SOUND' // Either of the three: "NIGHT_SOUND", "WAKE_SOUND", "RELAXATION_SOUND"
         },
-        days_selected
+        
+        days_selected: {
+            mon: true,
+            tue: true,
+            wed: true,
+            thu: true,
+            fri: true,
+            sat: true,
+            sun: true
+        }
     }
 }
 ```
