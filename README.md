@@ -65,12 +65,18 @@ const request_body = {
         onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set
         offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set
         onpayload: {
-            ...NIGHT_SOUND,
-            state: 'PLAYING'
+            audio_file: null, // url for the audio file - firebase admin storage implementation still in progress
+            volume: 50, // initial volume to start during fading
+            max_volume: 100, // max volume threshold during initial fading and fade off of the sound (fading happens automatically)
+            state: 'PLAYING', // onpayload state can either be: 'PLAYING', 'RESUMED'
+            sound: 'NIGHT_SOUND' // Either of the three: "NIGHT_SOUND", "WAKE_SOUND", "RELAXATION_SOUND"
         },
         offpayload: {
-            ...NIGHT_SOUND,
-            state: 'STOPPED'
+            audio_file: null, // url for the audio file - firebase admin storage implementation still in progress
+            volume: 50, // initial volume to start during fading
+            max_volume: 100, // max volume threshold during initial fading and fade off of the sound (fading happens automatically)
+            state: 'STOPPED', // offpayload state can either be: 'STOPPED', 'PAUSED',
+            sound: 'NIGHT_SOUND' // Either of the three: "NIGHT_SOUND", "WAKE_SOUND", "RELAXATION_SOUND"
         },
         days_selected
     }
