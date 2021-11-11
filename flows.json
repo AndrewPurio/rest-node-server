@@ -59,7 +59,7 @@
         "id": "9a5a919d288e7004",
         "type": "tab",
         "label": "Firebase",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
@@ -285,14 +285,6 @@
         "type": "websocket-listener",
         "path": "/restnode",
         "wholemsg": "false"
-    },
-    {
-        "id": "56060e35371846da",
-        "type": "firebase-config",
-        "name": "Firebase (Rest Node)",
-        "cred": "{   \"type\": \"service_account\",   \"project_id\": \"exist-tribe\",   \"private_key_id\": \"2a4cc00811f2b3a726e056bd5e8f95b52417fa5f\",   \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCf0ZQ/cbEzGIHc\\nQ49KJM0RV0XDiF60SvVUdCbIxCukFlF3N81vroYIoC15N05xhx8oi9DbEKSAyCS7\\nLb4p29Afq+CTfDxw7S9JB7AzkmwIMbTmKdMenZmvI0BYgQThVOd75O/y510tPtgc\\nCEdi1qR7sBVDWPPbdMaLPzO9HXxH+pHAamqdaL2JXrdWd0yHaeGnyczebwwJ6TKh\\npzFqEMvVDT6Kh3O7G1jTO3t+fBQO74B2I0J9bbF9BcgPg6ynRebbAP4h6Nv11cma\\npui07vIL/IOcH3713jFJ1QC7ic5LQ5+A3aXeTGQI3iVzxgy9FUejWgi+mjzEYjzG\\nxuz6LqM3AgMBAAECggEAOSTNthWnv1ZO8HvzmxYngMDMwApdmmeG6siRKY4C8KvO\\nOytnuDwVzrW/LK1azfr7aBr99aYwu59UitzjNsJS21Awf2uXjOUx2BH4raf4GsHz\\nJazkwPim/9lB46NWJF+gWUtVhGu3hDsJOJS5OZz3uQYPxEHlB53sc9OIY2FMk8ty\\nR4yQ4NqBMo7aN/HI3tgoLzbmRXrkxuBh9XLd/J9bpZber9Ga8jjRfzDydBXbQTew\\nuadEg++HIygACWQOD3xrDov6NbKYd1tFIpyvEETHJUy6KufUIAxLdkpZ5Ceaty/R\\np35LK2IKAaOCYV/e07hA8mngDbM1PGt8sRAnRLplqQKBgQDUrIDRx9Fv7YAHmHhv\\nBYiKEiZhSgwabu0R3FycSEVomWLilIGbkdFGpsi4jODKeuyI69PiraXf4Pl9rYNg\\n5UxBiIC6Zglx/tyHdcByk2I7CXynz0cgka3jq3EG4rB5msUWCn2+E3fJx0iVKruC\\nqSpICtIHlGwyZ5wdhSq4KPEH5QKBgQDAYIpcdaJ3u+wuVy69VoUBdeaoJz8NmN/p\\nQLtuPAgxIfb7hUasq/O8U6Q4xyZKV5OOjK5JaeVNzkSEqYN/Vqq69CS6iIdINS6h\\no4f6CYRUwGfwbh3ZkcXsVpWHWZpRdT5Sq9oXeLTta0R61JHL8puDc1ACkVm36AYj\\n1rO+3SyU6wKBgQCX603uDN3oJXDCfEDzlbFOZ96wurNgooKIsrAZF2s1Z/SCRHE9\\nDvG+lV9mrYPaP+r9d/CYyVBnV48BHtRtf/50Ba1m+YKfwt4Hia7aabvOzl0UhnWZ\\np1be/lW0BHTpuQw2TXI7OC7mnYuUurzNfkfsxIX50iVj8C1NzRWSDfT3nQKBgATI\\nIYhM0D4DqMo6FopURTgVEyeo2hNfcmlc14vU6Cs4eegklu4h1AwhVBqpMJV2ec94\\nRbjDbhSyBNf7Uq5unA3LlcIhNKOh1sfjxbR8WhK1OaArTIik6/OE73CO1JwjuunZ\\nJbGhqXWhTfFzqTAVlrH8wsddj4pXtRdc9djPrJUDAoGAUhoOq5mRyN5eyADt+7hB\\nxO+Xktg7/tluHyhTNYlh4U+dcmpbmCx5HndBsoe2apoiBcpev3Y43RR85OYSWhkO\\nRbC+xGPnDNsMnj/uqlQEhuUS0TVbtYXretiAKsMggDeFi9ienQ7IaOVR8WMoDLC/\\n1LENRhX0GGHlyYWHEpLZy9g=\\n-----END PRIVATE KEY-----\\n\",   \"client_email\": \"firebase-adminsdk-33vl6@exist-tribe.iam.gserviceaccount.com\",   \"client_id\": \"114299804974728366379\",   \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",   \"token_uri\": \"https://oauth2.googleapis.com/token\",   \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",   \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-33vl6%40exist-tribe.iam.gserviceaccount.com\" }",
-        "dburl": "firebase-adminsdk-33vl6@exist-tribe.iam.gserviceaccount.com",
-        "bucket": ""
     },
     {
         "id": "3bcabf98.3b81",
@@ -1079,7 +1071,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 570,
+        "x": 590,
         "y": 300,
         "wires": []
     },
@@ -1163,7 +1155,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 380,
+        "x": 400,
         "y": 300,
         "wires": [
             [
@@ -1184,7 +1176,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
+        "x": 410,
         "y": 360,
         "wires": []
     },
@@ -1982,7 +1974,7 @@
         "links": [
             "5397f0d28c60d06a"
         ],
-        "x": 175,
+        "x": 195,
         "y": 300,
         "wires": [
             [
@@ -2751,7 +2743,7 @@
         "oldrc": false,
         "name": "Get Available Assets Dir",
         "x": 510,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "96e40cd73607b259"
@@ -2781,7 +2773,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 110,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "b66df60352b322a4"
@@ -2800,7 +2792,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "bdda5f13ef7b859d"
@@ -2819,7 +2811,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 540,
+        "y": 600,
         "wires": [
             [
                 "a1129c5118d5ddf3"
@@ -2835,7 +2827,7 @@
             "a82335699ae83965"
         ],
         "x": 935,
-        "y": 540,
+        "y": 600,
         "wires": []
     },
     {
@@ -2847,7 +2839,7 @@
             "a1129c5118d5ddf3"
         ],
         "x": 35,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "8f95c813886203df"
@@ -2867,7 +2859,7 @@
         "oldrc": false,
         "name": "Get Audio Files",
         "x": 580,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "61788fd3ef25a635"
@@ -2888,7 +2880,7 @@
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "3e3046e22d35507b"
@@ -2907,7 +2899,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "98c3fccf36890e09"
@@ -2932,7 +2924,7 @@
         "repair": false,
         "outputs": 1,
         "x": 780,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "3e3046e22d35507b",
@@ -2952,7 +2944,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 660,
+        "y": 720,
         "wires": []
     },
     {
@@ -2967,7 +2959,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "63eab9a095401ba2"
@@ -2983,7 +2975,7 @@
             "9bed374137c02de5"
         ],
         "x": 935,
-        "y": 600,
+        "y": 660,
         "wires": []
     },
     {
@@ -2995,7 +2987,7 @@
             "83a9855aacd469f3"
         ],
         "x": 35,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "877d10eea80694f7"
@@ -3011,7 +3003,7 @@
             "af7443700a2c537c"
         ],
         "x": 35,
-        "y": 780,
+        "y": 840,
         "wires": [
             [
                 "9af2857d9a1be37c"
@@ -3030,7 +3022,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 760,
+        "y": 820,
         "wires": [
             [
                 "8aa8457966c1294f"
@@ -3044,7 +3036,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 720,
+        "y": 780,
         "wires": []
     },
     {
@@ -3064,7 +3056,7 @@
         "name": "List Available Audio Files",
         "info": "",
         "x": 130,
-        "y": 480,
+        "y": 540,
         "wires": []
     },
     {
@@ -3079,7 +3071,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1280,
+        "y": 1340,
         "wires": [
             [
                 "397d62e439616946"
@@ -3100,7 +3092,7 @@
         "oldrc": false,
         "name": "Execute Volume Command",
         "x": 640,
-        "y": 1280,
+        "y": 1340,
         "wires": [
             [
                 "efdf05c1fd0eb8b2"
@@ -3120,7 +3112,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 1200,
+        "y": 1260,
         "wires": []
     },
     {
@@ -3257,7 +3249,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 1280,
+        "y": 1340,
         "wires": [
             [
                 "7d8f844d95a0a057"
@@ -3278,7 +3270,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 760,
+        "y": 820,
         "wires": []
     },
     {
@@ -3293,7 +3285,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1280,
+        "y": 1340,
         "wires": [
             [
                 "8d54343c273a8128",
@@ -3308,7 +3300,7 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1420,
+        "y": 1480,
         "wires": []
     },
     {
@@ -3327,7 +3319,7 @@
             "819ffe8c2a50daa4"
         ],
         "x": 35,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "ab91ca2c5c750e95"
@@ -3346,7 +3338,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1420,
+        "y": 1480,
         "wires": [
             [
                 "5a44044c38f6a2b7"
@@ -3367,7 +3359,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1740,
+        "y": 1800,
         "wires": []
     },
     {
@@ -3388,7 +3380,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 1700,
+        "y": 1760,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -3408,7 +3400,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1700,
+        "y": 1760,
         "wires": []
     },
     {
@@ -3444,7 +3436,7 @@
         "repair": false,
         "outputs": 4,
         "x": 350,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -3472,7 +3464,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1540,
+        "y": 1600,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3488,7 +3480,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1540,
+        "y": 1600,
         "wires": []
     },
     {
@@ -3501,7 +3493,7 @@
             "3c25c445887cca7c"
         ],
         "x": 35,
-        "y": 1700,
+        "y": 1760,
         "wires": [
             [
                 "837e2a02b8b3cb89"
@@ -3520,7 +3512,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1580,
+        "y": 1640,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3539,7 +3531,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1620,
+        "y": 1680,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3817,7 +3809,7 @@
         "name": "To Storage",
         "info": "",
         "x": 80,
-        "y": 1820,
+        "y": 1880,
         "wires": []
     },
     {
@@ -3831,7 +3823,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "6b5fe6e5651bbcdc"
@@ -3850,7 +3842,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "377cc3968f89cf3d"
@@ -3876,7 +3868,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 780,
+        "y": 840,
         "wires": [
             [
                 "86d20a5355d39ce3",
@@ -3899,7 +3891,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 800,
+        "y": 860,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -3912,7 +3904,7 @@
             "91e830cf715025c9"
         ],
         "x": 535,
-        "y": 720,
+        "y": 780,
         "wires": []
     },
     {
@@ -3925,7 +3917,7 @@
             "decd7dd7fcda1a73"
         ],
         "x": 795,
-        "y": 1860,
+        "y": 1920,
         "wires": []
     },
     {
@@ -3941,7 +3933,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 1920,
+        "y": 1980,
         "wires": []
     },
     {
@@ -3956,7 +3948,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1860,
+        "y": 1920,
         "wires": [
             [
                 "064db609db367336",
@@ -3976,7 +3968,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "b47fadcb378c2227",
@@ -4003,7 +3995,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 880,
+        "y": 940,
         "wires": [
             [
                 "ec82c39f81a74236"
@@ -4023,7 +4015,7 @@
             "4095d36df0bf7800"
         ],
         "x": 35,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "192c539d401cbfe5"
@@ -4042,7 +4034,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 860,
+        "y": 920,
         "wires": [
             [
                 "49568c675f1055e9"
@@ -4061,7 +4053,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 900,
+        "y": 960,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -4075,7 +4067,7 @@
             "91e830cf715025c9"
         ],
         "x": 915,
-        "y": 860,
+        "y": 920,
         "wires": []
     },
     {
@@ -4097,7 +4089,7 @@
         "repair": false,
         "outputs": 2,
         "x": 160,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "f3226fefd804061d"
@@ -4119,7 +4111,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 920,
+        "y": 980,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -4132,7 +4124,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 410,
-        "y": 1700,
+        "y": 1760,
         "wires": [
             [
                 "d3c721f30dc405fe"
@@ -4158,7 +4150,7 @@
         "repair": false,
         "outputs": 2,
         "x": 730,
-        "y": 1420,
+        "y": 1480,
         "wires": [
             [
                 "3c25c445887cca7c"
@@ -4180,7 +4172,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "c3907ce3b315e7d0",
@@ -4200,7 +4192,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -4216,7 +4208,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1400,
+        "y": 1460,
         "wires": []
     },
     {
@@ -4231,7 +4223,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 1700,
+        "y": 1760,
         "wires": [
             [
                 "f9696091e419c12c",
@@ -4253,7 +4245,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1240,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4269,7 +4261,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1240,
+        "y": 1300,
         "wires": []
     },
     {
@@ -4285,7 +4277,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1280,
+        "y": 1340,
         "wires": []
     },
     {
@@ -4301,7 +4293,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1320,
+        "y": 1380,
         "wires": []
     },
     {
@@ -4313,7 +4305,7 @@
             "b1c4643e4ab543a5"
         ],
         "x": 135,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "4fbca4893f9888f9"
@@ -4332,7 +4324,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 980,
+        "y": 1040,
         "wires": [
             [
                 "5b84f8efca57f859",
@@ -4349,7 +4341,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 980,
+        "y": 1040,
         "wires": []
     },
     {
@@ -4365,7 +4357,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1020,
+        "y": 1080,
         "wires": []
     },
     {
@@ -4390,7 +4382,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 1040,
+        "y": 1100,
         "wires": [
             [
                 "4fbca4893f9888f9"
@@ -4403,7 +4395,7 @@
         "z": "4fcd3dd2df70f0c8",
         "name": "Reset",
         "info": "",
-        "x": 210,
+        "x": 70,
         "y": 240,
         "wires": []
     },
@@ -7995,7 +7987,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 1760,
+        "y": 1820,
         "wires": []
     },
     {
@@ -8012,7 +8004,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1420,
+        "y": 1480,
         "wires": []
     },
     {
@@ -8381,7 +8373,7 @@
         "payload": "WAKE_SOUND",
         "payloadType": "str",
         "x": 120,
-        "y": 1160,
+        "y": 1220,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -8397,7 +8389,7 @@
             "56dd34c5643d6bad"
         ],
         "x": 135,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -8416,7 +8408,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "5d24fd8093ed5590",
@@ -8433,7 +8425,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1100,
+        "y": 1160,
         "wires": []
     },
     {
@@ -8742,7 +8734,7 @@
         "name": "",
         "links": [],
         "x": 35,
-        "y": 1980,
+        "y": 2040,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -8761,7 +8753,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 1980,
+        "y": 2040,
         "wires": [
             [
                 "8ef80688d076fcc6"
@@ -8777,7 +8769,7 @@
             "b390266dc39ac695"
         ],
         "x": 795,
-        "y": 1980,
+        "y": 2040,
         "wires": []
     },
     {
@@ -8802,7 +8794,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2060,
+        "y": 2120,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -9001,7 +8993,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 710,
-        "y": 1160,
+        "y": 1220,
         "wires": []
     },
     {
@@ -9842,157 +9834,6 @@
         "wires": []
     },
     {
-        "id": "1ec066ca7cbf1249",
-        "type": "storage-list",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "path": "Wake Sounds/",
-        "bucket": "exist-tribe.appspot.com",
-        "cred": "56060e35371846da",
-        "delimiter": "/",
-        "x": 430,
-        "y": 100,
-        "wires": [
-            [
-                "a2ea338388540153"
-            ]
-        ]
-    },
-    {
-        "id": "5cc131c5492a24ff",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 100,
-        "wires": [
-            [
-                "1e75f3832e2df0e6"
-            ]
-        ]
-    },
-    {
-        "id": "a2ea338388540153",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "d0af462fd1a3903a",
-        "type": "catch",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "scope": [
-            "1ec066ca7cbf1249"
-        ],
-        "uncaught": false,
-        "x": 410,
-        "y": 220,
-        "wires": [
-            [
-                "a2ea338388540153"
-            ]
-        ]
-    },
-    {
-        "id": "1e75f3832e2df0e6",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "func": "msg.payload = {}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 100,
-        "wires": [
-            [
-                "1ec066ca7cbf1249"
-            ]
-        ]
-    },
-    {
-        "id": "c4b43656cff3d152",
-        "type": "storage-read",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "path": "Wake Sounds/Spiritual Awakening 13 Min.mp3",
-        "bucket": "exist-tribe.appspot.com",
-        "cred": "56060e35371846da",
-        "x": 430,
-        "y": 320,
-        "wires": [
-            [
-                "8abf4fe6d593d083"
-            ]
-        ]
-    },
-    {
-        "id": "de767fc5b77f4661",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 320,
-        "wires": [
-            [
-                "c4b43656cff3d152"
-            ]
-        ]
-    },
-    {
-        "id": "8abf4fe6d593d083",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 320,
-        "wires": []
-    },
-    {
         "id": "06969b016a3d71a1",
         "type": "link out",
         "z": "f6f2187d.f17ca8",
@@ -10100,5 +9941,58 @@
                 "62e6a71c4cb08a51"
             ]
         ]
+    },
+    {
+        "id": "05f15fa5a2336281",
+        "type": "comment",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Audio Device",
+        "info": "",
+        "x": 90,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "ba977366cee206cd",
+        "type": "link in",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Get Audio Device",
+        "links": [],
+        "x": 195,
+        "y": 500,
+        "wires": [
+            [
+                "a23245de2a284da7"
+            ]
+        ]
+    },
+    {
+        "id": "a23245de2a284da7",
+        "type": "function",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Get Audio Device",
+        "func": "const { audio_device } = flow.get(\"system_config\")\n\nmsg.payload = audio_device\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 500,
+        "wires": [
+            [
+                "144fd0dfecaeedea"
+            ]
+        ]
+    },
+    {
+        "id": "144fd0dfecaeedea",
+        "type": "link out",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "links": [],
+        "x": 675,
+        "y": 500,
+        "wires": []
     }
 ]
