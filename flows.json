@@ -1203,7 +1203,8 @@
         "y": 520,
         "wires": [
             [
-                "379e9aab2c3b613a"
+                "379e9aab2c3b613a",
+                "3bf4ebc6242428fd"
             ]
         ]
     },
@@ -1228,7 +1229,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "",
-        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = flow.get('lights') \nconst { FADE_ON, FADE_OFF } = flow.get('light_states')\n\nmsg.payload = {\n    light: WAKE_LIGHT,\n    max_brightness: 70,\n    state: FADE_OFF\n}\n\nreturn msg;",
+        "func": "const { NIGHT_LIGHT, WAKE_LIGHT } = flow.get('lights') \nconst { FADE_ON, FADE_OFF } = flow.get('light_states')\n\nmsg.payload = {\n    light: WAKE_LIGHT,\n    max_brightness: 70,\n    state: FADE_ON\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3678,7 +3679,7 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payloadType": "date",
@@ -3716,6 +3717,7 @@
         "id": "91e830cf715025c9",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
+        "d": true,
         "name": "",
         "links": [
             "2b4a0860d67ccf97",
@@ -4468,7 +4470,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Bedtime Event",
-        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst { type } = msg.payload\n\nconst { light, sound, time, relax }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nif(relax) {\n    relax.ontime = time\n    relax.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nconst relaxation_output = {\n    payload: relax || null\n}\n\nreturn [light_output, sound_output, relaxation_output];",
+        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst { type } = msg.payload\nconst { time, light, sound, relax }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onpayload = JSON.stringify(light.onpayload)\n    light.offpayload = JSON.stringify(light.offpayload)\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    sound.onpayload = JSON.stringify(sound.onpayload)\n    sound.offpayload = JSON.stringify(sound.offpayload)\n}\n\nif(relax) {\n    relax.ontime = time\n    relax.offtime = time\n    relax.onpayload = JSON.stringify(relax.onpayload)\n    relax.offpayload = JSON.stringify(relax.offpayload)\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nconst relaxation_output = {\n    payload: relax || null\n}\n\nreturn [light_output, sound_output, relaxation_output];",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -4632,7 +4634,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Waketime Event",
-        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onpayload = JSON.stringify(light.onpayload)\n    light.offpayload = JSON.stringify(light.offpayload)\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    sound.onpayload = JSON.stringify(sound.onpayload)\n    sound.offpayload = JSON.stringify(sound.offpayload)\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -4676,7 +4678,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Process Sunset Event",
-        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    sound.onoffset += timezone_offset\n    sound.offoffset += timezone_offset\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
+        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst timezone_offset = flow.get('timezone_offset')\nconst { type } = msg.payload\n\nconst { light, sound, time }  = events[type]\n\nif(light) {\n    light.ontime = time\n    light.offtime = time\n    light.onoffset += timezone_offset\n    light.offoffset += timezone_offset\n    light.onpayload = JSON.stringify(light.onpayload)\n    light.offpayload = JSON.stringify(light.offpayload)\n}\n\nif(sound) {\n    sound.ontime = time\n    sound.offtime = time\n    sound.onoffset += timezone_offset\n    sound.offoffset += timezone_offset\n    sound.onpayload = JSON.stringify(sound.onpayload)\n    sound.offpayload = JSON.stringify(sound.offpayload)\n}\n\nconst light_output = {\n    payload: light || null\n}\n\nconst sound_output = {\n    payload: sound || null\n}\n\nreturn [light_output, sound_output];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -5251,190 +5253,6 @@
         "x": 600,
         "y": 3060,
         "wires": []
-    },
-    {
-        "id": "4e5b6a6d74a43c95",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.light",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 1500,
-        "wires": [
-            [
-                "ce1ae75d01b821fa"
-            ]
-        ]
-    },
-    {
-        "id": "b2bd9aa7291da2c0",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.audio_file",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 1580,
-        "wires": [
-            [
-                "f520c999092bcc9d"
-            ]
-        ]
-    },
-    {
-        "id": "07bb8b4e4f5bcd11",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.light",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 1840,
-        "wires": [
-            [
-                "2663df0f99463eb3"
-            ]
-        ]
-    },
-    {
-        "id": "73870de815788819",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.audio_file",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 1920,
-        "wires": [
-            [
-                "a0305c97741e49da"
-            ]
-        ]
-    },
-    {
-        "id": "e05e972893b302e7",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.light",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 2060,
-        "wires": [
-            [
-                "a57d1afa4409fe65"
-            ]
-        ]
-    },
-    {
-        "id": "81edaddf3e9d531b",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.audio_file",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 2140,
-        "wires": [
-            [
-                "91e434e46084f453"
-            ]
-        ]
-    },
-    {
-        "id": "c3a64d8207260a6e",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.light",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 2280,
-        "wires": [
-            [
-                "97423e057c4b1573"
-            ]
-        ]
-    },
-    {
-        "id": "5e3cc9fc7ada368a",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.audio_file",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 2360,
-        "wires": [
-            [
-                "ec600430246adfbc"
-            ]
-        ]
     },
     {
         "id": "3ced736f1171ab7a",
@@ -7008,7 +6826,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Update Event Data",
-        "func": "const input_event = msg.payload\nconst events = flow.get('events')\nconst prev_event_values = events[ input_event.type ]\n\nevents[ input_event.type ] = {\n    ...prev_event_values, ...input_event\n}\n\nmsg.payload = events[ input_event.type ]\n\nflow.set('events', events)\n\nreturn msg",
+        "func": "const input_event = msg.payload\nconst events = flow.get('events')\nconst prev_event_values = JSON.parse(\n    JSON.stringify( events[ input_event.type ] )\n)\n\nconst { light, sound, relax } = input_event \n\nif(light) \n    delete input_event.light\n\n    \nif(sound) \n    delete input_event.sound\n\n    \nif(relax) \n    delete input_event.relax\n\nevents[ input_event.type ] = {\n    ...events[ input_event.type ], ...input_event\n}\n\nif(light) {\n    events[ input_event.type ].light = {\n        ...events[ input_event.type ].light, ...light\n    }\n}\n\nif(sound) {\n    events[ input_event.type ].sound = {\n        ...events[ input_event.type ].sound, ...sound\n    }\n}\n\nif(relax) {\n    events[ input_event.type ].relax = {\n        ...events[ input_event.type ].relax, ...relax\n    }\n}\n\nmsg.payload = events[ input_event.type ]\n\nflow.set('events', events)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7018,8 +6836,8 @@
         "y": 600,
         "wires": [
             [
-                "69dda5ef5e2c5df0",
-                "2247154c64c64885"
+                "2247154c64c64885",
+                "69dda5ef5e2c5df0"
             ]
         ]
     },
@@ -8544,7 +8362,6 @@
         "y": 2480,
         "wires": [
             [
-                "7d301bb311946bb8",
                 "9120b3d4f63f106b"
             ]
         ]
@@ -8559,22 +8376,6 @@
         ],
         "x": 795,
         "y": 2480,
-        "wires": []
-    },
-    {
-        "id": "7d301bb311946bb8",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 770,
-        "y": 2540,
         "wires": []
     },
     {
@@ -9664,29 +9465,6 @@
         ]
     },
     {
-        "id": "2905c3e3efbafc0f",
-        "type": "switch",
-        "z": "427808241d304283",
-        "name": "Null Payload Filter",
-        "property": "payload.onpayload.audio_file",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 170,
-        "y": 1680,
-        "wires": [
-            [
-                "dfa329d105070a15"
-            ]
-        ]
-    },
-    {
         "id": "28c3772888cfc7fa",
         "type": "link out",
         "z": "427808241d304283",
@@ -9957,7 +9735,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Preprocess Payloads",
-        "func": "const { light, sound, relax } = msg.payload\n\nif(light) {\n    light.onpayload = JSON.stringify(light.onpayload)\n    light.offpayload = JSON.stringify(light.offpayload)\n}\n    \nif(sound) {\n    sound.onpayload = JSON.stringify(light.onpayload)\n    sound.offpayload = JSON.stringify(light.offpayload)\n}\n\nif(relax) {\n    relax.onpayload = JSON.stringify(light.onpayload)\n    relax.offpayload = JSON.stringify(light.offpayload)\n}\n\nreturn msg;",
+        "func": "const { light, sound, relax } = msg.payload\n\nif(light) {\n    light.onpayload = light.onpayload\n    light.offpayload = light.offpayload\n}\n    \nif(sound) {\n    sound.onpayload = sound.onpayload\n    sound.offpayload = sound.offpayload\n}\n\nif(relax) {\n    relax.onpayload = relax.onpayload\n    relax.offpayload = relax.offpayload\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10031,7 +9809,8 @@
         "y": 1840,
         "wires": [
             [
-                "fe19b0d6879b5403"
+                "fe19b0d6879b5403",
+                "7968db82d99b40ea"
             ]
         ]
     },
@@ -10631,5 +10410,534 @@
         "x": 530,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "3bf4ebc6242428fd",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5e3cc9fc7ada368a",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 2360,
+        "wires": [
+            [
+                "ec600430246adfbc"
+            ]
+        ]
+    },
+    {
+        "id": "c3a64d8207260a6e",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 2280,
+        "wires": [
+            [
+                "97423e057c4b1573"
+            ]
+        ]
+    },
+    {
+        "id": "81edaddf3e9d531b",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 2140,
+        "wires": [
+            [
+                "91e434e46084f453"
+            ]
+        ]
+    },
+    {
+        "id": "e05e972893b302e7",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 2060,
+        "wires": [
+            [
+                "a57d1afa4409fe65"
+            ]
+        ]
+    },
+    {
+        "id": "73870de815788819",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1920,
+        "wires": [
+            [
+                "a0305c97741e49da"
+            ]
+        ]
+    },
+    {
+        "id": "07bb8b4e4f5bcd11",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1840,
+        "wires": [
+            [
+                "2663df0f99463eb3",
+                "38d82d77b9d0d1f1"
+            ]
+        ]
+    },
+    {
+        "id": "2905c3e3efbafc0f",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1680,
+        "wires": [
+            [
+                "dfa329d105070a15"
+            ]
+        ]
+    },
+    {
+        "id": "b2bd9aa7291da2c0",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1580,
+        "wires": [
+            [
+                "f520c999092bcc9d"
+            ]
+        ]
+    },
+    {
+        "id": "4e5b6a6d74a43c95",
+        "type": "switch",
+        "z": "427808241d304283",
+        "name": "Null Payload Filter",
+        "property": "payload.onpayload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 170,
+        "y": 1500,
+        "wires": [
+            [
+                "ce1ae75d01b821fa"
+            ]
+        ]
+    },
+    {
+        "id": "c1866db473b4bc0a",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "f068e797fdd2cc1c",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "events.bedtime.light",
+        "payloadType": "flow",
+        "x": 150,
+        "y": 1340,
+        "wires": [
+            [
+                "c1866db473b4bc0a"
+            ]
+        ]
+    },
+    {
+        "id": "98d197ac04d7bf24",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 3280,
+        "wires": []
+    },
+    {
+        "id": "ea23b455ceaf1171",
+        "type": "inject",
+        "z": "427808241d304283",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 3300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8098e8d9ba9a2b0b",
+        "type": "function",
+        "z": "427808241d304283",
+        "name": "",
+        "func": "const events = JSON.parse(JSON.stringify(flow.get('events')))\nconst { type } = msg.payload\nconst { time, light, sound, relax }  = events[type]\n\nmsg.payload \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 3280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38d82d77b9d0d1f1",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "7968db82d99b40ea",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "5786d2705a098257",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "start",
+        "payloadType": "str",
+        "x": 90,
+        "y": 2360,
+        "wires": [
+            [
+                "700a77bd533c7032"
+            ]
+        ]
+    },
+    {
+        "id": "8cafd4602aeb9b91",
+        "type": "PlaySound",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Audio Player",
+        "playerOptions": "{ \"player\": \"mpg123\" }",
+        "audioURI": "https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c",
+        "options": "{}",
+        "x": 470,
+        "y": 2360,
+        "wires": [
+            [
+                "2d418fbe39d25536"
+            ]
+        ]
+    },
+    {
+        "id": "2d418fbe39d25536",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "f983d66e0cab709e",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "x": 90,
+        "y": 2420,
+        "wires": [
+            [
+                "700a77bd533c7032"
+            ]
+        ]
+    },
+    {
+        "id": "a4ffe60460f2a9f5",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "resume",
+        "payloadType": "str",
+        "x": 90,
+        "y": 2480,
+        "wires": [
+            [
+                "700a77bd533c7032"
+            ]
+        ]
+    },
+    {
+        "id": "13edf7508ff9dc67",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "pause",
+        "payloadType": "str",
+        "x": 90,
+        "y": 2540,
+        "wires": [
+            [
+                "700a77bd533c7032"
+            ]
+        ]
+    },
+    {
+        "id": "700a77bd533c7032",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "func": "\nmsg.audioURI = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 2360,
+        "wires": [
+            [
+                "8cafd4602aeb9b91"
+            ]
+        ]
     }
 ]
