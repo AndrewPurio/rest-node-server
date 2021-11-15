@@ -10808,7 +10808,7 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Audio Player",
         "playerOptions": "{ \"player\": \"mpg123\" }",
-        "audioURI": "https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c",
+        "audioURI": "",
         "options": "{}",
         "x": 470,
         "y": 2360,
@@ -10926,7 +10926,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "",
-        "func": "\nmsg.audioURI = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\n\nreturn msg;",
+        "func": "\n// msg.audioURI = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\nmsg.audioURI = \"/data/projects/REST_NODE/assets/night.mp3\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10937,6 +10937,167 @@
         "wires": [
             [
                 "8cafd4602aeb9b91"
+            ]
+        ]
+    },
+    {
+        "id": "283bda12393b469d",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2620,
+        "wires": [
+            [
+                "1a591ad1a572b38f"
+            ]
+        ]
+    },
+    {
+        "id": "1a591ad1a572b38f",
+        "type": "http request",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Night%20Sounds%2FTranquil%20Calm%2012%20Hours.mp3?alt=media&token=8ed03101-7d61-4b15-9d39-8bd51bd82c98",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 270,
+        "y": 2620,
+        "wires": [
+            [
+                "63d91bf9d4e7ac9f"
+            ]
+        ]
+    },
+    {
+        "id": "57593c0ea1c64f88",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "63d91bf9d4e7ac9f",
+        "type": "file",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "filename": "/data/projects/REST_NODE/assets/test.mp3",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 530,
+        "y": 2620,
+        "wires": [
+            [
+                "57593c0ea1c64f88"
+            ]
+        ]
+    },
+    {
+        "id": "e67d6fc8e8d2830a",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2720,
+        "wires": [
+            [
+                "7d52a4f3f4d1f73c"
+            ]
+        ]
+    },
+    {
+        "id": "2078f9640c296d7f",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "7d52a4f3f4d1f73c",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Download Media File",
+        "func": "const { createWriteStream } = fs\n\nconst url = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Night%20Sounds%2FTranquil%20Calm%2012%20Hours.mp3?alt=media&token=8ed03101-7d61-4b15-9d39-8bd51bd82c98\"\nconst file_destination = \"/data/projects/REST_NODE/assets/night.mp3\"\n\nprogress(request(url))\n    .on('progress', (state) => {\n    // The state is an object that looks like this: \n    // { \n    //     percent: 0.5,               // Overall percent (between 0 to 1) \n    //     speed: 554732,              // The download speed in bytes/sec \n    //     size: { \n    //         total: 90044871,        // The total payload size in bytes \n    //         transferred: 27610959   // The transferred payload size in bytes \n    //     }, \n    //     time: { \n    //         elapsed: 36.235,        // The total elapsed seconds since the start (3 decimals) \n    //         remaining: 81.403       // The remaining seconds to finish (3 decimals) \n    //     } \n    // } \n    node.send({\n        'progress': state\n    })\n})\n.on('error', (error) => {\n    node.send({\n        'error': error\n    })\n})\n.on('end', function () {\n    node.send({\n        'end': true\n    })\n})\n.pipe(createWriteStream(file_destination));\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "request",
+                "module": "request"
+            },
+            {
+                "var": "fs",
+                "module": "fs"
+            },
+            {
+                "var": "progress",
+                "module": "request-progress"
+            }
+        ],
+        "x": 300,
+        "y": 2720,
+        "wires": [
+            [
+                "2078f9640c296d7f"
             ]
         ]
     }
