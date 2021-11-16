@@ -998,7 +998,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 110,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "db7057806dca5e74"
@@ -1013,7 +1013,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 660,
-        "y": 600,
+        "y": 640,
         "wires": []
     },
     {
@@ -1107,14 +1107,19 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "assets",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 4,
+        "outputs": 5,
         "x": 400,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "f304279097451e82"
@@ -1124,6 +1129,9 @@
             ],
             [
                 "06969b016a3d71a1"
+            ],
+            [
+                "6d1ad8d437a846ce"
             ],
             [
                 "62a71b748c924363"
@@ -1139,7 +1147,7 @@
         "action": "",
         "pretty": false,
         "x": 250,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "1e74388b5934da98"
@@ -2669,7 +2677,7 @@
             "af7443700a2c537c"
         ],
         "x": 155,
-        "y": 800,
+        "y": 840,
         "wires": [
             [
                 "9af2857d9a1be37c"
@@ -2688,7 +2696,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 780,
+        "y": 820,
         "wires": [
             [
                 "8aa8457966c1294f"
@@ -2702,7 +2710,7 @@
         "name": "From API",
         "info": "",
         "x": 80,
-        "y": 740,
+        "y": 780,
         "wires": []
     },
     {
@@ -2722,7 +2730,7 @@
         "name": "Store Available Audio Files",
         "info": "",
         "x": 130,
-        "y": 540,
+        "y": 580,
         "wires": []
     },
     {
@@ -2737,7 +2745,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "397d62e439616946"
@@ -2758,7 +2766,7 @@
         "oldrc": false,
         "name": "Execute Volume Command",
         "x": 640,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "efdf05c1fd0eb8b2"
@@ -2778,7 +2786,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 1320,
+        "y": 1360,
         "wires": []
     },
     {
@@ -2917,7 +2925,7 @@
             "62f7fa9610e77462"
         ],
         "x": 35,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "7d8f844d95a0a057"
@@ -2938,7 +2946,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 780,
+        "y": 820,
         "wires": []
     },
     {
@@ -2948,7 +2956,7 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1540,
+        "y": 1580,
         "wires": []
     },
     {
@@ -2969,7 +2977,7 @@
             "62f7fa9610e77462"
         ],
         "x": 35,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "ab91ca2c5c750e95"
@@ -2988,7 +2996,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "5a44044c38f6a2b7"
@@ -3009,7 +3017,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1860,
+        "y": 1900,
         "wires": []
     },
     {
@@ -3030,7 +3038,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -3050,7 +3058,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1820,
+        "y": 1860,
         "wires": []
     },
     {
@@ -3086,7 +3094,7 @@
         "repair": false,
         "outputs": 4,
         "x": 350,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -3114,7 +3122,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1660,
+        "y": 1700,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3130,7 +3138,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1660,
+        "y": 1700,
         "wires": []
     },
     {
@@ -3143,7 +3151,7 @@
             "3c25c445887cca7c"
         ],
         "x": 35,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "837e2a02b8b3cb89"
@@ -3162,7 +3170,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1700,
+        "y": 1740,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3181,7 +3189,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1740,
+        "y": 1780,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3385,7 +3393,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Set Wake Sound (Test)",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \nconst audio_assets = flow.get('audio_assets')\n\nconst dir = 'guided_meditation'\nconst file = 'college_and_electric_youth_-_a_real_hero.mp3'\n\nmsg.payload = {\n    audio_file: audio_assets[dir][file],\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \nconst audio_assets = flow.get('audio_assets')\n\nconst dir = 'Wake Sounds'\nconst file = 'Birds Chirping 15 Min.mp3'\n\nmsg.payload = {\n    audio_file: audio_assets[dir][file],\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3446,7 +3454,7 @@
         "name": "To Storage",
         "info": "",
         "x": 80,
-        "y": 1940,
+        "y": 1980,
         "wires": []
     },
     {
@@ -3460,7 +3468,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "6b5fe6e5651bbcdc"
@@ -3479,7 +3487,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "377cc3968f89cf3d"
@@ -3505,7 +3513,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 800,
+        "y": 840,
         "wires": [
             [
                 "86d20a5355d39ce3",
@@ -3528,7 +3536,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 820,
+        "y": 860,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -3541,7 +3549,7 @@
             "91e830cf715025c9"
         ],
         "x": 535,
-        "y": 740,
+        "y": 780,
         "wires": []
     },
     {
@@ -3554,7 +3562,7 @@
             "decd7dd7fcda1a73"
         ],
         "x": 795,
-        "y": 1980,
+        "y": 2020,
         "wires": []
     },
     {
@@ -3570,7 +3578,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2040,
+        "y": 2080,
         "wires": []
     },
     {
@@ -3585,7 +3593,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "064db609db367336",
@@ -3605,7 +3613,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -3631,7 +3639,7 @@
         "repair": false,
         "outputs": 2,
         "x": 370,
-        "y": 900,
+        "y": 940,
         "wires": [
             [
                 "ec82c39f81a74236"
@@ -3650,7 +3658,7 @@
             "4095d36df0bf7800"
         ],
         "x": 35,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
                 "192c539d401cbfe5"
@@ -3669,7 +3677,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "49568c675f1055e9"
@@ -3688,7 +3696,7 @@
         "finalize": "",
         "libs": [],
         "x": 640,
-        "y": 920,
+        "y": 960,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -3702,7 +3710,7 @@
             "91e830cf715025c9"
         ],
         "x": 915,
-        "y": 880,
+        "y": 920,
         "wires": []
     },
     {
@@ -3724,7 +3732,7 @@
         "repair": false,
         "outputs": 2,
         "x": 160,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
                 "f3226fefd804061d"
@@ -3746,7 +3754,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 940,
+        "y": 980,
         "wires": [],
         "icon": "node-red/alert.svg"
     },
@@ -3759,7 +3767,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 410,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "d3c721f30dc405fe"
@@ -3785,7 +3793,7 @@
         "repair": false,
         "outputs": 2,
         "x": 730,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "3c25c445887cca7c"
@@ -3807,7 +3815,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "c3907ce3b315e7d0",
@@ -3827,7 +3835,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1600,
+        "y": 1640,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -3843,7 +3851,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1520,
+        "y": 1560,
         "wires": []
     },
     {
@@ -3858,7 +3866,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 1820,
+        "y": 1860,
         "wires": [
             [
                 "f9696091e419c12c",
@@ -3880,7 +3888,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1360,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3896,7 +3904,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1360,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3912,7 +3920,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1400,
+        "y": 1440,
         "wires": []
     },
     {
@@ -3928,7 +3936,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1440,
+        "y": 1480,
         "wires": []
     },
     {
@@ -3940,7 +3948,7 @@
             "b1c4643e4ab543a5"
         ],
         "x": 135,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "4fbca4893f9888f9"
@@ -3959,7 +3967,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1000,
+        "y": 1040,
         "wires": [
             [
                 "5b84f8efca57f859"
@@ -3975,7 +3983,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1000,
+        "y": 1040,
         "wires": []
     },
     {
@@ -5576,7 +5584,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "332df25bbfca8896"
@@ -5592,7 +5600,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1020,
+        "y": 1060,
         "wires": []
     },
     {
@@ -6322,7 +6330,7 @@
         "repair": false,
         "outputs": 5,
         "x": 420,
-        "y": 1100,
+        "y": 1140,
         "wires": [
             [
                 "b443ac417c7a70f1"
@@ -6349,7 +6357,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 820,
+        "y": 860,
         "wires": []
     },
     {
@@ -6371,7 +6379,7 @@
             "fd065ae767b74615"
         ],
         "x": 635,
-        "y": 820,
+        "y": 860,
         "wires": [
             [
                 "14b017febce3fd48"
@@ -6390,7 +6398,7 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 1180,
+        "y": 1220,
         "wires": []
     },
     {
@@ -6405,7 +6413,7 @@
         ],
         "uncaught": false,
         "x": 90,
-        "y": 820,
+        "y": 860,
         "wires": [
             [
                 "a80e8adf40042251",
@@ -6422,7 +6430,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 435,
-        "y": 820,
+        "y": 860,
         "wires": []
     },
     {
@@ -6439,7 +6447,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 370,
-        "y": 880,
+        "y": 920,
         "wires": []
     },
     {
@@ -6454,7 +6462,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 820,
+        "y": 860,
         "wires": [
             [
                 "a37c62cfcb685775"
@@ -6468,7 +6476,7 @@
         "name": "HTTP Requests",
         "info": "",
         "x": 500,
-        "y": 760,
+        "y": 800,
         "wires": []
     },
     {
@@ -6480,7 +6488,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1060,
+        "y": 1100,
         "wires": []
     },
     {
@@ -6492,7 +6500,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1100,
+        "y": 1140,
         "wires": []
     },
     {
@@ -6504,7 +6512,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1140,
+        "y": 1180,
         "wires": []
     },
     {
@@ -7152,7 +7160,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1460,
+        "y": 1500,
         "wires": [
             [
                 "a4e0cf51c9a7d1eb"
@@ -7171,7 +7179,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1460,
+        "y": 1500,
         "wires": [
             [
                 "0b58e656f91710d1"
@@ -7187,21 +7195,20 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1460,
+        "y": 1500,
         "wires": []
     },
     {
         "id": "cf7c569ef36c9c38",
         "type": "http in",
         "z": "f6f2187d.f17ca8",
-        "d": true,
         "name": "",
         "url": "/restnode/audio/assets",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1620,
+        "y": 1660,
         "wires": [
             [
                 "b1c4643e4ab543a5"
@@ -7217,7 +7224,7 @@
             "c8535874aa1ff738"
         ],
         "x": 915,
-        "y": 1620,
+        "y": 1660,
         "wires": []
     },
     {
@@ -7234,7 +7241,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 1880,
+        "y": 1920,
         "wires": []
     },
     {
@@ -7294,7 +7301,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1740,
+        "y": 1780,
         "wires": [
             [
                 "a9bcf9fb6e3210a5"
@@ -7311,7 +7318,7 @@
             "6f3c21450db0a2d2"
         ],
         "x": 915,
-        "y": 1740,
+        "y": 1780,
         "wires": []
     },
     {
@@ -7333,7 +7340,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1740,
+        "y": 1780,
         "wires": [
             [
                 "6bcd5510f8049afa"
@@ -7355,7 +7362,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1800,
+        "y": 1840,
         "wires": []
     },
     {
@@ -7384,7 +7391,7 @@
         "repair": false,
         "outputs": 3,
         "x": 680,
-        "y": 1740,
+        "y": 1780,
         "wires": [
             [
                 "ae7bfc1a4f9a8204"
@@ -7409,7 +7416,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1680,
+        "y": 1720,
         "wires": [
             [
                 "f10b7c0b25fa5429"
@@ -7428,7 +7435,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1800,
+        "y": 1840,
         "wires": []
     },
     {
@@ -7441,7 +7448,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "a3f2fa267c10ee3b"
@@ -7467,7 +7474,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "f11d1107faeded90"
@@ -7489,7 +7496,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1920,
+        "y": 1960,
         "wires": [
             [
                 "32458938ca244455"
@@ -7508,7 +7515,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2040,
+        "y": 2080,
         "wires": []
     },
     {
@@ -7542,7 +7549,7 @@
         "repair": false,
         "outputs": 4,
         "x": 680,
-        "y": 1980,
+        "y": 2020,
         "wires": [
             [
                 "56dd34c5643d6bad"
@@ -7570,7 +7577,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2040,
+        "y": 2080,
         "wires": []
     },
     {
@@ -7582,7 +7589,7 @@
             "f8da963aa27f72a0"
         ],
         "x": 915,
-        "y": 1980,
+        "y": 2020,
         "wires": []
     },
     {
@@ -7594,7 +7601,7 @@
             "56dd34c5643d6bad"
         ],
         "x": 135,
-        "y": 1060,
+        "y": 1100,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -7613,7 +7620,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1060,
+        "y": 1100,
         "wires": [
             [
                 "5d24fd8093ed5590"
@@ -7629,7 +7636,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1060,
+        "y": 1100,
         "wires": []
     },
     {
@@ -7938,7 +7945,7 @@
         "name": "",
         "links": [],
         "x": 35,
-        "y": 2100,
+        "y": 2140,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -7957,7 +7964,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2100,
+        "y": 2140,
         "wires": [
             [
                 "8ef80688d076fcc6"
@@ -7973,7 +7980,7 @@
             "b390266dc39ac695"
         ],
         "x": 795,
-        "y": 2100,
+        "y": 2140,
         "wires": []
     },
     {
@@ -7998,7 +8005,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2180,
+        "y": 2220,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -8251,7 +8258,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1500,
+        "y": 1540,
         "wires": [
             [
                 "4d7872e1529962ce"
@@ -8270,7 +8277,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1500,
+        "y": 1540,
         "wires": [
             [
                 "189ae71dc788c445"
@@ -8286,7 +8293,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1500,
+        "y": 1540,
         "wires": []
     },
     {
@@ -8299,7 +8306,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "5898b29b72a6cccd"
@@ -8318,7 +8325,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1540,
+        "y": 1580,
         "wires": [
             [
                 "6a68828c35240fc7"
@@ -8334,7 +8341,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1540,
+        "y": 1580,
         "wires": []
     },
     {
@@ -8344,7 +8351,7 @@
         "name": "GET Requests",
         "info": "",
         "x": 120,
-        "y": 1400,
+        "y": 1440,
         "wires": []
     },
     {
@@ -8354,7 +8361,7 @@
         "name": "POST Requests",
         "info": "",
         "x": 120,
-        "y": 980,
+        "y": 1020,
         "wires": []
     },
     {
@@ -8367,7 +8374,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2200,
+        "y": 2240,
         "wires": [
             [
                 "beeae97391c08041"
@@ -8393,7 +8400,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2200,
+        "y": 2240,
         "wires": [
             [
                 "bb81fcec96723838"
@@ -8415,7 +8422,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2140,
+        "y": 2180,
         "wires": [
             [
                 "93650fa449eec81d"
@@ -8434,7 +8441,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2260,
+        "y": 2300,
         "wires": []
     },
     {
@@ -8473,7 +8480,7 @@
         "repair": false,
         "outputs": 5,
         "x": 680,
-        "y": 2200,
+        "y": 2240,
         "wires": [
             [
                 "63e068dd27d72c8f"
@@ -8504,7 +8511,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2280,
+        "y": 2320,
         "wires": []
     },
     {
@@ -8516,7 +8523,7 @@
             "d562529942175c6a"
         ],
         "x": 915,
-        "y": 2200,
+        "y": 2240,
         "wires": []
     },
     {
@@ -8986,7 +8993,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 480,
+        "y": 500,
         "wires": []
     },
     {
@@ -8999,7 +9006,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 440,
+        "y": 460,
         "wires": []
     },
     {
@@ -9012,7 +9019,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 400,
+        "y": 420,
         "wires": []
     },
     {
@@ -9027,7 +9034,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 520,
+        "y": 580,
         "wires": []
     },
     {
@@ -9040,7 +9047,7 @@
         ],
         "uncaught": false,
         "x": 230,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "1f4b4e7a860167d1"
@@ -9051,15 +9058,14 @@
         "id": "77bbaf1677e51e46",
         "type": "link in",
         "z": "f6f2187d.f17ca8",
-        "name": "",
+        "name": "Websocket Response",
         "links": [
-            "f304279097451e82",
-            "ec9a880fb55d1e9a",
             "06969b016a3d71a1",
-            "d2cef1bbd3fb8eb1"
+            "ec9a880fb55d1e9a",
+            "f304279097451e82"
         ],
         "x": 195,
-        "y": 600,
+        "y": 640,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -9078,7 +9084,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -9643,7 +9649,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1400,
+        "y": 1440,
         "wires": [
             [
                 "8d54343c273a8128",
@@ -9658,7 +9664,7 @@
         "name": "From Event Scheduler",
         "info": "",
         "x": 120,
-        "y": 1140,
+        "y": 1180,
         "wires": []
     },
     {
@@ -9668,7 +9674,7 @@
         "name": "",
         "links": [],
         "x": 135,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             [
                 "1bcae0d3b28c7498"
@@ -9687,7 +9693,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1200,
+        "y": 1240,
         "wires": [
             [
                 "62f7fa9610e77462"
@@ -9704,7 +9710,7 @@
             "1b563d9b71af7068"
         ],
         "x": 775,
-        "y": 1200,
+        "y": 1240,
         "wires": []
     },
     {
@@ -10499,7 +10505,7 @@
         "payload": "start",
         "payloadType": "str",
         "x": 90,
-        "y": 2320,
+        "y": 2360,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10515,7 +10521,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 470,
-        "y": 2320,
+        "y": 2360,
         "wires": [
             [
                 "2d418fbe39d25536"
@@ -10535,7 +10541,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 2320,
+        "y": 2360,
         "wires": []
     },
     {
@@ -10560,7 +10566,7 @@
         "payload": "stop",
         "payloadType": "str",
         "x": 90,
-        "y": 2380,
+        "y": 2420,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10589,7 +10595,7 @@
         "payload": "resume",
         "payloadType": "str",
         "x": 90,
-        "y": 2440,
+        "y": 2480,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10618,7 +10624,7 @@
         "payload": "pause",
         "payloadType": "str",
         "x": 90,
-        "y": 2500,
+        "y": 2540,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10630,101 +10636,17 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "",
-        "func": "\n// msg.audioURI = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\nmsg.audioURI = \"/data/projects/REST_NODE/assets/night.mp3\"\n\nreturn msg;",
+        "func": "\n// msg.audioURI = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\nmsg.audioURI = \"/data/projects/REST_NODE/assets/Wake Sounds/Birds Chirping 15 Min.mp3\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 2320,
+        "y": 2360,
         "wires": [
             [
                 "8cafd4602aeb9b91"
-            ]
-        ]
-    },
-    {
-        "id": "283bda12393b469d",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 2580,
-        "wires": [
-            [
-                "1a591ad1a572b38f"
-            ]
-        ]
-    },
-    {
-        "id": "1a591ad1a572b38f",
-        "type": "http request",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "method": "GET",
-        "ret": "bin",
-        "paytoqs": "ignore",
-        "url": "https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Night%20Sounds%2FTranquil%20Calm%2012%20Hours.mp3?alt=media&token=8ed03101-7d61-4b15-9d39-8bd51bd82c98",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "",
-        "x": 270,
-        "y": 2580,
-        "wires": [
-            [
-                "63d91bf9d4e7ac9f"
-            ]
-        ]
-    },
-    {
-        "id": "57593c0ea1c64f88",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 790,
-        "y": 2580,
-        "wires": []
-    },
-    {
-        "id": "63d91bf9d4e7ac9f",
-        "type": "file",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "filename": "/data/projects/REST_NODE/assets/test.mp3",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 530,
-        "y": 2580,
-        "wires": [
-            [
-                "57593c0ea1c64f88"
             ]
         ]
     },
@@ -10749,7 +10671,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2680,
+        "y": 2620,
         "wires": [
             [
                 "7d52a4f3f4d1f73c"
@@ -10769,8 +10691,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 2680,
+        "x": 830,
+        "y": 2620,
         "wires": []
     },
     {
@@ -10778,7 +10700,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Download Media File",
-        "func": "const { createWriteStream } = fs\n\nconst url = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Night%20Sounds%2FTranquil%20Calm%2012%20Hours.mp3?alt=media&token=8ed03101-7d61-4b15-9d39-8bd51bd82c98\"\nconst file_destination = \"/data/projects/REST_NODE/assets/night.mp3\"\n\nprogress(request(url))\n    .on('progress', (state) => {\n    // The state is an object that looks like this: \n    // { \n    //     percent: 0.5,               // Overall percent (between 0 to 1) \n    //     speed: 554732,              // The download speed in bytes/sec \n    //     size: { \n    //         total: 90044871,        // The total payload size in bytes \n    //         transferred: 27610959   // The transferred payload size in bytes \n    //     }, \n    //     time: { \n    //         elapsed: 36.235,        // The total elapsed seconds since the start (3 decimals) \n    //         remaining: 81.403       // The remaining seconds to finish (3 decimals) \n    //     } \n    // } \n    node.send({\n        'progress': state\n    })\n})\n.on('error', (error) => {\n    node.send({\n        'error': error\n    })\n})\n.on('end', function () {\n    node.send({\n        'end': true\n    })\n})\n.pipe(createWriteStream(file_destination));\n\nreturn msg;",
+        "func": "const { createWriteStream } = fs\n\nconst url = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\nconst fullPath = \"Wake Sounds/Birds Chirping 15 Min.mp3\"\nconst file_destination = `/data/projects/REST_NODE/assets/${fullPath}`\n\nconst request_url = request(url)\n\nconst progress_config = {\n    throttle: 3000\n}\n\nconst in_progress_handler = (state) => {\n    node.send({\n        'progress': state\n    })\n}\n\nconst on_error_handler = (error) => {\n    node.send({\n        'error': error\n    })\n}\n\nconst on_end_handler = () => {\n    node.send({\n        'end': true\n    })\n}\n\nconst write_stream = createWriteStream(file_destination)\n\nprogress(request_url, progress_config)\n    .on('progress', in_progress_handler)\n    .on('error', on_error_handler)\n    .on('end', on_end_handler)\n    .pipe(write_stream)\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10797,11 +10719,12 @@
                 "module": "request-progress"
             }
         ],
-        "x": 300,
+        "x": 460,
         "y": 2680,
         "wires": [
             [
-                "2078f9640c296d7f"
+                "2078f9640c296d7f",
+                "2202f3a074aa0c70"
             ]
         ]
     },
@@ -10812,7 +10735,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 2260,
+        "y": 2300,
         "wires": []
     },
     {
@@ -10825,7 +10748,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1280,
+        "y": 1320,
         "wires": [
             [
                 "d3606543f854decc"
@@ -10841,7 +10764,7 @@
             "c9c5a8c5491e0541"
         ],
         "x": 635,
-        "y": 1280,
+        "y": 1320,
         "wires": []
     },
     {
@@ -10857,7 +10780,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 1340,
+        "y": 1380,
         "wires": []
     },
     {
@@ -10869,7 +10792,7 @@
         "action": "obj",
         "pretty": false,
         "x": 370,
-        "y": 1280,
+        "y": 1320,
         "wires": [
             [
                 "3a10e179ce9fa218",
@@ -10886,7 +10809,7 @@
             "3a10e179ce9fa218"
         ],
         "x": 135,
-        "y": 620,
+        "y": 660,
         "wires": [
             [
                 "5359a8f29ecf4f30"
@@ -10905,7 +10828,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 620,
+        "y": 660,
         "wires": [
             [
                 "fd065ae767b74615"
@@ -10921,7 +10844,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 935,
-        "y": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -10937,7 +10860,7 @@
         "oldrc": false,
         "name": "Get Available Assets Dir",
         "x": 510,
-        "y": 2760,
+        "y": 2860,
         "wires": [
             [
                 "c73026e2a7474f78"
@@ -10967,7 +10890,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 110,
-        "y": 2760,
+        "y": 2860,
         "wires": [
             [
                 "7c5ca2aa4103ee8c"
@@ -10986,7 +10909,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 2760,
+        "y": 2860,
         "wires": [
             [
                 "f2fac2e5b78c46b3"
@@ -11005,7 +10928,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 2760,
+        "y": 2860,
         "wires": [
             [
                 "2fc0d9c905e68783"
@@ -11021,7 +10944,7 @@
             "96a98c49ec5f592e"
         ],
         "x": 935,
-        "y": 2760,
+        "y": 2860,
         "wires": []
     },
     {
@@ -11033,7 +10956,7 @@
             "2fc0d9c905e68783"
         ],
         "x": 35,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "62c5c61de81dc05f"
@@ -11053,7 +10976,7 @@
         "oldrc": false,
         "name": "Get Audio Files",
         "x": 580,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "403f07b7d0544159"
@@ -11074,7 +10997,7 @@
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "97c6f4e7cec98e3d"
@@ -11086,14 +11009,14 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Get Audio Files Command",
-        "func": "const dirs_list = msg.dirs\nconst keys = Object.keys(dirs_list)\n\nif(!keys[msg.counter])\n    return null\n\nconst path = dirs_list[ keys[msg.counter] ]\nconst command = `cd ${path} && ls`\n\nmsg.payload = command\n\nmsg.counter++\nmsg.keys_length = keys.length\n\nreturn msg;",
+        "func": "const dirs_list = msg.dirs\nconst keys = Object.keys(dirs_list)\n\nif(!keys[msg.counter])\n    return null\n\nconst path = dirs_list[ keys[msg.counter] ]\nconst command = `cd '${path}' && ls`\n\nmsg.payload = command\n\nmsg.counter++\nmsg.keys_length = keys.length\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "4c9e7337cd75daee"
@@ -11118,7 +11041,7 @@
         "repair": false,
         "outputs": 1,
         "x": 780,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "97c6f4e7cec98e3d",
@@ -11138,7 +11061,7 @@
         "finalize": "",
         "libs": [],
         "x": 850,
-        "y": 2880,
+        "y": 2980,
         "wires": []
     },
     {
@@ -11153,7 +11076,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 2880,
+        "y": 2980,
         "wires": [
             [
                 "1e7f948bea0d4318"
@@ -11169,7 +11092,7 @@
             "392fbd89372faedd"
         ],
         "x": 935,
-        "y": 2820,
+        "y": 2920,
         "wires": []
     },
     {
@@ -11181,10 +11104,44 @@
             "bb84be7b185de541"
         ],
         "x": 35,
-        "y": 2880,
+        "y": 2980,
         "wires": [
             [
                 "31d7717a39009682"
+            ]
+        ]
+    },
+    {
+        "id": "6d1ad8d437a846ce",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [],
+        "x": 875,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2202f3a074aa0c70",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [],
+        "x": 795,
+        "y": 2680,
+        "wires": []
+    },
+    {
+        "id": "db8ac9d402cea0bf",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [],
+        "x": 135,
+        "y": 2680,
+        "wires": [
+            [
+                "7d52a4f3f4d1f73c"
             ]
         ]
     }
