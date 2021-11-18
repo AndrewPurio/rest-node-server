@@ -56,13 +56,6 @@
         "info": ""
     },
     {
-        "id": "9a5a919d288e7004",
-        "type": "tab",
-        "label": "Firebase",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "2beab0d8.f64dc",
         "type": "subflow",
         "name": "Light Quick Fade-On",
@@ -285,14 +278,6 @@
         "type": "websocket-listener",
         "path": "/restnode",
         "wholemsg": "false"
-    },
-    {
-        "id": "5bdbd81c314c9bee",
-        "type": "firebase-config",
-        "name": "Rest Node",
-        "cred": "{   \"type\": \"service_account\",   \"project_id\": \"exist-tribe\",   \"private_key_id\": \"2a4cc00811f2b3a726e056bd5e8f95b52417fa5f\",   \"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCf0ZQ/cbEzGIHc\\nQ49KJM0RV0XDiF60SvVUdCbIxCukFlF3N81vroYIoC15N05xhx8oi9DbEKSAyCS7\\nLb4p29Afq+CTfDxw7S9JB7AzkmwIMbTmKdMenZmvI0BYgQThVOd75O/y510tPtgc\\nCEdi1qR7sBVDWPPbdMaLPzO9HXxH+pHAamqdaL2JXrdWd0yHaeGnyczebwwJ6TKh\\npzFqEMvVDT6Kh3O7G1jTO3t+fBQO74B2I0J9bbF9BcgPg6ynRebbAP4h6Nv11cma\\npui07vIL/IOcH3713jFJ1QC7ic5LQ5+A3aXeTGQI3iVzxgy9FUejWgi+mjzEYjzG\\nxuz6LqM3AgMBAAECggEAOSTNthWnv1ZO8HvzmxYngMDMwApdmmeG6siRKY4C8KvO\\nOytnuDwVzrW/LK1azfr7aBr99aYwu59UitzjNsJS21Awf2uXjOUx2BH4raf4GsHz\\nJazkwPim/9lB46NWJF+gWUtVhGu3hDsJOJS5OZz3uQYPxEHlB53sc9OIY2FMk8ty\\nR4yQ4NqBMo7aN/HI3tgoLzbmRXrkxuBh9XLd/J9bpZber9Ga8jjRfzDydBXbQTew\\nuadEg++HIygACWQOD3xrDov6NbKYd1tFIpyvEETHJUy6KufUIAxLdkpZ5Ceaty/R\\np35LK2IKAaOCYV/e07hA8mngDbM1PGt8sRAnRLplqQKBgQDUrIDRx9Fv7YAHmHhv\\nBYiKEiZhSgwabu0R3FycSEVomWLilIGbkdFGpsi4jODKeuyI69PiraXf4Pl9rYNg\\n5UxBiIC6Zglx/tyHdcByk2I7CXynz0cgka3jq3EG4rB5msUWCn2+E3fJx0iVKruC\\nqSpICtIHlGwyZ5wdhSq4KPEH5QKBgQDAYIpcdaJ3u+wuVy69VoUBdeaoJz8NmN/p\\nQLtuPAgxIfb7hUasq/O8U6Q4xyZKV5OOjK5JaeVNzkSEqYN/Vqq69CS6iIdINS6h\\no4f6CYRUwGfwbh3ZkcXsVpWHWZpRdT5Sq9oXeLTta0R61JHL8puDc1ACkVm36AYj\\n1rO+3SyU6wKBgQCX603uDN3oJXDCfEDzlbFOZ96wurNgooKIsrAZF2s1Z/SCRHE9\\nDvG+lV9mrYPaP+r9d/CYyVBnV48BHtRtf/50Ba1m+YKfwt4Hia7aabvOzl0UhnWZ\\np1be/lW0BHTpuQw2TXI7OC7mnYuUurzNfkfsxIX50iVj8C1NzRWSDfT3nQKBgATI\\nIYhM0D4DqMo6FopURTgVEyeo2hNfcmlc14vU6Cs4eegklu4h1AwhVBqpMJV2ec94\\nRbjDbhSyBNf7Uq5unA3LlcIhNKOh1sfjxbR8WhK1OaArTIik6/OE73CO1JwjuunZ\\nJbGhqXWhTfFzqTAVlrH8wsddj4pXtRdc9djPrJUDAoGAUhoOq5mRyN5eyADt+7hB\\nxO+Xktg7/tluHyhTNYlh4U+dcmpbmCx5HndBsoe2apoiBcpev3Y43RR85OYSWhkO\\nRbC+xGPnDNsMnj/uqlQEhuUS0TVbtYXretiAKsMggDeFi9ienQ7IaOVR8WMoDLC/\\n1LENRhX0GGHlyYWHEpLZy9g=\\n-----END PRIVATE KEY-----\\n\",   \"client_email\": \"firebase-adminsdk-33vl6@exist-tribe.iam.gserviceaccount.com\",   \"client_id\": \"114299804974728366379\",   \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",   \"token_uri\": \"https://oauth2.googleapis.com/token\",   \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",   \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-33vl6%40exist-tribe.iam.gserviceaccount.com\" }",
-        "dburl": "firebase-adminsdk-33vl6@exist-tribe.iam.gserviceaccount.com",
-        "bucket": ""
     },
     {
         "id": "3bcabf98.3b81",
@@ -998,7 +983,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 110,
-        "y": 500,
+        "y": 380,
         "wires": [
             [
                 "db7057806dca5e74"
@@ -1013,7 +998,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 660,
-        "y": 640,
+        "y": 520,
         "wires": []
     },
     {
@@ -1119,7 +1104,7 @@
         "repair": false,
         "outputs": 5,
         "x": 400,
-        "y": 500,
+        "y": 380,
         "wires": [
             [
                 "f304279097451e82"
@@ -1147,7 +1132,7 @@
         "action": "",
         "pretty": false,
         "x": 250,
-        "y": 500,
+        "y": 380,
         "wires": [
             [
                 "1e74388b5934da98"
@@ -1379,11 +1364,7 @@
             [
                 "b6b9c922ac0177ab",
                 "4c149006d1618a77",
-                "1a5068f4b0cae0d9",
-                "3db23191674cf3b4",
-                "fc9d2e059609396f",
-                "176706c3efb8ce21",
-                "2321c07923154b43"
+                "1a5068f4b0cae0d9"
             ]
         ]
     },
@@ -1392,7 +1373,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Global Config",
-        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null, // url for the audio file\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED', // offpayload state can either be: 'STOPPED', 'PAUSED'\n    sound: 'NIGHT_SOUND'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'WAKE_SOUND'\n}\n\nconst RELAXATION_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'RELAXATION_SOUND'\n}\n\nconst days_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst bedtime = {\n    type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset\n    time: '21:00', // Base time of the on and off offsets\n    light: {\n        onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set\n        offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF\n        },\n        days_selected\n    },\n\n    sound: {\n        onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set\n        offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set\n        onpayload: {\n            ...NIGHT_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...NIGHT_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    },\n\n    relax: {\n        onoffset: -30, // 30 minutes before bedtime\n        offoffset: 0,\n        onpayload: {\n            ...RELAXATION_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...RELAXATION_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst waketime = {\n    type: 'waketime',\n    time: '5:00',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...WAKE_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst sunrise = {\n    type: 'sunrise',\n    time: 'sunrise',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst sunset = {\n    type: 'sunset',\n    time: 'sunset',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/light.config.json',\n    audio: './defaults/audio.config.json',\n    event: './defaults/event.config.json',\n    system: './defaults/system.config.json',\n    network: './defaults/network.config.json',\n\n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND\n    },\n\n    default_event_config: {\n        bedtime,\n        waketime,\n        sunrise,\n        sunset,\n        days_selected\n    },\n\n    default_system_config: {\n        system_volume: 100,\n        audio_device: 'Headphone'\n    },\n\n    default_network_config: {\n        \n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
+        "func": "const NIGHT_LIGHT = {\n    light: 'NIGHT_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst WAKE_LIGHT = {\n    light: 'WAKE_LIGHT',\n    max_brightness: 100,\n    state: 'OFF',\n    tick: 100\n}\n\nconst NIGHT_SOUND = {\n    audio_file: null, // url for the audio file\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED', // offpayload state can either be: 'STOPPED', 'PAUSED'\n    sound: 'NIGHT_SOUND'\n}\n\nconst WAKE_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'WAKE_SOUND'\n}\n\nconst RELAXATION_SOUND = {\n    audio_file: null,\n    volume: 50,\n    max_volume: 100,\n    state: 'STOPPED',\n    sound: 'RELAXATION_SOUND'\n}\n\nconst days_selected = {\n    mon: true,\n    tue: true,\n    wed: true,\n    thu: true,\n    fri: true,\n    sat: true,\n    sun: true\n}\n\nconst bedtime = {\n    type: 'bedtime', // Should be one of the values: bedtime, waketime, sunrise, sunset\n    time: '21:00', // Base time of the on and off offsets\n    light: {\n        onoffset: 0, // integer - The on time offset in minutes e.g. the light will turn on at the same time (0* minutes) that was set\n        offoffset: 60, // integer - The off time offset in minutes e.g. the light will turn off after 60 minutes of the time set\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON' // Can be one of the following values: ON, FADE_ON\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF' // Can be one of the following values: OFF, FADE_OFF\n        },\n        days_selected\n    },\n\n    sound: {\n        onoffset: 0, // The on time offset in minutes e.g. the sound will start playing at the same time (0* minutes) that was set\n        offoffset: 420, // The off time offset in minutes e.g. the sound will stop playing after 420* minutes (7 hours) of the time set\n        onpayload: {\n            ...NIGHT_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...NIGHT_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    },\n\n    relax: {\n        onoffset: -30, // 30 minutes before bedtime\n        offoffset: 0,\n        onpayload: {\n            ...RELAXATION_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...RELAXATION_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst waketime = {\n    type: 'waketime',\n    time: '5:00',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    sound: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_SOUND,\n            state: 'PLAYING'\n        },\n        offpayload: {\n            ...WAKE_SOUND,\n            state: 'STOPPED'\n        },\n        days_selected\n    }\n}\n\nconst sunrise = {\n    type: 'sunrise',\n    time: 'sunrise',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...WAKE_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst sunset = {\n    type: 'sunset',\n    time: 'sunset',\n    light: {\n        onoffset: 0,\n        offoffset: 60,\n        onpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_ON'\n        },\n        offpayload: {\n            ...NIGHT_LIGHT,\n            state: 'FADE_OFF'\n        },\n        days_selected\n    },\n    // sound: {\n    //     onoffset: 0,\n    //     offoffset: 60,\n    //     onpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'PLAYING' \n    //     },\n    //     offpayload: {\n    //         ...WAKE_SOUND,\n    //         state: 'STOPPED'\n    //     },\n    //     days_selected\n    // }\n}\n\nconst AUDIO_DOWNLOAD_RESPONSE = \"AUDIO_DOWNLOAD_RESPONSE\"\n\nconst defaults_config = {\n    assets_dir: '/data/projects/REST_NODE/assets',\n    light: './defaults/light.config.json',\n    audio: './defaults/audio.config.json',\n    event: './defaults/event.config.json',\n    system: './defaults/system.config.json',\n    network: './defaults/network.config.json',\n    \n    api_response_types: {\n        AUDIO_DOWNLOAD_RESPONSE\n    },\n    \n    default_light_config: {\n        NIGHT_LIGHT, WAKE_LIGHT\n    },\n\n    default_audio_config: {\n        NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND\n    },\n\n    default_event_config: {\n        bedtime,\n        waketime,\n        sunrise,\n        sunset,\n        days_selected\n    },\n\n    default_system_config: {\n        system_volume: 100,\n        audio_device: 'Headphone'\n    },\n\n    default_network_config: {\n        \n    }\n}\n\nglobal.set('defaults_config', defaults_config)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -2114,8 +2095,7 @@
         "y": 2060,
         "wires": [
             [
-                "a2bd95418d6120d8",
-                "7e2ac3fcc945b0ad"
+                "a2bd95418d6120d8"
             ]
         ]
     },
@@ -2156,22 +2136,6 @@
         ],
         "x": 635,
         "y": 520,
-        "wires": []
-    },
-    {
-        "id": "7e2ac3fcc945b0ad",
-        "type": "debug",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 730,
-        "y": 2100,
         "wires": []
     },
     {
@@ -2550,7 +2514,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Constants",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND',\n    RELAXATION_SOUND: 'RELAXATION_SOUND'\n}\n\nconst audio_player_states = {\n    PAUSED: 'PAUSED',\n    PLAYING: 'PLAYING',\n    STOPPED: 'STOPPED',\n    RESUMED: 'RESUMED'\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\nflow.set(audio.RELAXATION_SOUND, RELAXATION_SOUND)\n\nflow.set('current_audio_playing', null)",
+        "func": "const { api_response_types } = global.get('defaults_config')\nconst { NIGHT_SOUND, WAKE_SOUND, RELAXATION_SOUND } = msg.payload\n\nconst audio = {\n    NIGHT_SOUND: 'NIGHT_SOUND',\n    WAKE_SOUND: 'WAKE_SOUND',\n    RELAXATION_SOUND: 'RELAXATION_SOUND'\n}\n\nconst AUDIO_ASSETS_AVAILABLE = \"AUDIO_ASSETS_AVAILABLE\"\nconst AUDIO_FILE_DOWNLOADED = \"AUDIO_FILE_DOWNLOADED\"\nconst AUDIO_FILE_DOWNLOAD_ERROR = \"AUDIO_DOWNLOADED\"\nconst AUDIO_FILE_DOWNLOAD_IN_PROGRESS = \"AUDIO_FILE_DOWNLOAD_IN_PROGRESS\"\n\nconst audio_download_response_topics = {\n    AUDIO_ASSETS_AVAILABLE,\n    AUDIO_FILE_DOWNLOADED,\n    AUDIO_FILE_DOWNLOAD_ERROR,\n    AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n}\n\nconst PAUSED = 'PAUSED'\nconst PLAYING = 'PLAYING'\nconst STOPPED = 'STOPPED'\nconst RESUMED = 'RESUMED'\n\nconst audio_player_states = {\n    PAUSED, PLAYING, STOPPED, RESUMED\n}\n\nflow.set('audio', audio)\nflow.set('audio_player_states', audio_player_states)\nflow.set('audio_download_response_topics', audio_download_response_topics)\nflow.set('api_response_types', api_response_types)\n\nflow.set(audio.NIGHT_SOUND, NIGHT_SOUND)\nflow.set(audio.WAKE_SOUND, WAKE_SOUND)\nflow.set(audio.RELAXATION_SOUND, RELAXATION_SOUND)\n\nflow.set('current_audio_playing', null)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -2730,7 +2694,7 @@
         "name": "Store Available Audio Files",
         "info": "",
         "x": 130,
-        "y": 580,
+        "y": 600,
         "wires": []
     },
     {
@@ -2745,7 +2709,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "397d62e439616946"
@@ -2766,7 +2730,7 @@
         "oldrc": false,
         "name": "Execute Volume Command",
         "x": 640,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "efdf05c1fd0eb8b2"
@@ -2786,7 +2750,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 1360,
+        "y": 1460,
         "wires": []
     },
     {
@@ -2925,7 +2889,7 @@
             "62f7fa9610e77462"
         ],
         "x": 35,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "7d8f844d95a0a057"
@@ -2956,7 +2920,7 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1580,
+        "y": 1680,
         "wires": []
     },
     {
@@ -2977,7 +2941,7 @@
             "62f7fa9610e77462"
         ],
         "x": 35,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             [
                 "ab91ca2c5c750e95"
@@ -2996,7 +2960,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1580,
+        "y": 1680,
         "wires": [
             [
                 "5a44044c38f6a2b7"
@@ -3017,7 +2981,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 1900,
+        "y": 2000,
         "wires": []
     },
     {
@@ -3038,7 +3002,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 1860,
+        "y": 1960,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -3058,7 +3022,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1860,
+        "y": 1960,
         "wires": []
     },
     {
@@ -3094,7 +3058,7 @@
         "repair": false,
         "outputs": 4,
         "x": 350,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -3122,7 +3086,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1700,
+        "y": 1800,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3138,7 +3102,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1700,
+        "y": 1800,
         "wires": []
     },
     {
@@ -3151,7 +3115,7 @@
             "3c25c445887cca7c"
         ],
         "x": 35,
-        "y": 1860,
+        "y": 1960,
         "wires": [
             [
                 "837e2a02b8b3cb89"
@@ -3170,7 +3134,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1740,
+        "y": 1840,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3189,7 +3153,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1780,
+        "y": 1880,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -3393,7 +3357,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Set Wake Sound (Test)",
-        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \nconst audio_assets = flow.get('audio_assets')\n\nconst dir = 'Wake Sounds'\nconst file = 'Birds Chirping 15 Min.mp3'\n\nmsg.payload = {\n    audio_file: audio_assets[dir][file],\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
+        "func": "const { NIGHT_SOUND, WAKE_SOUND } = flow.get('audio') \nconst audio_assets = flow.get('audio_assets')\n\nconst dir = 'Relaxation Sounds'\nconst file = 'Alternate Nose Breathing 4 Min.mp3'\n\nmsg.payload = {\n    audio_file: audio_assets[dir][file],\n    audio: WAKE_SOUND,\n    volume: 100\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3454,7 +3418,7 @@
         "name": "To Storage",
         "info": "",
         "x": 80,
-        "y": 1980,
+        "y": 2080,
         "wires": []
     },
     {
@@ -3468,7 +3432,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 2020,
+        "y": 2120,
         "wires": [
             [
                 "6b5fe6e5651bbcdc"
@@ -3487,7 +3451,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 2020,
+        "y": 2120,
         "wires": [
             [
                 "377cc3968f89cf3d"
@@ -3562,7 +3526,7 @@
             "decd7dd7fcda1a73"
         ],
         "x": 795,
-        "y": 2020,
+        "y": 2120,
         "wires": []
     },
     {
@@ -3578,7 +3542,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2080,
+        "y": 2180,
         "wires": []
     },
     {
@@ -3593,7 +3557,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 2020,
+        "y": 2120,
         "wires": [
             [
                 "064db609db367336",
@@ -3613,7 +3577,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -3767,7 +3731,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 410,
-        "y": 1860,
+        "y": 1960,
         "wires": [
             [
                 "d3c721f30dc405fe"
@@ -3793,7 +3757,7 @@
         "repair": false,
         "outputs": 2,
         "x": 730,
-        "y": 1580,
+        "y": 1680,
         "wires": [
             [
                 "3c25c445887cca7c"
@@ -3815,7 +3779,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             [
                 "c3907ce3b315e7d0",
@@ -3835,7 +3799,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1640,
+        "y": 1740,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -3851,7 +3815,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1560,
+        "y": 1660,
         "wires": []
     },
     {
@@ -3866,7 +3830,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 1860,
+        "y": 1960,
         "wires": [
             [
                 "f9696091e419c12c",
@@ -3888,7 +3852,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 1400,
+        "y": 1500,
         "wires": []
     },
     {
@@ -3904,7 +3868,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1400,
+        "y": 1500,
         "wires": []
     },
     {
@@ -3920,7 +3884,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1440,
+        "y": 1540,
         "wires": []
     },
     {
@@ -3936,7 +3900,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 1480,
+        "y": 1580,
         "wires": []
     },
     {
@@ -3945,7 +3909,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Audio Assets List",
         "links": [
-            "b1c4643e4ab543a5"
+            "b1c4643e4ab543a5",
+            "5192ecce926e940d"
         ],
         "x": 135,
         "y": 1040,
@@ -3966,11 +3931,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 300,
         "y": 1040,
         "wires": [
             [
-                "5b84f8efca57f859"
+                "900b291d7708de39"
             ]
         ]
     },
@@ -3983,7 +3948,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1040,
+        "y": 1060,
         "wires": []
     },
     {
@@ -5584,7 +5549,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1140,
+        "y": 1020,
         "wires": [
             [
                 "332df25bbfca8896"
@@ -5600,7 +5565,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1060,
+        "y": 940,
         "wires": []
     },
     {
@@ -6330,7 +6295,7 @@
         "repair": false,
         "outputs": 5,
         "x": 420,
-        "y": 1140,
+        "y": 1020,
         "wires": [
             [
                 "b443ac417c7a70f1"
@@ -6357,7 +6322,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 860,
+        "y": 740,
         "wires": []
     },
     {
@@ -6376,10 +6341,13 @@
             "6a68828c35240fc7",
             "4e6927d1d4c11009",
             "289d6a9a7fd46d3a",
-            "fd065ae767b74615"
+            "fd065ae767b74615",
+            "2202f3a074aa0c70",
+            "bc02de84fc2b537e",
+            "8241ce699c09ea33"
         ],
         "x": 635,
-        "y": 860,
+        "y": 740,
         "wires": [
             [
                 "14b017febce3fd48"
@@ -6398,22 +6366,26 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 1220,
+        "y": 1100,
         "wires": []
     },
     {
         "id": "d629cceacc4dc2f0",
         "type": "catch",
         "z": "f6f2187d.f17ca8",
-        "name": "",
+        "name": "HTTP Request Error Catcher",
         "scope": [
             "cf57cdebde601ad2",
             "383278fcb6f9293d",
-            "cb5e0ab8ee838002"
+            "cb5e0ab8ee838002",
+            "e675dae377251908",
+            "ca7603bf1dfcb6b5",
+            "7d3382ac291b5d68",
+            "8415c00b83f546c9"
         ],
         "uncaught": false,
-        "x": 90,
-        "y": 860,
+        "x": 160,
+        "y": 740,
         "wires": [
             [
                 "a80e8adf40042251",
@@ -6429,8 +6401,8 @@
         "links": [
             "1bd0312798db6fb0"
         ],
-        "x": 435,
-        "y": 860,
+        "x": 535,
+        "y": 740,
         "wires": []
     },
     {
@@ -6447,7 +6419,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 370,
-        "y": 920,
+        "y": 780,
         "wires": []
     },
     {
@@ -6461,8 +6433,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 860,
+        "x": 400,
+        "y": 740,
         "wires": [
             [
                 "a37c62cfcb685775"
@@ -6476,7 +6448,7 @@
         "name": "HTTP Requests",
         "info": "",
         "x": 500,
-        "y": 800,
+        "y": 680,
         "wires": []
     },
     {
@@ -6488,7 +6460,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1100,
+        "y": 980,
         "wires": []
     },
     {
@@ -6500,7 +6472,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1140,
+        "y": 1020,
         "wires": []
     },
     {
@@ -6512,7 +6484,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1180,
+        "y": 1060,
         "wires": []
     },
     {
@@ -6551,7 +6523,7 @@
         "name": "Websocket Connection",
         "info": "",
         "x": 140,
-        "y": 400,
+        "y": 280,
         "wires": []
     },
     {
@@ -6571,7 +6543,7 @@
         "type": "function",
         "z": "427808241d304283",
         "name": "Update Event Data",
-        "func": "const input_event = msg.payload\nconst events = flow.get('events')\nconst prev_event_values = JSON.parse(\n    JSON.stringify( events[ input_event.type ] )\n)\n\nconst { light, sound, relax } = input_event \n\nif(light) \n    delete input_event.light\n\n    \nif(sound) \n    delete input_event.sound\n\n    \nif(relax) \n    delete input_event.relax\n\nevents[ input_event.type ] = {\n    ...events[ input_event.type ], ...input_event\n}\n\nif(light) {\n    events[ input_event.type ].light = {\n        ...events[ input_event.type ].light, ...light\n    }\n}\n\nif(sound) {\n    events[ input_event.type ].sound = {\n        ...events[ input_event.type ].sound, ...sound\n    }\n}\n\nif(relax) {\n    events[ input_event.type ].relax = {\n        ...events[ input_event.type ].relax, ...relax\n    }\n}\n\nmsg.payload = events[ input_event.type ]\n\nflow.set('events', events)\n\nreturn msg",
+        "func": "const input_event = msg.payload\nconst events = flow.get('events')\nconst prev_event_values = JSON.parse(\n    JSON.stringify(events[input_event.type])\n)\n\nconst { light, sound, relax } = input_event\n\nif (light)\n    delete input_event.light\n\nif (sound)\n    delete input_event.sound\n\n\nif (relax)\n    delete input_event.relax\n\nevents[input_event.type] = {\n    ...events[input_event.type], ...input_event\n}\n\nif (light) {\n    const {\n        onpayload: light_on,\n        offpayload: light_off\n    } = prev_event_values.light\n\n    const onpayload = {\n        ...light_on, ...light.onpayload\n    }\n\n    const offpayload = {\n        ...light_off, ...light.offpayload\n    }\n\n    events[input_event.type].light = {\n        ...events[input_event.type].light, ...light,\n        onpayload, offpayload\n    }\n}\n\nif (sound) {\n    const {\n        onpayload: sound_on,\n        offpayload: sound_off\n    } = prev_event_values.sound\n\n    const onpayload = {\n        ...sound_on, ...sound.onpayload\n    }\n\n    const offpayload = {\n        ...sound_off, ...sound.offpayload\n    }\n\n    events[input_event.type].sound = {\n        ...events[input_event.type].sound, ...sound,\n        onpayload, offpayload\n    }\n}\n\nif (relax) {\n    const {\n        onpayload: relax_on,\n        offpayload: relax_off\n    } = prev_event_values.relax\n\n    const onpayload = {\n        ...relax_on, ...relax.onpayload\n    }\n\n    const offpayload = {\n        ...relax_off, ...relax.offpayload\n    }\n\n    events[input_event.type].relax = {\n        ...events[input_event.type].relax, ...relax,\n        onpayload, offpayload\n    }\n}\n\nmsg.payload = events[input_event.type]\n\nflow.set('events', events)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6582,7 +6554,8 @@
         "wires": [
             [
                 "2247154c64c64885",
-                "69dda5ef5e2c5df0"
+                "69dda5ef5e2c5df0",
+                "225a7be097c947fb"
             ]
         ]
     },
@@ -7160,7 +7133,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1500,
+        "y": 1440,
         "wires": [
             [
                 "a4e0cf51c9a7d1eb"
@@ -7179,7 +7152,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1500,
+        "y": 1440,
         "wires": [
             [
                 "0b58e656f91710d1"
@@ -7195,7 +7168,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1500,
+        "y": 1440,
         "wires": []
     },
     {
@@ -7208,7 +7181,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1660,
+        "y": 1600,
         "wires": [
             [
                 "b1c4643e4ab543a5"
@@ -7224,7 +7197,7 @@
             "c8535874aa1ff738"
         ],
         "x": 915,
-        "y": 1660,
+        "y": 1600,
         "wires": []
     },
     {
@@ -7241,7 +7214,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 1920,
+        "y": 2020,
         "wires": []
     },
     {
@@ -7301,7 +7274,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1780,
+        "y": 1720,
         "wires": [
             [
                 "a9bcf9fb6e3210a5"
@@ -7318,7 +7291,7 @@
             "6f3c21450db0a2d2"
         ],
         "x": 915,
-        "y": 1780,
+        "y": 1720,
         "wires": []
     },
     {
@@ -7340,7 +7313,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1780,
+        "y": 1720,
         "wires": [
             [
                 "6bcd5510f8049afa"
@@ -7362,7 +7335,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1840,
+        "y": 1780,
         "wires": []
     },
     {
@@ -7391,7 +7364,7 @@
         "repair": false,
         "outputs": 3,
         "x": 680,
-        "y": 1780,
+        "y": 1720,
         "wires": [
             [
                 "ae7bfc1a4f9a8204"
@@ -7416,7 +7389,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1720,
+        "y": 1660,
         "wires": [
             [
                 "f10b7c0b25fa5429"
@@ -7435,7 +7408,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1840,
+        "y": 1780,
         "wires": []
     },
     {
@@ -7448,7 +7421,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2020,
+        "y": 1960,
         "wires": [
             [
                 "a3f2fa267c10ee3b"
@@ -7474,7 +7447,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2020,
+        "y": 1960,
         "wires": [
             [
                 "f11d1107faeded90"
@@ -7496,7 +7469,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1960,
+        "y": 1900,
         "wires": [
             [
                 "32458938ca244455"
@@ -7515,7 +7488,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2080,
+        "y": 2020,
         "wires": []
     },
     {
@@ -7549,7 +7522,7 @@
         "repair": false,
         "outputs": 4,
         "x": 680,
-        "y": 2020,
+        "y": 1960,
         "wires": [
             [
                 "56dd34c5643d6bad"
@@ -7577,7 +7550,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2080,
+        "y": 2020,
         "wires": []
     },
     {
@@ -7589,7 +7562,7 @@
             "f8da963aa27f72a0"
         ],
         "x": 915,
-        "y": 2020,
+        "y": 1960,
         "wires": []
     },
     {
@@ -7601,7 +7574,7 @@
             "56dd34c5643d6bad"
         ],
         "x": 135,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "8c6153c445bd98cc"
@@ -7620,7 +7593,7 @@
         "finalize": "",
         "libs": [],
         "x": 340,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "5d24fd8093ed5590"
@@ -7636,7 +7609,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 775,
-        "y": 1100,
+        "y": 1160,
         "wires": []
     },
     {
@@ -7945,7 +7918,7 @@
         "name": "",
         "links": [],
         "x": 35,
-        "y": 2140,
+        "y": 2240,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -7964,7 +7937,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2140,
+        "y": 2240,
         "wires": [
             [
                 "8ef80688d076fcc6"
@@ -7980,7 +7953,7 @@
             "b390266dc39ac695"
         ],
         "x": 795,
-        "y": 2140,
+        "y": 2240,
         "wires": []
     },
     {
@@ -8005,7 +7978,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2220,
+        "y": 2320,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -8258,7 +8231,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1540,
+        "y": 1480,
         "wires": [
             [
                 "4d7872e1529962ce"
@@ -8277,7 +8250,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1540,
+        "y": 1480,
         "wires": [
             [
                 "189ae71dc788c445"
@@ -8293,7 +8266,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1540,
+        "y": 1480,
         "wires": []
     },
     {
@@ -8306,7 +8279,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1580,
+        "y": 1520,
         "wires": [
             [
                 "5898b29b72a6cccd"
@@ -8325,7 +8298,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1580,
+        "y": 1520,
         "wires": [
             [
                 "6a68828c35240fc7"
@@ -8341,7 +8314,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1580,
+        "y": 1520,
         "wires": []
     },
     {
@@ -8351,7 +8324,7 @@
         "name": "GET Requests",
         "info": "",
         "x": 120,
-        "y": 1440,
+        "y": 1380,
         "wires": []
     },
     {
@@ -8361,7 +8334,7 @@
         "name": "POST Requests",
         "info": "",
         "x": 120,
-        "y": 1020,
+        "y": 920,
         "wires": []
     },
     {
@@ -8374,7 +8347,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2240,
+        "y": 2180,
         "wires": [
             [
                 "beeae97391c08041"
@@ -8400,7 +8373,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2240,
+        "y": 2180,
         "wires": [
             [
                 "bb81fcec96723838"
@@ -8422,7 +8395,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2180,
+        "y": 2120,
         "wires": [
             [
                 "93650fa449eec81d"
@@ -8441,7 +8414,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2300,
+        "y": 2240,
         "wires": []
     },
     {
@@ -8480,7 +8453,7 @@
         "repair": false,
         "outputs": 5,
         "x": 680,
-        "y": 2240,
+        "y": 2180,
         "wires": [
             [
                 "63e068dd27d72c8f"
@@ -8511,7 +8484,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2320,
+        "y": 2260,
         "wires": []
     },
     {
@@ -8523,7 +8496,7 @@
             "d562529942175c6a"
         ],
         "x": 915,
-        "y": 2240,
+        "y": 2180,
         "wires": []
     },
     {
@@ -8993,7 +8966,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 500,
+        "y": 380,
         "wires": []
     },
     {
@@ -9006,7 +8979,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 460,
+        "y": 340,
         "wires": []
     },
     {
@@ -9019,7 +8992,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 420,
+        "y": 300,
         "wires": []
     },
     {
@@ -9034,7 +9007,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 580,
+        "y": 460,
         "wires": []
     },
     {
@@ -9047,7 +9020,7 @@
         ],
         "uncaught": false,
         "x": 230,
-        "y": 680,
+        "y": 560,
         "wires": [
             [
                 "1f4b4e7a860167d1"
@@ -9062,13 +9035,17 @@
         "links": [
             "06969b016a3d71a1",
             "ec9a880fb55d1e9a",
-            "f304279097451e82"
+            "f304279097451e82",
+            "fad7b7c9b1470e56",
+            "f8873863294f0ab5",
+            "3caa6874f26c328b"
         ],
         "x": 195,
-        "y": 640,
+        "y": 520,
         "wires": [
             [
-                "62e6a71c4cb08a51"
+                "62e6a71c4cb08a51",
+                "39d3cdb95b5c6882"
             ]
         ]
     },
@@ -9084,7 +9061,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 680,
+        "y": 560,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -9227,9 +9204,10 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Audio Controls",
         "links": [
-            "fc9d2e059609396f"
+            "fc9d2e059609396f",
+            "1a5068f4b0cae0d9"
         ],
-        "x": 135,
+        "x": 155,
         "y": 400,
         "wires": [
             [
@@ -9243,7 +9221,8 @@
         "z": "e1a40699ea85764e",
         "name": "Initialize Light Controls",
         "links": [
-            "3db23191674cf3b4"
+            "3db23191674cf3b4",
+            "1a5068f4b0cae0d9"
         ],
         "x": 135,
         "y": 360,
@@ -9275,7 +9254,8 @@
         "z": "4fcd3dd2df70f0c8",
         "name": "Initialize System Controls",
         "links": [
-            "176706c3efb8ce21"
+            "176706c3efb8ce21",
+            "1a5068f4b0cae0d9"
         ],
         "x": 135,
         "y": 80,
@@ -9291,7 +9271,8 @@
         "z": "4b91f5d2f9b78292",
         "name": "Initialize Network",
         "links": [
-            "2321c07923154b43"
+            "2321c07923154b43",
+            "1a5068f4b0cae0d9"
         ],
         "x": 155,
         "y": 80,
@@ -9307,58 +9288,15 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "links": [
-            "c0a5fa6f73429b5c"
-        ],
-        "x": 255,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "3db23191674cf3b4",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "3acd7c62fac91c04"
-        ],
-        "x": 255,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "fc9d2e059609396f",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "91b303d2fbc264d0"
-        ],
-        "x": 255,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "176706c3efb8ce21",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
+            "3acd7c62fac91c04",
+            "5799ebdeefceb248",
+            "91b303d2fbc264d0",
+            "adec83fd96f5a557",
+            "c0a5fa6f73429b5c",
             "d62a3bc48c8f248f"
         ],
         "x": 255,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "2321c07923154b43",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "5799ebdeefceb248"
-        ],
-        "x": 255,
-        "y": 300,
+        "y": 200,
         "wires": []
     },
     {
@@ -9649,7 +9587,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "8d54343c273a8128",
@@ -9664,7 +9602,7 @@
         "name": "From Event Scheduler",
         "info": "",
         "x": 120,
-        "y": 1180,
+        "y": 1280,
         "wires": []
     },
     {
@@ -9674,7 +9612,7 @@
         "name": "",
         "links": [],
         "x": 135,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "1bcae0d3b28c7498"
@@ -9693,7 +9631,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "62f7fa9610e77462"
@@ -9710,428 +9648,21 @@
             "1b563d9b71af7068"
         ],
         "x": 775,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "d095e7eff31ce81b",
-        "type": "storage-list",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "path": "",
-        "bucket": "",
-        "cred": "5bdbd81c314c9bee",
-        "delimiter": "/",
-        "x": 530,
-        "y": 240,
-        "wires": [
-            [
-                "28e4f30de5b22059",
-                "d2593b0265405481"
-            ]
-        ]
-    },
-    {
-        "id": "5f6e19274d0d3312",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 240,
-        "wires": [
-            [
-                "63b5cb5f1227e31c"
-            ]
-        ]
-    },
-    {
-        "id": "28e4f30de5b22059",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "63b5cb5f1227e31c",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "Storage Config",
-        "func": "const bucket = \"exist-tribe.appspot.com\"\nconst path = \"Night Sounds/\"\n\nmsg.payload = {\n    bucket, path\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 240,
-        "wires": [
-            [
-                "d095e7eff31ce81b"
-            ]
-        ]
-    },
-    {
-        "id": "6bdc92bbf884b3b2",
-        "type": "storage-read",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "path": "",
-        "bucket": "",
-        "cred": "5bdbd81c314c9bee",
-        "x": 530,
-        "y": 300,
-        "wires": [
-            [
-                "ed10d42e924f40b9"
-            ]
-        ]
-    },
-    {
-        "id": "9303c198368d88bb",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "File Download Config",
-        "func": "const bucket = \"exist-tribe.appspot.com\"\nconst path = \"Night Sounds/Refresh by S.Duncan 12 Hours.mp3\"\n\nmsg.payload = {\n    bucket, path\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 340,
-        "y": 300,
-        "wires": [
-            [
-                "6bdc92bbf884b3b2"
-            ]
-        ]
-    },
-    {
-        "id": "3c53719e249871a6",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 300,
-        "wires": [
-            [
-                "9303c198368d88bb"
-            ]
-        ]
-    },
-    {
-        "id": "ed10d42e924f40b9",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "d2593b0265405481",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "Store Music Files",
-        "func": "const night_sounds = msg.payload\n\nflow.set(\"night_sounds\", night_sounds)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "57114599d5c3852b",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "Get File Methods",
-        "func": "const { files } = flow.get('night_sounds')\n\nmsg.payload = JSON.stringify( files[0] )\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 330,
-        "y": 360,
-        "wires": [
-            [
-                "3d0433e9634ff43d"
-            ]
-        ]
-    },
-    {
-        "id": "63fd709ac423f9c4",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "563d0cc38ac8f3d6",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "Get File URL",
-        "func": "const { Storage } = googleCloudStorage\nconst storage = new Storage()\nconst bucket_name = flow.get('bucket_name')\n\nconst file_name = \"Night Sounds/Convergence by S.Duncan 12 Hours.mp3\"\n\nasync function generateSignedUrl() {\n    try {\n        const options = {\n            version: 'v2', // defaults to 'v2' if missing.\n            action: 'read',\n            expires: Date.now() + 1000 * 60 * 60, // one hour\n        };\n    \n        const [ url ] = await storage\n            .bucket(bucket_name)\n            .file(file_name)\n            .getSignedUrl(options)\n            \n        flow.set('sample_url', url)\n    } catch(error) {\n        throw error\n    }\n    \n}\n\ngenerateSignedUrl()",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "googleCloudStorage",
-                "module": "@google-cloud/storage"
-            }
-        ],
-        "x": 310,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "5dbdda0eb78bb129",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "Startup",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 140,
-        "y": 60,
-        "wires": [
-            [
-                "aebd12981ac69819"
-            ]
-        ]
-    },
-    {
-        "id": "aebd12981ac69819",
-        "type": "function",
-        "z": "9a5a919d288e7004",
-        "name": "Initialize Flow Variables",
-        "func": "const { getStorage } = firebaseAdminLibStorage\nconst bucket_name = \"exist-tribe.appspot.com\"\n\nflow.set('bucket_name', bucket_name)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "firebaseAdminLibStorage",
-                "module": "firebase-admin/lib/storage"
-            }
-        ],
-        "x": 350,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "afc481987e6dad79",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 360,
-        "wires": [
-            [
-                "57114599d5c3852b"
-            ]
-        ]
-    },
-    {
-        "id": "30f4cc361e1b6ca4",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 420,
-        "wires": [
-            [
-                "563d0cc38ac8f3d6"
-            ]
-        ]
-    },
-    {
-        "id": "3d0433e9634ff43d",
-        "type": "json",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 510,
-        "y": 360,
-        "wires": [
-            [
-                "63fd709ac423f9c4"
-            ]
-        ]
-    },
-    {
-        "id": "744b0ac75f591532",
-        "type": "http request",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "https://storage.googleapis.com/download/storage/v1/b/exist-tribe.appspot.com/o/Night%20Sounds%2FConvergence%20by%20S.Duncan%2012%20Hours.mp3?generation=1636504470515470&alt=media",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "authType": "bearer",
-        "x": 310,
-        "y": 500,
-        "wires": [
-            [
-                "a1dce07d273637bf"
-            ]
-        ]
-    },
-    {
-        "id": "ec6ce48d3bf44c5c",
-        "type": "inject",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 500,
-        "wires": [
-            [
-                "744b0ac75f591532"
-            ]
-        ]
-    },
-    {
-        "id": "a1dce07d273637bf",
-        "type": "debug",
-        "z": "9a5a919d288e7004",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 500,
+        "y": 1340,
         "wires": []
     },
     {
         "id": "ec041ff7f0b3e1cb",
         "type": "inject",
         "z": "56ae43efe9a5b4d3",
-        "name": "Set Audio Device",
+        "name": "Set Audio Device for Volume Adjustment",
         "props": [],
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 130,
+        "x": 200,
         "y": 240,
         "wires": [
             [
@@ -10378,52 +9909,6 @@
         ]
     },
     {
-        "id": "c1866db473b4bc0a",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 370,
-        "y": 1340,
-        "wires": []
-    },
-    {
-        "id": "f068e797fdd2cc1c",
-        "type": "inject",
-        "z": "427808241d304283",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "events.bedtime.light",
-        "payloadType": "flow",
-        "x": 150,
-        "y": 1340,
-        "wires": [
-            [
-                "c1866db473b4bc0a"
-            ]
-        ]
-    },
-    {
         "id": "98d197ac04d7bf24",
         "type": "debug",
         "z": "427808241d304283",
@@ -10505,7 +9990,7 @@
         "payload": "start",
         "payloadType": "str",
         "x": 90,
-        "y": 2360,
+        "y": 2460,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10521,7 +10006,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 470,
-        "y": 2360,
+        "y": 2460,
         "wires": [
             [
                 "2d418fbe39d25536"
@@ -10541,7 +10026,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
-        "y": 2360,
+        "y": 2460,
         "wires": []
     },
     {
@@ -10566,7 +10051,7 @@
         "payload": "stop",
         "payloadType": "str",
         "x": 90,
-        "y": 2420,
+        "y": 2520,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10595,7 +10080,7 @@
         "payload": "resume",
         "payloadType": "str",
         "x": 90,
-        "y": 2480,
+        "y": 2580,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10624,7 +10109,7 @@
         "payload": "pause",
         "payloadType": "str",
         "x": 90,
-        "y": 2540,
+        "y": 2640,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -10643,88 +10128,10 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 2360,
+        "y": 2460,
         "wires": [
             [
                 "8cafd4602aeb9b91"
-            ]
-        ]
-    },
-    {
-        "id": "e67d6fc8e8d2830a",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 2620,
-        "wires": [
-            [
-                "7d52a4f3f4d1f73c"
-            ]
-        ]
-    },
-    {
-        "id": "2078f9640c296d7f",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 2620,
-        "wires": []
-    },
-    {
-        "id": "7d52a4f3f4d1f73c",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Download Media File",
-        "func": "const { createWriteStream } = fs\n\nconst url = \"https://firebasestorage.googleapis.com/v0/b/exist-tribe.appspot.com/o/Wake%20Sounds%2FBirds%20Chirping%2015%20Min.mp3?alt=media&token=eb142ad5-be14-46ac-944d-9f26e6017d8c\"\nconst fullPath = \"Wake Sounds/Birds Chirping 15 Min.mp3\"\nconst file_destination = `/data/projects/REST_NODE/assets/${fullPath}`\n\nconst request_url = request(url)\n\nconst progress_config = {\n    throttle: 3000\n}\n\nconst in_progress_handler = (state) => {\n    node.send({\n        'progress': state\n    })\n}\n\nconst on_error_handler = (error) => {\n    node.send({\n        'error': error\n    })\n}\n\nconst on_end_handler = () => {\n    node.send({\n        'end': true\n    })\n}\n\nconst write_stream = createWriteStream(file_destination)\n\nprogress(request_url, progress_config)\n    .on('progress', in_progress_handler)\n    .on('error', on_error_handler)\n    .on('end', on_end_handler)\n    .pipe(write_stream)\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "request",
-                "module": "request"
-            },
-            {
-                "var": "fs",
-                "module": "fs"
-            },
-            {
-                "var": "progress",
-                "module": "request-progress"
-            }
-        ],
-        "x": 460,
-        "y": 2680,
-        "wires": [
-            [
-                "2078f9640c296d7f",
-                "2202f3a074aa0c70"
             ]
         ]
     },
@@ -10735,7 +10142,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 2300,
+        "y": 2400,
         "wires": []
     },
     {
@@ -10748,7 +10155,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1320,
+        "y": 1180,
         "wires": [
             [
                 "d3606543f854decc"
@@ -10763,24 +10170,8 @@
         "links": [
             "c9c5a8c5491e0541"
         ],
-        "x": 635,
-        "y": 1320,
-        "wires": []
-    },
-    {
-        "id": "e26806d0653c0728",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 1380,
+        "x": 755,
+        "y": 1160,
         "wires": []
     },
     {
@@ -10791,12 +10182,11 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 370,
-        "y": 1320,
+        "x": 90,
+        "y": 1220,
         "wires": [
             [
-                "3a10e179ce9fa218",
-                "e26806d0653c0728"
+                "62848ee8979bad52"
             ]
         ]
     },
@@ -10860,41 +10250,13 @@
         "oldrc": false,
         "name": "Get Available Assets Dir",
         "x": 510,
-        "y": 2860,
+        "y": 3100,
         "wires": [
             [
                 "c73026e2a7474f78"
             ],
             [],
             []
-        ]
-    },
-    {
-        "id": "218f0c67e30372cd",
-        "type": "inject",
-        "z": "56ae43efe9a5b4d3",
-        "name": "On Startup",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 2860,
-        "wires": [
-            [
-                "7c5ca2aa4103ee8c"
-            ]
         ]
     },
     {
@@ -10909,7 +10271,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 2860,
+        "y": 3100,
         "wires": [
             [
                 "f2fac2e5b78c46b3"
@@ -10927,8 +10289,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 2860,
+        "x": 740,
+        "y": 3100,
         "wires": [
             [
                 "2fc0d9c905e68783"
@@ -10943,8 +10305,8 @@
         "links": [
             "96a98c49ec5f592e"
         ],
-        "x": 935,
-        "y": 2860,
+        "x": 895,
+        "y": 3100,
         "wires": []
     },
     {
@@ -10956,7 +10318,7 @@
             "2fc0d9c905e68783"
         ],
         "x": 35,
-        "y": 2920,
+        "y": 3220,
         "wires": [
             [
                 "62c5c61de81dc05f"
@@ -10976,7 +10338,7 @@
         "oldrc": false,
         "name": "Get Audio Files",
         "x": 580,
-        "y": 2920,
+        "y": 3220,
         "wires": [
             [
                 "403f07b7d0544159"
@@ -10997,7 +10359,7 @@
         "finalize": "",
         "libs": [],
         "x": 150,
-        "y": 2920,
+        "y": 3220,
         "wires": [
             [
                 "97c6f4e7cec98e3d"
@@ -11016,7 +10378,7 @@
         "finalize": "",
         "libs": [],
         "x": 370,
-        "y": 2920,
+        "y": 3220,
         "wires": [
             [
                 "4c9e7337cd75daee"
@@ -11041,7 +10403,7 @@
         "repair": false,
         "outputs": 1,
         "x": 780,
-        "y": 2920,
+        "y": 3220,
         "wires": [
             [
                 "97c6f4e7cec98e3d",
@@ -11054,15 +10416,19 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Store Audio Assets",
-        "func": "const { dirs, counter } = msg\nconst previous_assets = flow.get('audio_assets') || {}\nconst keys = Object.keys(dirs)\nconst audio_assets = msg.payload\n\nflow.set('audio_assets', {\n    ...previous_assets, [ keys[counter - 1] ]: audio_assets\n})",
-        "outputs": 0,
+        "func": "const { dirs, counter } = msg\nconst previous_assets = flow.get('audio_assets') || {}\nconst keys = Object.keys(dirs)\nconst audio_assets = msg.payload\n\nconst current_audio_assets = {\n    ...previous_assets, [ keys[counter - 1] ]: audio_assets\n}\n\nflow.set('audio_assets', current_audio_assets)\n\nmsg.payload = current_audio_assets\n\nreturn msg",
+        "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 850,
-        "y": 2980,
-        "wires": []
+        "x": 590,
+        "y": 3280,
+        "wires": [
+            [
+                "5192ecce926e940d"
+            ]
+        ]
     },
     {
         "id": "31d7717a39009682",
@@ -11075,8 +10441,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 2980,
+        "x": 360,
+        "y": 3280,
         "wires": [
             [
                 "1e7f948bea0d4318"
@@ -11092,7 +10458,7 @@
             "392fbd89372faedd"
         ],
         "x": 935,
-        "y": 2920,
+        "y": 3220,
         "wires": []
     },
     {
@@ -11104,7 +10470,7 @@
             "bb84be7b185de541"
         ],
         "x": 35,
-        "y": 2980,
+        "y": 3280,
         "wires": [
             [
                 "31d7717a39009682"
@@ -11118,7 +10484,7 @@
         "name": "",
         "links": [],
         "x": 875,
-        "y": 540,
+        "y": 420,
         "wires": []
     },
     {
@@ -11126,22 +10492,678 @@
         "type": "link out",
         "z": "56ae43efe9a5b4d3",
         "name": "",
-        "links": [],
-        "x": 795,
-        "y": 2680,
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 895,
+        "y": 2720,
         "wires": []
     },
     {
         "id": "db8ac9d402cea0bf",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "links": [],
+        "name": "Download Media File",
+        "links": [
+            "b7f321e5e4dbee08"
+        ],
         "x": 135,
-        "y": 2680,
+        "y": 2720,
         "wires": [
             [
-                "7d52a4f3f4d1f73c"
+                "15154b6e6b0ea612"
+            ]
+        ]
+    },
+    {
+        "id": "62848ee8979bad52",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Night Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Night Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 1260,
+        "wires": [
+            [
+                "e8614f529151feb3",
+                "d427714ee6e32242"
+            ],
+            [
+                "e675dae377251908",
+                "d427714ee6e32242"
+            ]
+        ]
+    },
+    {
+        "id": "e8614f529151feb3",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Wake Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Wake Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 380,
+        "y": 1240,
+        "wires": [
+            [
+                "90cfa9e0dbb70bc0"
+            ],
+            [
+                "ca7603bf1dfcb6b5"
+            ]
+        ]
+    },
+    {
+        "id": "90cfa9e0dbb70bc0",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Relaxation Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Relaxation Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 1200,
+        "wires": [
+            [
+                "3a10e179ce9fa218"
+            ],
+            [
+                "7d3382ac291b5d68"
+            ]
+        ]
+    },
+    {
+        "id": "e675dae377251908",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Night Sounds not Stated",
+        "func": "const error = new Error('Night Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "ca7603bf1dfcb6b5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Wake Sounds not Stated",
+        "func": "const error = new Error('Wake Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "7d3382ac291b5d68",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Relaxation Sounds not Stated",
+        "func": "const error = new Error('Relaxation Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "d427714ee6e32242",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "15154b6e6b0ea612",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Media To Download",
+        "func": "const { fullPath: full_path } = msg.payload\nconst audio_files = flow.get('audio_files')\nconst levels = full_path.split(\"/\")\n\nif(!audio_files)\n    throw new Error(\"Audio Files hasn't been set yet\")\n\nlet pointer = audio_files\n\nfor(let index = 0; index < levels.length; index++) {\n    const level = levels[index]\n    \n    pointer = pointer[ level ]\n    \n    if(!pointer) {\n        const error = new Error('File does not exist')\n        msg.statusCode = 400\n        \n        throw error\n    }\n}\n\nmsg.payload = pointer\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 2720,
+        "wires": [
+            [
+                "3881fde0d3754aab",
+                "2202f3a074aa0c70"
+            ]
+        ]
+    },
+    {
+        "id": "adec83fd96f5a557",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Available Audio Assets",
+        "links": [
+            "1a5068f4b0cae0d9",
+            "8748145c4cb2446d"
+        ],
+        "x": 135,
+        "y": 3100,
+        "wires": [
+            [
+                "7c5ca2aa4103ee8c"
+            ]
+        ]
+    },
+    {
+        "id": "75cc65cd7d6cadd4",
+        "type": "catch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "scope": [
+            "15154b6e6b0ea612"
+        ],
+        "uncaught": false,
+        "x": 250,
+        "y": 2980,
+        "wires": [
+            [
+                "1af14d71b05fc145",
+                "631c781617ad44ca"
+            ]
+        ]
+    },
+    {
+        "id": "1af14d71b05fc145",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 3000,
+        "wires": []
+    },
+    {
+        "id": "7e259f198b640b75",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/audio/files/download",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 2400,
+        "wires": [
+            [
+                "ba2fae25347c8e12"
+            ]
+        ]
+    },
+    {
+        "id": "6978521709f87b2f",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Check Full Path Property",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "fullPath",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 2440,
+        "wires": [
+            [
+                "b7f321e5e4dbee08",
+                "54bca2536a87ccc5"
+            ],
+            [
+                "8415c00b83f546c9"
+            ]
+        ]
+    },
+    {
+        "id": "8415c00b83f546c9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Missing Full Path Property",
+        "func": "const error = new Error('Audio File \"fullPath\" Not Specified')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "b7f321e5e4dbee08",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "db8ac9d402cea0bf"
+        ],
+        "x": 695,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "54bca2536a87ccc5",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "bc02de84fc2b537e",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 795,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "631c781617ad44ca",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Error Handler",
+        "func": "msg.payload = msg.error\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 2960,
+        "wires": [
+            [
+                "bc02de84fc2b537e"
+            ]
+        ]
+    },
+    {
+        "id": "3881fde0d3754aab",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Download Media File",
+        "func": "const { assets_dir } = global.get('defaults_config')\nconst {\n    AUDIO_ASSETS_AVAILABLE,\n    AUDIO_FILE_DOWNLOADED,\n    AUDIO_FILE_DOWNLOAD_ERROR,\n    AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n} = flow.get('audio_download_response_topics')\nconst { createWriteStream } = fs\nconst { fullPath: full_path, source: url } = msg.payload\n\nconst file_destination = `${assets_dir}/${full_path}`\nconst request_url = request(url)\nconst progress_config = {\n    throttle: 2000\n}\n\nconst in_progress_handler = (state) => {\n    const payload = {\n        ...state,\n        topic: AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_error_handler = (error) => {\n    const payload = {\n        message: \"Error Downloading the file\",\n        topic: AUDIO_FILE_DOWNLOAD_ERROR,\n        error\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_end_handler = () => {\n    const payload = {\n        ...msg.payload,\n        message: \"Download Finished\",\n        topic: AUDIO_FILE_DOWNLOADED\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n    \n    const topic = AUDIO_ASSETS_AVAILABLE\n    \n    node.send({\n        payload: {\n            topic\n        },\n        topic\n    })\n}\n\nconst write_stream = createWriteStream(file_destination)\n\nprogress(request_url, progress_config)\n    .on('progress', in_progress_handler)\n    .on('error', on_error_handler)\n    .on('end', on_end_handler)\n    .pipe(write_stream)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "request",
+                "module": "request"
+            },
+            {
+                "var": "fs",
+                "module": "fs"
+            },
+            {
+                "var": "progress",
+                "module": "request-progress"
+            }
+        ],
+        "x": 300,
+        "y": 2780,
+        "wires": [
+            [
+                "719b8978f048b039"
+            ]
+        ]
+    },
+    {
+        "id": "fad7b7c9b1470e56",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "77bbaf1677e51e46"
+        ],
+        "x": 615,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "255ee5eb667519ce",
+        "type": "inject",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 3140,
+        "wires": [
+            [
+                "7c5ca2aa4103ee8c"
+            ]
+        ]
+    },
+    {
+        "id": "ba2fae25347c8e12",
+        "type": "json",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 130,
+        "y": 2440,
+        "wires": [
+            [
+                "6978521709f87b2f"
+            ]
+        ]
+    },
+    {
+        "id": "e828f9049186a285",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "a0c18a3eddded47f",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "If Audio Download Ended Redirect",
+        "property": "payload.topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "audio_download_response_topics.AUDIO_ASSETS_AVAILABLE",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 340,
+        "y": 2860,
+        "wires": [
+            [
+                "fad7b7c9b1470e56"
+            ],
+            [
+                "8748145c4cb2446d",
+                "042130adc67d4abb"
+            ]
+        ]
+    },
+    {
+        "id": "8748145c4cb2446d",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "adec83fd96f5a557"
+        ],
+        "x": 615,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "719b8978f048b039",
+        "type": "change",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Type as an Audio Download Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.type",
+                "pt": "msg",
+                "to": "api_response_types.AUDIO_DOWNLOAD_RESPONSE",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 2780,
+        "wires": [
+            [
+                "a0c18a3eddded47f",
+                "e828f9049186a285"
+            ]
+        ]
+    },
+    {
+        "id": "042130adc67d4abb",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 2920,
+        "wires": []
+    },
+    {
+        "id": "225a7be097c947fb",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "5192ecce926e940d",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "c8535874aa1ff738"
+        ],
+        "x": 935,
+        "y": 3280,
+        "wires": []
+    },
+    {
+        "id": "900b291d7708de39",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "If HTTP Response",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 1080,
+        "wires": [
+            [
+                "5b84f8efca57f859"
+            ],
+            [
+                "cdbf4cbbf8ed6cb9"
+            ]
+        ]
+    },
+    {
+        "id": "3caa6874f26c328b",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "77bbaf1677e51e46"
+        ],
+        "x": 775,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "39d3cdb95b5c6882",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "cdbf4cbbf8ed6cb9",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Transform Payload",
+        "func": "const { AUDIO_ASSETS_AVAILABLE } = flow.get('audio_download_response_topics')\nconst { AUDIO_DOWNLOAD_RESPONSE } = flow.get('api_response_types')\n\nmsg.payload = {\n    data: msg.payload,\n    topic: AUDIO_ASSETS_AVAILABLE,\n    type: AUDIO_DOWNLOAD_RESPONSE\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 1100,
+        "wires": [
+            [
+                "3caa6874f26c328b"
             ]
         ]
     }
