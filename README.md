@@ -31,6 +31,14 @@ This is the REST Node server repository which contains the flows
 docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node:dev
 ```
 
+### Testing inside the Node-Red flows
+
+**Light Controls**
+
+1) Go to the **Hardware Interface** tab
+2) In the Lights(Hardware) section, change the GPIO pins of the Night Light and Wake Light inside the pi gpiod nodes
+3) Enable the Set Brightness nodes(I2C) and change the bus address depending on the designated I2C pin or bus address.
+
 <br />
 
 ## Events
