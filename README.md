@@ -38,7 +38,30 @@ docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localti
 1) Go to the **Hardware Interface** tab
 2) In the Lights(Hardware) section, change the GPIO pins of the Night Light and Wake Light inside the pi gpiod nodes
 3) Enable the Set Brightness nodes(I2C) and change the bus address depending on the designated I2C pin or bus address.
+4) Go to the Node-Red Dashboard (e.g. **http://<raspberry-pi-ip-address>/ui**) and there you can toggle the Night Lights and Wake Lights for testing
+    
+**Audio Controls**
+1) Go to the Raspberry Pi terminal (e.g. via ssh or the Raspberry Pi desktop itself)
+2) Copy and paster the following command in the terminal:
+ ```docker exec -it rest-node sh```
+3) This will open a terminal for the rest-node docker container itself. In this terminal, copy and paste the comamnd:
+   ```amixer```
+4) The result will be all the available audio devices similar to the ones below:
+  ```
+ Simple mixer control 'Headphone',0
+    Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+    Playback channels: Mono
+    Limits: Playback -10239 - 400
+    Mono: Playback -683 [90%] [-6.83dB] [on]
+  ```
+5) Copy the name of the device enclosed in single quotes, in this case **Headphone**. Go to the **Audio Controls** of the Node-Red tab and in the Testing Section, find a node called **Store Audio Device to Context** and replace the value 'Headphone' with the copied value (must be enclosed in single quotes)
+6) Click **Download Media File** (Inject) to Download a sample audio from Firebase storage
+7) Click **Test API Call for Audio Controls** to set the Wake Sound audio for testing.
+8) If the setup was a success, you can test playing, pausing, resuming, or stopping the music via the Inject Buttons (Play, Pause, Resume, Stop) in the Testing Section
+9) You can adjust the volume, currently in fix values (Low, Medium, High) while an audio is playing by clicking its respective Inject buttonsin the left of the audio controls
 
+    **As of 11:06 AM, Nov. 19, 2021 (UTC+8), Firebase storage has exceeeded its max quota for today that's why you may get some errors regarding the download
+    
 <br />
 
 ## Events
