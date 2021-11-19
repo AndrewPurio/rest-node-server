@@ -42,7 +42,7 @@ docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localti
     
 **Audio Controls**
 1) Go to the Raspberry Pi terminal (e.g. via ssh or the Raspberry Pi desktop itself)
-2) Copy and paster the following command in the terminal:
+2) Copy and paste the following command in the terminal:
  ```docker exec -it rest-node sh```
 3) This will open a terminal for the rest-node docker container itself. In this terminal, copy and paste the comamnd:
    ```amixer```
