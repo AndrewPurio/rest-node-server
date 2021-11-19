@@ -10,17 +10,8 @@ This is the REST Node server repository which contains the flows
 
 <br />
 
-# REST Endpoints:
 
-## Dev Endpoint:
-```https://restnode.info```
-
-## mDNS Endpoint: (Raspberry Pi)
-```http://restnode.local```
-
-<br />
-
-## Installation:
+# Docker Container Installation:
 
 1) Install Docker in your Raspberry Pi
     <br />
@@ -31,16 +22,16 @@ This is the REST Node server repository which contains the flows
 docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node:dev
 ```
 
-### Testing inside the Node-Red flows
+# Testing inside the Node-Red flows
 
-**Light Controls**
+## Light Controls
 
 1) Go to the **Hardware Interface** tab
 2) In the Lights(Hardware) section, change the GPIO pins of the Night Light and Wake Light inside the pi gpiod nodes
 3) Enable the Set Brightness nodes(I2C) and change the bus address depending on the designated I2C pin or bus address.
 4) Go to the Node-Red Dashboard (e.g. **http://<raspberry-pi-ip-address>/ui**) and there you can toggle the Night Lights and Wake Lights for testing
     
-**Audio Controls**
+## Audio Controls
 1) Go to the Raspberry Pi terminal (e.g. via ssh or the Raspberry Pi desktop itself)
 2) Copy and paste the following command in the terminal:
  ```docker exec -it rest-node sh```
@@ -62,6 +53,16 @@ docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localti
 
     **As of 11:06 AM, Nov. 19, 2021 (UTC+8), Firebase storage has exceeeded its max quota for today that's why you may get some errors regarding the download
     
+<br />
+
+# REST Endpoints:
+
+## Dev Endpoint:
+```https://restnode.info```
+
+## mDNS Endpoint: (Raspberry Pi)
+```http://restnode.local```
+
 <br />
 
 ## Events
