@@ -998,7 +998,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 660,
-        "y": 520,
+        "y": 620,
         "wires": []
     },
     {
@@ -1064,8 +1064,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 300,
+        "x": 630,
+        "y": 360,
         "wires": []
     },
     {
@@ -1097,12 +1097,17 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "volume",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 5,
+        "outputs": 6,
         "x": 400,
         "y": 380,
         "wires": [
@@ -1117,6 +1122,10 @@
             ],
             [
                 "6d1ad8d437a846ce"
+            ],
+            [
+                "8ed46fa8a0ac2bfe",
+                "6bbaf5f11895eebf"
             ],
             [
                 "62a71b748c924363"
@@ -1160,7 +1169,8 @@
         "y": 300,
         "wires": [
             [
-                "1590337acdb5b8fc"
+                "1590337acdb5b8fc",
+                "87766fb3ee062bef"
             ]
         ]
     },
@@ -5425,7 +5435,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 1020,
+        "y": 1120,
         "wires": [
             [
                 "332df25bbfca8896"
@@ -5441,7 +5451,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 940,
+        "y": 1040,
         "wires": []
     },
     {
@@ -6153,7 +6163,7 @@
         "repair": false,
         "outputs": 5,
         "x": 420,
-        "y": 1020,
+        "y": 1120,
         "wires": [
             [
                 "b443ac417c7a70f1"
@@ -6180,7 +6190,7 @@
         "statusCode": "",
         "headers": {},
         "x": 830,
-        "y": 740,
+        "y": 840,
         "wires": []
     },
     {
@@ -6206,7 +6216,7 @@
             "a193b63a6d0a67ad"
         ],
         "x": 635,
-        "y": 740,
+        "y": 840,
         "wires": [
             [
                 "14b017febce3fd48"
@@ -6225,7 +6235,7 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 1100,
+        "y": 1200,
         "wires": []
     },
     {
@@ -6244,7 +6254,7 @@
         ],
         "uncaught": false,
         "x": 160,
-        "y": 740,
+        "y": 840,
         "wires": [
             [
                 "a80e8adf40042251",
@@ -6261,7 +6271,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 535,
-        "y": 740,
+        "y": 840,
         "wires": []
     },
     {
@@ -6278,7 +6288,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 370,
-        "y": 780,
+        "y": 880,
         "wires": []
     },
     {
@@ -6293,7 +6303,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 740,
+        "y": 840,
         "wires": [
             [
                 "a37c62cfcb685775"
@@ -6307,7 +6317,7 @@
         "name": "HTTP Requests",
         "info": "",
         "x": 500,
-        "y": 680,
+        "y": 780,
         "wires": []
     },
     {
@@ -6319,7 +6329,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 980,
+        "y": 1080,
         "wires": []
     },
     {
@@ -6331,7 +6341,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1020,
+        "y": 1120,
         "wires": []
     },
     {
@@ -6343,7 +6353,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 1060,
+        "y": 1160,
         "wires": []
     },
     {
@@ -6992,7 +7002,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "a4e0cf51c9a7d1eb"
@@ -7011,7 +7021,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1440,
+        "y": 1540,
         "wires": [
             [
                 "0b58e656f91710d1"
@@ -7027,7 +7037,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1440,
+        "y": 1540,
         "wires": []
     },
     {
@@ -7040,7 +7050,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1600,
+        "y": 1700,
         "wires": [
             [
                 "b1c4643e4ab543a5"
@@ -7056,7 +7066,7 @@
             "c8535874aa1ff738"
         ],
         "x": 915,
-        "y": 1600,
+        "y": 1700,
         "wires": []
     },
     {
@@ -7116,7 +7126,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "a9bcf9fb6e3210a5"
@@ -7133,7 +7143,7 @@
             "6f3c21450db0a2d2"
         ],
         "x": 915,
-        "y": 1720,
+        "y": 1820,
         "wires": []
     },
     {
@@ -7155,7 +7165,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "6bcd5510f8049afa"
@@ -7177,7 +7187,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1780,
+        "y": 1880,
         "wires": []
     },
     {
@@ -7206,7 +7216,7 @@
         "repair": false,
         "outputs": 3,
         "x": 680,
-        "y": 1720,
+        "y": 1820,
         "wires": [
             [
                 "ae7bfc1a4f9a8204"
@@ -7231,7 +7241,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1660,
+        "y": 1760,
         "wires": [
             [
                 "f10b7c0b25fa5429"
@@ -7250,7 +7260,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1780,
+        "y": 1880,
         "wires": []
     },
     {
@@ -7263,7 +7273,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1960,
+        "y": 2060,
         "wires": [
             [
                 "a3f2fa267c10ee3b"
@@ -7289,7 +7299,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 1960,
+        "y": 2060,
         "wires": [
             [
                 "f11d1107faeded90"
@@ -7311,7 +7321,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1900,
+        "y": 2000,
         "wires": [
             [
                 "32458938ca244455"
@@ -7330,7 +7340,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2020,
+        "y": 2120,
         "wires": []
     },
     {
@@ -7364,7 +7374,7 @@
         "repair": false,
         "outputs": 4,
         "x": 680,
-        "y": 1960,
+        "y": 2060,
         "wires": [
             [
                 "56dd34c5643d6bad"
@@ -7392,7 +7402,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2020,
+        "y": 2120,
         "wires": []
     },
     {
@@ -7404,7 +7414,7 @@
             "f8da963aa27f72a0"
         ],
         "x": 915,
-        "y": 1960,
+        "y": 2060,
         "wires": []
     },
     {
@@ -8073,7 +8083,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1480,
+        "y": 1580,
         "wires": [
             [
                 "4d7872e1529962ce"
@@ -8092,7 +8102,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1480,
+        "y": 1580,
         "wires": [
             [
                 "189ae71dc788c445"
@@ -8108,7 +8118,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1480,
+        "y": 1580,
         "wires": []
     },
     {
@@ -8121,7 +8131,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1520,
+        "y": 1620,
         "wires": [
             [
                 "5898b29b72a6cccd"
@@ -8140,7 +8150,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1520,
+        "y": 1620,
         "wires": [
             [
                 "6a68828c35240fc7"
@@ -8156,7 +8166,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1520,
+        "y": 1620,
         "wires": []
     },
     {
@@ -8166,7 +8176,7 @@
         "name": "GET Requests",
         "info": "",
         "x": 120,
-        "y": 1380,
+        "y": 1480,
         "wires": []
     },
     {
@@ -8176,7 +8186,7 @@
         "name": "POST Requests",
         "info": "",
         "x": 120,
-        "y": 920,
+        "y": 1020,
         "wires": []
     },
     {
@@ -8189,7 +8199,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2180,
+        "y": 2280,
         "wires": [
             [
                 "beeae97391c08041"
@@ -8215,7 +8225,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2180,
+        "y": 2280,
         "wires": [
             [
                 "bb81fcec96723838"
@@ -8237,7 +8247,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2120,
+        "y": 2220,
         "wires": [
             [
                 "93650fa449eec81d"
@@ -8256,7 +8266,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2240,
+        "y": 2340,
         "wires": []
     },
     {
@@ -8295,7 +8305,7 @@
         "repair": false,
         "outputs": 5,
         "x": 680,
-        "y": 2180,
+        "y": 2280,
         "wires": [
             [
                 "63e068dd27d72c8f"
@@ -8326,7 +8336,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2260,
+        "y": 2360,
         "wires": []
     },
     {
@@ -8338,7 +8348,7 @@
             "d562529942175c6a"
         ],
         "x": 915,
-        "y": 2180,
+        "y": 2280,
         "wires": []
     },
     {
@@ -8850,7 +8860,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 460,
+        "y": 540,
         "wires": []
     },
     {
@@ -8863,7 +8873,7 @@
         ],
         "uncaught": false,
         "x": 230,
-        "y": 560,
+        "y": 660,
         "wires": [
             [
                 "1f4b4e7a860167d1"
@@ -8884,7 +8894,7 @@
             "3caa6874f26c328b"
         ],
         "x": 195,
-        "y": 520,
+        "y": 620,
         "wires": [
             [
                 "62e6a71c4cb08a51",
@@ -8904,7 +8914,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 560,
+        "y": 660,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -9965,7 +9975,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1180,
+        "y": 1280,
         "wires": [
             [
                 "d3606543f854decc"
@@ -9981,7 +9991,7 @@
             "c9c5a8c5491e0541"
         ],
         "x": 755,
-        "y": 1160,
+        "y": 1260,
         "wires": []
     },
     {
@@ -9993,7 +10003,7 @@
         "action": "obj",
         "pretty": false,
         "x": 90,
-        "y": 1220,
+        "y": 1320,
         "wires": [
             [
                 "62848ee8979bad52"
@@ -10348,7 +10358,7 @@
         "repair": false,
         "outputs": 2,
         "x": 140,
-        "y": 1260,
+        "y": 1360,
         "wires": [
             [
                 "e8614f529151feb3"
@@ -10379,7 +10389,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1240,
+        "y": 1340,
         "wires": [
             [
                 "90cfa9e0dbb70bc0"
@@ -10410,7 +10420,7 @@
         "repair": false,
         "outputs": 2,
         "x": 610,
-        "y": 1200,
+        "y": 1300,
         "wires": [
             [
                 "3a10e179ce9fa218"
@@ -10432,7 +10442,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1280,
+        "y": 1380,
         "wires": []
     },
     {
@@ -10447,7 +10457,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 1240,
+        "y": 1340,
         "wires": []
     },
     {
@@ -10462,7 +10472,7 @@
         "finalize": "",
         "libs": [],
         "x": 870,
-        "y": 1200,
+        "y": 1300,
         "wires": []
     },
     {
@@ -10547,7 +10557,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 2400,
+        "y": 2500,
         "wires": [
             [
                 "ba2fae25347c8e12",
@@ -10576,7 +10586,7 @@
         "repair": false,
         "outputs": 2,
         "x": 330,
-        "y": 2440,
+        "y": 2540,
         "wires": [
             [
                 "b7f321e5e4dbee08"
@@ -10598,7 +10608,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 2460,
+        "y": 2560,
         "wires": []
     },
     {
@@ -10610,7 +10620,7 @@
             "db8ac9d402cea0bf"
         ],
         "x": 695,
-        "y": 2420,
+        "y": 2520,
         "wires": []
     },
     {
@@ -10726,7 +10736,7 @@
         "action": "obj",
         "pretty": false,
         "x": 130,
-        "y": 2440,
+        "y": 2540,
         "wires": [
             [
                 "6978521709f87b2f",
@@ -10923,7 +10933,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 390,
-        "y": 480,
+        "y": 580,
         "wires": []
     },
     {
@@ -11236,7 +11246,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 270,
-        "y": 2480,
+        "y": 2580,
         "wires": []
     },
     {
@@ -11253,7 +11263,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 610,
-        "y": 2340,
+        "y": 2440,
         "wires": []
     },
     {
@@ -11281,7 +11291,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Initialize Directories",
-        "func": "const commands = [\n    \"cd /data/projects/REST_NODE\",\n    \"(!(test -f assets) && mkdir assets) && cd assets\",\n    \"test -f 'Wake Sounds' || mkdir 'Wake Sounds'\",\n    \"test -f 'Night Sounds' || mkdir 'Night Sounds'\",\n    \"test -f 'Relaxation Sounds' || mkdir 'Relaxation Sounds'\",\n]\n\nmsg.payload = commands.join('\\n')\n\nreturn msg;",
+        "func": "const commands = [\n    \"cd /data/projects/REST_NODE\",\n    \"(!(test -f assets) && mkdir assets) && cd assets\",\n    \"(test -f 'Wake Sounds' || mkdir 'Wake Sounds')\",\n    \"(test -f 'Night Sounds' || mkdir 'Night Sounds')\",\n    \"(test -f 'Relaxation Sounds' || mkdir 'Relaxation Sounds')\",\n]\n\nmsg.payload = commands.join('&&')\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -11354,5 +11364,41 @@
                 "ede233c7a745c8a5"
             ]
         ]
+    },
+    {
+        "id": "8ed46fa8a0ac2bfe",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [],
+        "x": 875,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6bbaf5f11895eebf",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "87766fb3ee062bef",
+        "type": "link out",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "links": [],
+        "x": 695,
+        "y": 300,
+        "wires": []
     }
 ]
