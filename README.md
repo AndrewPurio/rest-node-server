@@ -10,6 +10,22 @@ This is the REST Node server repository which contains the flows
 
 <br />
 
+# Raspberry Pi Setup (based on Raspberry Pi 4)
+
+1) Enable I2C interface and Remote GPIO
+    - Go to the Raspberry Pi Terminal (via SSH or the desktop GUI) and type the command ```sudo raspi-config```
+    - A menu of options will appear, select **3. Interface Options** (use the arrow keys to select) and then press Enter
+    - Select **P2 SSH** and select **Yes** (arrow keys to select) and then press Enter two times
+    - Repeat the previous steps but on the third one, select **P8 Remote GPIO** and enable it
+    - Select Finish after the previous steps were successfully accomplished
+
+2) Pigpiod Installation
+    - Install by entering the following command ```sudo apt install pigpiod```
+    - Enable on startup by entering the following command ```sudo systemctl enable pigpiod```
+
+3) Reboot the Raspberry Pi by plugging it out then plugging it in or simply enter the following command in the terminal:
+    ```sudo reboot```
+
 
 # Docker Container Installation:
 
