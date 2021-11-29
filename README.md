@@ -40,6 +40,8 @@ This is the REST Node server repository which contains the flows
     </service>
     </service-group>
     ```
+    - Start the avahi daemon by entering the command: ```sudo service avahi-daemon start```
+
 5) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
     ```sudo reboot```
 
