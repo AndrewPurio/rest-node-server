@@ -10,7 +10,7 @@ This is the REST Node server repository which contains the flows
 
 <br />
 
-# Raspberry Pi Setup (based on Raspberry Pi 4)
+# Raspberry Pi Setup (based on a newly installed RaspberryPi OS in Raspberry Pi 4, already connected to Wifi and updated ```sudo apt update && sudo apt upgrade```)
 
 1) Enable I2C interface and Remote GPIO
     - Go to the Raspberry Pi Terminal (via SSH or the desktop GUI) and type the command ```sudo raspi-config```
@@ -23,7 +23,24 @@ This is the REST Node server repository which contains the flows
     - Install by entering the following command ```sudo apt install pigpiod```
     - Enable on startup by entering the following command ```sudo systemctl enable pigpiod```
 
-3) Reboot the Raspberry Pi by plugging it out then plugging it in or simply enter the following command in the terminal:
+3) Install Avahi Daemon
+    - Enter the command ```sudo apt install avahi-daemon```
+    - Start the avahi daemon service ```service avahi-daemon start```
+    - Enter the following command: ```cd /etc/avahi/services && sudo nano http.service```
+    - Copy the following and paste it (right mouse-click):
+    ```
+    <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+    <service-group>
+    <name replace-wildcards="yes">%h</name>
+    <service>
+    <type>_http._tcp</type>
+    <port>80</port>
+    <txt-record>Rest Node by Exist Tribe</txt-record>
+    </service>
+    </service-group>
+    ```
+5) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
     ```sudo reboot```
 
 
@@ -35,7 +52,7 @@ This is the REST Node server repository which contains the flows
     <br />
 2) Download and run the image by pasting and entering the following command in the terminal
 ```
-docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node:dev
+sudo docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node
 ```
 
 # Testing inside the Node-Red flows
