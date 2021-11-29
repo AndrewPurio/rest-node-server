@@ -27,7 +27,7 @@ This is the REST Node server repository which contains the flows
     - Enter the command ```sudo apt install avahi-daemon```
     - Start the avahi daemon service ```service avahi-daemon start```
     - Enter the following command: ```cd /etc/avahi/services && sudo nano http.service```
-    - Copy the following and paste it (right mouse-click):
+    - Copy the following and paste it (right mouse-click), save(press Ctrl + X, then press y):
     ```
     <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
     <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
@@ -41,8 +41,13 @@ This is the REST Node server repository which contains the flows
     </service-group>
     ```
     - Start the avahi daemon by entering the command: ```sudo service avahi-daemon start```
+ 
+4) Change the hostname
+    - Enter the following command: ```sudo nano /etc/hostname```
+    - Delete the text ("raspberrypi" by default) and replace it with "restnode"
+    - Save the configuration by pressing Ctrl + X, then press y
 
-5) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
+6) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
     ```sudo reboot```
 
 
