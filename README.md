@@ -54,8 +54,13 @@ This is the REST Node server repository which contains the flows
 # Docker Container Installation:
 
 1) Install Docker in your Raspberry Pi
+    - Get and install updates if not yet done from the previous procedures: ```sudo apt-get update && sudo apt-get upgrade```
+    - Download the script to install Docker: ```curl -fsSL https://get.docker.com -o get-docker.sh```
+    - Execute the script: ```sudo sh get-docker.sh```
+    - Add current user (e.g. pi) to Docker: ```sudo usermod -aG docker pi```
+    - Verify if Docker is installed by checking its version: ```sudo docker version```
     <br />
-    Reference: https://phoenixnap.com/kb/docker-on-raspberry-pi
+    You can check this Reference for a more elaborate guide of Docker installation: https://phoenixnap.com/kb/docker-on-raspberry-pi
     <br />
 2) Download and run the image by pasting and entering the following command in the terminal
 ```
