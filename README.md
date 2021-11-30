@@ -56,7 +56,7 @@ This is the REST Node server repository which contains the flows
     ff02::1         ip6-allnodes
     ff02::2         ip6-allrouters
 
-    127.0.1.1               restnode
+    127.0.1.1       restnode
     ```
 
 6) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
