@@ -46,6 +46,18 @@ This is the REST Node server repository which contains the flows
     - Enter the following command: ```sudo nano /etc/hostname```
     - Delete the text ("raspberrypi" by default) and replace it with "restnode"
     - Save the configuration by pressing Ctrl + X, then press y
+    - Change the available hosts by entering the following command: ```sudo nano /etc/hosts```
+    - Replace all the text inside the file with the following:
+    ```
+    127.0.0.1       localhost
+    127.0.0.1       restnode
+
+    ::1             localhost ip6-localhost ip6-loopback
+    ff02::1         ip6-allnodes
+    ff02::2         ip6-allrouters
+
+    127.0.1.1               restnode
+    ```
 
 6) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
     ```sudo reboot```
