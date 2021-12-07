@@ -10,16 +10,73 @@ This is the REST Node server repository which contains the flows
 
 <br />
 
+# Raspberry Pi Setup (based on a newly installed RaspberryPi OS in Raspberry Pi 4, already connected to Wifi and updated ```sudo apt update && sudo apt upgrade```)
+
+1) Enable I2C interface and Remote GPIO
+    - Go to the Raspberry Pi Terminal (via SSH or the desktop GUI) and type the command ```sudo raspi-config```
+    - A menu of options will appear, select **3. Interface Options** (use the arrow keys to select) and then press Enter
+    - Select **P2 SSH** and select **Yes** (arrow keys to select) and then press Enter two times
+    - Repeat the previous steps but on the third one, select **P8 Remote GPIO** and enable it
+    - Select Finish after the previous steps were successfully accomplished
+
+2) Pigpiod Installation
+    - Install by entering the following command ```sudo apt install pigpiod```
+    - Enable on startup by entering the following command ```sudo systemctl enable pigpiod```
+
+3) Install Avahi Daemon
+    - Enter the command ```sudo apt install avahi-daemon```
+    - Start the avahi daemon service ```service avahi-daemon start```
+    - Enter the following command: ```cd /etc/avahi/services && sudo nano http.service```
+    - Copy the following and paste it (right mouse-click), save(press Ctrl + X, then press y):
+    ```
+    <?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+    <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+    <service-group>
+    <name replace-wildcards="yes">%h</name>
+    <service>
+    <type>_http._tcp</type>
+    <port>80</port>
+    <txt-record>Rest Node by Exist Tribe</txt-record>
+    </service>
+    </service-group>
+    ```
+    - Start the avahi daemon by entering the command: ```sudo service avahi-daemon start```
+ 
+4) Change the hostname
+    - Enter the following command: ```sudo nano /etc/hostname```
+    - Delete the text ("raspberrypi" by default) and replace it with "restnode"
+    - Save the configuration by pressing Ctrl + X, then press y
+    - Change the available hosts by entering the following command: ```sudo nano /etc/hosts```
+    - Replace all the text inside the file with the following:
+    ```
+    127.0.0.1       localhost
+    127.0.0.1       restnode
+
+    ::1             localhost ip6-localhost ip6-loopback
+    ff02::1         ip6-allnodes
+    ff02::2         ip6-allrouters
+
+    127.0.1.1       restnode
+    ```
+
+6) Reboot the Raspberry Pi to apply the system changes by plugging it out then plugging it in or simply enter the following command in the terminal:
+    ```sudo reboot```
+
 
 # Docker Container Installation:
 
 1) Install Docker in your Raspberry Pi
+    - Get and install updates if not yet done from the previous procedures: ```sudo apt-get update && sudo apt-get upgrade```
+    - Download the script to install Docker: ```curl -fsSL https://get.docker.com -o get-docker.sh```
+    - Execute the script: ```sudo sh get-docker.sh```
+    - Add current user (e.g. pi) to Docker: ```sudo usermod -aG docker pi```
+    - Verify if Docker is installed by checking its version: ```sudo docker version```
     <br />
-    Reference: https://phoenixnap.com/kb/docker-on-raspberry-pi
+    You can check this Reference for a more elaborate guide of Docker installation: https://phoenixnap.com/kb/docker-on-raspberry-pi
     <br />
 2) Download and run the image by pasting and entering the following command in the terminal
 ```
-docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node:dev
+sudo docker run -p 80:1880 -v /etc/wpa_supplicant:/etc/wpa_supplicant -v /etc/localtime:/etc/localtime:ro --device=/dev/gpiomem --device=/dev/i2c-1:/dev/i2c-1 --device=/dev/snd:/dev/snd  --name rest-node --restart=always restnode/rest_node
 ```
 
 # Testing inside the Node-Red flows
