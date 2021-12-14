@@ -11511,33 +11511,26 @@
         "wires": []
     },
     {
-        "id": "ea708af8c3f0c5e0",
-        "type": "exec",
+        "id": "df339d904f3b84b3",
+        "type": "function",
         "z": "4fcd3dd2df70f0c8",
-        "command": "docker -v",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 400,
+        "name": "Pass Commands To the Host Terminal",
+        "func": "const docker = \"sudo docker\"\nconst container_name = \"rest-node\"\nconst image_name = \"restnode/rest_node:dev\"\nconst port = \"-p 80:1880\"\nconst volumes = [\n    \"-v /etc/wpa_supplicant:/etc/wpa_supplicant\",\n    \"-v /etc/localtime:/etc/localtime:ro\",\n    \"-v /home/pi/pipes/host_pipe:/pipe/host_pipe\"\n]\nconst devices = [\n    \"--device=/dev/gpiomem\",\n    \"--device=/dev/i2c-1:/dev/i2c-1\",\n    \"--device=/dev/snd:/dev/snd\"\n]\nconst restart = \"--restart=always\"\n\nconst stop_container = `${docker} stop ${container_name}`\nconst remove_container = `${docker} container rm ${container_name}`\nconst pull_image = `${docker} pull ${image_name}`\nconst run_container = `${docker} run ${port} ${volumes.join(\" \")} ${devices.join(\" \")} --name ${container_name} ${restart} ${image_name}`\n\nconst host_script = [stop_container, remove_container, pull_image, run_container].join(\" && \")\n\nmsg.payload = `echo ${host_script} > /pipes/host_pipe`\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
         "y": 660,
         "wires": [
             [
-                "797785b841034a35"
-            ],
-            [
-                "a401cc1bc8fbb60e"
-            ],
-            [
-                "a0430bb392b4d74e"
+                "fdd84480a14b1161"
             ]
         ]
     },
     {
-        "id": "4a8c57e6329748e2",
+        "id": "9ad941f8ce1579b1",
         "type": "inject",
         "z": "4fcd3dd2df70f0c8",
         "name": "",
@@ -11557,16 +11550,42 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
+        "x": 120,
         "y": 660,
         "wires": [
             [
-                "ea708af8c3f0c5e0"
+                "df339d904f3b84b3"
             ]
         ]
     },
     {
-        "id": "797785b841034a35",
+        "id": "fdd84480a14b1161",
+        "type": "exec",
+        "z": "4fcd3dd2df70f0c8",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 250,
+        "y": 780,
+        "wires": [
+            [
+                "62fe2b5c090c47b4"
+            ],
+            [
+                "4784eee3c2f68f04"
+            ],
+            [
+                "3915bd6b576331fa"
+            ]
+        ]
+    },
+    {
+        "id": "62fe2b5c090c47b4",
         "type": "debug",
         "z": "4fcd3dd2df70f0c8",
         "name": "",
@@ -11574,15 +11593,16 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 620,
+        "x": 550,
+        "y": 740,
         "wires": []
     },
     {
-        "id": "a401cc1bc8fbb60e",
+        "id": "4784eee3c2f68f04",
         "type": "debug",
         "z": "4fcd3dd2df70f0c8",
         "name": "",
@@ -11593,12 +11613,12 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 660,
+        "x": 550,
+        "y": 780,
         "wires": []
     },
     {
-        "id": "a0430bb392b4d74e",
+        "id": "3915bd6b576331fa",
         "type": "debug",
         "z": "4fcd3dd2df70f0c8",
         "name": "",
@@ -11609,8 +11629,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 630,
-        "y": 700,
+        "x": 550,
+        "y": 820,
         "wires": []
     }
 ]
