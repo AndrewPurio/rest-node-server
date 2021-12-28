@@ -1065,7 +1065,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 630,
-        "y": 360,
+        "y": 520,
         "wires": []
     },
     {
@@ -1166,7 +1166,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 400,
-        "y": 300,
+        "y": 460,
         "wires": [
             [
                 "1590337acdb5b8fc",
@@ -1188,7 +1188,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 410,
-        "y": 360,
+        "y": 520,
         "wires": []
     },
     {
@@ -1905,7 +1905,7 @@
             "5397f0d28c60d06a"
         ],
         "x": 195,
-        "y": 300,
+        "y": 460,
         "wires": [
             [
                 "766cf8448e1566aa",
@@ -3824,7 +3824,7 @@
         "name": "Reset",
         "info": "",
         "x": 70,
-        "y": 240,
+        "y": 400,
         "wires": []
     },
     {
@@ -5426,35 +5426,6 @@
         ]
     },
     {
-        "id": "79c4f1b3026cbdcb",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/event",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 1120,
-        "wires": [
-            [
-                "332df25bbfca8896"
-            ]
-        ]
-    },
-    {
-        "id": "b443ac417c7a70f1",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event API (Bedtime)",
-        "links": [
-            "923891f5d3e27f13"
-        ],
-        "x": 635,
-        "y": 1040,
-        "wires": []
-    },
-    {
         "id": "4c149006d1618a77",
         "type": "function",
         "z": "f6f2187d.f17ca8",
@@ -6128,61 +6099,6 @@
         ]
     },
     {
-        "id": "332df25bbfca8896",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event Type Selector",
-        "property": "payload.type",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "events.bedtime",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
-                "v": "events.waketime",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
-                "v": "events.sunrise",
-                "vt": "flow"
-            },
-            {
-                "t": "eq",
-                "v": "events.sunset",
-                "vt": "flow"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 5,
-        "x": 420,
-        "y": 1120,
-        "wires": [
-            [
-                "b443ac417c7a70f1"
-            ],
-            [
-                "cee32bbd8ec92569"
-            ],
-            [
-                "b54e559135e567a0"
-            ],
-            [
-                "67b663c836889056"
-            ],
-            [
-                "cf57cdebde601ad2"
-            ]
-        ]
-    },
-    {
         "id": "14b017febce3fd48",
         "type": "http response",
         "z": "f6f2187d.f17ca8",
@@ -6213,7 +6129,11 @@
             "2202f3a074aa0c70",
             "bc02de84fc2b537e",
             "8241ce699c09ea33",
-            "a193b63a6d0a67ad"
+            "a193b63a6d0a67ad",
+            "d9c21651d3bf73f3",
+            "84cc3221f3ae7945",
+            "7a6af03a46076c29",
+            "39c3271784c41469"
         ],
         "x": 635,
         "y": 840,
@@ -6222,21 +6142,6 @@
                 "14b017febce3fd48"
             ]
         ]
-    },
-    {
-        "id": "cf57cdebde601ad2",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event Type Missing",
-        "func": "const error = new Error('No such event. Please update the type property of the event')\n\nmsg.statusCode = 400\n\nthrow error",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 1200,
-        "wires": []
     },
     {
         "id": "d629cceacc4dc2f0",
@@ -6250,7 +6155,8 @@
             "e675dae377251908",
             "ca7603bf1dfcb6b5",
             "7d3382ac291b5d68",
-            "8415c00b83f546c9"
+            "8415c00b83f546c9",
+            "0cb73c0373380d27"
         ],
         "uncaught": false,
         "x": 160,
@@ -6321,42 +6227,6 @@
         "wires": []
     },
     {
-        "id": "cee32bbd8ec92569",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event API (Waketime)",
-        "links": [
-            "923891f5d3e27f13"
-        ],
-        "x": 635,
-        "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "b54e559135e567a0",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event API (Sunrise)",
-        "links": [
-            "923891f5d3e27f13"
-        ],
-        "x": 635,
-        "y": 1120,
-        "wires": []
-    },
-    {
-        "id": "67b663c836889056",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "Event API (Sunset)",
-        "links": [
-            "923891f5d3e27f13"
-        ],
-        "x": 635,
-        "y": 1160,
-        "wires": []
-    },
-    {
         "id": "fccde3b1c6d74d57",
         "type": "comment",
         "z": "427808241d304283",
@@ -6375,7 +6245,11 @@
             "67b663c836889056",
             "b443ac417c7a70f1",
             "b54e559135e567a0",
-            "cee32bbd8ec92569"
+            "cee32bbd8ec92569",
+            "6a818fee00616bc3",
+            "633a87515a706fae",
+            "b2db8aadc49ccf98",
+            "235bb75890be86ee"
         ],
         "x": 175,
         "y": 360,
@@ -7002,7 +6876,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1540,
+        "y": 1020,
         "wires": [
             [
                 "a4e0cf51c9a7d1eb"
@@ -7021,7 +6895,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1540,
+        "y": 1020,
         "wires": [
             [
                 "0b58e656f91710d1"
@@ -7037,7 +6911,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1540,
+        "y": 1020,
         "wires": []
     },
     {
@@ -7050,7 +6924,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1700,
+        "y": 1180,
         "wires": [
             [
                 "b1c4643e4ab543a5"
@@ -7066,7 +6940,7 @@
             "c8535874aa1ff738"
         ],
         "x": 915,
-        "y": 1700,
+        "y": 1180,
         "wires": []
     },
     {
@@ -7126,7 +7000,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1820,
+        "y": 1300,
         "wires": [
             [
                 "a9bcf9fb6e3210a5"
@@ -7143,7 +7017,7 @@
             "6f3c21450db0a2d2"
         ],
         "x": 915,
-        "y": 1820,
+        "y": 1300,
         "wires": []
     },
     {
@@ -7165,7 +7039,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1820,
+        "y": 1300,
         "wires": [
             [
                 "6bcd5510f8049afa"
@@ -7187,7 +7061,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1880,
+        "y": 1360,
         "wires": []
     },
     {
@@ -7216,7 +7090,7 @@
         "repair": false,
         "outputs": 3,
         "x": 680,
-        "y": 1820,
+        "y": 1300,
         "wires": [
             [
                 "ae7bfc1a4f9a8204"
@@ -7241,7 +7115,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1760,
+        "y": 1240,
         "wires": [
             [
                 "f10b7c0b25fa5429"
@@ -7260,7 +7134,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1880,
+        "y": 1360,
         "wires": []
     },
     {
@@ -7273,7 +7147,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2060,
+        "y": 1540,
         "wires": [
             [
                 "a3f2fa267c10ee3b"
@@ -7299,7 +7173,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2060,
+        "y": 1540,
         "wires": [
             [
                 "f11d1107faeded90"
@@ -7321,7 +7195,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2000,
+        "y": 1480,
         "wires": [
             [
                 "32458938ca244455"
@@ -7340,7 +7214,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2120,
+        "y": 1600,
         "wires": []
     },
     {
@@ -7374,7 +7248,7 @@
         "repair": false,
         "outputs": 4,
         "x": 680,
-        "y": 2060,
+        "y": 1540,
         "wires": [
             [
                 "56dd34c5643d6bad"
@@ -7402,7 +7276,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2120,
+        "y": 1600,
         "wires": []
     },
     {
@@ -7414,7 +7288,7 @@
             "f8da963aa27f72a0"
         ],
         "x": 915,
-        "y": 2060,
+        "y": 1540,
         "wires": []
     },
     {
@@ -8083,7 +7957,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1580,
+        "y": 1060,
         "wires": [
             [
                 "4d7872e1529962ce"
@@ -8102,7 +7976,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1580,
+        "y": 1060,
         "wires": [
             [
                 "189ae71dc788c445"
@@ -8118,7 +7992,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1580,
+        "y": 1060,
         "wires": []
     },
     {
@@ -8131,7 +8005,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1620,
+        "y": 1100,
         "wires": [
             [
                 "5898b29b72a6cccd"
@@ -8150,7 +8024,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1620,
+        "y": 1100,
         "wires": [
             [
                 "6a68828c35240fc7"
@@ -8166,7 +8040,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1620,
+        "y": 1100,
         "wires": []
     },
     {
@@ -8176,17 +8050,7 @@
         "name": "GET Requests",
         "info": "",
         "x": 120,
-        "y": 1480,
-        "wires": []
-    },
-    {
-        "id": "6ec05f623c85cc13",
-        "type": "comment",
-        "z": "f6f2187d.f17ca8",
-        "name": "POST Requests",
-        "info": "",
-        "x": 120,
-        "y": 1020,
+        "y": 960,
         "wires": []
     },
     {
@@ -8199,7 +8063,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2280,
+        "y": 1760,
         "wires": [
             [
                 "beeae97391c08041"
@@ -8225,7 +8089,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 2280,
+        "y": 1760,
         "wires": [
             [
                 "bb81fcec96723838"
@@ -8247,7 +8111,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 2220,
+        "y": 1700,
         "wires": [
             [
                 "93650fa449eec81d"
@@ -8266,7 +8130,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2340,
+        "y": 1820,
         "wires": []
     },
     {
@@ -8305,7 +8169,7 @@
         "repair": false,
         "outputs": 5,
         "x": 680,
-        "y": 2280,
+        "y": 1760,
         "wires": [
             [
                 "63e068dd27d72c8f"
@@ -8336,7 +8200,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2360,
+        "y": 1840,
         "wires": []
     },
     {
@@ -8348,7 +8212,7 @@
             "d562529942175c6a"
         ],
         "x": 915,
-        "y": 2280,
+        "y": 1760,
         "wires": []
     },
     {
@@ -8473,75 +8337,11 @@
         "wires": []
     },
     {
-        "id": "3a870779efba41a0",
-        "type": "file in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Read WiFi Config",
-        "filename": "/etc/wpa_supplicant/wpa_supplicant.conf",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 330,
-        "y": 340,
-        "wires": [
-            [
-                "2b141e78f8cc668b"
-            ]
-        ]
-    },
-    {
-        "id": "b388e0b8c55de8a5",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 340,
-        "wires": [
-            [
-                "3a870779efba41a0"
-            ]
-        ]
-    },
-    {
-        "id": "2b141e78f8cc668b",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 340,
-        "wires": []
-    },
-    {
         "id": "752d68319363df07",
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Initialize Constants",
-        "func": "const wifi_config_file = \"/etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst network_connection = {\n    wifi_config_file\n}\n\nflow.set(\"network\", network_connection)",
+        "func": "const wifi_config_file = \"/etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst network_connection = {\n    wifi_config_file\n}\n\nconst network_log = \"/data/log/pia.log\"\nconst wifi_credentials = \"/data/wifi/home.wifi\"\nconst access_point_credentials = \"/data/wifi/pi.wifi\"\n\nconst network_files = {\n    network_log, wifi_credentials, access_point_credentials\n}\n\nflow.set(\"network\", network_connection)\nflow.set(\"network_files\", network_files)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -8549,145 +8349,6 @@
         "libs": [],
         "x": 830,
         "y": 100,
-        "wires": []
-    },
-    {
-        "id": "e126ed05c5f095ce",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Wifi Config Template",
-        "func": "const ctrl_interface_dir = \"/var/run/wpa_supplicant\"\nconst group = \"netdev\"\nconst update_config = \"1\"\nconst country = \"PH\"\n\nconst network = {\n    ssid: \"Smart Home\",\n    psk: \"systemsecured\",\n    key: \"WPA-PSK\"\n}\n\nconst template = `\nctrl_interface=DIR=${ctrl_interface_dir} GROUP=${group}\nupdate_config=${update_config}\ncountry=${country}\n`\n\nmsg.payload = template\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 340,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b5e0979241c59890",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "WPA Passphrase Encoding",
-        "func": "const ssid = \"'Smart Home'\"\nconst password = \"'systemsecured'\"\n\nconst encode_password = `wpa_passphrase ${ssid} ${password}`\n\nmsg.payload = encode_password\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 460,
-        "wires": [
-            [
-                "e12d6523288b8380"
-            ]
-        ]
-    },
-    {
-        "id": "71099214f40b36e2",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 460,
-        "wires": [
-            [
-                "b5e0979241c59890"
-            ]
-        ]
-    },
-    {
-        "id": "e12d6523288b8380",
-        "type": "exec",
-        "z": "4b91f5d2f9b78292",
-        "command": "",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 650,
-        "y": 460,
-        "wires": [
-            [
-                "c40829175a0f40ee"
-            ],
-            [
-                "07a5d0a407bd9fef"
-            ],
-            [
-                "a9a2b76f209f9c36"
-            ]
-        ]
-    },
-    {
-        "id": "c40829175a0f40ee",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "07a5d0a407bd9fef",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "a9a2b76f209f9c36",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 810,
-        "y": 500,
         "wires": []
     },
     {
@@ -8891,7 +8552,8 @@
             "f304279097451e82",
             "fad7b7c9b1470e56",
             "f8873863294f0ab5",
-            "3caa6874f26c328b"
+            "3caa6874f26c328b",
+            "81d542eb869585b4"
         ],
         "x": 195,
         "y": 620,
@@ -8928,7 +8590,7 @@
         "name": "Audio Device",
         "info": "",
         "x": 90,
-        "y": 440,
+        "y": 600,
         "wires": []
     },
     {
@@ -8940,7 +8602,7 @@
             "9bd942c9ca7183b9"
         ],
         "x": 195,
-        "y": 500,
+        "y": 660,
         "wires": [
             [
                 "a23245de2a284da7"
@@ -8959,7 +8621,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 500,
+        "y": 660,
         "wires": [
             [
                 "144fd0dfecaeedea"
@@ -8975,7 +8637,7 @@
             "a6c0468332682feb"
         ],
         "x": 675,
-        "y": 500,
+        "y": 660,
         "wires": []
     },
     {
@@ -9147,7 +8809,8 @@
             "91b303d2fbc264d0",
             "adec83fd96f5a557",
             "c0a5fa6f73429b5c",
-            "d62a3bc48c8f248f"
+            "d62a3bc48c8f248f",
+            "13deef710be29b8a"
         ],
         "x": 255,
         "y": 200,
@@ -9810,7 +9473,7 @@
         "payload": "start",
         "payloadType": "str",
         "x": 90,
-        "y": 2660,
+        "y": 3140,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9825,8 +9488,8 @@
         "playerOptions": "{ \"player\": \"mpg123\" }",
         "audioURI": "",
         "options": "{}",
-        "x": 470,
-        "y": 2660,
+        "x": 450,
+        "y": 3140,
         "wires": [
             [
                 "2d418fbe39d25536"
@@ -9845,8 +9508,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 2660,
+        "x": 680,
+        "y": 3140,
         "wires": []
     },
     {
@@ -9871,7 +9534,7 @@
         "payload": "stop",
         "payloadType": "str",
         "x": 90,
-        "y": 2720,
+        "y": 3200,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9900,7 +9563,7 @@
         "payload": "resume",
         "payloadType": "str",
         "x": 90,
-        "y": 2780,
+        "y": 3260,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9929,7 +9592,7 @@
         "payload": "pause",
         "payloadType": "str",
         "x": 90,
-        "y": 2840,
+        "y": 3320,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9947,8 +9610,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 2660,
+        "x": 260,
+        "y": 3140,
         "wires": [
             [
                 "8cafd4602aeb9b91"
@@ -9962,53 +9625,8 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 2600,
+        "y": 3080,
         "wires": []
-    },
-    {
-        "id": "b600e98b05a94eb3",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/audio/files",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 150,
-        "y": 1280,
-        "wires": [
-            [
-                "d3606543f854decc"
-            ]
-        ]
-    },
-    {
-        "id": "3a10e179ce9fa218",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "links": [
-            "c9c5a8c5491e0541"
-        ],
-        "x": 755,
-        "y": 1260,
-        "wires": []
-    },
-    {
-        "id": "d3606543f854decc",
-        "type": "json",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 90,
-        "y": 1320,
-        "wires": [
-            [
-                "62848ee8979bad52"
-            ]
-        ]
     },
     {
         "id": "c9c5a8c5491e0541",
@@ -10016,7 +9634,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "Store Audio Files Metadata",
         "links": [
-            "3a10e179ce9fa218"
+            "3a10e179ce9fa218",
+            "6d07b905709d8469"
         ],
         "x": 135,
         "y": 740,
@@ -10069,8 +9688,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Get Available Assets Dir",
-        "x": 510,
-        "y": 3300,
+        "x": 530,
+        "y": 3420,
         "wires": [
             [
                 "c73026e2a7474f78"
@@ -10090,8 +9709,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 3300,
+        "x": 300,
+        "y": 3420,
         "wires": [
             [
                 "f2fac2e5b78c46b3"
@@ -10109,8 +9728,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 3300,
+        "x": 760,
+        "y": 3420,
         "wires": [
             [
                 "2fc0d9c905e68783"
@@ -10125,8 +9744,8 @@
         "links": [
             "96a98c49ec5f592e"
         ],
-        "x": 895,
-        "y": 3300,
+        "x": 915,
+        "y": 3420,
         "wires": []
     },
     {
@@ -10137,8 +9756,8 @@
         "links": [
             "2fc0d9c905e68783"
         ],
-        "x": 35,
-        "y": 3420,
+        "x": 55,
+        "y": 3540,
         "wires": [
             [
                 "62c5c61de81dc05f"
@@ -10157,8 +9776,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Get Audio Files",
-        "x": 580,
-        "y": 3420,
+        "x": 600,
+        "y": 3540,
         "wires": [
             [
                 "403f07b7d0544159"
@@ -10178,8 +9797,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 150,
-        "y": 3420,
+        "x": 170,
+        "y": 3540,
         "wires": [
             [
                 "97c6f4e7cec98e3d"
@@ -10197,8 +9816,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 3420,
+        "x": 390,
+        "y": 3540,
         "wires": [
             [
                 "4c9e7337cd75daee"
@@ -10222,8 +9841,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 780,
-        "y": 3420,
+        "x": 800,
+        "y": 3540,
         "wires": [
             [
                 "97c6f4e7cec98e3d",
@@ -10242,8 +9861,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 3480,
+        "x": 610,
+        "y": 3600,
         "wires": [
             [
                 "5192ecce926e940d"
@@ -10261,8 +9880,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 3480,
+        "x": 380,
+        "y": 3600,
         "wires": [
             [
                 "1e7f948bea0d4318"
@@ -10277,8 +9896,8 @@
         "links": [
             "392fbd89372faedd"
         ],
-        "x": 935,
-        "y": 3420,
+        "x": 955,
+        "y": 3540,
         "wires": []
     },
     {
@@ -10289,8 +9908,8 @@
         "links": [
             "bb84be7b185de541"
         ],
-        "x": 35,
-        "y": 3480,
+        "x": 55,
+        "y": 3600,
         "wires": [
             [
                 "31d7717a39009682"
@@ -10308,244 +9927,22 @@
         "wires": []
     },
     {
-        "id": "2202f3a074aa0c70",
-        "type": "link out",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "links": [
-            "1bd0312798db6fb0"
-        ],
-        "x": 895,
-        "y": 2920,
-        "wires": []
-    },
-    {
-        "id": "db8ac9d402cea0bf",
-        "type": "link in",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Download Media File",
-        "links": [
-            "b7f321e5e4dbee08",
-            "93b47e5b799d36cb",
-            "5b626b4ae0e51128"
-        ],
-        "x": 135,
-        "y": 2920,
-        "wires": [
-            [
-                "15154b6e6b0ea612"
-            ]
-        ]
-    },
-    {
-        "id": "62848ee8979bad52",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "Night Sounds Check",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "hask",
-                "v": "Night Sounds",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 140,
-        "y": 1360,
-        "wires": [
-            [
-                "e8614f529151feb3"
-            ],
-            [
-                "e675dae377251908"
-            ]
-        ]
-    },
-    {
-        "id": "e8614f529151feb3",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "Wake Sounds Check",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "hask",
-                "v": "Wake Sounds",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 380,
-        "y": 1340,
-        "wires": [
-            [
-                "90cfa9e0dbb70bc0"
-            ],
-            [
-                "ca7603bf1dfcb6b5"
-            ]
-        ]
-    },
-    {
-        "id": "90cfa9e0dbb70bc0",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "Relaxation Sounds Check",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "hask",
-                "v": "Relaxation Sounds",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 610,
-        "y": 1300,
-        "wires": [
-            [
-                "3a10e179ce9fa218"
-            ],
-            [
-                "7d3382ac291b5d68"
-            ]
-        ]
-    },
-    {
-        "id": "e675dae377251908",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Night Sounds not Stated",
-        "func": "const error = new Error('Night Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 390,
-        "y": 1380,
-        "wires": []
-    },
-    {
-        "id": "ca7603bf1dfcb6b5",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Wake Sounds not Stated",
-        "func": "const error = new Error('Wake Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 1340,
-        "wires": []
-    },
-    {
-        "id": "7d3382ac291b5d68",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Relaxation Sounds not Stated",
-        "func": "const error = new Error('Relaxation Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 870,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "15154b6e6b0ea612",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Get Media To Download",
-        "func": "const { fullPath: full_path } = msg.payload\nconst audio_files = flow.get('audio_files')\nconst levels = full_path.split(\"/\")\n\nif(!audio_files)\n    throw new Error(\"Audio Files hasn't been set yet\")\n\nlet pointer = audio_files\n\nfor(let index = 0; index < levels.length; index++) {\n    const level = levels[index]\n    \n    pointer = pointer[ level ]\n    \n    if(!pointer) {\n        const error = new Error('File does not exist')\n        msg.statusCode = 400\n        \n        throw error\n    }\n}\n\nmsg.payload = pointer\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 2920,
-        "wires": [
-            [
-                "3881fde0d3754aab",
-                "11c8e39fb276f57b"
-            ]
-        ]
-    },
-    {
         "id": "adec83fd96f5a557",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
         "name": "Get Available Audio Assets",
         "links": [
             "1a5068f4b0cae0d9",
-            "8748145c4cb2446d"
+            "8748145c4cb2446d",
+            "1c0dec3596439438"
         ],
-        "x": 135,
-        "y": 3300,
+        "x": 155,
+        "y": 3420,
         "wires": [
             [
                 "7c5ca2aa4103ee8c"
             ]
         ]
-    },
-    {
-        "id": "75cc65cd7d6cadd4",
-        "type": "catch",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "scope": [
-            "15154b6e6b0ea612"
-        ],
-        "uncaught": false,
-        "x": 250,
-        "y": 3180,
-        "wires": [
-            [
-                "1af14d71b05fc145",
-                "631c781617ad44ca"
-            ]
-        ]
-    },
-    {
-        "id": "1af14d71b05fc145",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 530,
-        "y": 3200,
-        "wires": []
     },
     {
         "id": "7e259f198b640b75",
@@ -10557,7 +9954,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 2500,
+        "y": 1980,
         "wires": [
             [
                 "ba2fae25347c8e12",
@@ -10586,7 +9983,7 @@
         "repair": false,
         "outputs": 2,
         "x": 330,
-        "y": 2540,
+        "y": 2020,
         "wires": [
             [
                 "b7f321e5e4dbee08"
@@ -10608,7 +10005,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 2560,
+        "y": 2040,
         "wires": []
     },
     {
@@ -10617,85 +10014,11 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "links": [
-            "db8ac9d402cea0bf"
+            "db8ac9d402cea0bf",
+            "f606d9d82e886790"
         ],
         "x": 695,
-        "y": 2520,
-        "wires": []
-    },
-    {
-        "id": "bc02de84fc2b537e",
-        "type": "link out",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "links": [
-            "1bd0312798db6fb0"
-        ],
-        "x": 795,
-        "y": 3160,
-        "wires": []
-    },
-    {
-        "id": "631c781617ad44ca",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Error Handler",
-        "func": "msg.payload = msg.error\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 3160,
-        "wires": [
-            [
-                "bc02de84fc2b537e"
-            ]
-        ]
-    },
-    {
-        "id": "3881fde0d3754aab",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Download Media File",
-        "func": "const { assets_dir } = global.get('defaults_config')\nconst {\n    AUDIO_ASSETS_AVAILABLE,\n    AUDIO_FILE_DOWNLOADED,\n    AUDIO_FILE_DOWNLOAD_ERROR,\n    AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n} = flow.get('audio_download_response_topics')\nconst { createWriteStream } = fs\nconst { fullPath: full_path, source: url, name } = msg.payload\n\nconst file_destination = `${assets_dir}/${full_path}`\nconst request_url = request(url)\nconst progress_config = {\n    throttle: 2000\n}\n\nconst in_progress_handler = (state) => {\n    const payload = {\n        ...state, name,\n        topic: AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_error_handler = (error) => {\n    const payload = {\n        message: \"Error Downloading the file\",\n        topic: AUDIO_FILE_DOWNLOAD_ERROR,\n        name,\n        error\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_end_handler = () => {\n    const payload = {\n        ...msg.payload,\n        message: \"Download Finished\",\n        topic: AUDIO_FILE_DOWNLOADED,\n        name\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n    \n    const topic = AUDIO_ASSETS_AVAILABLE\n    \n    node.send({\n        payload: {\n            topic\n        },\n        topic\n    })\n}\n\nconst write_stream = createWriteStream(file_destination)\n\nprogress(request_url, progress_config)\n    .on('progress', in_progress_handler)\n    .on('error', on_error_handler)\n    .on('end', on_end_handler)\n    .pipe(write_stream)\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "request",
-                "module": "request"
-            },
-            {
-                "var": "fs",
-                "module": "fs"
-            },
-            {
-                "var": "progress",
-                "module": "request-progress"
-            }
-        ],
-        "x": 300,
-        "y": 2980,
-        "wires": [
-            [
-                "719b8978f048b039"
-            ]
-        ]
-    },
-    {
-        "id": "fad7b7c9b1470e56",
-        "type": "link out",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "links": [
-            "77bbaf1677e51e46"
-        ],
-        "x": 615,
-        "y": 3040,
+        "y": 2000,
         "wires": []
     },
     {
@@ -10719,8 +10042,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 110,
-        "y": 3340,
+        "x": 130,
+        "y": 3460,
         "wires": [
             [
                 "7c5ca2aa4103ee8c"
@@ -10736,119 +10059,13 @@
         "action": "obj",
         "pretty": false,
         "x": 130,
-        "y": 2540,
+        "y": 2020,
         "wires": [
             [
                 "6978521709f87b2f",
                 "2b9a7af9b5f12bc7"
             ]
         ]
-    },
-    {
-        "id": "e828f9049186a285",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 890,
-        "y": 2980,
-        "wires": []
-    },
-    {
-        "id": "a0c18a3eddded47f",
-        "type": "switch",
-        "z": "56ae43efe9a5b4d3",
-        "name": "If Audio Download Ended Redirect",
-        "property": "payload.topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "neq",
-                "v": "audio_download_response_topics.AUDIO_ASSETS_AVAILABLE",
-                "vt": "flow"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 340,
-        "y": 3060,
-        "wires": [
-            [
-                "fad7b7c9b1470e56"
-            ],
-            [
-                "8748145c4cb2446d",
-                "042130adc67d4abb"
-            ]
-        ]
-    },
-    {
-        "id": "8748145c4cb2446d",
-        "type": "link out",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "links": [
-            "adec83fd96f5a557"
-        ],
-        "x": 615,
-        "y": 3080,
-        "wires": []
-    },
-    {
-        "id": "719b8978f048b039",
-        "type": "change",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Set Type as an Audio Download Response",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.type",
-                "pt": "msg",
-                "to": "api_response_types.AUDIO_DOWNLOAD_RESPONSE",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 600,
-        "y": 2980,
-        "wires": [
-            [
-                "a0c18a3eddded47f",
-                "e828f9049186a285"
-            ]
-        ]
-    },
-    {
-        "id": "042130adc67d4abb",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 550,
-        "y": 3120,
-        "wires": []
     },
     {
         "id": "225a7be097c947fb",
@@ -10875,8 +10092,8 @@
         "links": [
             "c8535874aa1ff738"
         ],
-        "x": 935,
-        "y": 3480,
+        "x": 955,
+        "y": 3600,
         "wires": []
     },
     {
@@ -11143,7 +10360,8 @@
         "z": "56ae43efe9a5b4d3",
         "name": "",
         "links": [
-            "db8ac9d402cea0bf"
+            "db8ac9d402cea0bf",
+            "f606d9d82e886790"
         ],
         "x": 415,
         "y": 140,
@@ -11193,29 +10411,6 @@
         "wires": []
     },
     {
-        "id": "11c8e39fb276f57b",
-        "type": "switch",
-        "z": "56ae43efe9a5b4d3",
-        "name": "If an HTTP request",
-        "property": "req",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 590,
-        "y": 2920,
-        "wires": [
-            [
-                "2202f3a074aa0c70"
-            ]
-        ]
-    },
-    {
         "id": "16e1e28a541ea48b",
         "type": "debug",
         "z": "56ae43efe9a5b4d3",
@@ -11246,7 +10441,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 270,
-        "y": 2580,
+        "y": 2060,
         "wires": []
     },
     {
@@ -11263,7 +10458,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 610,
-        "y": 2440,
+        "y": 1920,
         "wires": []
     },
     {
@@ -11398,106 +10593,7 @@
         "name": "",
         "links": [],
         "x": 695,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "a44b3f213ac760b3",
-        "type": "exec",
-        "z": "4b91f5d2f9b78292",
-        "command": "",
-        "addpay": "payload",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 290,
-        "y": 620,
-        "wires": [
-            [
-                "8a7ac498122bdb29"
-            ],
-            [
-                "6f108e23d14095cd"
-            ],
-            [
-                "91d3f418a2827031"
-            ]
-        ]
-    },
-    {
-        "id": "e46875fd233af4c8",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
-        "payloadType": "str",
-        "x": 110,
-        "y": 620,
-        "wires": [
-            [
-                "a44b3f213ac760b3"
-            ]
-        ]
-    },
-    {
-        "id": "8a7ac498122bdb29",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 510,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "6f108e23d14095cd",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 510,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "91d3f418a2827031",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 510,
-        "y": 660,
+        "y": 460,
         "wires": []
     },
     {
@@ -11507,7 +10603,7 @@
         "name": "Update Flows",
         "info": "",
         "x": 90,
-        "y": 580,
+        "y": 740,
         "wires": []
     },
     {
@@ -11522,7 +10618,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 660,
+        "y": 820,
         "wires": [
             [
                 "fdd84480a14b1161"
@@ -11551,7 +10647,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 660,
+        "y": 820,
         "wires": [
             [
                 "df339d904f3b84b3"
@@ -11571,7 +10667,7 @@
         "oldrc": false,
         "name": "",
         "x": 250,
-        "y": 780,
+        "y": 940,
         "wires": [
             [
                 "62fe2b5c090c47b4"
@@ -11598,7 +10694,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 740,
+        "y": 900,
         "wires": []
     },
     {
@@ -11614,7 +10710,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 780,
+        "y": 940,
         "wires": []
     },
     {
@@ -11630,7 +10726,1494 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 820,
+        "y": 980,
         "wires": []
+    },
+    {
+        "id": "1d98587b51d408ea",
+        "type": "watch",
+        "z": "4b91f5d2f9b78292",
+        "name": "Watch Network Logs",
+        "files": "/data/log/test_file.json",
+        "recursive": "",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "fa5901681e6a0b7d"
+            ]
+        ]
+    },
+    {
+        "id": "89c1c49dbd6614b8",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "b3d08bf0b9cc5227",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Read File",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 420,
+        "y": 580,
+        "wires": [
+            [
+                "06f76d7d05da8ac0"
+            ]
+        ]
+    },
+    {
+        "id": "9b563f7b6c2a1fa5",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "Wifi Credentials File",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "[default]\nssid = {{payload.ssid}}\npassword = {{payload.password}}\ncountry = {{payload.country}}\nts = {{payload.timestamp}}",
+        "output": "str",
+        "x": 220,
+        "y": 680,
+        "wires": [
+            [
+                "8323ae114b6cd1b2"
+            ]
+        ]
+    },
+    {
+        "id": "06f76d7d05da8ac0",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Extract Timestamp",
+        "func": "const file_contents = msg.payload\nconst timestamp_regex = /(?<=ts[ =]+)\\d+/\nconst [ timestamp ] = timestamp_regex.exec(file_contents)\n\nmsg.payload = msg.credentials\n\nmsg.payload.timestamp = timestamp\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 580,
+        "wires": [
+            [
+                "64996aa7d5379b3c"
+            ]
+        ]
+    },
+    {
+        "id": "64996aa7d5379b3c",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "9948fa1ff73b059f"
+        ],
+        "x": 875,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "9948fa1ff73b059f",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "64996aa7d5379b3c"
+        ],
+        "x": 55,
+        "y": 680,
+        "wires": [
+            [
+                "9b563f7b6c2a1fa5"
+            ]
+        ]
+    },
+    {
+        "id": "8323ae114b6cd1b2",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "Overwrite Wifi Credentials",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "df204c67b733d4a0",
+                "ee06b9d821f216d6"
+            ]
+        ]
+    },
+    {
+        "id": "df204c67b733d4a0",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "f86717ee6a93cbf6",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "POST Requests",
+        "info": "",
+        "x": 120,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "7f57c88cc968c009",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/network",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2260,
+        "wires": [
+            [
+                "ec9ca2b9b465dfcc"
+            ]
+        ]
+    },
+    {
+        "id": "39c3271784c41469",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "d": true,
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0",
+            "7ef0a0ab5b6ef0b5"
+        ],
+        "x": 935,
+        "y": 2260,
+        "wires": []
+    },
+    {
+        "id": "0cb73c0373380d27",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Parse Wifi Credentials",
+        "func": "const wifi_credentials = msg.payload\n\nconst types = {\n    ssid: \"string\",\n    password: \"string\",\n    country: \"string\"\n}\n\nfor(let key in types) {\n    const credential = wifi_credentials[key]\n    \n    if(typeof credential !== types[key]) {\n        const error = `Please include ${key} in your request body`\n        msg.statusCode = 400\n        \n        throw new Error(error)\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 2260,
+        "wires": [
+            [
+                "39c3271784c41469",
+                "51b4f370d505a39d",
+                "14b017febce3fd48"
+            ]
+        ]
+    },
+    {
+        "id": "51b4f370d505a39d",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "ec9ca2b9b465dfcc",
+        "type": "json",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 330,
+        "y": 2260,
+        "wires": [
+            [
+                "0cb73c0373380d27"
+            ]
+        ]
+    },
+    {
+        "id": "5e0e1a9cddb3f2d2",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network Setup",
+        "info": "",
+        "x": 120,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7c4230bdd2f30d64",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 570,
+        "y": 880,
+        "wires": [
+            [
+                "89c1c49dbd6614b8"
+            ]
+        ]
+    },
+    {
+        "id": "fa5901681e6a0b7d",
+        "type": "change",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 880,
+        "wires": [
+            [
+                "7c4230bdd2f30d64"
+            ]
+        ]
+    },
+    {
+        "id": "3415519b160b7899",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/event",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2440,
+        "wires": [
+            [
+                "2963dbc2f92ec862"
+            ]
+        ]
+    },
+    {
+        "id": "6a818fee00616bc3",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Bedtime)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "2963dbc2f92ec862",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Selector",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "events.bedtime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.waketime",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunrise",
+                "vt": "flow"
+            },
+            {
+                "t": "eq",
+                "v": "events.sunset",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 5,
+        "x": 420,
+        "y": 2440,
+        "wires": [
+            [
+                "6a818fee00616bc3"
+            ],
+            [
+                "633a87515a706fae"
+            ],
+            [
+                "b2db8aadc49ccf98"
+            ],
+            [
+                "235bb75890be86ee"
+            ],
+            [
+                "30e06990570b85f7"
+            ]
+        ]
+    },
+    {
+        "id": "30e06990570b85f7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event Type Missing",
+        "func": "const error = new Error('No such event. Please update the type property of the event')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 2520,
+        "wires": []
+    },
+    {
+        "id": "633a87515a706fae",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Waketime)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "b2db8aadc49ccf98",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Sunrise)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "235bb75890be86ee",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "Event API (Sunset)",
+        "links": [
+            "923891f5d3e27f13"
+        ],
+        "x": 635,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "e4fb05e6357ff740",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/audio/files",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 2600,
+        "wires": [
+            [
+                "ae1893cad56d8dd8"
+            ]
+        ]
+    },
+    {
+        "id": "6d07b905709d8469",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "c9c5a8c5491e0541"
+        ],
+        "x": 755,
+        "y": 2580,
+        "wires": []
+    },
+    {
+        "id": "ae1893cad56d8dd8",
+        "type": "json",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 90,
+        "y": 2640,
+        "wires": [
+            [
+                "7d71fbef364dd545"
+            ]
+        ]
+    },
+    {
+        "id": "7d71fbef364dd545",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Night Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Night Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 2680,
+        "wires": [
+            [
+                "d694913d9ea287a2"
+            ],
+            [
+                "dab88df04ff02789"
+            ]
+        ]
+    },
+    {
+        "id": "d694913d9ea287a2",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Wake Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Wake Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 380,
+        "y": 2660,
+        "wires": [
+            [
+                "b34b8737f7c38954"
+            ],
+            [
+                "b7084c8e7549d50f"
+            ]
+        ]
+    },
+    {
+        "id": "b34b8737f7c38954",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Relaxation Sounds Check",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "Relaxation Sounds",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 2620,
+        "wires": [
+            [
+                "6d07b905709d8469"
+            ],
+            [
+                "afae55b41763e1e1"
+            ]
+        ]
+    },
+    {
+        "id": "dab88df04ff02789",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Night Sounds not Stated",
+        "func": "const error = new Error('Night Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 2700,
+        "wires": []
+    },
+    {
+        "id": "b7084c8e7549d50f",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Wake Sounds not Stated",
+        "func": "const error = new Error('Wake Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "afae55b41763e1e1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Relaxation Sounds not Stated",
+        "func": "const error = new Error('Relaxation Sounds not Stated')\n\nmsg.statusCode = 400\n\nthrow error",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "d84dc78d69b19d64",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "From API",
+        "info": "",
+        "x": 100,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "7ef0a0ab5b6ef0b5",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Pass Network Credentials",
+        "links": [
+            "39c3271784c41469"
+        ],
+        "x": 155,
+        "y": 300,
+        "wires": [
+            [
+                "5c4225dc47cd24d0"
+            ]
+        ]
+    },
+    {
+        "id": "5c4225dc47cd24d0",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network File Config",
+        "func": "const { wifi_credentials } = flow.get('network_files')\n    \nmsg.filename = wifi_credentials\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "34de34c6b7bf4f4a"
+            ]
+        ]
+    },
+    {
+        "id": "34de34c6b7bf4f4a",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "b34edc7a6389f241"
+        ],
+        "x": 455,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b34edc7a6389f241",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "34de34c6b7bf4f4a",
+            "037ba20decf06f7b"
+        ],
+        "x": 55,
+        "y": 580,
+        "wires": [
+            [
+                "b3d08bf0b9cc5227"
+            ]
+        ]
+    },
+    {
+        "id": "a45bb7d9cbfd8e40",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "d": true,
+        "name": "",
+        "links": [
+            "cd9b0bf550031456"
+        ],
+        "x": 875,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "d9c21651d3bf73f3",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 875,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cd9b0bf550031456",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "a45bb7d9cbfd8e40"
+        ],
+        "x": 675,
+        "y": 300,
+        "wires": [
+            [
+                "d9c21651d3bf73f3"
+            ]
+        ]
+    },
+    {
+        "id": "079f711e43d1316c",
+        "type": "comment",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Download Media File",
+        "info": "",
+        "x": 110,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "84cc3221f3ae7945",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 895,
+        "y": 2680,
+        "wires": []
+    },
+    {
+        "id": "f606d9d82e886790",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Download Media File",
+        "links": [
+            "b7f321e5e4dbee08",
+            "93b47e5b799d36cb",
+            "5b626b4ae0e51128"
+        ],
+        "x": 135,
+        "y": 2680,
+        "wires": [
+            [
+                "a1288fd3ce8a3245"
+            ]
+        ]
+    },
+    {
+        "id": "a1288fd3ce8a3245",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Get Media To Download",
+        "func": "const { fullPath: full_path } = msg.payload\nconst audio_files = flow.get('audio_files')\nconst levels = full_path.split(\"/\")\n\nif(!audio_files)\n    throw new Error(\"Audio Files hasn't been set yet\")\n\nlet pointer = audio_files\n\nfor(let index = 0; index < levels.length; index++) {\n    const level = levels[index]\n    \n    pointer = pointer[ level ]\n    \n    if(!pointer) {\n        const error = new Error('File does not exist')\n        msg.statusCode = 400\n        \n        throw error\n    }\n}\n\nmsg.payload = pointer\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 2680,
+        "wires": [
+            [
+                "112aa68c80a77ff1",
+                "da060a3dee169dfa"
+            ]
+        ]
+    },
+    {
+        "id": "3ba4983afd34ce90",
+        "type": "catch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "scope": [
+            "a1288fd3ce8a3245"
+        ],
+        "uncaught": false,
+        "x": 250,
+        "y": 2940,
+        "wires": [
+            [
+                "81c54bb0ddeabf4a",
+                "5ff7d41524b48b17"
+            ]
+        ]
+    },
+    {
+        "id": "81c54bb0ddeabf4a",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "7a6af03a46076c29",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 795,
+        "y": 2920,
+        "wires": []
+    },
+    {
+        "id": "5ff7d41524b48b17",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Error Handler",
+        "func": "msg.payload = msg.error\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 2920,
+        "wires": [
+            [
+                "7a6af03a46076c29"
+            ]
+        ]
+    },
+    {
+        "id": "112aa68c80a77ff1",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Download Media File",
+        "func": "const { assets_dir } = global.get('defaults_config')\nconst {\n    AUDIO_ASSETS_AVAILABLE,\n    AUDIO_FILE_DOWNLOADED,\n    AUDIO_FILE_DOWNLOAD_ERROR,\n    AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n} = flow.get('audio_download_response_topics')\nconst { createWriteStream } = fs\nconst { fullPath: full_path, source: url, name } = msg.payload\n\nconst file_destination = `${assets_dir}/${full_path}`\nconst request_url = request(url)\nconst progress_config = {\n    throttle: 2000\n}\n\nconst in_progress_handler = (state) => {\n    const payload = {\n        ...state, name,\n        topic: AUDIO_FILE_DOWNLOAD_IN_PROGRESS\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_error_handler = (error) => {\n    const payload = {\n        message: \"Error Downloading the file\",\n        topic: AUDIO_FILE_DOWNLOAD_ERROR,\n        name,\n        error\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n}\n\nconst on_end_handler = () => {\n    const payload = {\n        ...msg.payload,\n        message: \"Download Finished\",\n        topic: AUDIO_FILE_DOWNLOADED,\n        name\n    }\n    \n    const message = {\n        payload\n    }\n    \n    node.send(message)\n    \n    const topic = AUDIO_ASSETS_AVAILABLE\n    \n    node.send({\n        payload: {\n            topic\n        },\n        topic\n    })\n}\n\nconst write_stream = createWriteStream(file_destination)\n\nprogress(request_url, progress_config)\n    .on('progress', in_progress_handler)\n    .on('error', on_error_handler)\n    .on('end', on_end_handler)\n    .pipe(write_stream)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "request",
+                "module": "request"
+            },
+            {
+                "var": "fs",
+                "module": "fs"
+            },
+            {
+                "var": "progress",
+                "module": "request-progress"
+            }
+        ],
+        "x": 300,
+        "y": 2740,
+        "wires": [
+            [
+                "cd65d8f2448d59a0"
+            ]
+        ]
+    },
+    {
+        "id": "81d542eb869585b4",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "77bbaf1677e51e46"
+        ],
+        "x": 615,
+        "y": 2800,
+        "wires": []
+    },
+    {
+        "id": "12ea314a244acef6",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 2740,
+        "wires": []
+    },
+    {
+        "id": "0a0c0886b1fbabae",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "If Audio Download Ended Redirect",
+        "property": "payload.topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "audio_download_response_topics.AUDIO_ASSETS_AVAILABLE",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 340,
+        "y": 2820,
+        "wires": [
+            [
+                "81d542eb869585b4"
+            ],
+            [
+                "1c0dec3596439438",
+                "0157241e8c0952b0"
+            ]
+        ]
+    },
+    {
+        "id": "1c0dec3596439438",
+        "type": "link out",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "links": [
+            "adec83fd96f5a557"
+        ],
+        "x": 615,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "cd65d8f2448d59a0",
+        "type": "change",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Type as an Audio Download Response",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.type",
+                "pt": "msg",
+                "to": "api_response_types.AUDIO_DOWNLOAD_RESPONSE",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 2740,
+        "wires": [
+            [
+                "0a0c0886b1fbabae",
+                "12ea314a244acef6"
+            ]
+        ]
+    },
+    {
+        "id": "0157241e8c0952b0",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "da060a3dee169dfa",
+        "type": "switch",
+        "z": "56ae43efe9a5b4d3",
+        "name": "If an HTTP request",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 2680,
+        "wires": [
+            [
+                "84cc3221f3ae7945"
+            ]
+        ]
+    },
+    {
+        "id": "780953a6524d62a9",
+        "type": "comment",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Get Device Serial Number",
+        "info": "",
+        "x": 130,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "cc0cdfe53865e93f",
+        "type": "exec",
+        "z": "4fcd3dd2df70f0c8",
+        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Device Serial Number",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "d69abb235b89143f"
+            ],
+            [
+                "9544885301cbb6da"
+            ],
+            [
+                "7ac92dadbeb568a8"
+            ]
+        ]
+    },
+    {
+        "id": "13deef710be29b8a",
+        "type": "link in",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Initialize System Controls",
+        "links": [
+            "176706c3efb8ce21",
+            "1a5068f4b0cae0d9"
+        ],
+        "x": 135,
+        "y": 300,
+        "wires": [
+            [
+                "cc0cdfe53865e93f"
+            ]
+        ]
+    },
+    {
+        "id": "bb235b35ac21e548",
+        "type": "debug",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9544885301cbb6da",
+        "type": "debug",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7ac92dadbeb568a8",
+        "type": "debug",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d69abb235b89143f",
+        "type": "function",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Store Serial Number",
+        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 260,
+        "wires": [
+            [
+                "bb235b35ac21e548"
+            ]
+        ]
+    },
+    {
+        "id": "0a9e063e984385b2",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "Startup (Delayed)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.3",
+        "topic": "",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "e6a5323ff61c1cd3"
+            ]
+        ]
+    },
+    {
+        "id": "e6a5323ff61c1cd3",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Soft Access Point Setup",
+        "func": "const serial_number = global.get(\"device_serial_number\")\nconst last_4_digits_serial = serial_number.substr(-4)\n\nconst device_name = \"Rest_Node\"\nconst ssid = `${device_name}_${last_4_digits_serial}`\nconst password = \"rest_node\"\n\nconst country = \"PH\"\n\nconst { access_point_credentials } = flow.get(\"network_files\")\n\nmsg.filename = access_point_credentials\n\nmsg.credentials = {\n    ssid,\n    password,\n    country\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 480,
+        "wires": [
+            [
+                "037ba20decf06f7b"
+            ]
+        ]
+    },
+    {
+        "id": "693f9777471f4fdf",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Read WiFi Config",
+        "filename": "/etc/wpa_supplicant/wpa_supplicant.conf",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 1080,
+        "wires": [
+            [
+                "f82f61048836f6eb"
+            ]
+        ]
+    },
+    {
+        "id": "04075345e9213dfb",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1080,
+        "wires": [
+            [
+                "693f9777471f4fdf"
+            ]
+        ]
+    },
+    {
+        "id": "f82f61048836f6eb",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "456c1fbad1b8a61c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Wifi Config Template",
+        "func": "const ctrl_interface_dir = \"/var/run/wpa_supplicant\"\nconst group = \"netdev\"\nconst update_config = \"1\"\nconst country = \"PH\"\n\nconst network = {\n    ssid: \"Smart Home\",\n    psk: \"systemsecured\",\n    key: \"WPA-PSK\"\n}\n\nconst template = `\nctrl_interface=DIR=${ctrl_interface_dir} GROUP=${group}\nupdate_config=${update_config}\ncountry=${country}\n`\n\nmsg.payload = template\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "22754002fd36cdd7",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "WPA Passphrase Encoding",
+        "func": "const ssid = \"'Smart Home'\"\nconst password = \"'systemsecured'\"\n\nconst encode_password = `wpa_passphrase ${ssid} ${password}`\n\nmsg.payload = encode_password\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1200,
+        "wires": [
+            [
+                "7466546d342ee828"
+            ]
+        ]
+    },
+    {
+        "id": "d0b1e2509079b8b0",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1200,
+        "wires": [
+            [
+                "22754002fd36cdd7"
+            ]
+        ]
+    },
+    {
+        "id": "7466546d342ee828",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 650,
+        "y": 1200,
+        "wires": [
+            [
+                "23b38c1d0f834a24"
+            ],
+            [
+                "987082b9c893dec7"
+            ],
+            [
+                "336739603c11ca57"
+            ]
+        ]
+    },
+    {
+        "id": "23b38c1d0f834a24",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "987082b9c893dec7",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "336739603c11ca57",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "27d5c8e744c8f0e9",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Testing Section",
+        "info": "",
+        "x": 120,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "0fc85e6e69fa185c",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1300,
+        "wires": [
+            [
+                "5ef799c475bdde99"
+            ]
+        ]
+    },
+    {
+        "id": "5ef799c475bdde99",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "037ba20decf06f7b",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "b34edc7a6389f241"
+        ],
+        "x": 875,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ee06b9d821f216d6",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "HTTP Response",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 680,
+        "wires": [
+            [
+                "a45bb7d9cbfd8e40"
+            ]
+        ]
     }
 ]
