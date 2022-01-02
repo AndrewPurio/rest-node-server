@@ -8341,7 +8341,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Initialize Constants",
-        "func": "const wifi_config_file = \"/etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst network_connection = {\n    wifi_config_file\n}\n\nconst network_log = \"/data/log/pia.log\"\nconst wifi_credentials = \"/data/wifi/home.wifi\"\nconst access_point_credentials = \"/data/wifi/pi.wifi\"\n\nconst network_files = {\n    network_log, wifi_credentials, access_point_credentials\n}\n\nflow.set(\"network\", network_connection)\nflow.set(\"network_files\", network_files)",
+        "func": "const wifi_config_file = \"/etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst network_connection = {\n    wifi_config_file\n}\n\nflow.set(\"network\", network_connection)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -8559,8 +8559,7 @@
         "y": 620,
         "wires": [
             [
-                "62e6a71c4cb08a51",
-                "39d3cdb95b5c6882"
+                "62e6a71c4cb08a51"
             ]
         ]
     },
@@ -10138,22 +10137,6 @@
         "wires": []
     },
     {
-        "id": "39d3cdb95b5c6882",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 390,
-        "y": 580,
-        "wires": []
-    },
-    {
         "id": "cdbf4cbbf8ed6cb9",
         "type": "function",
         "z": "56ae43efe9a5b4d3",
@@ -10730,158 +10713,6 @@
         "wires": []
     },
     {
-        "id": "1d98587b51d408ea",
-        "type": "watch",
-        "z": "4b91f5d2f9b78292",
-        "name": "Watch Network Logs",
-        "files": "/data/log/test_file.json",
-        "recursive": "",
-        "x": 130,
-        "y": 880,
-        "wires": [
-            [
-                "fa5901681e6a0b7d"
-            ]
-        ]
-    },
-    {
-        "id": "89c1c49dbd6614b8",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 790,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "b3d08bf0b9cc5227",
-        "type": "file in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Read File",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 420,
-        "y": 580,
-        "wires": [
-            [
-                "06f76d7d05da8ac0"
-            ]
-        ]
-    },
-    {
-        "id": "9b563f7b6c2a1fa5",
-        "type": "template",
-        "z": "4b91f5d2f9b78292",
-        "name": "Wifi Credentials File",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "[default]\nssid = {{payload.ssid}}\npassword = {{payload.password}}\ncountry = {{payload.country}}\nts = {{payload.timestamp}}",
-        "output": "str",
-        "x": 220,
-        "y": 680,
-        "wires": [
-            [
-                "8323ae114b6cd1b2"
-            ]
-        ]
-    },
-    {
-        "id": "06f76d7d05da8ac0",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Extract Timestamp",
-        "func": "const file_contents = msg.payload\nconst timestamp_regex = /(?<=ts[ =]+)\\d+/\nconst [ timestamp ] = timestamp_regex.exec(file_contents)\n\nmsg.payload = msg.credentials\n\nmsg.payload.timestamp = timestamp\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 580,
-        "wires": [
-            [
-                "64996aa7d5379b3c"
-            ]
-        ]
-    },
-    {
-        "id": "64996aa7d5379b3c",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "9948fa1ff73b059f"
-        ],
-        "x": 875,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "9948fa1ff73b059f",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "64996aa7d5379b3c"
-        ],
-        "x": 55,
-        "y": 680,
-        "wires": [
-            [
-                "9b563f7b6c2a1fa5"
-            ]
-        ]
-    },
-    {
-        "id": "8323ae114b6cd1b2",
-        "type": "file",
-        "z": "4b91f5d2f9b78292",
-        "name": "Overwrite Wifi Credentials",
-        "filename": "",
-        "appendNewline": true,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "none",
-        "x": 470,
-        "y": 680,
-        "wires": [
-            [
-                "df204c67b733d4a0",
-                "ee06b9d821f216d6"
-            ]
-        ]
-    },
-    {
-        "id": "df204c67b733d4a0",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 740,
-        "wires": []
-    },
-    {
         "id": "f86717ee6a93cbf6",
         "type": "comment",
         "z": "f6f2187d.f17ca8",
@@ -10985,52 +10816,6 @@
         "x": 120,
         "y": 400,
         "wires": []
-    },
-    {
-        "id": "7c4230bdd2f30d64",
-        "type": "file in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 570,
-        "y": 880,
-        "wires": [
-            [
-                "89c1c49dbd6614b8"
-            ]
-        ]
-    },
-    {
-        "id": "fa5901681e6a0b7d",
-        "type": "change",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "filename",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 350,
-        "y": 880,
-        "wires": [
-            [
-                "7c4230bdd2f30d64"
-            ]
-        ]
     },
     {
         "id": "3415519b160b7899",
@@ -11408,36 +11193,6 @@
         "wires": []
     },
     {
-        "id": "b34edc7a6389f241",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "34de34c6b7bf4f4a",
-            "037ba20decf06f7b"
-        ],
-        "x": 55,
-        "y": 580,
-        "wires": [
-            [
-                "b3d08bf0b9cc5227"
-            ]
-        ]
-    },
-    {
-        "id": "a45bb7d9cbfd8e40",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "d": true,
-        "name": "",
-        "links": [
-            "cd9b0bf550031456"
-        ],
-        "x": 875,
-        "y": 680,
-        "wires": []
-    },
-    {
         "id": "d9c21651d3bf73f3",
         "type": "link out",
         "z": "4b91f5d2f9b78292",
@@ -11792,12 +11547,8 @@
             [
                 "d69abb235b89143f"
             ],
-            [
-                "9544885301cbb6da"
-            ],
-            [
-                "7ac92dadbeb568a8"
-            ]
+            [],
+            []
         ]
     },
     {
@@ -11830,39 +11581,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 830,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "9544885301cbb6da",
-        "type": "debug",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 590,
         "y": 300,
-        "wires": []
-    },
-    {
-        "id": "7ac92dadbeb568a8",
-        "type": "debug",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 590,
-        "y": 340,
         "wires": []
     },
     {
@@ -11876,49 +11595,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 260,
+        "x": 600,
+        "y": 300,
         "wires": [
             [
                 "bb235b35ac21e548"
-            ]
-        ]
-    },
-    {
-        "id": "0a9e063e984385b2",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "Startup (Delayed)",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.3",
-        "topic": "",
-        "x": 150,
-        "y": 480,
-        "wires": [
-            [
-                "e6a5323ff61c1cd3"
-            ]
-        ]
-    },
-    {
-        "id": "e6a5323ff61c1cd3",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Soft Access Point Setup",
-        "func": "const serial_number = global.get(\"device_serial_number\")\nconst last_4_digits_serial = serial_number.substr(-4)\n\nconst device_name = \"Rest_Node\"\nconst ssid = `${device_name}_${last_4_digits_serial}`\nconst password = \"rest_node\"\n\nconst country = \"PH\"\n\nconst { access_point_credentials } = flow.get(\"network_files\")\n\nmsg.filename = access_point_credentials\n\nmsg.credentials = {\n    ssid,\n    password,\n    country\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 480,
-        "wires": [
-            [
-                "037ba20decf06f7b"
             ]
         ]
     },
@@ -11934,7 +11615,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 330,
-        "y": 1080,
+        "y": 460,
         "wires": [
             [
                 "f82f61048836f6eb"
@@ -11963,7 +11644,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 1080,
+        "y": 460,
         "wires": [
             [
                 "693f9777471f4fdf"
@@ -11983,39 +11664,22 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 810,
-        "y": 1080,
+        "y": 460,
         "wires": []
-    },
-    {
-        "id": "456c1fbad1b8a61c",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Wifi Config Template",
-        "func": "const ctrl_interface_dir = \"/var/run/wpa_supplicant\"\nconst group = \"netdev\"\nconst update_config = \"1\"\nconst country = \"PH\"\n\nconst network = {\n    ssid: \"Smart Home\",\n    psk: \"systemsecured\",\n    key: \"WPA-PSK\"\n}\n\nconst template = `\nctrl_interface=DIR=${ctrl_interface_dir} GROUP=${group}\nupdate_config=${update_config}\ncountry=${country}\n`\n\nmsg.payload = template\n\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 340,
-        "y": 1140,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "22754002fd36cdd7",
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "WPA Passphrase Encoding",
-        "func": "const ssid = \"'Smart Home'\"\nconst password = \"'systemsecured'\"\n\nconst encode_password = `wpa_passphrase ${ssid} ${password}`\n\nmsg.payload = encode_password\n\nreturn msg;",
+        "func": "const { ssid, password } = msg.payload\nconst encode_password = `wpa_passphrase \"${ssid}\" \"${password}\"`\nconst { wifi_config_file } = flow.get(\"network\")\n\nmsg.credentials = msg.payload\nmsg.payload = encode_password\nmsg.filename = wifi_config_file\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 1200,
+        "x": 280,
+        "y": 600,
         "wires": [
             [
                 "7466546d342ee828"
@@ -12044,10 +11708,10 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 1200,
+        "y": 540,
         "wires": [
             [
-                "22754002fd36cdd7"
+                "130c1becc90e69a7"
             ]
         ]
     },
@@ -12063,11 +11727,11 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 650,
-        "y": 1200,
+        "x": 510,
+        "y": 600,
         "wires": [
             [
-                "23b38c1d0f834a24"
+                "d0ad9e3edf22c98f"
             ],
             [
                 "987082b9c893dec7"
@@ -12089,8 +11753,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
-        "y": 1160,
+        "x": 890,
+        "y": 600,
         "wires": []
     },
     {
@@ -12105,8 +11769,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
-        "y": 1200,
+        "x": 690,
+        "y": 600,
         "wires": []
     },
     {
@@ -12121,8 +11785,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
-        "y": 1240,
+        "x": 690,
+        "y": 640,
         "wires": []
     },
     {
@@ -12132,11 +11796,131 @@
         "name": "Testing Section",
         "info": "",
         "x": 120,
-        "y": 1000,
+        "y": 860,
         "wires": []
     },
     {
-        "id": "0fc85e6e69fa185c",
+        "id": "2e156e0e92a40006",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "WPA Supplicant Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry={{payload.country}}\n\nnetwork={\n\tssid=\"{{payload.ssid}}\"\n\tpsk={{payload.password}}\n}",
+        "output": "str",
+        "x": 270,
+        "y": 720,
+        "wires": [
+            [
+                "f96fde70c2e8c443"
+            ]
+        ]
+    },
+    {
+        "id": "f96fde70c2e8c443",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "Overwrite File",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 540,
+        "y": 720,
+        "wires": [
+            [
+                "fbdc801d2fda5749"
+            ]
+        ]
+    },
+    {
+        "id": "130c1becc90e69a7",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Sample Wifi Credentials",
+        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 5G\",\n    password: \"systempass\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 540,
+        "wires": [
+            [
+                "22754002fd36cdd7"
+            ]
+        ]
+    },
+    {
+        "id": "d0ad9e3edf22c98f",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Extracted Encoded PSK",
+        "func": "const encoded_credentials = msg.payload\nconst encoded_psk = /(?<=\\tpsk ?= ?)\"?\\w+\"?/\nconst [ encoded_password ] = encoded_psk.exec(encoded_credentials) || []\n\nmsg.credentials.password = encoded_password\nmsg.payload = msg.credentials\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 560,
+        "wires": [
+            [
+                "23b38c1d0f834a24",
+                "8a828defa9875c28"
+            ]
+        ]
+    },
+    {
+        "id": "fbdc801d2fda5749",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "8a828defa9875c28",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "a58ef47042996746"
+        ],
+        "x": 935,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "a58ef47042996746",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "8a828defa9875c28"
+        ],
+        "x": 55,
+        "y": 720,
+        "wires": [
+            [
+                "2e156e0e92a40006"
+            ]
+        ]
+    },
+    {
+        "id": "7219e3417bdfd645",
         "type": "inject",
         "z": "4b91f5d2f9b78292",
         "name": "",
@@ -12157,63 +11941,104 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 1300,
+        "y": 920,
         "wires": [
             [
-                "5ef799c475bdde99"
+                "d52a554ab83fd62e"
             ]
         ]
     },
     {
-        "id": "5ef799c475bdde99",
+        "id": "d52a554ab83fd62e",
         "type": "function",
         "z": "4b91f5d2f9b78292",
-        "name": "",
-        "func": "\nreturn msg;",
+        "name": "Get Wifi Status",
+        "func": "const get_wifi_status = \"wpa_cli -iwlan0 status\"\nconst host_pipe = \"/pipes/host_pipe\"\n\nmsg.payload = `echo \"${get_wifi_status}\" > ${host_pipe}`\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 1300,
+        "x": 320,
+        "y": 920,
         "wires": [
-            []
+            [
+                "c336dce33e343b6c"
+            ]
         ]
     },
     {
-        "id": "037ba20decf06f7b",
-        "type": "link out",
+        "id": "c336dce33e343b6c",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 510,
+        "y": 920,
+        "wires": [
+            [
+                "34552ee035ac4b68"
+            ],
+            [
+                "57f0f3d19ed7c3e3"
+            ],
+            [
+                "db555f634efce04d"
+            ]
+        ]
+    },
+    {
+        "id": "34552ee035ac4b68",
+        "type": "debug",
         "z": "4b91f5d2f9b78292",
         "name": "",
-        "links": [
-            "b34edc7a6389f241"
-        ],
-        "x": 875,
-        "y": 480,
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 880,
         "wires": []
     },
     {
-        "id": "ee06b9d821f216d6",
-        "type": "switch",
+        "id": "57f0f3d19ed7c3e3",
+        "type": "debug",
         "z": "4b91f5d2f9b78292",
-        "name": "HTTP Response",
-        "property": "req",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 720,
-        "y": 680,
-        "wires": [
-            [
-                "a45bb7d9cbfd8e40"
-            ]
-        ]
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "db555f634efce04d",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 960,
+        "wires": []
     }
 ]
