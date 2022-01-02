@@ -6133,7 +6133,8 @@
             "d9c21651d3bf73f3",
             "84cc3221f3ae7945",
             "7a6af03a46076c29",
-            "39c3271784c41469"
+            "39c3271784c41469",
+            "da9395f549c1786e"
         ],
         "x": 635,
         "y": 840,
@@ -10747,7 +10748,8 @@
         "name": "",
         "links": [
             "1bd0312798db6fb0",
-            "7ef0a0ab5b6ef0b5"
+            "7ef0a0ab5b6ef0b5",
+            "d346f717d59ba383"
         ],
         "x": 935,
         "y": 2260,
@@ -10814,7 +10816,7 @@
         "name": "Network Setup",
         "info": "",
         "x": 120,
-        "y": 400,
+        "y": 440,
         "wires": []
     },
     {
@@ -11153,7 +11155,7 @@
         "links": [
             "39c3271784c41469"
         ],
-        "x": 155,
+        "x": 235,
         "y": 300,
         "wires": [
             [
@@ -11166,13 +11168,13 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Network File Config",
-        "func": "const { wifi_credentials } = flow.get('network_files')\n    \nmsg.filename = wifi_credentials\n\nreturn msg;",
+        "func": "const { wifi_credentials } = flow.get('network_files')\n\nmsg.credentials = msg.payload\nmsg.filename = wifi_credentials\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
+        "x": 390,
         "y": 300,
         "wires": [
             [
@@ -11188,7 +11190,7 @@
         "links": [
             "b34edc7a6389f241"
         ],
-        "x": 455,
+        "x": 535,
         "y": 300,
         "wires": []
     },
@@ -12040,5 +12042,427 @@
         "x": 710,
         "y": 960,
         "wires": []
+    },
+    {
+        "id": "5ff6aba22f818148",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "fdbcd41f538a59e4",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "defd3388f7b314cc",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "b129e4fbc66f12e6",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "1c9926363c646d4c"
+            ]
+        ]
+    },
+    {
+        "id": "1c9926363c646d4c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Sample Wifi Credentials",
+        "func": "const ssid = \"Wifi\"\nconst password = \"Wrong Password\"\nconst country = \"PH\"\n\nmsg.payload = {\n    ssid, password, country\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "5c4225dc47cd24d0"
+            ]
+        ]
+    },
+    {
+        "id": "1f672338e9e0fe0c",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "aec643c44f037ff2",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "8d5f3ee0b511ce1e",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1680,
+        "wires": [
+            [
+                "35f35089de9eed9f"
+            ]
+        ]
+    },
+    {
+        "id": "35f35089de9eed9f",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "ping -c 3 google.com",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Ping Google",
+        "x": 310,
+        "y": 1680,
+        "wires": [
+            [
+                "6e23c91209b8bb68"
+            ],
+            [
+                "6fc8abb8a5b8e974"
+            ],
+            [
+                "daf35a1243a2b409"
+            ]
+        ]
+    },
+    {
+        "id": "6e23c91209b8bb68",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "6fc8abb8a5b8e974",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "daf35a1243a2b409",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "729c02fcfe083961",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "Overwrite WPA Supplicant",
+        "filename": "/etc/wpa_supplicant/wpa_supplicant.conf",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 610,
+        "y": 1420,
+        "wires": [
+            [
+                "bf199e901bf3c81f",
+                "9a81a5eddaced700"
+            ]
+        ]
+    },
+    {
+        "id": "f716bd3b3f9c0c6f",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "WPA Supplicant Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry={{payload.country}}\n\nnetwork={\n\tssid=\"{{payload.ssid}}\"\n\tpsk=\"{{payload.password}}\"\n}",
+        "output": "str",
+        "x": 350,
+        "y": 1420,
+        "wires": [
+            [
+                "729c02fcfe083961"
+            ]
+        ]
+    },
+    {
+        "id": "bf199e901bf3c81f",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "a25038b228a207bf",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Sample Wifi Credentials",
+        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 5G\",\n    password: \"systempass\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1360,
+        "wires": [
+            [
+                "f716bd3b3f9c0c6f"
+            ]
+        ]
+    },
+    {
+        "id": "30a05faa40e612c8",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1360,
+        "wires": [
+            [
+                "a25038b228a207bf"
+            ]
+        ]
+    },
+    {
+        "id": "d346f717d59ba383",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Pass Network Credentials",
+        "links": [
+            "39c3271784c41469"
+        ],
+        "x": 155,
+        "y": 1420,
+        "wires": [
+            [
+                "f716bd3b3f9c0c6f"
+            ]
+        ]
+    },
+    {
+        "id": "da9395f549c1786e",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 775,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "9a81a5eddaced700",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "If an HTTP Request",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1480,
+        "wires": [
+            [
+                "ee18202383a1a375"
+            ]
+        ]
+    },
+    {
+        "id": "ee18202383a1a375",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Response Message",
+        "func": "const response_message = \"Wifi Credentials Changed\"\n\nmsg.payload = response_message\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1480,
+        "wires": [
+            [
+                "da9395f549c1786e"
+            ]
+        ]
+    },
+    {
+        "id": "c8a15fe66bc475d7",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Restart WPA Supplicant",
+        "func": "const kill_wpa = \"sudo killall wpa_supplicant\"\nconst dhcpcd_restart = \"sudo service dhcpcd restart\"\nconst start_wpa = \"sudo wpa_supplicant -B -Dnl80211 -iwlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf\"\n\nconst get_wifi_status = \"wpa_cli -iwlan0 status\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1840,
+        "wires": [
+            []
+        ]
     }
 ]
