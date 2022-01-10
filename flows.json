@@ -10771,8 +10771,7 @@
         "wires": [
             [
                 "39c3271784c41469",
-                "51b4f370d505a39d",
-                "14b017febce3fd48"
+                "51b4f370d505a39d"
             ]
         ]
     },
@@ -11697,7 +11696,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 120,
-        "y": 700,
+        "y": 1340,
         "wires": []
     },
     {
@@ -11733,7 +11732,8 @@
         "y": 560,
         "wires": [
             [
-                "fbdc801d2fda5749"
+                "fbdc801d2fda5749",
+                "db91be4a427ac207"
             ]
         ]
     },
@@ -11742,7 +11742,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Sample Wifi Credentials",
-        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 5G\",\n    password: \"systempass\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
+        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 4G\",\n    password: \"systemfail\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -11788,7 +11788,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 890,
-        "y": 560,
+        "y": 620,
         "wires": []
     },
     {
@@ -11820,54 +11820,6 @@
         ]
     },
     {
-        "id": "7219e3417bdfd645",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 120,
-        "y": 760,
-        "wires": [
-            [
-                "d52a554ab83fd62e"
-            ]
-        ]
-    },
-    {
-        "id": "d52a554ab83fd62e",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Get Wifi Status",
-        "func": "const get_wifi_status = \"wpa_cli -iwlan0 status\"\nconst host_pipe = \"/pipes/host_pipe\"\n\nmsg.payload = `echo \"${get_wifi_status}\" > ${host_pipe}`\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 760,
-        "wires": [
-            [
-                "c336dce33e343b6c"
-            ]
-        ]
-    },
-    {
         "id": "c336dce33e343b6c",
         "type": "exec",
         "z": "4b91f5d2f9b78292",
@@ -11879,8 +11831,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 510,
-        "y": 760,
+        "x": 710,
+        "y": 800,
         "wires": [
             [
                 "34552ee035ac4b68"
@@ -11905,8 +11857,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 720,
+        "x": 910,
+        "y": 760,
         "wires": []
     },
     {
@@ -11918,11 +11870,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 760,
+        "x": 910,
+        "y": 800,
         "wires": []
     },
     {
@@ -11937,8 +11890,469 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 710,
-        "y": 800,
+        "x": 910,
+        "y": 840,
         "wires": []
+    },
+    {
+        "id": "c7cb795cc1f14e70",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Reset WPA Supplicant",
+        "func": "const command = \"sudo sh /home/pi/scripts/reset_wpa.sh\"\n\nmsg.payload = command\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 920,
+        "wires": [
+            [
+                "a3ca94d53b89ab50"
+            ]
+        ]
+    },
+    {
+        "id": "a3ca94d53b89ab50",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Execute Host Script",
+        "func": "const command = msg.payload\nconst host_pipe = `echo '${command}' > /pipes/host_pipe`\n\nmsg.payload = host_pipe\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 800,
+        "wires": [
+            [
+                "c336dce33e343b6c",
+                "95b6db5ce46acfb8"
+            ]
+        ]
+    },
+    {
+        "id": "db91be4a427ac207",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "a3b7bd1166ea1d6d"
+        ],
+        "x": 935,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a3b7bd1166ea1d6d",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "db91be4a427ac207"
+        ],
+        "x": 55,
+        "y": 920,
+        "wires": [
+            [
+                "c7cb795cc1f14e70"
+            ]
+        ]
+    },
+    {
+        "id": "6929bf09e42a8400",
+        "type": "watch",
+        "z": "4b91f5d2f9b78292",
+        "name": "Host Pipe Logs",
+        "files": "/logs/execute_logs.txt",
+        "recursive": "",
+        "x": 120,
+        "y": 1020,
+        "wires": [
+            [
+                "53d81d178ab42f54",
+                "f390f92892c6d888"
+            ]
+        ]
+    },
+    {
+        "id": "53d81d178ab42f54",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 690,
+        "y": 1020,
+        "wires": [
+            [
+                "456454963f0a2306"
+            ]
+        ]
+    },
+    {
+        "id": "456454963f0a2306",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "f390f92892c6d888",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "657b4f3df5b6b9eb",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Stop Wifi Hotspot",
+        "func": "const stop_dnsmasq = \"sudo systemctl stop dnsmasq\"\nconst stop_hostapd = \"sudo systemctl stop hostapd\"\n\nmsg.payload = `${stop_dnsmasq}; ${stop_hostapd}`\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1400,
+        "wires": [
+            [
+                "510870553b31c51d",
+                "99a8384ac1ba76f8"
+            ]
+        ]
+    },
+    {
+        "id": "e17767eb31cd1966",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1400,
+        "wires": [
+            [
+                "657b4f3df5b6b9eb"
+            ]
+        ]
+    },
+    {
+        "id": "510870553b31c51d",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "6d72a07d67d7338a"
+        ],
+        "x": 735,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "6d72a07d67d7338a",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "510870553b31c51d",
+            "88447a59e53cf075",
+            "d4a63f78406dbde6"
+        ],
+        "x": 55,
+        "y": 800,
+        "wires": [
+            [
+                "a3ca94d53b89ab50"
+            ]
+        ]
+    },
+    {
+        "id": "c9b03b896b6d785b",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "DHCPCD Conf Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "hostname\nclientid\npersistent\n\noption rapid_commit\noption domain_name_servers, domain_name, domain_search, host_name\noption classless_static_routes\noption interface_mtu\n\nrequire dhcp_server_identifier\n\nslaac private\ninterface wlan0\nstatic_ip_address={{payload.static_ip_address}}\n{{payload.nohook_wpa}}",
+        "output": "str",
+        "x": 330,
+        "y": 1520,
+        "wires": [
+            [
+                "fd324cd7961603ca"
+            ]
+        ]
+    },
+    {
+        "id": "5e5641b812484225",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Hotspot Enabled",
+        "func": "const static_ip_address = \"192.168.4.1\"\nconst nohook_wpa = \"nohook wpa_supplicant\"\n\nmsg.payload = {\n    static_ip_address, nohook_wpa\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1460,
+        "wires": [
+            [
+                "c9b03b896b6d785b"
+            ]
+        ]
+    },
+    {
+        "id": "fd324cd7961603ca",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "/etc/dhcpcd.conf",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 560,
+        "y": 1520,
+        "wires": [
+            [
+                "c0e20566c12e4033"
+            ]
+        ]
+    },
+    {
+        "id": "99a8384ac1ba76f8",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "150",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 290,
+        "y": 1460,
+        "wires": [
+            [
+                "5e5641b812484225"
+            ]
+        ]
+    },
+    {
+        "id": "c0e20566c12e4033",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Restart DHCPCD and Hotspot",
+        "func": "const restart_dhcpcd = \"sudo systemctl restart dhcpcd\"\nconst start_dnsmasq = \"sudo systemctl start dnsmasq\"\nconst enable_hostapd = \"sudo systemctl enable hostapd\"\nconst start_hostapd = \"sudo systemctl start hostapd\"\n\nconst commands = [\n    restart_dhcpcd, start_dnsmasq, enable_hostapd, start_hostapd    \n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1580,
+        "wires": [
+            [
+                "88447a59e53cf075"
+            ]
+        ]
+    },
+    {
+        "id": "88447a59e53cf075",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "6d72a07d67d7338a"
+        ],
+        "x": 735,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "7f7bf3cba67a387b",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Utility Nodes",
+        "info": "",
+        "x": 110,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9ee88ab93b5f183c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Wifi Status",
+        "func": "const get_wifi_status = \"wpa_cli -iwlan0 status\"\n\nmsg.payload = get_wifi_status\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 860,
+        "wires": [
+            [
+                "a3ca94d53b89ab50"
+            ]
+        ]
+    },
+    {
+        "id": "11d63be6d8b88a58",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 860,
+        "wires": [
+            [
+                "9ee88ab93b5f183c"
+            ]
+        ]
+    },
+    {
+        "id": "00f7a8d6b41790a6",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ls /home/pi",
+        "payloadType": "str",
+        "x": 120,
+        "y": 1140,
+        "wires": [
+            [
+                "d4a63f78406dbde6"
+            ]
+        ]
+    },
+    {
+        "id": "d4a63f78406dbde6",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "6d72a07d67d7338a"
+        ],
+        "x": 375,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "95b6db5ce46acfb8",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "5e0ffc4276ebeb02",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 540,
+        "y": 1420,
+        "wires": [
+            [
+                "5e5641b812484225"
+            ]
+        ]
     }
 ]
