@@ -6134,7 +6134,8 @@
             "84cc3221f3ae7945",
             "7a6af03a46076c29",
             "39c3271784c41469",
-            "da9395f549c1786e"
+            "da9395f549c1786e",
+            "02d63241c2c8b3af"
         ],
         "x": 635,
         "y": 840,
@@ -10724,91 +10725,6 @@
         "wires": []
     },
     {
-        "id": "7f57c88cc968c009",
-        "type": "http in",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "url": "/restnode/network",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 140,
-        "y": 2260,
-        "wires": [
-            [
-                "ec9ca2b9b465dfcc"
-            ]
-        ]
-    },
-    {
-        "id": "39c3271784c41469",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "d": true,
-        "name": "",
-        "links": [
-            "1bd0312798db6fb0",
-            "7ef0a0ab5b6ef0b5",
-            "d346f717d59ba383"
-        ],
-        "x": 935,
-        "y": 2260,
-        "wires": []
-    },
-    {
-        "id": "0cb73c0373380d27",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Parse Wifi Credentials",
-        "func": "const wifi_credentials = msg.payload\n\nconst types = {\n    ssid: \"string\",\n    password: \"string\",\n    country: \"string\"\n}\n\nfor(let key in types) {\n    const credential = wifi_credentials[key]\n    \n    if(typeof credential !== types[key]) {\n        const error = `Please include ${key} in your request body`\n        msg.statusCode = 400\n        \n        throw new Error(error)\n    }\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 540,
-        "y": 2260,
-        "wires": [
-            [
-                "39c3271784c41469",
-                "51b4f370d505a39d"
-            ]
-        ]
-    },
-    {
-        "id": "51b4f370d505a39d",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 850,
-        "y": 2200,
-        "wires": []
-    },
-    {
-        "id": "ec9ca2b9b465dfcc",
-        "type": "json",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 330,
-        "y": 2260,
-        "wires": [
-            [
-                "0cb73c0373380d27"
-            ]
-        ]
-    },
-    {
         "id": "5e0e1a9cddb3f2d2",
         "type": "comment",
         "z": "4b91f5d2f9b78292",
@@ -10828,7 +10744,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2440,
+        "y": 2300,
         "wires": [
             [
                 "2963dbc2f92ec862"
@@ -10844,7 +10760,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 2360,
+        "y": 2220,
         "wires": []
     },
     {
@@ -10883,7 +10799,7 @@
         "repair": false,
         "outputs": 5,
         "x": 420,
-        "y": 2440,
+        "y": 2300,
         "wires": [
             [
                 "6a818fee00616bc3"
@@ -10914,7 +10830,7 @@
         "finalize": "",
         "libs": [],
         "x": 710,
-        "y": 2520,
+        "y": 2380,
         "wires": []
     },
     {
@@ -10926,7 +10842,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 2400,
+        "y": 2260,
         "wires": []
     },
     {
@@ -10938,7 +10854,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 2440,
+        "y": 2300,
         "wires": []
     },
     {
@@ -10950,7 +10866,7 @@
             "923891f5d3e27f13"
         ],
         "x": 635,
-        "y": 2480,
+        "y": 2340,
         "wires": []
     },
     {
@@ -10963,7 +10879,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2600,
+        "y": 2460,
         "wires": [
             [
                 "ae1893cad56d8dd8"
@@ -10979,7 +10895,7 @@
             "c9c5a8c5491e0541"
         ],
         "x": 755,
-        "y": 2580,
+        "y": 2440,
         "wires": []
     },
     {
@@ -10991,7 +10907,7 @@
         "action": "obj",
         "pretty": false,
         "x": 90,
-        "y": 2640,
+        "y": 2500,
         "wires": [
             [
                 "7d71fbef364dd545"
@@ -11019,7 +10935,7 @@
         "repair": false,
         "outputs": 2,
         "x": 140,
-        "y": 2680,
+        "y": 2540,
         "wires": [
             [
                 "d694913d9ea287a2"
@@ -11050,7 +10966,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 2660,
+        "y": 2520,
         "wires": [
             [
                 "b34b8737f7c38954"
@@ -11081,7 +10997,7 @@
         "repair": false,
         "outputs": 2,
         "x": 610,
-        "y": 2620,
+        "y": 2480,
         "wires": [
             [
                 "6d07b905709d8469"
@@ -11103,7 +11019,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2700,
+        "y": 2560,
         "wires": []
     },
     {
@@ -11118,7 +11034,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 2660,
+        "y": 2520,
         "wires": []
     },
     {
@@ -11133,7 +11049,7 @@
         "finalize": "",
         "libs": [],
         "x": 870,
-        "y": 2620,
+        "y": 2480,
         "wires": []
     },
     {
@@ -11882,7 +11798,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Execute Host Script",
-        "func": "const command = msg.payload\nconst host_pipe = `echo '${command}' > /pipes/host_pipe`\n\nmsg.payload = host_pipe\n\nreturn msg;",
+        "func": "const command = msg.payload\nconst host_pipe = `echo \"${command}\" > /pipes/host_pipe`\n\nmsg.payload = host_pipe\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -11892,8 +11808,7 @@
         "y": 800,
         "wires": [
             [
-                "c336dce33e343b6c",
-                "95b6db5ce46acfb8"
+                "c336dce33e343b6c"
             ]
         ]
     },
@@ -11921,62 +11836,9 @@
         "y": 1020,
         "wires": [
             [
-                "53d81d178ab42f54",
-                "f390f92892c6d888"
+                "53d81d178ab42f54"
             ]
         ]
-    },
-    {
-        "id": "53d81d178ab42f54",
-        "type": "file in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "filename": "",
-        "format": "utf8",
-        "chunk": false,
-        "sendError": false,
-        "encoding": "none",
-        "allProps": false,
-        "x": 690,
-        "y": 1020,
-        "wires": [
-            [
-                "456454963f0a2306"
-            ]
-        ]
-    },
-    {
-        "id": "456454963f0a2306",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 890,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "f390f92892c6d888",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 980,
-        "wires": []
     },
     {
         "id": "657b4f3df5b6b9eb",
@@ -12067,7 +11929,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "hostname\nclientid\npersistent\n\noption rapid_commit\noption domain_name_servers, domain_name, domain_search, host_name\noption classless_static_routes\noption interface_mtu\n\nrequire dhcp_server_identifier\n\nslaac private\ninterface wlan0\nstatic_ip_address={{payload.static_ip_address}}\n{{payload.nohook_wpa}}",
+        "template": "hostname\nclientid\npersistent\n\noption rapid_commit\noption domain_name_servers, domain_name, domain_search, host_name\noption classless_static_routes\noption interface_mtu\n\nrequire dhcp_server_identifier\n\nslaac private\ninterface wlan0\nstatic ip_address={{payload.static_ip_address}}/24\nnohook wpa_supplicant",
         "output": "str",
         "x": 470,
         "y": 1580,
@@ -12082,7 +11944,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Hotspot Enabled",
-        "func": "const static_ip_address = \"192.168.4.1\"\nconst nohook_wpa = \"nohook wpa_supplicant\"\n\nmsg.topic = \"hotspot\"\nmsg.payload = {\n    static_ip_address, nohook_wpa\n}\n\nreturn msg;",
+        "func": "const static_ip_address = \"192.168.4.1\"\n\nmsg.topic = \"hotspot\"\nmsg.payload = {\n    static_ip_address\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12143,7 +12005,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Restart Hotspot",
-        "func": "const start_dnsmasq = \"sudo systemctl start dnsmasq\"\nconst enable_hostapd = \"sudo systemctl enable hostapd\"\nconst start_hostapd = \"sudo systemctl start hostapd\"\n\nconst commands = [\n    start_dnsmasq, enable_hostapd, start_hostapd    \n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg",
+        "func": "const kill_wpa = \"sudo kill wpa_supplicant\"\nconst restart_dhcpcd = \"sudo systemctl restart dhcpcd\"\nconst start_dnsmasq = \"sudo systemctl start dnsmasq\"\nconst enable_hostapd = \"sudo systemctl enable hostapd\"\nconst start_hostapd = \"sudo systemctl start hostapd\"\n\nconst commands = [\n    kill_wpa, restart_dhcpcd, start_dnsmasq, enable_hostapd, start_hostapd    \n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12221,23 +12083,6 @@
                 "9ee88ab93b5f183c"
             ]
         ]
-    },
-    {
-        "id": "95b6db5ce46acfb8",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 880,
-        "wires": []
     },
     {
         "id": "ccf743835e979926",
@@ -12326,7 +12171,7 @@
         "z": "4b91f5d2f9b78292",
         "name": "",
         "links": [
-            "106f8ceb8b425f03"
+            "14935ba5b6ea0c3f"
         ],
         "x": 935,
         "y": 1540,
@@ -12338,13 +12183,14 @@
         "z": "4b91f5d2f9b78292",
         "name": "",
         "links": [
-            "49f2c24815ff2558"
+            "49f2c24815ff2558",
+            "f49fd207ee26f053"
         ],
         "x": 55,
         "y": 1800,
         "wires": [
             [
-                "f2f85a9aa49b1b94"
+                "9051ee5f0a25bb64"
             ]
         ]
     },
@@ -12353,7 +12199,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Reset WPA Supplicant",
-        "func": "const command = \"sudo sh /home/pi/scripts/reset_wpa.sh\"\n\nmsg.payload = command\n\nreturn msg;",
+        "func": "const stop_dnsmasq = \"sudo systemctl stop dnsmasq\"\nconst stop_hostapd = 'sudo systemctl stop hostapd'\nconst reset_wpa = \"sudo sh /home/pi/scripts/reset_wpa.sh\"\n\nconst commands = [\n    stop_dnsmasq, stop_hostapd, reset_wpa\n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12363,8 +12209,7 @@
         "y": 1780,
         "wires": [
             [
-                "88447a59e53cf075",
-                "3ee432c3b65c704f"
+                "88447a59e53cf075"
             ]
         ]
     },
@@ -12384,8 +12229,7 @@
         "wires": [
             [
                 "49f2c24815ff2558",
-                "4555d504adc2aa8a",
-                "a61f9008d332493b"
+                "4555d504adc2aa8a"
             ]
         ]
     },
@@ -12394,9 +12238,7 @@
         "type": "link in",
         "z": "4b91f5d2f9b78292",
         "name": "",
-        "links": [
-            "f49fd207ee26f053"
-        ],
+        "links": [],
         "x": 55,
         "y": 1680,
         "wires": [
@@ -12463,47 +12305,136 @@
         "wires": []
     },
     {
-        "id": "f2f85a9aa49b1b94",
-        "type": "delay",
-        "z": "4b91f5d2f9b78292",
+        "id": "5bc1576a45ba1bff",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Connection Requests",
+        "info": "",
+        "x": 140,
+        "y": 2700,
+        "wires": []
+    },
+    {
+        "id": "017ea5385d05935e",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
         "name": "",
-        "pauseType": "delay",
-        "timeout": "150",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "x": 230,
-        "y": 1800,
+        "url": "/restnode/network",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2800,
         "wires": [
             [
-                "9051ee5f0a25bb64"
+                "8f36a41640ef3764"
             ]
         ]
     },
     {
-        "id": "a61f9008d332493b",
-        "type": "debug",
-        "z": "4b91f5d2f9b78292",
+        "id": "02d63241c2c8b3af",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 730,
-        "y": 1620,
+        "links": [
+            "0f9d65c5d64b0c5c",
+            "1bd0312798db6fb0"
+        ],
+        "x": 935,
+        "y": 2800,
         "wires": []
     },
     {
-        "id": "3ee432c3b65c704f",
+        "id": "caf244509123b697",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Parse Wifi Credentials",
+        "func": "const wifi_credentials = msg.payload\n\nconst types = {\n    ssid: \"string\",\n    password: \"string\",\n    country: \"string\"\n}\n\nfor(let key in types) {\n    const credential = wifi_credentials[key]\n    \n    if(typeof credential !== types[key]) {\n        const error = `Please include ${key} in your request body`\n        msg.statusCode = 400\n        \n        throw new Error(error)\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 2800,
+        "wires": [
+            [
+                "02d63241c2c8b3af",
+                "3a03fa14194a840b"
+            ]
+        ]
+    },
+    {
+        "id": "3a03fa14194a840b",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 2740,
+        "wires": []
+    },
+    {
+        "id": "8f36a41640ef3764",
+        "type": "json",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 330,
+        "y": 2800,
+        "wires": [
+            [
+                "caf244509123b697",
+                "2e792d185aa4dc6f"
+            ]
+        ]
+    },
+    {
+        "id": "0f9d65c5d64b0c5c",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Pass Wifi Credentials",
+        "links": [
+            "02d63241c2c8b3af"
+        ],
+        "x": 55,
+        "y": 440,
+        "wires": [
+            [
+                "22754002fd36cdd7"
+            ]
+        ]
+    },
+    {
+        "id": "53d81d178ab42f54",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 1020,
+        "wires": [
+            [
+                "456454963f0a2306"
+            ]
+        ]
+    },
+    {
+        "id": "456454963f0a2306",
         "type": "debug",
         "z": "4b91f5d2f9b78292",
         "name": "",
@@ -12514,8 +12445,24 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 950,
-        "y": 1780,
+        "x": 530,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "2e792d185aa4dc6f",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 2760,
         "wires": []
     }
 ]
