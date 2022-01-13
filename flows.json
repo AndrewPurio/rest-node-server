@@ -6135,7 +6135,8 @@
             "7a6af03a46076c29",
             "39c3271784c41469",
             "da9395f549c1786e",
-            "02d63241c2c8b3af"
+            "02d63241c2c8b3af",
+            "e8745ed91dad4ffa"
         ],
         "x": 635,
         "y": 840,
@@ -10576,9 +10577,11 @@
         "type": "link out",
         "z": "4fcd3dd2df70f0c8",
         "name": "",
-        "links": [],
+        "links": [
+            "b0173ac2af8fec3b"
+        ],
         "x": 695,
-        "y": 460,
+        "y": 420,
         "wires": []
     },
     {
@@ -11882,7 +11885,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 1460,
+        "y": 1400,
         "wires": [
             [
                 "657b4f3df5b6b9eb"
@@ -12311,7 +12314,7 @@
         "name": "Connection Requests",
         "info": "",
         "x": 140,
-        "y": 2700,
+        "y": 2720,
         "wires": []
     },
     {
@@ -12324,7 +12327,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2800,
+        "y": 2820,
         "wires": [
             [
                 "8f36a41640ef3764"
@@ -12341,7 +12344,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 935,
-        "y": 2800,
+        "y": 2820,
         "wires": []
     },
     {
@@ -12356,7 +12359,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 2800,
+        "y": 2820,
         "wires": [
             [
                 "02d63241c2c8b3af",
@@ -12378,7 +12381,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 850,
-        "y": 2740,
+        "y": 2780,
         "wires": []
     },
     {
@@ -12390,7 +12393,7 @@
         "action": "obj",
         "pretty": false,
         "x": 330,
-        "y": 2800,
+        "y": 2820,
         "wires": [
             [
                 "caf244509123b697",
@@ -12462,7 +12465,54 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 510,
-        "y": 2760,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "b0173ac2af8fec3b",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Activate Hotspot",
+        "links": [
+            "87766fb3ee062bef",
+            "e8745ed91dad4ffa"
+        ],
+        "x": 55,
+        "y": 1460,
+        "wires": [
+            [
+                "657b4f3df5b6b9eb"
+            ]
+        ]
+    },
+    {
+        "id": "fd9746393e0bb518",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/reset",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 2940,
+        "wires": [
+            [
+                "e8745ed91dad4ffa"
+            ]
+        ]
+    },
+    {
+        "id": "e8745ed91dad4ffa",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0",
+            "b0173ac2af8fec3b"
+        ],
+        "x": 455,
+        "y": 2940,
         "wires": []
     }
 ]
