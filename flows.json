@@ -6136,7 +6136,8 @@
             "39c3271784c41469",
             "da9395f549c1786e",
             "02d63241c2c8b3af",
-            "e8745ed91dad4ffa"
+            "e8745ed91dad4ffa",
+            "02d763c25da41261"
         ],
         "x": 635,
         "y": 840,
@@ -8806,13 +8807,13 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "links": [
+            "13deef710be29b8a",
             "3acd7c62fac91c04",
             "5799ebdeefceb248",
             "91b303d2fbc264d0",
             "adec83fd96f5a557",
             "c0a5fa6f73429b5c",
-            "d62a3bc48c8f248f",
-            "13deef710be29b8a"
+            "d62a3bc48c8f248f"
         ],
         "x": 255,
         "y": 200,
@@ -11415,8 +11416,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
-        "y": 300,
+        "x": 810,
+        "y": 340,
         "wires": []
     },
     {
@@ -11424,17 +11425,18 @@
         "type": "function",
         "z": "4fcd3dd2df70f0c8",
         "name": "Store Serial Number",
-        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nreturn msg;",
+        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 580,
         "y": 300,
         "wires": [
             [
-                "bb235b35ac21e548"
+                "bb235b35ac21e548",
+                "805fe71a14950596"
             ]
         ]
     },
@@ -11615,7 +11617,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 120,
-        "y": 1340,
+        "y": 1220,
         "wires": []
     },
     {
@@ -11660,7 +11662,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Sample Wifi Credentials",
-        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 4G\",\n    password: \"systemfail\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
+        "func": "const wifi_credentials = {\n    ssid: \"Purio Family - 5G\",\n    password: \"systempass\",\n    country: \"PH\"\n}\n\nmsg.payload = wifi_credentials\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -11836,7 +11838,7 @@
         "files": "/logs/execute_logs.txt",
         "recursive": "",
         "x": 120,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "53d81d178ab42f54"
@@ -11855,7 +11857,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 1460,
+        "y": 1340,
         "wires": [
             [
                 "510870553b31c51d",
@@ -11885,7 +11887,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 1400,
+        "y": 1280,
         "wires": [
             [
                 "657b4f3df5b6b9eb"
@@ -11901,7 +11903,7 @@
             "6d72a07d67d7338a"
         ],
         "x": 455,
-        "y": 1420,
+        "y": 1300,
         "wires": []
     },
     {
@@ -11913,7 +11915,9 @@
             "510870553b31c51d",
             "88447a59e53cf075",
             "d4a63f78406dbde6",
-            "4555d504adc2aa8a"
+            "4555d504adc2aa8a",
+            "dcde7085b18d7152",
+            "c5723b38bfa3ce15"
         ],
         "x": 55,
         "y": 800,
@@ -11935,7 +11939,7 @@
         "template": "hostname\nclientid\npersistent\n\noption rapid_commit\noption domain_name_servers, domain_name, domain_search, host_name\noption classless_static_routes\noption interface_mtu\n\nrequire dhcp_server_identifier\n\nslaac private\ninterface wlan0\nstatic ip_address={{payload.static_ip_address}}/24\nnohook wpa_supplicant",
         "output": "str",
         "x": 470,
-        "y": 1580,
+        "y": 1460,
         "wires": [
             [
                 "fd324cd7961603ca"
@@ -11954,7 +11958,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 1460,
+        "y": 1340,
         "wires": [
             [
                 "50cf0244fbdbc24f"
@@ -11972,7 +11976,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 710,
-        "y": 1540,
+        "y": 1420,
         "wires": [
             [
                 "f49fd207ee26f053"
@@ -11996,7 +12000,7 @@
         "drop": false,
         "allowrate": false,
         "x": 510,
-        "y": 1460,
+        "y": 1340,
         "wires": [
             [
                 "5e5641b812484225"
@@ -12008,14 +12012,14 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Restart Hotspot",
-        "func": "const kill_wpa = \"sudo kill wpa_supplicant\"\nconst restart_dhcpcd = \"sudo systemctl restart dhcpcd\"\nconst start_dnsmasq = \"sudo systemctl start dnsmasq\"\nconst enable_hostapd = \"sudo systemctl enable hostapd\"\nconst start_hostapd = \"sudo systemctl start hostapd\"\n\nconst commands = [\n    kill_wpa, restart_dhcpcd, start_dnsmasq, enable_hostapd, start_hostapd    \n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg",
+        "func": "const restart_dhcpcd = \"sudo systemctl restart dhcpcd\"\nconst start_dnsmasq = \"sudo systemctl start dnsmasq\"\nconst enable_hostapd = \"sudo systemctl enable hostapd\"\nconst start_hostapd = \"sudo systemctl start hostapd\"\n\nconst commands = [\n    restart_dhcpcd, start_dnsmasq, enable_hostapd, start_hostapd    \n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 680,
-        "y": 1820,
+        "x": 760,
+        "y": 1640,
         "wires": [
             [
                 "88447a59e53cf075"
@@ -12030,8 +12034,8 @@
         "links": [
             "6d72a07d67d7338a"
         ],
-        "x": 895,
-        "y": 1820,
+        "x": 915,
+        "y": 1600,
         "wires": []
     },
     {
@@ -12045,49 +12049,6 @@
         "wires": []
     },
     {
-        "id": "9ee88ab93b5f183c",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Get Wifi Status",
-        "func": "const get_wifi_status = \"wpa_cli -iwlan0 status\"\n\nmsg.payload = get_wifi_status\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 860,
-        "wires": [
-            [
-                "a3ca94d53b89ab50"
-            ]
-        ]
-    },
-    {
-        "id": "11d63be6d8b88a58",
-        "type": "inject",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 100,
-        "y": 860,
-        "wires": [
-            [
-                "9ee88ab93b5f183c"
-            ]
-        ]
-    },
-    {
         "id": "ccf743835e979926",
         "type": "template",
         "z": "4b91f5d2f9b78292",
@@ -12099,7 +12060,7 @@
         "template": "hostname\nclientid\npersistent\n\noption rapid_commit\noption domain_name_servers, domain_name, domain_search, host_name\noption classless_static_routes\noption interface_mtu\n\nrequire dhcp_server_identifier\n\nslaac private\ninterface wlan0",
         "output": "str",
         "x": 460,
-        "y": 1540,
+        "y": 1420,
         "wires": [
             [
                 "fd324cd7961603ca"
@@ -12116,7 +12077,7 @@
             "db91be4a427ac207"
         ],
         "x": 55,
-        "y": 1560,
+        "y": 1440,
         "wires": [
             [
                 "3fe16bedfba6cb1c"
@@ -12146,7 +12107,7 @@
         "repair": false,
         "outputs": 2,
         "x": 230,
-        "y": 1560,
+        "y": 1440,
         "wires": [
             [
                 "ccf743835e979926"
@@ -12165,7 +12126,7 @@
             "9bd105e895a79222"
         ],
         "x": 935,
-        "y": 1460,
+        "y": 1340,
         "wires": []
     },
     {
@@ -12177,7 +12138,7 @@
             "14935ba5b6ea0c3f"
         ],
         "x": 935,
-        "y": 1540,
+        "y": 1420,
         "wires": []
     },
     {
@@ -12190,10 +12151,10 @@
             "f49fd207ee26f053"
         ],
         "x": 55,
-        "y": 1800,
+        "y": 1580,
         "wires": [
             [
-                "9051ee5f0a25bb64"
+                "bcc4056d752210ce"
             ]
         ]
     },
@@ -12208,59 +12169,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 700,
-        "y": 1780,
+        "x": 580,
+        "y": 1560,
         "wires": [
             [
                 "88447a59e53cf075"
             ]
         ]
-    },
-    {
-        "id": "a94ba0ae5b9438a9",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Restart DHCPCD",
-        "func": "const restart_dhcpcd = \"sudo systemctl restart dhcpcd\"\n\nmsg.payload = restart_dhcpcd\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 1680,
-        "wires": [
-            [
-                "49f2c24815ff2558",
-                "4555d504adc2aa8a"
-            ]
-        ]
-    },
-    {
-        "id": "106f8ceb8b425f03",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [],
-        "x": 55,
-        "y": 1680,
-        "wires": [
-            [
-                "a94ba0ae5b9438a9"
-            ]
-        ]
-    },
-    {
-        "id": "49f2c24815ff2558",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "14935ba5b6ea0c3f"
-        ],
-        "x": 675,
-        "y": 1700,
-        "wires": []
     },
     {
         "id": "9051ee5f0a25bb64",
@@ -12284,28 +12199,16 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 450,
-        "y": 1800,
+        "x": 350,
+        "y": 1580,
         "wires": [
             [
                 "394cd60b80700b1d"
             ],
             [
-                "c0e20566c12e4033"
+                "2a9a32edff6ef773"
             ]
         ]
-    },
-    {
-        "id": "4555d504adc2aa8a",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "6d72a07d67d7338a"
-        ],
-        "x": 675,
-        "y": 1660,
-        "wires": []
     },
     {
         "id": "5bc1576a45ba1bff",
@@ -12429,7 +12332,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 330,
-        "y": 1020,
+        "y": 1000,
         "wires": [
             [
                 "456454963f0a2306"
@@ -12440,16 +12343,17 @@
         "id": "456454963f0a2306",
         "type": "debug",
         "z": "4b91f5d2f9b78292",
-        "name": "",
+        "name": "Host Pipe Log Message",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 530,
-        "y": 1020,
+        "x": 630,
+        "y": 1000,
         "wires": []
     },
     {
@@ -12478,7 +12382,7 @@
             "e8745ed91dad4ffa"
         ],
         "x": 55,
-        "y": 1460,
+        "y": 1340,
         "wires": [
             [
                 "657b4f3df5b6b9eb"
@@ -12495,7 +12399,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2940,
+        "y": 2980,
         "wires": [
             [
                 "e8745ed91dad4ffa"
@@ -12512,7 +12416,581 @@
             "b0173ac2af8fec3b"
         ],
         "x": 455,
-        "y": 2940,
+        "y": 2980,
         "wires": []
+    },
+    {
+        "id": "490c5a1b0abd4b6f",
+        "type": "watch",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network Logs",
+        "files": "/logs/network_logs.txt",
+        "recursive": "",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "ead1a53496ef023d"
+            ]
+        ]
+    },
+    {
+        "id": "bcc4056d752210ce",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "150",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 170,
+        "y": 1580,
+        "wires": [
+            [
+                "9051ee5f0a25bb64"
+            ]
+        ]
+    },
+    {
+        "id": "2859d4d6019639e3",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "Hostapd Conf Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "ssid={{payload.ssid}}\nwpa_passphrase=rest_node\n\ninterface=wlan0\ndriver=nl80211\nhw_mode=g\nchannel=7\nwmm_enabled=0\nmacaddr_acl=0\nauth_algs=1\nignore_broadcast_ssid=0\nwpa=2\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP\nrsn_pairwise=CCMP\n",
+        "output": "str",
+        "x": 390,
+        "y": 1760,
+        "wires": [
+            [
+                "96056e5da3f1b5b5"
+            ]
+        ]
+    },
+    {
+        "id": "805fe71a14950596",
+        "type": "link out",
+        "z": "4fcd3dd2df70f0c8",
+        "name": "Serial Number Initialized",
+        "links": [
+            "a5c9a9fa35ff85a1"
+        ],
+        "x": 755,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a5c9a9fa35ff85a1",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "805fe71a14950596"
+        ],
+        "x": 55,
+        "y": 1760,
+        "wires": [
+            [
+                "bf4c8e5551638c9a"
+            ]
+        ]
+    },
+    {
+        "id": "96056e5da3f1b5b5",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "Overwrite Hostapd",
+        "filename": "/etc/hostapd/hostapd.conf",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 630,
+        "y": 1760,
+        "wires": [
+            [
+                "9954bdfd7714f0cf"
+            ]
+        ]
+    },
+    {
+        "id": "bf4c8e5551638c9a",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Hotspot SSID",
+        "func": "const last_4_characters = /\\w{4}$/\nconst serial_num = msg.payload\nconst ssid = `Rest_Node_${last_4_characters.exec(serial_num)[0]}`\n\nmsg.payload = {\n    ssid\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 1760,
+        "wires": [
+            [
+                "2859d4d6019639e3"
+            ]
+        ]
+    },
+    {
+        "id": "ead1a53496ef023d",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 330,
+        "y": 1060,
+        "wires": [
+            [
+                "83fc473cc493a2c9"
+            ]
+        ]
+    },
+    {
+        "id": "83fc473cc493a2c9",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Check if Connected to Wifi",
+        "func": "if(!msg.payload)\n    return\n    \nconst wifi_log = msg.payload\nconst wifi_state = /wpa_state=COMPLETED/\nconst wifi_ssid = /(?<=\\bssid=).+/\n\nconst wifi_connected = {\n    connected: wifi_state.test(wifi_log),\n    ssid: wifi_ssid.exec(wifi_log)[0]\n}\n\nflow.set(\"wifi_state\", wifi_connected)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "2a9a32edff6ef773",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Kill WPA Supplicant",
+        "func": "const kill_wpa = \"sudo killall wpa_supplicant\"\n\nmsg.payload = kill_wpa\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1600,
+        "wires": [
+            [
+                "88447a59e53cf075",
+                "7ef3019a683471f5"
+            ]
+        ]
+    },
+    {
+        "id": "7ef3019a683471f5",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "150",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 550,
+        "y": 1640,
+        "wires": [
+            [
+                "c0e20566c12e4033"
+            ]
+        ]
+    },
+    {
+        "id": "80b7341e54f7ddda",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Wifi Status",
+        "func": "const get_wifi_status = \"sudo sh /home/pi/scripts/get_wpa_status.sh\"\n\nmsg.payload = get_wifi_status\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 1920,
+        "wires": [
+            [
+                "dcde7085b18d7152",
+                "b6aca21303f261d1"
+            ]
+        ]
+    },
+    {
+        "id": "b1c58a1a6b330a94",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Check if Connected to Wifi",
+        "links": [
+            "da90f1e7e66e0f3a"
+        ],
+        "x": 55,
+        "y": 1920,
+        "wires": [
+            [
+                "80b7341e54f7ddda"
+            ]
+        ]
+    },
+    {
+        "id": "dcde7085b18d7152",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "6d72a07d67d7338a"
+        ],
+        "x": 795,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "5ff0200ab6c5daf3",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Check If Connected to Wifi",
+        "info": "",
+        "x": 150,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "9954bdfd7714f0cf",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "27a068668e7eec24",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 1980,
+        "wires": [
+            [
+                "80b7341e54f7ddda"
+            ]
+        ]
+    },
+    {
+        "id": "bfa468490296fceb",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/wifi",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 2920,
+        "wires": [
+            [
+                "da90f1e7e66e0f3a"
+            ]
+        ]
+    },
+    {
+        "id": "da90f1e7e66e0f3a",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "b1c58a1a6b330a94"
+        ],
+        "x": 455,
+        "y": 2920,
+        "wires": []
+    },
+    {
+        "id": "b6aca21303f261d1",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "If an HTTP Request",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 1960,
+        "wires": [
+            [
+                "3b188d6f6ff0efa9"
+            ]
+        ]
+    },
+    {
+        "id": "02d763c25da41261",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 795,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "eda58e8a23e5d9c6",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Wifi State Response",
+        "func": "const wifi_state = flow.get(\"wifi_state\")\n\nmsg.payload = wifi_state\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 2000,
+        "wires": [
+            [
+                "02d763c25da41261"
+            ]
+        ]
+    },
+    {
+        "id": "3b188d6f6ff0efa9",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 630,
+        "y": 1960,
+        "wires": [
+            [
+                "eda58e8a23e5d9c6"
+            ]
+        ]
+    },
+    {
+        "id": "ad5853ccc2a20e97",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Scan Available Wifi",
+        "info": "",
+        "x": 130,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "66418bdc3d52eba8",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Scan Nearby Wifi",
+        "func": "const command = \"sudo sh /home/pi/scripts/scan_wifi.sh\"\n\nmsg.payload = command\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2140,
+        "wires": [
+            [
+                "c5723b38bfa3ce15"
+            ]
+        ]
+    },
+    {
+        "id": "0f32fcbe35e3339e",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 2140,
+        "wires": [
+            [
+                "66418bdc3d52eba8"
+            ]
+        ]
+    },
+    {
+        "id": "c5723b38bfa3ce15",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "6d72a07d67d7338a"
+        ],
+        "x": 575,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "70cc79b4f710ba1e",
+        "type": "watch",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "files": "/logs/wifi_scan.txt",
+        "recursive": "",
+        "x": 140,
+        "y": 2280,
+        "wires": [
+            [
+                "b2c1a61afa063864"
+            ]
+        ]
+    },
+    {
+        "id": "b2c1a61afa063864",
+        "type": "file in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 290,
+        "y": 2280,
+        "wires": [
+            [
+                "c83fc0a4245ff2e7"
+            ]
+        ]
+    },
+    {
+        "id": "46f10f5af45dbb2d",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "Wifi Scan Log Message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "c83fc0a4245ff2e7",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 2280,
+        "wires": [
+            [
+                "eb2c2383899771e0"
+            ]
+        ]
+    },
+    {
+        "id": "eb2c2383899771e0",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Parse Wifi Data",
+        "func": "const wifi_data_parser = /Cell \\d+ - Address: (\\w{2}:?)+\\n +Quality=\\d{2}\\/\\d{2}  Signal level=[\\w- ]+\\n +Encryption key:\\w{2,3}\\n +ESSID:\".+\"\\n +Extra: Last beacon: \\d+ms ago/g\nconst wifi_data = msg.payload\n\nconst parsed_wifi_data = wifi_data.match(wifi_data_parser)\n\nconst patterns = {\n    address: /(?<=Address: )(\\w{2}:?)+/,\n    signal_quality: /(?<=Quality=)\\d{2}\\/\\d{2}/,\n    signal_level: /(?<=Signal level=)[+\\d-]+(?= dBm)/,\n    encryption_key: /(?<=Encryption key:)\\w{2,3}/,\n    ssid: /(?<=ESSID:\").+?(?=\")/,\n    last_beacon: /(?<=Extra: Last beacon: )\\d+ms(?= ago)/\n}\n\nconst construct_wifi_json = (wifi_data) => {\n    const wifi_json = {}\n    \n    for(let key in patterns) {\n        const [data] = patterns[key].exec(wifi_data)\n        \n        wifi_json[key] = data\n    }\n    \n    return wifi_json\n}\n\nmsg.payload = parsed_wifi_data.map(construct_wifi_json)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 2280,
+        "wires": [
+            [
+                "46f10f5af45dbb2d"
+            ]
+        ]
     }
 ]
