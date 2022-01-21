@@ -13075,5 +13075,116 @@
                 "82aadccc980be554"
             ]
         ]
+    },
+    {
+        "id": "e29c79f9415b62bc",
+        "type": "template",
+        "z": "4b91f5d2f9b78292",
+        "name": "HTTP Service Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<?xml version=\"1.0\" standalone='no'?><!--*-nxml-*-->\n<!DOCTYPE service-group SYSTEM \"avahi-service.dtd\">\n<service-group>\n<name replace-wildcards=\"yes\">%h</name>\n<service>\n<type>_http._tcp</type>\n<port>80</port>\n<txt-record>Rest_Node</txt-record>\n<txt-record>Exist_Tribe</txt-record>\n<txt-record>{{payload.serial_number}}</txt-record>\n</service>\n</service-group>\n",
+        "output": "str",
+        "x": 590,
+        "y": 2580,
+        "wires": [
+            [
+                "601d7e2d05eb8a21"
+            ]
+        ]
+    },
+    {
+        "id": "4f9380dad6f45c89",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Configure HTTP Service",
+        "info": "",
+        "x": 150,
+        "y": 2480,
+        "wires": []
+    },
+    {
+        "id": "eaa524432e2b0709",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Serial Number",
+        "func": "const serial_number = global.get(\"device_serial_number\")\n\nmsg.payload = {\n    serial_number\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 2580,
+        "wires": [
+            [
+                "e29c79f9415b62bc"
+            ]
+        ]
+    },
+    {
+        "id": "b739b800b11ff605",
+        "type": "inject",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 2580,
+        "wires": [
+            [
+                "eaa524432e2b0709"
+            ]
+        ]
+    },
+    {
+        "id": "601d7e2d05eb8a21",
+        "type": "file",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "filename": "/etc/avahi/services/http.service",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 350,
+        "y": 2700,
+        "wires": [
+            [
+                "a4fdc1cb989729c7"
+            ]
+        ]
+    },
+    {
+        "id": "a4fdc1cb989729c7",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 2700,
+        "wires": []
     }
 ]
