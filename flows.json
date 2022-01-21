@@ -6137,7 +6137,8 @@
             "da9395f549c1786e",
             "02d63241c2c8b3af",
             "e8745ed91dad4ffa",
-            "02d763c25da41261"
+            "02d763c25da41261",
+            "82aadccc980be554"
         ],
         "x": 635,
         "y": 840,
@@ -12399,7 +12400,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 2980,
+        "y": 3040,
         "wires": [
             [
                 "e8745ed91dad4ffa"
@@ -12416,7 +12417,7 @@
             "b0173ac2af8fec3b"
         ],
         "x": 455,
-        "y": 2980,
+        "y": 3040,
         "wires": []
     },
     {
@@ -12646,7 +12647,8 @@
         "z": "4b91f5d2f9b78292",
         "name": "Check if Connected to Wifi",
         "links": [
-            "da90f1e7e66e0f3a"
+            "da90f1e7e66e0f3a",
+            "ddd66c003de4b239"
         ],
         "x": 55,
         "y": 1920,
@@ -12728,11 +12730,11 @@
         "type": "http in",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "url": "/restnode/wifi",
+        "url": "/restnode/wifi/info",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 140,
         "y": 2920,
         "wires": [
             [
@@ -12845,14 +12847,14 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Scan Nearby Wifi",
-        "func": "const command = \"sudo sh /home/pi/scripts/scan_wifi.sh\"\n\nmsg.payload = command\n\nreturn msg;",
+        "func": "const command = \"sudo sh /home/pi/scripts/scan_wifi.sh\"\n\nmsg.payload = command\n\nflow.set(\"temp_wifi_scan_msg\", msg)\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 2140,
+        "y": 2180,
         "wires": [
             [
                 "c5723b38bfa3ce15"
@@ -12880,7 +12882,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
+        "x": 140,
         "y": 2140,
         "wires": [
             [
@@ -12897,7 +12899,7 @@
             "6d72a07d67d7338a"
         ],
         "x": 575,
-        "y": 2140,
+        "y": 2180,
         "wires": []
     },
     {
@@ -12947,8 +12949,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
-        "y": 2280,
+        "x": 890,
+        "y": 2340,
         "wires": []
     },
     {
@@ -12979,7 +12981,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Parse Wifi Data",
-        "func": "const wifi_data_parser = /Cell \\d+ - Address: (\\w{2}:?)+\\n +Quality=\\d{2}\\/\\d{2}  Signal level=[\\w- ]+\\n +Encryption key:\\w{2,3}\\n +ESSID:\".+\"\\n +Extra: Last beacon: \\d+ms ago/g\nconst wifi_data = msg.payload\n\nconst parsed_wifi_data = wifi_data.match(wifi_data_parser)\n\nconst patterns = {\n    address: /(?<=Address: )(\\w{2}:?)+/,\n    signal_quality: /(?<=Quality=)\\d{2}\\/\\d{2}/,\n    signal_level: /(?<=Signal level=)[+\\d-]+(?= dBm)/,\n    encryption_key: /(?<=Encryption key:)\\w{2,3}/,\n    ssid: /(?<=ESSID:\").+?(?=\")/,\n    last_beacon: /(?<=Extra: Last beacon: )\\d+ms(?= ago)/\n}\n\nconst construct_wifi_json = (wifi_data) => {\n    const wifi_json = {}\n    \n    for(let key in patterns) {\n        const [data] = patterns[key].exec(wifi_data)\n        \n        wifi_json[key] = data\n    }\n    \n    return wifi_json\n}\n\nmsg.payload = parsed_wifi_data.map(construct_wifi_json)\n\nreturn msg;",
+        "func": "const wifi_data_parser = /Cell \\d+ - Address: (\\w{2}:?)+\\n +Quality=\\d{2}\\/\\d{2}  Signal level=[\\w- ]+\\n +Encryption key:\\w{2,3}\\n +ESSID:\".+\"\\n +Extra: Last beacon: \\d+ms ago/g\nconst wifi_data = msg.payload\n\nconst parsed_wifi_data = wifi_data.match(wifi_data_parser)\n\nconst patterns = {\n    address: /(?<=Address: )(\\w{2}:?)+/,\n    signal_quality: /(?<=Quality=)\\d{2}\\/\\d{2}/,\n    signal_level: /(?<=Signal level=)[+\\d-]+(?= dBm)/,\n    encryption_key: /(?<=Encryption key:)\\w{2,3}/,\n    SSID: /(?<=ESSID:\").+?(?=\")/,\n    last_beacon: /(?<=Extra: Last beacon: )\\d+ms(?= ago)/\n}\n\nconst construct_wifi_json = (wifi_data) => {\n    const wifi_json = {}\n    \n    for(let key in patterns) {\n        const [data] = patterns[key].exec(wifi_data)\n        \n        wifi_json[key] = data\n    }\n    \n    return wifi_json\n}\n\nmsg = flow.get(\"temp_wifi_scan_msg\") || {}\nflow.set(\"temp_wifi_scan_msg\", null)\n\nmsg.payload = parsed_wifi_data.map(construct_wifi_json)\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12989,7 +12991,88 @@
         "y": 2280,
         "wires": [
             [
-                "46f10f5af45dbb2d"
+                "46f10f5af45dbb2d",
+                "93aa673ed5e71cad"
+            ]
+        ]
+    },
+    {
+        "id": "82aadccc980be554",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 995,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "c1e2e10ac881b45a",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Scan Available Wifi",
+        "links": [
+            "e58b6bb1fc9f4125"
+        ],
+        "x": 75,
+        "y": 2180,
+        "wires": [
+            [
+                "66418bdc3d52eba8"
+            ]
+        ]
+    },
+    {
+        "id": "5ea4cd2bf549c186",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/wifi/scan",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 2980,
+        "wires": [
+            [
+                "e58b6bb1fc9f4125"
+            ]
+        ]
+    },
+    {
+        "id": "e58b6bb1fc9f4125",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "c1e2e10ac881b45a"
+        ],
+        "x": 455,
+        "y": 2980,
+        "wires": []
+    },
+    {
+        "id": "93aa673ed5e71cad",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "If an HTTP Request",
+        "property": "req",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 840,
+        "y": 2280,
+        "wires": [
+            [
+                "82aadccc980be554"
             ]
         ]
     }
