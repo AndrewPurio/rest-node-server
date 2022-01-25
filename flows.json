@@ -6138,7 +6138,8 @@
             "02d63241c2c8b3af",
             "e8745ed91dad4ffa",
             "02d763c25da41261",
-            "82aadccc980be554"
+            "82aadccc980be554",
+            "a069a6ca38e2a87d"
         ],
         "x": 635,
         "y": 840,
@@ -13185,6 +13186,54 @@
         "statusType": "auto",
         "x": 590,
         "y": 2700,
+        "wires": []
+    },
+    {
+        "id": "59175cfab161bb99",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/restnode/device_id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 3100,
+        "wires": [
+            [
+                "fd013d9871aa05df"
+            ]
+        ]
+    },
+    {
+        "id": "fd013d9871aa05df",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Retrieve Device Id",
+        "func": "const device_id = global.get(\"device_serial_number\")\n\nmsg.payload = {\n    device_id\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 3100,
+        "wires": [
+            [
+                "a069a6ca38e2a87d"
+            ]
+        ]
+    },
+    {
+        "id": "a069a6ca38e2a87d",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "1bd0312798db6fb0"
+        ],
+        "x": 735,
+        "y": 3100,
         "wires": []
     }
 ]
