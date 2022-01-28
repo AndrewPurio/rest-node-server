@@ -11886,7 +11886,6 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
         "payloadType": "date",
         "x": 120,
         "y": 1280,
@@ -12034,7 +12033,8 @@
         "z": "4b91f5d2f9b78292",
         "name": "",
         "links": [
-            "6d72a07d67d7338a"
+            "6d72a07d67d7338a",
+            "b1c58a1a6b330a94"
         ],
         "x": 915,
         "y": 1600,
@@ -12559,7 +12559,8 @@
         "y": 1060,
         "wires": [
             [
-                "83fc473cc493a2c9"
+                "83fc473cc493a2c9",
+                "5e6e0a3d7ae4aafe"
             ]
         ]
     },
@@ -12568,13 +12569,13 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Check if Connected to Wifi",
-        "func": "if(!msg.payload)\n    return\n    \nconst wifi_log = msg.payload\nconst wifi_state = /wpa_state=COMPLETED/\nconst wifi_ssid = /(?<=\\bssid=).+/\n\nconst wifi_connected = {\n    connected: wifi_state.test(wifi_log),\n    ssid: wifi_ssid.exec(wifi_log)[0]\n}\n\nflow.set(\"wifi_state\", wifi_connected)",
+        "func": "if(!msg.payload) {\n    flow.set(\"wifi_state\", {\n        connected: false\n    })\n    \n    return\n}\n    \nconst wifi_log = msg.payload\nconst wifi_state = /wpa_state=COMPLETED/\nconst wifi_ssid = /(?<=\\bssid=).+/\nconst connected = wifi_state.test(wifi_log)\n\nconst wifi_connected = {\n    connected\n}\n\nif(connected)\n    wifi_connected.ssid = wifi_ssid.exec(wifi_log)[0]\n\nflow.set(\"wifi_state\", wifi_connected)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 640,
         "y": 1060,
         "wires": []
     },
@@ -12633,12 +12634,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 200,
+        "x": 300,
         "y": 1920,
         "wires": [
             [
-                "dcde7085b18d7152",
-                "b6aca21303f261d1"
+                "b6aca21303f261d1",
+                "2309ca4132577773"
             ]
         ]
     },
@@ -12649,7 +12650,8 @@
         "name": "Check if Connected to Wifi",
         "links": [
             "da90f1e7e66e0f3a",
-            "ddd66c003de4b239"
+            "ddd66c003de4b239",
+            "88447a59e53cf075"
         ],
         "x": 55,
         "y": 1920,
@@ -12667,7 +12669,7 @@
         "links": [
             "6d72a07d67d7338a"
         ],
-        "x": 795,
+        "x": 955,
         "y": 1920,
         "wires": []
     },
@@ -12770,7 +12772,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 410,
+        "x": 510,
         "y": 1960,
         "wires": [
             [
@@ -12786,7 +12788,7 @@
         "links": [
             "1bd0312798db6fb0"
         ],
-        "x": 795,
+        "x": 915,
         "y": 2000,
         "wires": []
     },
@@ -12801,7 +12803,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 780,
         "y": 2000,
         "wires": [
             [
@@ -12825,7 +12827,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "allowrate": false,
-        "x": 630,
+        "x": 750,
         "y": 1960,
         "wires": [
             [
@@ -13235,5 +13237,146 @@
         "x": 735,
         "y": 3100,
         "wires": []
+    },
+    {
+        "id": "2309ca4132577773",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 480,
+        "y": 1920,
+        "wires": [
+            [
+                "dcde7085b18d7152",
+                "7f2bf7597179cbf1"
+            ]
+        ]
+    },
+    {
+        "id": "5e6e0a3d7ae4aafe",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "7f2bf7597179cbf1",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "WPA Payload",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "wpa",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 1860,
+        "wires": [
+            [
+                "9f6f2bf4080ad412"
+            ]
+        ]
+    },
+    {
+        "id": "921f079fca3d7a32",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "Connected",
+        "property": "wifi_state.connected",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 970,
+        "y": 1860,
+        "wires": [
+            [
+                "68c10bb556983853"
+            ]
+        ]
+    },
+    {
+        "id": "9f6f2bf4080ad412",
+        "type": "delay",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 810,
+        "y": 1860,
+        "wires": [
+            [
+                "921f079fca3d7a32"
+            ]
+        ]
+    },
+    {
+        "id": "68c10bb556983853",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "8c8c1d7a9361f49a"
+        ],
+        "x": 1105,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "8c8c1d7a9361f49a",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "68c10bb556983853"
+        ],
+        "x": 555,
+        "y": 1380,
+        "wires": [
+            [
+                "5e5641b812484225"
+            ]
+        ]
     }
 ]
