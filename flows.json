@@ -807,7 +807,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness, tick } = night_light\nconst light_config = {\n    ...night_light, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nmsg.delay = tick\n\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
+        "func": "const { OFF } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness, tick } = night_light\nconst light_config = {\n    ...night_light, ...msg.payload, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nmsg.delay = tick\n\nflow.set('night_light_current_brightness', 0)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -826,7 +826,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness, tick } = night_light\nconst light_config = {\n    ...night_light, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.delay = tick\nmsg.payload = light_config\n\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
+        "func": "const { ON } = flow.get('light_states')\nconst { NIGHT_LIGHT } = flow.get('lights')\n\nconst night_light = flow.get(NIGHT_LIGHT)\nconst { light, max_brightness, tick } = night_light\nconst light_config = {\n    ...night_light, ...msg.payload, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.delay = tick\nmsg.payload = light_config\n\nflow.set('night_light_current_brightness', max_brightness)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1017,7 +1017,8 @@
         "y": 1280,
         "wires": [
             [
-                "7ca518af31291cf3"
+                "7ca518af31291cf3",
+                "cf639f9e83fcff2a"
             ]
         ]
     },
@@ -1144,7 +1145,8 @@
         "y": 380,
         "wires": [
             [
-                "1e74388b5934da98"
+                "1e74388b5934da98",
+                "a4b545ef6ae18e08"
             ]
         ]
     },
@@ -5620,7 +5622,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle On",
-        "func": "const { ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness, tick } = wake_light\nconst light_config = {\n    ...wake_light, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.delay = tick\nmsg.payload = light_config\n\nflow.set('wake_light_current_brightness', max_brightness)\n\nreturn msg",
+        "func": "const { ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness, tick } = wake_light\nconst light_config = {\n    ...wake_light, ...msg.payload, state: ON\n}\n\nflow.set(light, light_config)\n\nmsg.counter = max_brightness\nmsg.delay = tick\nmsg.payload = light_config\n\nflow.set('wake_light_current_brightness', max_brightness)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5851,7 +5853,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Toggle Off",
-        "func": "const { OFF } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness, tick } = wake_light\nconst light_config = {\n    ...wake_light, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nmsg.delay = tick\n\nflow.set('wake_light_current_brightness', 0)\n\nreturn msg",
+        "func": "const { OFF } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { light, max_brightness, tick } = wake_light\nconst light_config = {\n    ...wake_light, ...msg.payload, state: OFF\n}\n\nflow.set(light, light_config)\n\nmsg.counter = 0\nmsg.delay = tick\n\nflow.set('wake_light_current_brightness', 0)\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -10192,7 +10194,8 @@
         "y": 1300,
         "wires": [
             [
-                "2f0b4220adbffe5e"
+                "2f0b4220adbffe5e",
+                "a863edbdda4b7dc2"
             ]
         ]
     },
@@ -11511,7 +11514,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "WPA Passphrase Encoding",
-        "func": "const { ssid, password } = msg.payload\nconst encode_password = `wpa_passphrase \"${ssid}\" \"${password}\"`\nconst { wifi_config_file } = flow.get(\"network\")\n\nmsg.topic = \"wpa\"\nmsg.credentials = msg.payload\nmsg.payload = encode_password\nmsg.filename = wifi_config_file\n\nreturn msg;",
+        "func": "const { ssid, password } = msg.payload\nconst encode_password = `wpa_passphrase '${ssid}' '${password}'`\nconst { wifi_config_file } = flow.get(\"network\")\n\nmsg.topic = \"wpa\"\nmsg.credentials = msg.payload\nmsg.payload = encode_password\nmsg.filename = wifi_config_file\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -13378,5 +13381,53 @@
                 "5e5641b812484225"
             ]
         ]
+    },
+    {
+        "id": "cf639f9e83fcff2a",
+        "type": "debug",
+        "z": "e1a40699ea85764e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 150,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "a4b545ef6ae18e08",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a863edbdda4b7dc2",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 1340,
+        "wires": []
     }
 ]
