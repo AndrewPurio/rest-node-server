@@ -13642,7 +13642,7 @@
         "type": "function",
         "z": "39c947163c4b72c5",
         "name": "Transfrom Analog to Digital",
-        "func": "const { payload } = msg\n\nif(payload > 0)\n    msg.payload = 1\n\nreturn msg;",
+        "func": "const { payload } = msg\n\nif(payload)\n    msg.payload = 1\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -13661,7 +13661,7 @@
         "type": "function",
         "z": "39c947163c4b72c5",
         "name": "Transfrom Analog to Digital",
-        "func": "const { payload } = msg\n\nif(payload > 0)\n    msg.payload = 1\n\nreturn msg;",
+        "func": "const { payload } = msg\n\nif(payload)\n    msg.payload = 1\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -13670,9 +13670,7 @@
         "x": 320,
         "y": 240,
         "wires": [
-            [
-                "0dcdde52f48ec1a2"
-            ]
+            []
         ]
     },
     {
@@ -13756,6 +13754,40 @@
         ],
         "x": 375,
         "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9bb6a9328cc46850",
+        "type": "debug",
+        "z": "39c947163c4b72c5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8bc2e72aa6e0cd68",
+        "type": "debug",
+        "z": "39c947163c4b72c5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 60,
         "wires": []
     }
 ]
