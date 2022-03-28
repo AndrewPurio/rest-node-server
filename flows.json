@@ -710,7 +710,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 110,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "db7057806dca5e74"
@@ -725,7 +725,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 660,
-        "y": 620,
+        "y": 680,
         "wires": []
     },
     {
@@ -774,7 +774,7 @@
         "repair": false,
         "outputs": 7,
         "x": 420,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "f304279097451e82"
@@ -808,7 +808,7 @@
         "action": "",
         "pretty": false,
         "x": 250,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "1e74388b5934da98",
@@ -835,6 +835,7 @@
         "once": true,
         "onceDelay": 0.1,
         "topic": "",
+        "payload": "",
         "payloadType": "date",
         "x": 120,
         "y": 100,
@@ -995,7 +996,7 @@
         "name": "Websocket Connection",
         "info": "",
         "x": 140,
-        "y": 280,
+        "y": 340,
         "wires": []
     },
     {
@@ -1654,7 +1655,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 875,
-        "y": 380,
+        "y": 440,
         "wires": []
     },
     {
@@ -1668,7 +1669,7 @@
             "6f22fed9cdd7d387"
         ],
         "x": 875,
-        "y": 340,
+        "y": 400,
         "wires": []
     },
     {
@@ -1681,7 +1682,7 @@
             "c36c3b8450aaf67a"
         ],
         "x": 875,
-        "y": 300,
+        "y": 360,
         "wires": []
     },
     {
@@ -1696,7 +1697,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 560,
+        "y": 620,
         "wires": []
     },
     {
@@ -1709,7 +1710,7 @@
         ],
         "uncaught": false,
         "x": 230,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "1f4b4e7a860167d1"
@@ -1732,7 +1733,7 @@
             "ee314b81e2911936"
         ],
         "x": 195,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -1751,7 +1752,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -1763,6 +1764,7 @@
         "type": "link out",
         "z": "f6f2187d.f17ca8",
         "name": "",
+        "mode": "link",
         "links": [
             "13deef710be29b8a",
             "3acd7c62fac91c04",
@@ -1770,7 +1772,8 @@
             "91b303d2fbc264d0",
             "adec83fd96f5a557",
             "c0a5fa6f73429b5c",
-            "d62a3bc48c8f248f"
+            "d62a3bc48c8f248f",
+            "108364afc2436fe4"
         ],
         "x": 255,
         "y": 200,
@@ -1783,7 +1786,7 @@
         "name": "",
         "links": [],
         "x": 875,
-        "y": 420,
+        "y": 480,
         "wires": []
     },
     {
@@ -1903,7 +1906,7 @@
         "name": "",
         "links": [],
         "x": 875,
-        "y": 460,
+        "y": 520,
         "wires": []
     },
     {
@@ -2460,7 +2463,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 440,
-        "y": 300,
+        "y": 360,
         "wires": []
     },
     {
@@ -2472,7 +2475,7 @@
             "e79c29c17280ad48"
         ],
         "x": 875,
-        "y": 500,
+        "y": 560,
         "wires": []
     },
     {
@@ -2836,7 +2839,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 460,
         "y": 140,
         "wires": [
             [
@@ -5750,8 +5753,7 @@
         "y": 1280,
         "wires": [
             [
-                "7ca518af31291cf3",
-                "cf639f9e83fcff2a"
+                "7ca518af31291cf3"
             ]
         ]
     },
@@ -6854,7 +6856,7 @@
         "type": "function",
         "z": "e1a40699ea85764e",
         "name": "Fade Counter",
-        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { state, light, max_brightness } = wake_light\n\nif(msg.counter >= max_brightness) {\n    flow.set(light, {\n        ...wake_light, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
+        "func": "const { FADE_ON, ON } = flow.get('light_states')\nconst { WAKE_LIGHT } = flow.get('lights')\n\nconst wake_light = flow.get(WAKE_LIGHT)\nconst { state, light, max_brightness } = wake_light\n\nif( msg.counter >= max_brightness ) {\n    flow.set(light, {\n        ...wake_light, state: ON\n    })\n    \n    return null\n}\n\nif(state !== FADE_ON)\n    return null\n\nmsg.counter++\n\nreturn msg",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -7787,22 +7789,6 @@
                 "ede233c7a745c8a5"
             ]
         ]
-    },
-    {
-        "id": "cf639f9e83fcff2a",
-        "type": "debug",
-        "z": "e1a40699ea85764e",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 150,
-        "y": 1320,
-        "wires": []
     },
     {
         "id": "b5468e96fe8f2a22",
@@ -10970,86 +10956,6 @@
         "wires": []
     },
     {
-        "id": "780953a6524d62a9",
-        "type": "comment",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "Get Device Serial Number",
-        "info": "",
-        "x": 130,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "cc0cdfe53865e93f",
-        "type": "exec",
-        "z": "4fcd3dd2df70f0c8",
-        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Get Device Serial Number",
-        "x": 310,
-        "y": 300,
-        "wires": [
-            [
-                "d69abb235b89143f"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "13deef710be29b8a",
-        "type": "link in",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "Initialize System Controls",
-        "links": [
-            "176706c3efb8ce21",
-            "1a5068f4b0cae0d9"
-        ],
-        "x": 135,
-        "y": 300,
-        "wires": [
-            [
-                "cc0cdfe53865e93f"
-            ]
-        ]
-    },
-    {
-        "id": "d69abb235b89143f",
-        "type": "function",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "Store Serial Number",
-        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 300,
-        "wires": [
-            [
-                "805fe71a14950596"
-            ]
-        ]
-    },
-    {
-        "id": "805fe71a14950596",
-        "type": "link out",
-        "z": "4fcd3dd2df70f0c8",
-        "name": "Serial Number Initialized",
-        "links": [
-            "a5c9a9fa35ff85a1"
-        ],
-        "x": 755,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "43520e04d95e37a7",
         "type": "link out",
         "z": "4fcd3dd2df70f0c8",
@@ -11611,8 +11517,8 @@
         "y": 100,
         "wires": [
             [
-                "a4fc78ecb023e5f0",
-                "9bc6c0e04d4a6195"
+                "9bc6c0e04d4a6195",
+                "a4fc78ecb023e5f0"
             ]
         ]
     },
@@ -11689,7 +11595,7 @@
         "type": "range",
         "z": "39c947163c4b72c5",
         "minin": "0",
-        "maxin": "100",
+        "maxin": "256",
         "minout": "-128",
         "maxout": "127",
         "action": "scale",
@@ -11745,7 +11651,7 @@
         "type": "range",
         "z": "39c947163c4b72c5",
         "minin": "0",
-        "maxin": "100",
+        "maxin": "256",
         "minout": "-128",
         "maxout": "127",
         "action": "scale",
@@ -13296,8 +13202,8 @@
         "syntax": "mustache",
         "template": "<?xml version=\"1.0\" standalone='no'?><!--*-nxml-*-->\n<!DOCTYPE service-group SYSTEM \"avahi-service.dtd\">\n<service-group>\n<name replace-wildcards=\"yes\">%h</name>\n<service>\n<type>_http._tcp</type>\n<port>80</port>\n<txt-record>Rest_Node</txt-record>\n<txt-record>Exist_Tribe</txt-record>\n<txt-record>{{payload.serial_number}}</txt-record>\n</service>\n</service-group>\n",
         "output": "str",
-        "x": 350,
-        "y": 2600,
+        "x": 410,
+        "y": 2540,
         "wires": [
             [
                 "601d7e2d05eb8a21"
@@ -13319,14 +13225,14 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Get Serial Number",
-        "func": "const serial_number = global.get(\"device_serial_number\")\n\nmsg.payload = {\n    serial_number\n}\n\nreturn msg;",
+        "func": "const serial_number = msg.payload\n\nmsg.payload = {\n    serial_number\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 130,
-        "y": 2600,
+        "x": 190,
+        "y": 2540,
         "wires": [
             [
                 "e29c79f9415b62bc"
@@ -13372,8 +13278,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 580,
-        "y": 2600,
+        "x": 640,
+        "y": 2540,
         "wires": [
             [
                 "2b61d545b7ae3b62"
@@ -13581,11 +13487,10 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 2640,
+        "x": 640,
+        "y": 2580,
         "wires": [
             [
-                "a4fdc1cb989729c7",
                 "e6b73738f59edf73"
             ]
         ]
@@ -13598,8 +13503,8 @@
         "links": [
             "6d72a07d67d7338a"
         ],
-        "x": 755,
-        "y": 2640,
+        "x": 795,
+        "y": 2580,
         "wires": []
     },
     {
@@ -13895,7 +13800,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
+        "x": 350,
         "y": 320,
         "wires": [
             [
@@ -13968,6 +13873,118 @@
         "statusType": "auto",
         "x": 590,
         "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6b08b4a86b86493d",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Configure HTTP Service",
+        "links": [
+            "6557532d3e1fbe5b"
+        ],
+        "x": 55,
+        "y": 2540,
+        "wires": [
+            [
+                "eaa524432e2b0709"
+            ]
+        ]
+    },
+    {
+        "id": "8b30048149150745",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Device Serial Number",
+        "info": "",
+        "x": 150,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "0497ea8c1e140e87",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Device Serial Number",
+        "x": 330,
+        "y": 2720,
+        "wires": [
+            [
+                "3d8d2cd5f0bed58c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "108364afc2436fe4",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Initialize System Controls",
+        "links": [
+            "176706c3efb8ce21",
+            "1a5068f4b0cae0d9"
+        ],
+        "x": 155,
+        "y": 2720,
+        "wires": [
+            [
+                "0497ea8c1e140e87"
+            ]
+        ]
+    },
+    {
+        "id": "3d8d2cd5f0bed58c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Store Serial Number",
+        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 2720,
+        "wires": [
+            [
+                "6557532d3e1fbe5b"
+            ]
+        ]
+    },
+    {
+        "id": "6557532d3e1fbe5b",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "Serial Number Initialized",
+        "links": [
+            "a5c9a9fa35ff85a1",
+            "6b08b4a86b86493d"
+        ],
+        "x": 795,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "a5d280204fd7e547",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network State",
+        "func": "const { topic: network_state } = msg\n\nflow.set(\"network_state\", network_state)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 2800,
         "wires": []
     }
 ]
