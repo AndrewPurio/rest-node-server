@@ -914,7 +914,6 @@
             "39c3271784c41469",
             "da9395f549c1786e",
             "02d63241c2c8b3af",
-            "e8745ed91dad4ffa",
             "02d763c25da41261",
             "82aadccc980be554",
             "a069a6ca38e2a87d",
@@ -2323,7 +2322,8 @@
         "y": 3100,
         "wires": [
             [
-                "e8745ed91dad4ffa"
+                "e8745ed91dad4ffa",
+                "bc6b9f41cb332728"
             ]
         ]
     },
@@ -2408,10 +2408,10 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 3160,
+        "y": 3220,
         "wires": [
             [
-                "fd013d9871aa05df"
+                "9022d018165f9751"
             ]
         ]
     },
@@ -2420,14 +2420,14 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Retrieve Device Id",
-        "func": "const device_id = global.get(\"device_serial_number\")\n\nmsg.payload = {\n    device_id\n}\n\nreturn msg;",
+        "func": "const device_id =  msg.payload.replace(\"\\n\", \"\")\n\nmsg.payload = {\n    device_id\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 3160,
+        "x": 790,
+        "y": 3220,
         "wires": [
             [
                 "a069a6ca38e2a87d"
@@ -2442,8 +2442,8 @@
         "links": [
             "1bd0312798db6fb0"
         ],
-        "x": 735,
-        "y": 3160,
+        "x": 935,
+        "y": 3220,
         "wires": []
     },
     {
@@ -2597,6 +2597,41 @@
         "x": 735,
         "y": 2660,
         "wires": []
+    },
+    {
+        "id": "bc6b9f41cb332728",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "5ec14e1ee0ad2eee"
+        ],
+        "x": 455,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "9022d018165f9751",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Device Serial Number",
+        "x": 550,
+        "y": 3220,
+        "wires": [
+            [
+                "fd013d9871aa05df"
+            ],
+            [],
+            []
+        ]
     },
     {
         "id": "3663a760b9cc022e",
@@ -10571,7 +10606,9 @@
         "z": "4fcd3dd2df70f0c8",
         "name": "System Reset",
         "links": [
-            "5397f0d28c60d06a"
+            "5397f0d28c60d06a",
+            "e8745ed91dad4ffa",
+            "bc6b9f41cb332728"
         ],
         "x": 195,
         "y": 460,
@@ -12438,8 +12475,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 1640,
+        "x": 660,
+        "y": 1700,
         "wires": [
             [
                 "88447a59e53cf075"
@@ -12455,8 +12492,8 @@
             "6d72a07d67d7338a",
             "b1c58a1a6b330a94"
         ],
-        "x": 915,
-        "y": 1600,
+        "x": 765,
+        "y": 1560,
         "wires": []
     },
     {
@@ -12574,7 +12611,7 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Reset WPA Supplicant",
-        "func": "const enable_avahi = \"sudo systemctl enable avahi-daemon\"\nconst start_avahi = \"sudo systemctl start avahi-daemon\"\nconst stop_dnsmasq = \"sudo systemctl stop dnsmasq\"\nconst stop_hostapd = 'sudo systemctl stop hostapd'\nconst reset_wpa = \"sudo sh /home/pi/scripts/reset_wpa.sh\"\n\nconst commands = [\n    enable_avahi, start_avahi, stop_dnsmasq, stop_hostapd, reset_wpa\n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg;",
+        "func": "const enable_avahi = \"sudo systemctl enable avahi-daemon\"\nconst start_avahi = \"sudo systemctl start avahi-daemon\"\nconst stop_dnsmasq = \"sudo systemctl stop dnsmasq\"\nconst stop_hostapd = \"sudo systemctl stop hostapd\"\nconst reset_wpa = \"sudo sh /home/pi/scripts/reset_wpa.sh\"\n\nconst commands = [\n    enable_avahi, start_avahi, stop_dnsmasq, stop_hostapd, reset_wpa\n]\n\nmsg.payload = commands.join(\"; \")\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -12681,7 +12718,6 @@
         "name": "Activate Hotspot",
         "links": [
             "87766fb3ee062bef",
-            "e8745ed91dad4ffa",
             "43520e04d95e37a7"
         ],
         "x": 55,
@@ -12743,27 +12779,11 @@
         "syntax": "mustache",
         "template": "ssid={{payload.ssid}}\nwpa_passphrase=rest_node\n\ninterface=wlan0\ndriver=nl80211\nhw_mode=g\nchannel=7\nwmm_enabled=0\nmacaddr_acl=0\nauth_algs=1\nignore_broadcast_ssid=0\nwpa=2\nwpa_key_mgmt=WPA-PSK\nwpa_pairwise=TKIP\nrsn_pairwise=CCMP\n",
         "output": "str",
-        "x": 390,
-        "y": 1760,
+        "x": 630,
+        "y": 1740,
         "wires": [
             [
                 "96056e5da3f1b5b5"
-            ]
-        ]
-    },
-    {
-        "id": "a5c9a9fa35ff85a1",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "links": [
-            "805fe71a14950596"
-        ],
-        "x": 55,
-        "y": 1760,
-        "wires": [
-            [
-                "bf4c8e5551638c9a"
             ]
         ]
     },
@@ -12777,8 +12797,8 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 630,
-        "y": 1760,
+        "x": 650,
+        "y": 1780,
         "wires": [
             []
         ]
@@ -12788,14 +12808,14 @@
         "type": "function",
         "z": "4b91f5d2f9b78292",
         "name": "Hotspot SSID",
-        "func": "const last_4_characters = /\\w{4}$/\nconst serial_num = msg.payload\nconst ssid = `Rest_Node_${last_4_characters.exec(serial_num)[0]}`\n\nmsg.payload = {\n    ssid\n}\n\nreturn msg;",
+        "func": "const last_4_characters = /\\w{4}$/\nconst serial_num = global.get(\"device_serial_number\")\nconst ssid = `Rest_Node_${last_4_characters.exec(serial_num)[0]}`\n\nmsg.payload = {\n    ssid\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 1760,
+        "x": 420,
+        "y": 1740,
         "wires": [
             [
                 "2859d4d6019639e3"
@@ -12853,7 +12873,7 @@
         "wires": [
             [
                 "88447a59e53cf075",
-                "7ef3019a683471f5"
+                "45494ef6f3b0a903"
             ]
         ]
     },
@@ -12874,8 +12894,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 550,
-        "y": 1640,
+        "x": 410,
+        "y": 1700,
         "wires": [
             [
                 "c0e20566c12e4033"
@@ -13329,11 +13349,12 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "0.5",
         "topic": "",
+        "payload": "",
         "payloadType": "date",
-        "x": 100,
+        "x": 110,
         "y": 2540,
         "wires": [
             [
@@ -13372,7 +13393,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 2700,
+        "y": 2680,
         "wires": []
     },
     {
@@ -13687,7 +13708,8 @@
             "dcde7085b18d7152",
             "e6b73738f59edf73",
             "f61d720e805718f3",
-            "7582d1b00799b862"
+            "7582d1b00799b862",
+            "5ffc9eba4f756fb0"
         ],
         "x": 55,
         "y": 800,
@@ -13722,6 +13744,36 @@
         "statusType": "auto",
         "x": 230,
         "y": 860,
+        "wires": []
+    },
+    {
+        "id": "f35ca9a333b12edd",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "45494ef6f3b0a903"
+        ],
+        "x": 285,
+        "y": 1720,
+        "wires": [
+            [
+                "7ef3019a683471f5",
+                "bf4c8e5551638c9a"
+            ]
+        ]
+    },
+    {
+        "id": "45494ef6f3b0a903",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "f35ca9a333b12edd"
+        ],
+        "x": 695,
+        "y": 1640,
         "wires": []
     },
     {
