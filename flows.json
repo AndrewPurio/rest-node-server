@@ -1904,7 +1904,9 @@
         "type": "link out",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "links": [],
+        "links": [
+            "1af2b18d471732da"
+        ],
         "x": 875,
         "y": 520,
         "wires": []
@@ -2635,6 +2637,38 @@
             [],
             []
         ]
+    },
+    {
+        "id": "1af2b18d471732da",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "links": [
+            "8ed46fa8a0ac2bfe"
+        ],
+        "x": 955,
+        "y": 520,
+        "wires": [
+            [
+                "26850b5eacee2754"
+            ]
+        ]
+    },
+    {
+        "id": "26850b5eacee2754",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 520,
+        "wires": []
     },
     {
         "id": "3663a760b9cc022e",
@@ -13682,6 +13716,118 @@
         "wires": []
     },
     {
+        "id": "6b08b4a86b86493d",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Configure HTTP Service",
+        "links": [
+            "6557532d3e1fbe5b"
+        ],
+        "x": 55,
+        "y": 2540,
+        "wires": [
+            [
+                "eaa524432e2b0709"
+            ]
+        ]
+    },
+    {
+        "id": "8b30048149150745",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Device Serial Number",
+        "info": "",
+        "x": 150,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "0497ea8c1e140e87",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Device Serial Number",
+        "x": 330,
+        "y": 2720,
+        "wires": [
+            [
+                "3d8d2cd5f0bed58c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "108364afc2436fe4",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Initialize System Controls",
+        "links": [
+            "176706c3efb8ce21",
+            "1a5068f4b0cae0d9"
+        ],
+        "x": 155,
+        "y": 2720,
+        "wires": [
+            [
+                "0497ea8c1e140e87"
+            ]
+        ]
+    },
+    {
+        "id": "3d8d2cd5f0bed58c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Store Serial Number",
+        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 2720,
+        "wires": [
+            [
+                "6557532d3e1fbe5b"
+            ]
+        ]
+    },
+    {
+        "id": "6557532d3e1fbe5b",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "Serial Number Initialized",
+        "links": [
+            "a5c9a9fa35ff85a1",
+            "6b08b4a86b86493d"
+        ],
+        "x": 795,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "a5d280204fd7e547",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network State",
+        "func": "const { topic: network_state } = msg\n\nflow.set(\"network_state\", network_state)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 2800,
+        "wires": []
+    },
+    {
         "id": "d7bbe2d9d6e8d970",
         "type": "exec",
         "z": "0f63bfc5ee27de30",
@@ -13873,118 +14019,6 @@
         "statusType": "auto",
         "x": 590,
         "y": 200,
-        "wires": []
-    },
-    {
-        "id": "6b08b4a86b86493d",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Configure HTTP Service",
-        "links": [
-            "6557532d3e1fbe5b"
-        ],
-        "x": 55,
-        "y": 2540,
-        "wires": [
-            [
-                "eaa524432e2b0709"
-            ]
-        ]
-    },
-    {
-        "id": "8b30048149150745",
-        "type": "comment",
-        "z": "4b91f5d2f9b78292",
-        "name": "Get Device Serial Number",
-        "info": "",
-        "x": 150,
-        "y": 2640,
-        "wires": []
-    },
-    {
-        "id": "0497ea8c1e140e87",
-        "type": "exec",
-        "z": "4b91f5d2f9b78292",
-        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Get Device Serial Number",
-        "x": 330,
-        "y": 2720,
-        "wires": [
-            [
-                "3d8d2cd5f0bed58c"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "108364afc2436fe4",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Initialize System Controls",
-        "links": [
-            "176706c3efb8ce21",
-            "1a5068f4b0cae0d9"
-        ],
-        "x": 155,
-        "y": 2720,
-        "wires": [
-            [
-                "0497ea8c1e140e87"
-            ]
-        ]
-    },
-    {
-        "id": "3d8d2cd5f0bed58c",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Store Serial Number",
-        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 2720,
-        "wires": [
-            [
-                "6557532d3e1fbe5b"
-            ]
-        ]
-    },
-    {
-        "id": "6557532d3e1fbe5b",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "name": "Serial Number Initialized",
-        "links": [
-            "a5c9a9fa35ff85a1",
-            "6b08b4a86b86493d"
-        ],
-        "x": 795,
-        "y": 2720,
-        "wires": []
-    },
-    {
-        "id": "a5d280204fd7e547",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Network State",
-        "func": "const { topic: network_state } = msg\n\nflow.set(\"network_state\", network_state)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 2800,
         "wires": []
     }
 ]
