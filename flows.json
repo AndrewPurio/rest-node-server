@@ -725,7 +725,7 @@
         "server": "18c6c46d15594407",
         "client": "",
         "x": 660,
-        "y": 680,
+        "y": 740,
         "wires": []
     },
     {
@@ -767,12 +767,17 @@
                 "vt": "str"
             },
             {
+                "t": "eq",
+                "v": "sound",
+                "vt": "str"
+            },
+            {
                 "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 7,
+        "outputs": 8,
         "x": 420,
         "y": 440,
         "wires": [
@@ -793,6 +798,9 @@
             ],
             [
                 "5aa46d5e5e7cd469"
+            ],
+            [
+                "1b1c7d093b342cf3"
             ],
             [
                 "62a71b748c924363"
@@ -885,7 +893,7 @@
         "statusCode": "",
         "headers": {},
         "x": 950,
-        "y": 840,
+        "y": 900,
         "wires": []
     },
     {
@@ -921,7 +929,7 @@
             "169fad82c9be86db"
         ],
         "x": 795,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "14b017febce3fd48"
@@ -941,7 +949,7 @@
         ],
         "uncaught": false,
         "x": 160,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "0dd6df953acaddba"
@@ -957,7 +965,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 535,
-        "y": 840,
+        "y": 900,
         "wires": []
     },
     {
@@ -972,7 +980,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 840,
+        "y": 900,
         "wires": [
             [
                 "a37c62cfcb685775"
@@ -986,7 +994,7 @@
         "name": "HTTP Requests",
         "info": "",
         "x": 120,
-        "y": 780,
+        "y": 840,
         "wires": []
     },
     {
@@ -1009,7 +1017,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             [
                 "a4e0cf51c9a7d1eb"
@@ -1028,7 +1036,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1020,
+        "y": 1080,
         "wires": [
             [
                 "0b58e656f91710d1"
@@ -1044,7 +1052,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1020,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1057,7 +1065,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 160,
-        "y": 1180,
+        "y": 1240,
         "wires": [
             [
                 "b1c4643e4ab543a5"
@@ -1073,7 +1081,7 @@
             "c8535874aa1ff738"
         ],
         "x": 915,
-        "y": 1180,
+        "y": 1240,
         "wires": []
     },
     {
@@ -1086,7 +1094,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1300,
+        "y": 1360,
         "wires": [
             [
                 "a9bcf9fb6e3210a5"
@@ -1103,7 +1111,7 @@
             "6f3c21450db0a2d2"
         ],
         "x": 915,
-        "y": 1300,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1125,7 +1133,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 1300,
+        "y": 1360,
         "wires": [
             [
                 "6bcd5510f8049afa"
@@ -1147,7 +1155,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1360,
+        "y": 1420,
         "wires": []
     },
     {
@@ -1176,7 +1184,7 @@
         "repair": false,
         "outputs": 3,
         "x": 680,
-        "y": 1300,
+        "y": 1360,
         "wires": [
             [
                 "ae7bfc1a4f9a8204"
@@ -1201,7 +1209,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1240,
+        "y": 1300,
         "wires": [
             [
                 "f10b7c0b25fa5429"
@@ -1220,7 +1228,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1360,
+        "y": 1420,
         "wires": []
     },
     {
@@ -1233,7 +1241,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1540,
+        "y": 1600,
         "wires": [
             [
                 "a3f2fa267c10ee3b"
@@ -1259,7 +1267,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 1540,
+        "y": 1600,
         "wires": [
             [
                 "f11d1107faeded90"
@@ -1281,7 +1289,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1480,
+        "y": 1540,
         "wires": [
             [
                 "32458938ca244455"
@@ -1300,7 +1308,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1600,
+        "y": 1660,
         "wires": []
     },
     {
@@ -1334,7 +1342,7 @@
         "repair": false,
         "outputs": 4,
         "x": 680,
-        "y": 1540,
+        "y": 1600,
         "wires": [
             [
                 "56dd34c5643d6bad"
@@ -1362,7 +1370,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1600,
+        "y": 1660,
         "wires": []
     },
     {
@@ -1374,7 +1382,7 @@
             "f8da963aa27f72a0"
         ],
         "x": 915,
-        "y": 1540,
+        "y": 1600,
         "wires": []
     },
     {
@@ -1387,7 +1395,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1060,
+        "y": 1120,
         "wires": [
             [
                 "4d7872e1529962ce"
@@ -1406,7 +1414,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1060,
+        "y": 1120,
         "wires": [
             [
                 "189ae71dc788c445"
@@ -1422,7 +1430,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1060,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1435,7 +1443,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "5898b29b72a6cccd"
@@ -1454,7 +1462,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 1100,
+        "y": 1160,
         "wires": [
             [
                 "6a68828c35240fc7"
@@ -1470,7 +1478,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 915,
-        "y": 1100,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1480,7 +1488,7 @@
         "name": "GET Requests",
         "info": "",
         "x": 120,
-        "y": 960,
+        "y": 1020,
         "wires": []
     },
     {
@@ -1493,7 +1501,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 1760,
+        "y": 1820,
         "wires": [
             [
                 "beeae97391c08041"
@@ -1519,7 +1527,7 @@
         "repair": false,
         "outputs": 2,
         "x": 390,
-        "y": 1760,
+        "y": 1820,
         "wires": [
             [
                 "bb81fcec96723838"
@@ -1541,7 +1549,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 1700,
+        "y": 1760,
         "wires": [
             [
                 "93650fa449eec81d"
@@ -1560,7 +1568,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 1820,
+        "y": 1880,
         "wires": []
     },
     {
@@ -1599,7 +1607,7 @@
         "repair": false,
         "outputs": 5,
         "x": 680,
-        "y": 1760,
+        "y": 1820,
         "wires": [
             [
                 "63e068dd27d72c8f"
@@ -1630,7 +1638,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1840,
+        "y": 1900,
         "wires": []
     },
     {
@@ -1642,7 +1650,7 @@
             "d562529942175c6a"
         ],
         "x": 915,
-        "y": 1760,
+        "y": 1820,
         "wires": []
     },
     {
@@ -1697,7 +1705,7 @@
         "finalize": "",
         "libs": [],
         "x": 720,
-        "y": 620,
+        "y": 660,
         "wires": []
     },
     {
@@ -1710,7 +1718,7 @@
         ],
         "uncaught": false,
         "x": 230,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "1f4b4e7a860167d1"
@@ -1733,7 +1741,7 @@
             "ee314b81e2911936"
         ],
         "x": 195,
-        "y": 680,
+        "y": 740,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -1752,7 +1760,7 @@
         "finalize": "",
         "libs": [],
         "x": 400,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "62e6a71c4cb08a51"
@@ -1799,7 +1807,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 1980,
+        "y": 2040,
         "wires": [
             [
                 "ba2fae25347c8e12",
@@ -1828,7 +1836,7 @@
         "repair": false,
         "outputs": 2,
         "x": 330,
-        "y": 2020,
+        "y": 2080,
         "wires": [
             [
                 "b7f321e5e4dbee08"
@@ -1850,7 +1858,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 2040,
+        "y": 2100,
         "wires": []
     },
     {
@@ -1863,7 +1871,7 @@
             "f606d9d82e886790"
         ],
         "x": 695,
-        "y": 2000,
+        "y": 2060,
         "wires": []
     },
     {
@@ -1875,7 +1883,7 @@
         "action": "obj",
         "pretty": false,
         "x": 130,
-        "y": 2020,
+        "y": 2080,
         "wires": [
             [
                 "6978521709f87b2f"
@@ -1896,7 +1904,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 610,
-        "y": 1920,
+        "y": 1980,
         "wires": []
     },
     {
@@ -1904,7 +1912,10 @@
         "type": "link out",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "links": [],
+        "mode": "link",
+        "links": [
+            "dcc3e4b965949c44"
+        ],
         "x": 875,
         "y": 520,
         "wires": []
@@ -1916,7 +1927,7 @@
         "name": "POST Requests",
         "info": "",
         "x": 120,
-        "y": 2180,
+        "y": 2240,
         "wires": []
     },
     {
@@ -1929,7 +1940,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2300,
+        "y": 2360,
         "wires": [
             [
                 "cab5e30779c781fb"
@@ -1945,7 +1956,7 @@
             "923891f5d3e27f13"
         ],
         "x": 715,
-        "y": 2220,
+        "y": 2280,
         "wires": []
     },
     {
@@ -1984,7 +1995,7 @@
         "repair": false,
         "outputs": 5,
         "x": 500,
-        "y": 2300,
+        "y": 2360,
         "wires": [
             [
                 "6a818fee00616bc3"
@@ -2015,7 +2026,7 @@
         "finalize": "",
         "libs": [],
         "x": 790,
-        "y": 2380,
+        "y": 2440,
         "wires": []
     },
     {
@@ -2027,7 +2038,7 @@
             "923891f5d3e27f13"
         ],
         "x": 715,
-        "y": 2260,
+        "y": 2320,
         "wires": []
     },
     {
@@ -2039,7 +2050,7 @@
             "923891f5d3e27f13"
         ],
         "x": 715,
-        "y": 2300,
+        "y": 2360,
         "wires": []
     },
     {
@@ -2051,7 +2062,7 @@
             "923891f5d3e27f13"
         ],
         "x": 715,
-        "y": 2340,
+        "y": 2400,
         "wires": []
     },
     {
@@ -2064,7 +2075,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 2460,
+        "y": 2520,
         "wires": [
             [
                 "ae1893cad56d8dd8"
@@ -2080,7 +2091,7 @@
             "c9c5a8c5491e0541"
         ],
         "x": 755,
-        "y": 2440,
+        "y": 2500,
         "wires": []
     },
     {
@@ -2092,7 +2103,7 @@
         "action": "obj",
         "pretty": false,
         "x": 90,
-        "y": 2500,
+        "y": 2560,
         "wires": [
             [
                 "7d71fbef364dd545"
@@ -2120,7 +2131,7 @@
         "repair": false,
         "outputs": 2,
         "x": 140,
-        "y": 2540,
+        "y": 2600,
         "wires": [
             [
                 "d694913d9ea287a2"
@@ -2151,7 +2162,7 @@
         "repair": false,
         "outputs": 2,
         "x": 380,
-        "y": 2520,
+        "y": 2580,
         "wires": [
             [
                 "b34b8737f7c38954"
@@ -2182,7 +2193,7 @@
         "repair": false,
         "outputs": 2,
         "x": 610,
-        "y": 2480,
+        "y": 2540,
         "wires": [
             [
                 "6d07b905709d8469"
@@ -2204,7 +2215,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 2560,
+        "y": 2620,
         "wires": []
     },
     {
@@ -2219,7 +2230,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 2520,
+        "y": 2580,
         "wires": []
     },
     {
@@ -2234,7 +2245,7 @@
         "finalize": "",
         "libs": [],
         "x": 870,
-        "y": 2480,
+        "y": 2540,
         "wires": []
     },
     {
@@ -2244,7 +2255,7 @@
         "name": "Connection Requests",
         "info": "",
         "x": 140,
-        "y": 2780,
+        "y": 2840,
         "wires": []
     },
     {
@@ -2257,7 +2268,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2880,
+        "y": 2940,
         "wires": [
             [
                 "8f36a41640ef3764"
@@ -2274,7 +2285,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 935,
-        "y": 2880,
+        "y": 2940,
         "wires": []
     },
     {
@@ -2289,7 +2300,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 2880,
+        "y": 2940,
         "wires": [
             [
                 "02d63241c2c8b3af"
@@ -2305,7 +2316,7 @@
         "action": "obj",
         "pretty": false,
         "x": 330,
-        "y": 2880,
+        "y": 2940,
         "wires": [
             [
                 "caf244509123b697"
@@ -2322,7 +2333,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 130,
-        "y": 3100,
+        "y": 3160,
         "wires": [
             [
                 "e8745ed91dad4ffa",
@@ -2340,7 +2351,7 @@
             "b0173ac2af8fec3b"
         ],
         "x": 455,
-        "y": 3100,
+        "y": 3160,
         "wires": []
     },
     {
@@ -2353,7 +2364,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2980,
+        "y": 3040,
         "wires": [
             [
                 "da90f1e7e66e0f3a"
@@ -2369,7 +2380,7 @@
             "b1c58a1a6b330a94"
         ],
         "x": 455,
-        "y": 2980,
+        "y": 3040,
         "wires": []
     },
     {
@@ -2382,7 +2393,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 3040,
+        "y": 3100,
         "wires": [
             [
                 "e58b6bb1fc9f4125"
@@ -2398,7 +2409,7 @@
             "c1e2e10ac881b45a"
         ],
         "x": 455,
-        "y": 3040,
+        "y": 3100,
         "wires": []
     },
     {
@@ -2411,7 +2422,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 150,
-        "y": 3220,
+        "y": 3280,
         "wires": [
             [
                 "9022d018165f9751"
@@ -2430,7 +2441,7 @@
         "finalize": "",
         "libs": [],
         "x": 790,
-        "y": 3220,
+        "y": 3280,
         "wires": [
             [
                 "a069a6ca38e2a87d"
@@ -2446,7 +2457,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 935,
-        "y": 3220,
+        "y": 3280,
         "wires": []
     },
     {
@@ -2487,7 +2498,7 @@
         "action": "obj",
         "pretty": false,
         "x": 310,
-        "y": 2300,
+        "y": 2360,
         "wires": [
             [
                 "2963dbc2f92ec862"
@@ -2504,7 +2515,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 140,
-        "y": 2660,
+        "y": 2720,
         "wires": [
             [
                 "1ff56e1f6d095f4b"
@@ -2520,7 +2531,7 @@
         "action": "obj",
         "pretty": false,
         "x": 310,
-        "y": 2660,
+        "y": 2720,
         "wires": [
             [
                 "3b34a29168eb58ac"
@@ -2558,7 +2569,7 @@
         "repair": false,
         "outputs": 4,
         "x": 450,
-        "y": 2660,
+        "y": 2720,
         "wires": [
             [
                 "82e9af7e6351cc64"
@@ -2586,7 +2597,7 @@
         "finalize": "",
         "libs": [],
         "x": 650,
-        "y": 2720,
+        "y": 2780,
         "wires": []
     },
     {
@@ -2598,7 +2609,7 @@
             "52eb4e7a40d8147b"
         ],
         "x": 735,
-        "y": 2660,
+        "y": 2720,
         "wires": []
     },
     {
@@ -2611,7 +2622,7 @@
             "5ec14e1ee0ad2eee"
         ],
         "x": 455,
-        "y": 3160,
+        "y": 3220,
         "wires": []
     },
     {
@@ -2627,7 +2638,7 @@
         "oldrc": false,
         "name": "Get Device Serial Number",
         "x": 550,
-        "y": 3220,
+        "y": 3280,
         "wires": [
             [
                 "fd013d9871aa05df"
@@ -2635,6 +2646,19 @@
             [],
             []
         ]
+    },
+    {
+        "id": "1b1c7d093b342cf3",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "9e4bc266743f997c"
+        ],
+        "x": 875,
+        "y": 600,
+        "wires": []
     },
     {
         "id": "3663a760b9cc022e",
@@ -3162,7 +3186,7 @@
         "name": "Event (Night Sound)",
         "mode": "link",
         "links": [
-            "6f22fed9cdd7d387"
+            "1b563d9b71af7068"
         ],
         "x": 675,
         "y": 1780,
@@ -3427,7 +3451,8 @@
         "y": 2120,
         "wires": [
             [
-                "cf92539e199f740a"
+                "cf92539e199f740a",
+                "548caea835aba7a6"
             ]
         ]
     },
@@ -3448,8 +3473,9 @@
         "type": "link out",
         "z": "427808241d304283",
         "name": "Event (Wake Sound)",
+        "mode": "link",
         "links": [
-            "6f22fed9cdd7d387"
+            "1b563d9b71af7068"
         ],
         "x": 675,
         "y": 2120,
@@ -3615,6 +3641,7 @@
         "id": "97423e057c4b1573",
         "type": "schedex",
         "z": "427808241d304283",
+        "d": true,
         "name": "Sunset Light Event",
         "passthroughunhandled": true,
         "suspended": false,
@@ -3649,6 +3676,7 @@
         "id": "ec600430246adfbc",
         "type": "schedex",
         "z": "427808241d304283",
+        "d": true,
         "name": "Sunset Sound Event",
         "passthroughunhandled": true,
         "suspended": false,
@@ -5226,7 +5254,8 @@
         "y": 1780,
         "wires": [
             [
-                "f520c999092bcc9d"
+                "f520c999092bcc9d",
+                "6a1b0fc1efbb25ac"
             ]
         ]
     },
@@ -5445,6 +5474,39 @@
         "statusType": "auto",
         "x": 600,
         "y": 560,
+        "wires": []
+    },
+    {
+        "id": "6a1b0fc1efbb25ac",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "548caea835aba7a6",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "Wake Sound Event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 2180,
         "wires": []
     },
     {
@@ -7992,7 +8054,7 @@
         "finalize": "",
         "libs": [],
         "x": 200,
-        "y": 1760,
+        "y": 1860,
         "wires": [
             [
                 "397d62e439616946"
@@ -8013,11 +8075,17 @@
         "oldrc": false,
         "name": "Execute Volume Command",
         "x": 520,
-        "y": 1760,
+        "y": 1860,
         "wires": [
-            [],
-            [],
-            []
+            [
+                "73abb13ecf9db6d7"
+            ],
+            [
+                "73abb13ecf9db6d7"
+            ],
+            [
+                "73abb13ecf9db6d7"
+            ]
         ]
     },
     {
@@ -8027,7 +8095,7 @@
         "name": "Volume Adjustments",
         "info": "",
         "x": 110,
-        "y": 1640,
+        "y": 1740,
         "wires": []
     },
     {
@@ -8158,13 +8226,14 @@
         "id": "dcc3e4b965949c44",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
+        "name": "Volume Adjustment",
         "links": [
             "49568c675f1055e9",
-            "62f7fa9610e77462"
+            "62f7fa9610e77462",
+            "8ed46fa8a0ac2bfe"
         ],
-        "x": 35,
-        "y": 1700,
+        "x": 95,
+        "y": 1800,
         "wires": [
             [
                 "7d8f844d95a0a057"
@@ -8195,32 +8264,25 @@
         "name": "Audio Player",
         "info": "",
         "x": 90,
-        "y": 1840,
+        "y": 1940,
         "wires": []
     },
     {
         "id": "1b563d9b71af7068",
         "type": "link in",
         "z": "56ae43efe9a5b4d3",
-        "name": "",
+        "name": "Get Audio Input",
         "links": [
-            "66cbd01c27b85f84",
-            "51b7c7c047fd2605",
-            "0ff74578e0a81cab",
-            "97d940100fd6c4e4",
-            "f8ba3ca312b725df",
-            "3c33859bf78ed215",
-            "8e6a6d9d5f9d1403",
+            "62f7fa9610e77462",
             "819ffe8c2a50daa4",
-            "b9c3ad8c4119f204",
-            "62f7fa9610e77462"
+            "c34ed1fab46fbda8",
+            "fe30fcaa2bea0d31"
         ],
         "x": 35,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
-                "ab91ca2c5c750e95",
-                "54061ac0337d67c2"
+                "ab91ca2c5c750e95"
             ]
         ]
     },
@@ -8236,7 +8298,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1880,
+        "y": 1980,
         "wires": [
             [
                 "5a44044c38f6a2b7"
@@ -8257,7 +8319,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 810,
-        "y": 2200,
+        "y": 2300,
         "wires": []
     },
     {
@@ -8278,7 +8340,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 2160,
+        "y": 2260,
         "wires": [
             [
                 "24365bd64551e5cd",
@@ -8298,7 +8360,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 2160,
+        "y": 2260,
         "wires": []
     },
     {
@@ -8334,7 +8396,7 @@
         "repair": false,
         "outputs": 4,
         "x": 350,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -8362,7 +8424,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -8378,7 +8440,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 2000,
+        "y": 2100,
         "wires": []
     },
     {
@@ -8391,7 +8453,7 @@
             "3c25c445887cca7c"
         ],
         "x": 35,
-        "y": 2160,
+        "y": 2260,
         "wires": [
             [
                 "837e2a02b8b3cb89"
@@ -8410,7 +8472,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 2040,
+        "y": 2140,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -8429,7 +8491,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 2080,
+        "y": 2180,
         "wires": [
             [
                 "c3907ce3b315e7d0"
@@ -8635,7 +8697,7 @@
         "name": "To Storage",
         "info": "",
         "x": 80,
-        "y": 2280,
+        "y": 2380,
         "wires": []
     },
     {
@@ -8649,7 +8711,7 @@
             "49568c675f1055e9"
         ],
         "x": 35,
-        "y": 2320,
+        "y": 2420,
         "wires": [
             [
                 "6b5fe6e5651bbcdc"
@@ -8668,7 +8730,7 @@
         "finalize": "",
         "libs": [],
         "x": 270,
-        "y": 2320,
+        "y": 2420,
         "wires": [
             [
                 "377cc3968f89cf3d"
@@ -8743,7 +8805,7 @@
             "decd7dd7fcda1a73"
         ],
         "x": 795,
-        "y": 2320,
+        "y": 2420,
         "wires": []
     },
     {
@@ -8759,7 +8821,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2380,
+        "y": 2480,
         "wires": []
     },
     {
@@ -8774,7 +8836,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 2320,
+        "y": 2420,
         "wires": [
             [
                 "064db609db367336",
@@ -8794,7 +8856,7 @@
         "finalize": "",
         "libs": [],
         "x": 160,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -8948,7 +9010,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 410,
-        "y": 2160,
+        "y": 2260,
         "wires": [
             [
                 "d3c721f30dc405fe",
@@ -8975,7 +9037,7 @@
         "repair": false,
         "outputs": 2,
         "x": 730,
-        "y": 1880,
+        "y": 1980,
         "wires": [
             [
                 "3c25c445887cca7c"
@@ -8997,7 +9059,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "c3907ce3b315e7d0",
@@ -9017,7 +9079,7 @@
         "finalize": "",
         "libs": [],
         "x": 830,
-        "y": 1940,
+        "y": 2040,
         "wires": [
             [
                 "7fbe952ddacdef3c"
@@ -9033,7 +9095,7 @@
             "87a8be781c772fe9"
         ],
         "x": 895,
-        "y": 1860,
+        "y": 1960,
         "wires": []
     },
     {
@@ -9048,7 +9110,7 @@
         "finalize": "",
         "libs": [],
         "x": 190,
-        "y": 2160,
+        "y": 2260,
         "wires": [
             [
                 "f9696091e419c12c"
@@ -9157,7 +9219,7 @@
         "name": "",
         "links": [],
         "x": 35,
-        "y": 2440,
+        "y": 2540,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -9176,7 +9238,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2440,
+        "y": 2540,
         "wires": [
             [
                 "8ef80688d076fcc6"
@@ -9192,7 +9254,7 @@
             "b390266dc39ac695"
         ],
         "x": 795,
-        "y": 2440,
+        "y": 2540,
         "wires": []
     },
     {
@@ -9217,7 +9279,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 100,
-        "y": 2520,
+        "y": 2620,
         "wires": [
             [
                 "90dc7313c9b7fda9"
@@ -9253,11 +9315,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 160,
-        "y": 1700,
+        "x": 220,
+        "y": 1800,
         "wires": [
             [
-                "8d54343c273a8128"
+                "8d54343c273a8128",
+                "7a0e459596957678"
             ]
         ]
     },
@@ -9268,7 +9331,7 @@
         "name": "From Event Scheduler",
         "info": "",
         "x": 120,
-        "y": 1480,
+        "y": 1580,
         "wires": []
     },
     {
@@ -9278,7 +9341,7 @@
         "name": "",
         "links": [],
         "x": 135,
-        "y": 1540,
+        "y": 1640,
         "wires": [
             [
                 "1bcae0d3b28c7498"
@@ -9297,7 +9360,7 @@
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 1540,
+        "y": 1640,
         "wires": [
             [
                 "62f7fa9610e77462"
@@ -9314,7 +9377,7 @@
             "1b563d9b71af7068"
         ],
         "x": 775,
-        "y": 1540,
+        "y": 1640,
         "wires": []
     },
     {
@@ -9339,7 +9402,7 @@
         "payload": "start",
         "payloadType": "str",
         "x": 90,
-        "y": 3140,
+        "y": 3240,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9355,7 +9418,7 @@
         "audioURI": "",
         "options": "{}",
         "x": 450,
-        "y": 3140,
+        "y": 3240,
         "wires": [
             [
                 "2d418fbe39d25536"
@@ -9375,7 +9438,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 680,
-        "y": 3140,
+        "y": 3240,
         "wires": []
     },
     {
@@ -9400,7 +9463,7 @@
         "payload": "stop",
         "payloadType": "str",
         "x": 90,
-        "y": 3200,
+        "y": 3300,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9429,7 +9492,7 @@
         "payload": "resume",
         "payloadType": "str",
         "x": 90,
-        "y": 3260,
+        "y": 3360,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9458,7 +9521,7 @@
         "payload": "pause",
         "payloadType": "str",
         "x": 90,
-        "y": 3320,
+        "y": 3420,
         "wires": [
             [
                 "700a77bd533c7032"
@@ -9477,7 +9540,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 3140,
+        "y": 3240,
         "wires": [
             [
                 "8cafd4602aeb9b91"
@@ -9491,7 +9554,7 @@
         "name": "Testing Section",
         "info": "",
         "x": 100,
-        "y": 3080,
+        "y": 3180,
         "wires": []
     },
     {
@@ -9555,7 +9618,7 @@
         "oldrc": false,
         "name": "Get Available Assets Dir",
         "x": 530,
-        "y": 3420,
+        "y": 3520,
         "wires": [
             [
                 "c73026e2a7474f78"
@@ -9576,7 +9639,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 3420,
+        "y": 3520,
         "wires": [
             [
                 "f2fac2e5b78c46b3"
@@ -9595,7 +9658,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 3420,
+        "y": 3520,
         "wires": [
             [
                 "2fc0d9c905e68783"
@@ -9611,7 +9674,7 @@
             "96a98c49ec5f592e"
         ],
         "x": 915,
-        "y": 3420,
+        "y": 3520,
         "wires": []
     },
     {
@@ -9623,7 +9686,7 @@
             "2fc0d9c905e68783"
         ],
         "x": 55,
-        "y": 3540,
+        "y": 3640,
         "wires": [
             [
                 "62c5c61de81dc05f"
@@ -9643,7 +9706,7 @@
         "oldrc": false,
         "name": "Get Audio Files",
         "x": 600,
-        "y": 3540,
+        "y": 3640,
         "wires": [
             [
                 "403f07b7d0544159"
@@ -9664,7 +9727,7 @@
         "finalize": "",
         "libs": [],
         "x": 170,
-        "y": 3540,
+        "y": 3640,
         "wires": [
             [
                 "97c6f4e7cec98e3d"
@@ -9683,7 +9746,7 @@
         "finalize": "",
         "libs": [],
         "x": 390,
-        "y": 3540,
+        "y": 3640,
         "wires": [
             [
                 "4c9e7337cd75daee"
@@ -9708,7 +9771,7 @@
         "repair": false,
         "outputs": 1,
         "x": 800,
-        "y": 3540,
+        "y": 3640,
         "wires": [
             [
                 "97c6f4e7cec98e3d",
@@ -9728,7 +9791,7 @@
         "finalize": "",
         "libs": [],
         "x": 610,
-        "y": 3600,
+        "y": 3700,
         "wires": [
             [
                 "5192ecce926e940d"
@@ -9747,7 +9810,7 @@
         "finalize": "",
         "libs": [],
         "x": 380,
-        "y": 3600,
+        "y": 3700,
         "wires": [
             [
                 "1e7f948bea0d4318"
@@ -9763,7 +9826,7 @@
             "392fbd89372faedd"
         ],
         "x": 955,
-        "y": 3540,
+        "y": 3640,
         "wires": []
     },
     {
@@ -9775,7 +9838,7 @@
             "bb84be7b185de541"
         ],
         "x": 55,
-        "y": 3600,
+        "y": 3700,
         "wires": [
             [
                 "31d7717a39009682"
@@ -9793,7 +9856,7 @@
             "1c0dec3596439438"
         ],
         "x": 155,
-        "y": 3420,
+        "y": 3520,
         "wires": [
             [
                 "7c5ca2aa4103ee8c"
@@ -9822,7 +9885,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 3460,
+        "y": 3560,
         "wires": [
             [
                 "7c5ca2aa4103ee8c"
@@ -9838,7 +9901,7 @@
             "c8535874aa1ff738"
         ],
         "x": 955,
-        "y": 3600,
+        "y": 3700,
         "wires": []
     },
     {
@@ -9958,7 +10021,7 @@
             "d7ef97d404ef0517"
         ],
         "x": 35,
-        "y": 1900,
+        "y": 2000,
         "wires": [
             [
                 "b47fadcb378c2227"
@@ -10048,7 +10111,7 @@
         "type": "function",
         "z": "56ae43efe9a5b4d3",
         "name": "Store Audio Device to Context",
-        "func": "const audio_device = 'Headphone'\n\nflow.set('audio_device', audio_device)",
+        "func": "const audio_device = 'Digital'\n\nflow.set('audio_device', audio_device)",
         "outputs": 0,
         "noerr": 0,
         "initialize": "",
@@ -10117,7 +10180,7 @@
         "topic": "",
         "payloadType": "date",
         "x": 210,
-        "y": 1420,
+        "y": 1520,
         "wires": [
             [
                 "719fed9094ca1153"
@@ -10136,7 +10199,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 1420,
+        "y": 1520,
         "wires": []
     },
     {
@@ -10185,7 +10248,7 @@
         "name": "Download Media File",
         "info": "",
         "x": 110,
-        "y": 2620,
+        "y": 2720,
         "wires": []
     },
     {
@@ -10197,7 +10260,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 895,
-        "y": 2680,
+        "y": 2780,
         "wires": []
     },
     {
@@ -10211,7 +10274,7 @@
             "5b626b4ae0e51128"
         ],
         "x": 135,
-        "y": 2680,
+        "y": 2780,
         "wires": [
             [
                 "a1288fd3ce8a3245"
@@ -10230,7 +10293,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 2680,
+        "y": 2780,
         "wires": [
             [
                 "112aa68c80a77ff1",
@@ -10248,7 +10311,7 @@
         ],
         "uncaught": false,
         "x": 250,
-        "y": 2940,
+        "y": 3040,
         "wires": [
             [
                 "81c54bb0ddeabf4a",
@@ -10270,7 +10333,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 2960,
+        "y": 3060,
         "wires": []
     },
     {
@@ -10282,7 +10345,7 @@
             "1bd0312798db6fb0"
         ],
         "x": 795,
-        "y": 2920,
+        "y": 3020,
         "wires": []
     },
     {
@@ -10297,7 +10360,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 2920,
+        "y": 3020,
         "wires": [
             [
                 "7a6af03a46076c29"
@@ -10329,7 +10392,7 @@
             }
         ],
         "x": 300,
-        "y": 2740,
+        "y": 2840,
         "wires": [
             [
                 "cd65d8f2448d59a0"
@@ -10345,7 +10408,7 @@
             "77bbaf1677e51e46"
         ],
         "x": 615,
-        "y": 2800,
+        "y": 2900,
         "wires": []
     },
     {
@@ -10362,7 +10425,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 890,
-        "y": 2740,
+        "y": 2840,
         "wires": []
     },
     {
@@ -10386,7 +10449,7 @@
         "repair": false,
         "outputs": 2,
         "x": 340,
-        "y": 2820,
+        "y": 2920,
         "wires": [
             [
                 "81d542eb869585b4"
@@ -10406,7 +10469,7 @@
             "adec83fd96f5a557"
         ],
         "x": 615,
-        "y": 2840,
+        "y": 2940,
         "wires": []
     },
     {
@@ -10429,7 +10492,7 @@
         "to": "",
         "reg": false,
         "x": 600,
-        "y": 2740,
+        "y": 2840,
         "wires": [
             [
                 "0a0c0886b1fbabae",
@@ -10451,7 +10514,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 2880,
+        "y": 2980,
         "wires": []
     },
     {
@@ -10470,7 +10533,7 @@
         "repair": false,
         "outputs": 1,
         "x": 590,
-        "y": 2680,
+        "y": 2780,
         "wires": [
             [
                 "84cc3221f3ae7945"
@@ -10513,22 +10576,6 @@
         ]
     },
     {
-        "id": "54061ac0337d67c2",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 150,
-        "y": 2020,
-        "wires": []
-    },
-    {
         "id": "bd0b5d9e11e345de",
         "type": "debug",
         "z": "56ae43efe9a5b4d3",
@@ -10558,7 +10605,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 570,
-        "y": 2200,
+        "y": 2300,
         "wires": []
     },
     {
@@ -10576,15 +10623,111 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "66",
+        "payload": "63",
         "payloadType": "num",
         "x": 130,
-        "y": 1800,
+        "y": 1900,
         "wires": [
             [
                 "8d54343c273a8128"
             ]
         ]
+    },
+    {
+        "id": "369f02e8171cc18a",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "func": "const audio_assets = flow.get('audio_assets')\nconst { fullPath, volume, sound, audio_file: audio } = msg.payload\n\nconst sound_type = flow.get(sound)\n\nlet path = fullPath || audio\n\nconst [dir, file] = path.split('/')\nconst audio_file = audio_assets[dir][file]\n\nif(!audio_file)\n    throw new Error(\"Audio File not downloaded yet\")\n\nconst audio_metadata = {\n    ...sound_type,\n    audio_file,\n    volume,\n    sound\n}\n\nflow.set(sound, audio_metadata)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "9e4bc266743f997c",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "links": [
+            "1b1c7d093b342cf3"
+        ],
+        "x": 135,
+        "y": 1440,
+        "wires": [
+            [
+                "369f02e8171cc18a"
+            ]
+        ]
+    },
+    {
+        "id": "fc64b790a7a89db9",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Message",
+        "func": "const { sound } = msg.payload\nconst audio_setting = flow.get(sound)\n\nconst metadata = {\n    ...audio_setting,\n    ...msg.payload\n}\n\nflow.set(sound, metadata)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 2140,
+        "wires": [
+            [
+                "ab91ca2c5c750e95"
+            ]
+        ]
+    },
+    {
+        "id": "fb558ee06afe8448",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Audio Message",
+        "links": [],
+        "x": 35,
+        "y": 2140,
+        "wires": [
+            [
+                "fc64b790a7a89db9"
+            ]
+        ]
+    },
+    {
+        "id": "73abb13ecf9db6d7",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "7a0e459596957678",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 1800,
+        "wires": []
     },
     {
         "id": "5ec14e1ee0ad2eee",
@@ -10597,7 +10740,7 @@
             "bc6b9f41cb332728"
         ],
         "x": 195,
-        "y": 460,
+        "y": 300,
         "wires": [
             [
                 "43520e04d95e37a7",
@@ -10745,7 +10888,7 @@
         "name": "Reset",
         "info": "",
         "x": 70,
-        "y": 400,
+        "y": 240,
         "wires": []
     },
     {
@@ -10755,7 +10898,7 @@
         "name": "Audio Device",
         "info": "",
         "x": 90,
-        "y": 600,
+        "y": 440,
         "wires": []
     },
     {
@@ -10767,7 +10910,7 @@
             "9bd942c9ca7183b9"
         ],
         "x": 195,
-        "y": 660,
+        "y": 500,
         "wires": [
             [
                 "a23245de2a284da7"
@@ -10786,7 +10929,7 @@
         "finalize": "",
         "libs": [],
         "x": 430,
-        "y": 660,
+        "y": 500,
         "wires": [
             [
                 "144fd0dfecaeedea"
@@ -10802,7 +10945,7 @@
             "a6c0468332682feb"
         ],
         "x": 675,
-        "y": 660,
+        "y": 500,
         "wires": []
     },
     {
@@ -10829,7 +10972,7 @@
         "name": "Update Flows",
         "info": "",
         "x": 90,
-        "y": 740,
+        "y": 660,
         "wires": []
     },
     {
@@ -10844,7 +10987,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 820,
+        "y": 740,
         "wires": [
             [
                 "fdd84480a14b1161"
@@ -10873,7 +11016,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 820,
+        "y": 740,
         "wires": [
             [
                 "df339d904f3b84b3"
@@ -10893,7 +11036,7 @@
         "oldrc": false,
         "name": "",
         "x": 250,
-        "y": 940,
+        "y": 860,
         "wires": [
             [
                 "62fe2b5c090c47b4"
@@ -10920,7 +11063,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 900,
+        "y": 820,
         "wires": []
     },
     {
@@ -10936,7 +11079,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 940,
+        "y": 860,
         "wires": []
     },
     {
@@ -10952,7 +11095,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 550,
-        "y": 980,
+        "y": 900,
         "wires": []
     },
     {
@@ -10964,7 +11107,7 @@
             "b0173ac2af8fec3b"
         ],
         "x": 295,
-        "y": 440,
+        "y": 280,
         "wires": []
     },
     {
@@ -10985,7 +11128,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 340,
-        "y": 480,
+        "y": 320,
         "wires": [
             [
                 "58cc82ec6eeb0d28"
@@ -11004,7 +11147,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 480,
+        "y": 320,
         "wires": [
             [
                 "7582d1b00799b862"
@@ -11021,7 +11164,7 @@
             "6d72a07d67d7338a"
         ],
         "x": 755,
-        "y": 480,
+        "y": 320,
         "wires": []
     },
     {
@@ -13682,6 +13825,118 @@
         "wires": []
     },
     {
+        "id": "6b08b4a86b86493d",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Configure HTTP Service",
+        "links": [
+            "6557532d3e1fbe5b"
+        ],
+        "x": 55,
+        "y": 2540,
+        "wires": [
+            [
+                "eaa524432e2b0709"
+            ]
+        ]
+    },
+    {
+        "id": "8b30048149150745",
+        "type": "comment",
+        "z": "4b91f5d2f9b78292",
+        "name": "Get Device Serial Number",
+        "info": "",
+        "x": 150,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "0497ea8c1e140e87",
+        "type": "exec",
+        "z": "4b91f5d2f9b78292",
+        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Get Device Serial Number",
+        "x": 330,
+        "y": 2720,
+        "wires": [
+            [
+                "3d8d2cd5f0bed58c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "108364afc2436fe4",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "Initialize System Controls",
+        "links": [
+            "176706c3efb8ce21",
+            "1a5068f4b0cae0d9"
+        ],
+        "x": 155,
+        "y": 2720,
+        "wires": [
+            [
+                "0497ea8c1e140e87"
+            ]
+        ]
+    },
+    {
+        "id": "3d8d2cd5f0bed58c",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Store Serial Number",
+        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 2720,
+        "wires": [
+            [
+                "6557532d3e1fbe5b"
+            ]
+        ]
+    },
+    {
+        "id": "6557532d3e1fbe5b",
+        "type": "link out",
+        "z": "4b91f5d2f9b78292",
+        "name": "Serial Number Initialized",
+        "links": [
+            "a5c9a9fa35ff85a1",
+            "6b08b4a86b86493d"
+        ],
+        "x": 795,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "a5d280204fd7e547",
+        "type": "function",
+        "z": "4b91f5d2f9b78292",
+        "name": "Network State",
+        "func": "const { topic: network_state } = msg\n\nflow.set(\"network_state\", network_state)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 2800,
+        "wires": []
+    },
+    {
         "id": "d7bbe2d9d6e8d970",
         "type": "exec",
         "z": "0f63bfc5ee27de30",
@@ -13873,118 +14128,6 @@
         "statusType": "auto",
         "x": 590,
         "y": 200,
-        "wires": []
-    },
-    {
-        "id": "6b08b4a86b86493d",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Configure HTTP Service",
-        "links": [
-            "6557532d3e1fbe5b"
-        ],
-        "x": 55,
-        "y": 2540,
-        "wires": [
-            [
-                "eaa524432e2b0709"
-            ]
-        ]
-    },
-    {
-        "id": "8b30048149150745",
-        "type": "comment",
-        "z": "4b91f5d2f9b78292",
-        "name": "Get Device Serial Number",
-        "info": "",
-        "x": 150,
-        "y": 2640,
-        "wires": []
-    },
-    {
-        "id": "0497ea8c1e140e87",
-        "type": "exec",
-        "z": "4b91f5d2f9b78292",
-        "command": "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "Get Device Serial Number",
-        "x": 330,
-        "y": 2720,
-        "wires": [
-            [
-                "3d8d2cd5f0bed58c"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "108364afc2436fe4",
-        "type": "link in",
-        "z": "4b91f5d2f9b78292",
-        "name": "Initialize System Controls",
-        "links": [
-            "176706c3efb8ce21",
-            "1a5068f4b0cae0d9"
-        ],
-        "x": 155,
-        "y": 2720,
-        "wires": [
-            [
-                "0497ea8c1e140e87"
-            ]
-        ]
-    },
-    {
-        "id": "3d8d2cd5f0bed58c",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Store Serial Number",
-        "func": "const serial_num = msg.payload.replace(\"\\n\", \"\")\n\nglobal.set(\"device_serial_number\", serial_num)\n\nmsg.payload = serial_num\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 2720,
-        "wires": [
-            [
-                "6557532d3e1fbe5b"
-            ]
-        ]
-    },
-    {
-        "id": "6557532d3e1fbe5b",
-        "type": "link out",
-        "z": "4b91f5d2f9b78292",
-        "name": "Serial Number Initialized",
-        "links": [
-            "a5c9a9fa35ff85a1",
-            "6b08b4a86b86493d"
-        ],
-        "x": 795,
-        "y": 2720,
-        "wires": []
-    },
-    {
-        "id": "a5d280204fd7e547",
-        "type": "function",
-        "z": "4b91f5d2f9b78292",
-        "name": "Network State",
-        "func": "const { topic: network_state } = msg\n\nflow.set(\"network_state\", network_state)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 2800,
         "wires": []
     }
 ]
