@@ -2680,6 +2680,19 @@
         "wires": []
     },
     {
+        "id": "1b1c7d093b342cf3",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "9e4bc266743f997c"
+        ],
+        "x": 875,
+        "y": 600,
+        "wires": []
+    },
+    {
         "id": "3663a760b9cc022e",
         "type": "inject",
         "z": "427808241d304283",
@@ -5493,6 +5506,39 @@
         "statusType": "auto",
         "x": 600,
         "y": 560,
+        "wires": []
+    },
+    {
+        "id": "6a1b0fc1efbb25ac",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "548caea835aba7a6",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "Wake Sound Event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 2180,
         "wires": []
     },
     {
@@ -10620,6 +10666,102 @@
         ]
     },
     {
+        "id": "369f02e8171cc18a",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "func": "const audio_assets = flow.get('audio_assets')\nconst { fullPath, volume, sound, audio_file: audio } = msg.payload\n\nconst sound_type = flow.get(sound)\n\nlet path = fullPath || audio\n\nconst [dir, file] = path.split('/')\nconst audio_file = audio_assets[dir][file]\n\nif(!audio_file)\n    throw new Error(\"Audio File not downloaded yet\")\n\nconst audio_metadata = {\n    ...sound_type,\n    audio_file,\n    volume,\n    sound\n}\n\nflow.set(sound, audio_metadata)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "9e4bc266743f997c",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "links": [
+            "1b1c7d093b342cf3"
+        ],
+        "x": 135,
+        "y": 1440,
+        "wires": [
+            [
+                "369f02e8171cc18a"
+            ]
+        ]
+    },
+    {
+        "id": "fc64b790a7a89db9",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Message",
+        "func": "const { sound } = msg.payload\nconst audio_setting = flow.get(sound)\n\nconst metadata = {\n    ...audio_setting,\n    ...msg.payload\n}\n\nflow.set(sound, metadata)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 2140,
+        "wires": [
+            [
+                "ab91ca2c5c750e95"
+            ]
+        ]
+    },
+    {
+        "id": "fb558ee06afe8448",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Audio Message",
+        "links": [],
+        "x": 35,
+        "y": 2140,
+        "wires": [
+            [
+                "fc64b790a7a89db9"
+            ]
+        ]
+    },
+    {
+        "id": "73abb13ecf9db6d7",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "7a0e459596957678",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 1800,
+        "wires": []
+    },
+    {
         "id": "5ec14e1ee0ad2eee",
         "type": "link in",
         "z": "4fcd3dd2df70f0c8",
@@ -11551,7 +11693,8 @@
         "wires": [
             [
                 "9bc6c0e04d4a6195",
-                "a4fc78ecb023e5f0"
+                "a4fc78ecb023e5f0",
+                "a6271eab5448a9e1"
             ]
         ]
     },
@@ -11628,7 +11771,7 @@
         "type": "range",
         "z": "39c947163c4b72c5",
         "minin": "0",
-        "maxin": "256",
+        "maxin": "100",
         "minout": "-128",
         "maxout": "127",
         "action": "scale",
@@ -11684,7 +11827,7 @@
         "type": "range",
         "z": "39c947163c4b72c5",
         "minin": "0",
-        "maxin": "256",
+        "maxin": "100",
         "minout": "-128",
         "maxout": "127",
         "action": "scale",
@@ -11789,6 +11932,22 @@
         "freq": "2000",
         "x": 750,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a6271eab5448a9e1",
+        "type": "debug",
+        "z": "39c947163c4b72c5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 60,
         "wires": []
     },
     {
@@ -12027,7 +12186,7 @@
         "finalize": "",
         "libs": [],
         "x": 280,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "7466546d342ee828"
@@ -12056,7 +12215,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 120,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "130c1becc90e69a7"
@@ -12076,7 +12235,7 @@
         "oldrc": false,
         "name": "",
         "x": 510,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "d0ad9e3edf22c98f"
@@ -12102,7 +12261,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 440,
+        "y": 480,
         "wires": []
     },
     {
@@ -12118,7 +12277,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 480,
+        "y": 520,
         "wires": []
     },
     {
@@ -12143,7 +12302,7 @@
         "template": "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry={{payload.country}}\n\nnetwork={\n\tssid=\"{{payload.ssid}}\"\n\tpsk={{payload.password}}\n}",
         "output": "str",
         "x": 270,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "f96fde70c2e8c443"
@@ -12161,7 +12320,7 @@
         "overwriteFile": "true",
         "encoding": "none",
         "x": 540,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "db91be4a427ac207"
@@ -12180,7 +12339,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "22754002fd36cdd7"
@@ -12199,7 +12358,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "8a828defa9875c28"
@@ -12215,7 +12374,7 @@
             "a58ef47042996746"
         ],
         "x": 935,
-        "y": 400,
+        "y": 440,
         "wires": []
     },
     {
@@ -12227,7 +12386,7 @@
             "8a828defa9875c28"
         ],
         "x": 55,
-        "y": 560,
+        "y": 600,
         "wires": [
             [
                 "2e156e0e92a40006"
@@ -12244,7 +12403,7 @@
             "9bd105e895a79222"
         ],
         "x": 935,
-        "y": 560,
+        "y": 600,
         "wires": []
     },
     {
@@ -12429,7 +12588,8 @@
         "name": "",
         "links": [
             "6d72a07d67d7338a",
-            "b1c58a1a6b330a94"
+            "b1c58a1a6b330a94",
+            "58be9452abb00bb5"
         ],
         "x": 765,
         "y": 1560,
@@ -12606,7 +12766,7 @@
             "02d63241c2c8b3af"
         ],
         "x": 55,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "22754002fd36cdd7",
@@ -13086,7 +13246,7 @@
         "name": "",
         "files": "/logs/wifi_scan.txt",
         "recursive": "",
-        "x": 140,
+        "x": 120,
         "y": 2280,
         "wires": [
             [
@@ -13129,29 +13289,6 @@
         "x": 890,
         "y": 2340,
         "wires": []
-    },
-    {
-        "id": "c83fc0a4245ff2e7",
-        "type": "switch",
-        "z": "4b91f5d2f9b78292",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nempty"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 430,
-        "y": 2280,
-        "wires": [
-            [
-                "eb2c2383899771e0"
-            ]
-        ]
     },
     {
         "id": "eb2c2383899771e0",
@@ -13293,8 +13430,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 110,
-        "y": 2540,
+        "x": 130,
+        "y": 2600,
         "wires": [
             [
                 "eaa524432e2b0709"
@@ -13341,7 +13478,7 @@
         "z": "4b91f5d2f9b78292",
         "name": "",
         "pauseType": "delay",
-        "timeout": "10",
+        "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -13421,7 +13558,8 @@
         "y": 1860,
         "wires": [
             [
-                "68c10bb556983853"
+                "68c10bb556983853",
+                "c4852253b134d33f"
             ]
         ]
     },
@@ -13490,7 +13628,7 @@
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "f61d720e805718f3"
@@ -13506,7 +13644,7 @@
             "6d72a07d67d7338a"
         ],
         "x": 375,
-        "y": 500,
+        "y": 540,
         "wires": []
     },
     {
@@ -13827,6 +13965,78 @@
         "wires": []
     },
     {
+        "id": "c676d84565249f05",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "58be9452abb00bb5",
+        "type": "link in",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "links": [
+            "88447a59e53cf075"
+        ],
+        "x": 915,
+        "y": 1560,
+        "wires": [
+            [
+                "c676d84565249f05"
+            ]
+        ]
+    },
+    {
+        "id": "c83fc0a4245ff2e7",
+        "type": "switch",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 2280,
+        "wires": [
+            [
+                "eb2c2383899771e0"
+            ]
+        ]
+    },
+    {
+        "id": "c4852253b134d33f",
+        "type": "debug",
+        "z": "4b91f5d2f9b78292",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 1820,
+        "wires": []
+    },
+    {
         "id": "d7bbe2d9d6e8d970",
         "type": "exec",
         "z": "0f63bfc5ee27de30",
@@ -14018,148 +14228,6 @@
         "statusType": "auto",
         "x": 590,
         "y": 200,
-        "wires": []
-    },
-    {
-        "id": "1b1c7d093b342cf3",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "9e4bc266743f997c"
-        ],
-        "x": 875,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "6a1b0fc1efbb25ac",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 350,
-        "y": 1840,
-        "wires": []
-    },
-    {
-        "id": "548caea835aba7a6",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "Wake Sound Event",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 610,
-        "y": 2180,
-        "wires": []
-    },
-    {
-        "id": "369f02e8171cc18a",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Set Selected Sound",
-        "func": "const audio_assets = flow.get('audio_assets')\nconst { fullPath, volume, sound, audio_file: audio } = msg.payload\n\nconst sound_type = flow.get(sound)\n\nlet path = fullPath || audio\n\nconst [dir, file] = path.split('/')\nconst audio_file = audio_assets[dir][file]\n\nif(!audio_file)\n    throw new Error(\"Audio File not downloaded yet\")\n\nconst audio_metadata = {\n    ...sound_type,\n    audio_file,\n    volume,\n    sound\n}\n\nflow.set(sound, audio_metadata)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1440,
-        "wires": []
-    },
-    {
-        "id": "9e4bc266743f997c",
-        "type": "link in",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Set Selected Sound",
-        "links": [
-            "1b1c7d093b342cf3"
-        ],
-        "x": 135,
-        "y": 1440,
-        "wires": [
-            [
-                "369f02e8171cc18a"
-            ]
-        ]
-    },
-    {
-        "id": "fc64b790a7a89db9",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Send Message",
-        "func": "const { sound } = msg.payload\nconst audio_setting = flow.get(sound)\n\nconst metadata = {\n    ...audio_setting,\n    ...msg.payload\n}\n\nflow.set(sound, metadata)\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 2140,
-        "wires": [
-            [
-                "ab91ca2c5c750e95"
-            ]
-        ]
-    },
-    {
-        "id": "fb558ee06afe8448",
-        "type": "link in",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Send Audio Message",
-        "links": [],
-        "x": 35,
-        "y": 2140,
-        "wires": [
-            [
-                "fc64b790a7a89db9"
-            ]
-        ]
-    },
-    {
-        "id": "73abb13ecf9db6d7",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 1860,
-        "wires": []
-    },
-    {
-        "id": "7a0e459596957678",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 470,
-        "y": 1800,
         "wires": []
     }
 ]
