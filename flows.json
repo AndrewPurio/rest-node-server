@@ -2680,6 +2680,19 @@
         "wires": []
     },
     {
+        "id": "1b1c7d093b342cf3",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "mode": "link",
+        "links": [
+            "9e4bc266743f997c"
+        ],
+        "x": 875,
+        "y": 600,
+        "wires": []
+    },
+    {
         "id": "3663a760b9cc022e",
         "type": "inject",
         "z": "427808241d304283",
@@ -5493,6 +5506,39 @@
         "statusType": "auto",
         "x": 600,
         "y": 560,
+        "wires": []
+    },
+    {
+        "id": "6a1b0fc1efbb25ac",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "548caea835aba7a6",
+        "type": "debug",
+        "z": "427808241d304283",
+        "name": "Wake Sound Event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 2180,
         "wires": []
     },
     {
@@ -10620,6 +10666,102 @@
         ]
     },
     {
+        "id": "369f02e8171cc18a",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "func": "const audio_assets = flow.get('audio_assets')\nconst { fullPath, volume, sound, audio_file: audio } = msg.payload\n\nconst sound_type = flow.get(sound)\n\nlet path = fullPath || audio\n\nconst [dir, file] = path.split('/')\nconst audio_file = audio_assets[dir][file]\n\nif(!audio_file)\n    throw new Error(\"Audio File not downloaded yet\")\n\nconst audio_metadata = {\n    ...sound_type,\n    audio_file,\n    volume,\n    sound\n}\n\nflow.set(sound, audio_metadata)",
+        "outputs": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "9e4bc266743f997c",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Set Selected Sound",
+        "links": [
+            "1b1c7d093b342cf3"
+        ],
+        "x": 135,
+        "y": 1440,
+        "wires": [
+            [
+                "369f02e8171cc18a"
+            ]
+        ]
+    },
+    {
+        "id": "fc64b790a7a89db9",
+        "type": "function",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Message",
+        "func": "const { sound } = msg.payload\nconst audio_setting = flow.get(sound)\n\nconst metadata = {\n    ...audio_setting,\n    ...msg.payload\n}\n\nflow.set(sound, metadata)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 2140,
+        "wires": [
+            [
+                "ab91ca2c5c750e95"
+            ]
+        ]
+    },
+    {
+        "id": "fb558ee06afe8448",
+        "type": "link in",
+        "z": "56ae43efe9a5b4d3",
+        "name": "Send Audio Message",
+        "links": [],
+        "x": 35,
+        "y": 2140,
+        "wires": [
+            [
+                "fc64b790a7a89db9"
+            ]
+        ]
+    },
+    {
+        "id": "73abb13ecf9db6d7",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "7a0e459596957678",
+        "type": "debug",
+        "z": "56ae43efe9a5b4d3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 1800,
+        "wires": []
+    },
+    {
         "id": "5ec14e1ee0ad2eee",
         "type": "link in",
         "z": "4fcd3dd2df70f0c8",
@@ -13341,7 +13483,7 @@
         "z": "4b91f5d2f9b78292",
         "name": "",
         "pauseType": "delay",
-        "timeout": "10",
+        "timeout": "20",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -14018,148 +14160,6 @@
         "statusType": "auto",
         "x": 590,
         "y": 200,
-        "wires": []
-    },
-    {
-        "id": "1b1c7d093b342cf3",
-        "type": "link out",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "mode": "link",
-        "links": [
-            "9e4bc266743f997c"
-        ],
-        "x": 875,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "6a1b0fc1efbb25ac",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 350,
-        "y": 1840,
-        "wires": []
-    },
-    {
-        "id": "548caea835aba7a6",
-        "type": "debug",
-        "z": "427808241d304283",
-        "name": "Wake Sound Event",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 610,
-        "y": 2180,
-        "wires": []
-    },
-    {
-        "id": "369f02e8171cc18a",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Set Selected Sound",
-        "func": "const audio_assets = flow.get('audio_assets')\nconst { fullPath, volume, sound, audio_file: audio } = msg.payload\n\nconst sound_type = flow.get(sound)\n\nlet path = fullPath || audio\n\nconst [dir, file] = path.split('/')\nconst audio_file = audio_assets[dir][file]\n\nif(!audio_file)\n    throw new Error(\"Audio File not downloaded yet\")\n\nconst audio_metadata = {\n    ...sound_type,\n    audio_file,\n    volume,\n    sound\n}\n\nflow.set(sound, audio_metadata)",
-        "outputs": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 1440,
-        "wires": []
-    },
-    {
-        "id": "9e4bc266743f997c",
-        "type": "link in",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Set Selected Sound",
-        "links": [
-            "1b1c7d093b342cf3"
-        ],
-        "x": 135,
-        "y": 1440,
-        "wires": [
-            [
-                "369f02e8171cc18a"
-            ]
-        ]
-    },
-    {
-        "id": "fc64b790a7a89db9",
-        "type": "function",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Send Message",
-        "func": "const { sound } = msg.payload\nconst audio_setting = flow.get(sound)\n\nconst metadata = {\n    ...audio_setting,\n    ...msg.payload\n}\n\nflow.set(sound, metadata)\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 160,
-        "y": 2140,
-        "wires": [
-            [
-                "ab91ca2c5c750e95"
-            ]
-        ]
-    },
-    {
-        "id": "fb558ee06afe8448",
-        "type": "link in",
-        "z": "56ae43efe9a5b4d3",
-        "name": "Send Audio Message",
-        "links": [],
-        "x": 35,
-        "y": 2140,
-        "wires": [
-            [
-                "fc64b790a7a89db9"
-            ]
-        ]
-    },
-    {
-        "id": "73abb13ecf9db6d7",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 1860,
-        "wires": []
-    },
-    {
-        "id": "7a0e459596957678",
-        "type": "debug",
-        "z": "56ae43efe9a5b4d3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 470,
-        "y": 1800,
         "wires": []
     }
 ]
